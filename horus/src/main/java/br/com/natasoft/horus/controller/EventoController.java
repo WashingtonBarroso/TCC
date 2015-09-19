@@ -15,6 +15,7 @@ import br.com.natasoft.horus.service.EventoService;
 @Controller
 public class EventoController {
 
+	//testando git
 	private final Result result;
 
 	@Inject
@@ -44,8 +45,4 @@ public class EventoController {
 		List<Evento> eventos = service.listar();
 		result.include("list",eventos);
 	}
-
-    
-	
-	
 } 
