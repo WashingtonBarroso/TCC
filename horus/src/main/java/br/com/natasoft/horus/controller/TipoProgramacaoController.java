@@ -29,17 +29,17 @@ public class TipoProgramacaoController {
 		this.result = result; 
 	}
 
-	@Path("/tipoProgramacao/formtp")
+	@Path("/tipoProgramacao/form")
 	public void form(TipoProgramacaoDTO TipoProgramacaoDTO){
 		TipoProgramacaoDTO dto = service.loadForm();
 		result.include("dto",dto);
 	}
-	@Post("/tipoProgramacao/savetp")
+	@Post("/tipoProgramacao/save")
 	public void save(TipoProgramacaoDTO dto){
 		service.save(dto);
 		result.include("dto",dto);
 	}
-	@Path("/tipoProgramacao/listatp")
+	@Path("/tipoProgramacao/lista")
 	public void lista(){
 		List<TipoProgramacao> TipoProgramacoes = service.listar();
 		result.include("list",TipoProgramacoes);

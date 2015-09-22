@@ -41,7 +41,7 @@ public class OrganizadorController {
 	}
 	@Path("/organizador/lista")
 	public void lista(){
-		List<Organizador> Organizadores = service.listar();
-		result.include("list",Organizadores);
+		List<Organizador> organizadores = service.listar();
+		result.include("list",organizadores);
 	}
 }

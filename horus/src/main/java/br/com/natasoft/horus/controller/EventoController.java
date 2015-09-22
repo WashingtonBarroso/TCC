@@ -15,7 +15,6 @@ import br.com.natasoft.horus.service.EventoService;
 @Controller
 public class EventoController {
 
-	//testando git
 	private final Result result;
 
 	@Inject

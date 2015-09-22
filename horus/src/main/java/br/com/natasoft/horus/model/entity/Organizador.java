@@ -25,7 +25,7 @@ public class Organizador implements Serializable{
 	@Getter @Setter private String cargo;
 	@Getter @Setter private String area;
 	@ManyToOne
-	@JoinColumn(name="tporganizador_id")
+	@JoinColumn(name="tipo_organizador_id")
 	@Getter @Setter
 	private TipoOrganizador tipoOrganizador;
 

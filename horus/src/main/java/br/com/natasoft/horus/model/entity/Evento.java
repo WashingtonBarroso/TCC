@@ -24,7 +24,7 @@ public class Evento implements Serializable{
 	@Getter @Setter private Long id;
 	@NotEmpty 
 	@Getter @Setter private String nome; 
-	@Getter @Setter private String local; 
+ 	@Getter @Setter private String local; 
 	@Getter @Setter private String cidade; 
 	@Getter @Setter private String estado; 
 	@Getter @Setter private String site; 

@@ -242,14 +242,14 @@
 		<!--header end-->
 
 		<!--sidebar start-->
-	  <aside>
+		  <aside>
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu">                
                   <li class="active">
                       <a class="" href="/horus/">
                           <i class="icon_house_alt"></i>
-                          <span>Dashboard</span>
+                          <span>Home</span>
                       </a>
                   </li>
 				  <li class="sub-menu">
@@ -344,62 +344,52 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading"> Cadastro Evento </header>
+							<header class="panel-heading"> Cadastro Programação </header>
 							<div class="panel-body">
 								<div class="form">
 									<form class="form-validate form-horizontal" id="feedback_form"
-										method="post" action="/horus/evento/save">
+										method="post" action="/horus/programacao/save">
 										<div class="form-group ">
-											<label for="cname" class="control-label col-lg-2">Evento
+											<label for="cname" class="control-label col-lg-2">Programação
 												<span class="required">*</span>
 											</label>
 											<div class="col-lg-10">
-												<input class="form-control" id="nome" name="dto.evento.nome"
-													value="${dto.evento.nome}" minlength="5" type="text"
+												<input class="form-control" id="nome" name="dto.programacao.nome"
+													value="${dto.programacao.nome}" minlength="5" type="text"
 													required />
 											</div>
 										</div>
 										<div class="form-group ">
-											<label for="cemail" class="control-label col-lg-2">Local
+											<label for="data" class="control-label col-lg-2">Data
+												<span class="required">*</span>
+											</label>
+											<div class="col-lg-10">
+												<input class="form-control " id="Data"
+													name="dto.programacao.data" value="${dto.programacao.data}"
+													required />
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="hora" class="control-label col-lg-2">Hora</label>
+											<div class="col-lg-10">
+												<input class="form-control " id="hora" type="url"
+													name="dto.programacao.hora" value="${dto.programacao.hora}" />
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="local" class="control-label col-lg-2">Local
 												<span class="required">*</span>
 											</label>
 											<div class="col-lg-10">
 												<input class="form-control " id="local"
-													name="dto.evento.local" value="${dto.evento.local}"
-													required />
-											</div>
-										</div>
-										<div class="form-group ">
-											<label for="curl" class="control-label col-lg-2">Website</label>
-											<div class="col-lg-10">
-												<input class="form-control " id="curl" type="url"
-													name="dto.evento.site" value="${dto.evento.site}" />
-											</div>
-										</div>
-										<div class="form-group ">
-											<label for="cemail" class="control-label col-lg-2">Cidade
-												<span class="required">*</span>
-											</label>
-											<div class="col-lg-10">
-												<input class="form-control " id="cidade"
-													name="dto.evento.cidade" value="${dto.evento.cidade}"
-													required />
-											</div>
-										</div>
-										<div class="form-group ">
-											<label for="cemail" class="control-label col-lg-2">Estado
-												<span class="required">*</span>
-											</label>
-											<div class="col-lg-10">
-												<input class="form-control " id="estado"
-													name="dto.evento.estado" value="${dto.evento.estado}"
+													name="dto.programacao.local" value="${dto.programacao.local}"
 													required />
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
 												<input class="btn btn-success" type="submit" value="Salvar">
-												<a href="/horus/evento/form" class="btn btn-danger">Cancelar</a>
+												<a href="/horus/programacao/form" class="btn btn-danger">Cancelar</a>
 											</div>
 										</div>
 									</form>

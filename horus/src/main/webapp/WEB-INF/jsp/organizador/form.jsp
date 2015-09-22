@@ -12,20 +12,20 @@
 			value="${dto.organizador.nome}" /><br /> Cargo: <input type="text"
 			name="dto.organizador.cargo" value="${dto.organizador.cargo}" /><br />
 		Área: <input type="text" name="dto.organizador.area"
-			value="${dto.organizador.area}" /><br />
-		<div class="form-group">
-			<label class="control-label col-lg-2">Category</label>
-			<div class="col-lg-10">
-
-				<select class="form-control">
-					<c:forEach items="${list}" var="tipoOrganizador">
-						<option value="1">${tipoOrganizador.id}-
-							${tipoOrganizador.tipo}</option>
-					</c:forEach>
-				</select>
-			</div>
-		</div>
-		<input type="submit" value="Salvar" />
+			value="${dto.organizador.area}" /><br /> 
+			Tipo Organizador: 
+			
+			<select>
+			<c:forEach items="${dto.tipos}" var="tipo">
+			<option>${tipo.id} - ${tipo.tipo}</option>
+		   </c:forEach>
+			
+			</select>
+			
+			 <input
+			type="submit" value="Salvar" />
+	
+	
 	</form>
 </body>
-</html>	
+</html>

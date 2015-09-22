@@ -6,8 +6,8 @@
 </head>
 <body>
 	
-	<form action="/horus/tipoProgramacao/save" method="post">
-		Tipo: <input type="text" name="dto.tipoprogramacao.tipo" value="${dto.tipoprogramacao.tipo}" /><br /> 
+		<form action="/tipoProgramacao/save" method="post">
+		Tipo: <input type="text" name="dto.tipoProgramacao.tipo" value="${dto.tipoProgramacao.tipo}" /><br /> 
 		<input type="submit" value="Salvar" />
 	</form>
 </body>

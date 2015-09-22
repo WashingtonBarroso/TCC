@@ -19,7 +19,6 @@ public class DAO<T, PK> implements IDAO<T, PK> {
 	@Inject
 	private EntityManager entityManager;
 	
-	
 	/*
 	 * PRIVATE METHODS
 	 */
@@ -138,13 +137,11 @@ public class DAO<T, PK> implements IDAO<T, PK> {
 		return (T) entityManager.find(getTypeClass(), id);
 	}
 
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> getAll() {
 		return (List<T>) entityManager.createQuery(("FROM " + getTypeClass().getName())).getResultList();
 	}
-
 	
 	@Override
 	public Long count() {
