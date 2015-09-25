@@ -242,86 +242,69 @@
 		<!--header end-->
 
 		<!--sidebar start-->
-		  <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu">                
-                  <li class="active">
-                      <a class="" href="/horus/">
-                          <i class="icon_house_alt"></i>
-                          <span>Home</span>
-                      </a>
-                  </li>
-				  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon_document_alt"></i>
-                          <span>Evento</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="/horus/evento/form">Cadastro</a></li>                          
-                          <li><a class="" href="form_validation.html">Form Validation</a></li>
-                      </ul>
-                  </li>       
-              
-                  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon_documents_alt"></i>
-                          <span>Notícia</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="/horus/noticia/form">Cadastro</a></li>
-                          <li><a class="" href="buttons.html">Buttons</a></li>
-                          <li><a class="" href="grids.html">Grids</a></li>
-                      </ul>
-                  </li>
-             
-                  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="fa fa-users"></i>
-                          <span>Organizadores</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="/horus/organizador/form">Cadastro</a></li>
-                          <li><a class="" href="buttons.html">Buttons</a></li>
-                          <li><a class="" href="grids.html">Grids</a></li>
-                      </ul>
-                  </li>
-              
-              
-                  <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="icon_desktop"></i>
-                          <span>Programação</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="/horus/programacao/form">Cadastro</a></li>
-                          <li><a class="" href="buttons.html">Buttons</a></li>
-                          <li><a class="" href="grids.html">Grids</a></li>
-                      </ul>
-                  </li>
-                          <li class="sub-menu">
-                      <a href="javascript:;" class="">
-                          <i class="fa fa-user"></i>
-                          <span>Palestrantes</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-                      <ul class="sub">
-                          <li><a class="" href="/horus/palestrante/form">Cadastro</a></li>
-                          <li><a class="" href="buttons.html">Buttons</a></li>
-                          <li><a class="" href="grids.html">Grids</a></li>
-                      </ul>
-                  </li>                
-                  
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
-      <!--sidebar end-->
+		<aside>
+			<div id="sidebar" class="nav-collapse ">
+				<!-- sidebar menu start-->
+				<ul class="sidebar-menu">
+					<li class="active"><a class="" href="/horus/"> <i
+							class="icon_house_alt"></i> <span>Home</span>
+					</a></li>
+					<li class="sub-menu"><a href="javascript:;" class=""> <i
+							class="icon_document_alt"></i> <span>Evento</span> <span
+							class="menu-arrow arrow_carrot-right"></span>
+					</a>
+						<ul class="sub">
+							<li><a class="" href="/horus/evento/form">Cadastro</a></li>
+							<li><a class="" href="form_validation.html">Form
+									Validation</a></li>
+						</ul></li>
+
+					<li class="sub-menu"><a href="javascript:;" class=""> <i
+							class="icon_documents_alt"></i> <span>Notícia</span> <span
+							class="menu-arrow arrow_carrot-right"></span>
+					</a>
+						<ul class="sub">
+							<li><a class="" href="/horus/noticia/form">Cadastro</a></li>
+							<li><a class="" href="buttons.html">Buttons</a></li>
+							<li><a class="" href="grids.html">Grids</a></li>
+						</ul></li>
+
+					<li class="sub-menu"><a href="javascript:;" class=""> <i
+							class="fa fa-users"></i> <span>Organizadores</span> <span
+							class="menu-arrow arrow_carrot-right"></span>
+					</a>
+						<ul class="sub">
+							<li><a class="" href="/horus/organizador/form">Cadastro</a></li>
+							<li><a class="" href="buttons.html">Buttons</a></li>
+							<li><a class="" href="grids.html">Grids</a></li>
+						</ul></li>
+
+
+					<li class="sub-menu"><a href="javascript:;" class=""> <i
+							class="icon_desktop"></i> <span>Programação</span> <span
+							class="menu-arrow arrow_carrot-right"></span>
+					</a>
+						<ul class="sub">
+							<li><a class="" href="/horus/programacao/form">Cadastro</a></li>
+							<li><a class="" href="buttons.html">Buttons</a></li>
+							<li><a class="" href="grids.html">Grids</a></li>
+						</ul></li>
+					<li class="sub-menu"><a href="javascript:;" class=""> <i
+							class="fa fa-user"></i> <span>Palestrantes</span> <span
+							class="menu-arrow arrow_carrot-right"></span>
+					</a>
+						<ul class="sub">
+							<li><a class="" href="/horus/palestrante/form">Cadastro</a></li>
+							<li><a class="" href="buttons.html">Buttons</a></li>
+							<li><a class="" href="grids.html">Grids</a></li>
+						</ul></li>
+
+				</ul>
+				<!-- sidebar menu end-->
 			</div>
+		</aside>
+		<!--sidebar end-->
+		</div>
 		</aside>
 		<!--sidebar end-->
 
@@ -349,16 +332,7 @@
 								<div class="form">
 									<form class="form-validate form-horizontal" id="feedback_form"
 										method="post" action="/horus/programacao/save">
-										<div class="form-group ">
-											<label for="cname" class="control-label col-lg-2">Programação
-												<span class="required">*</span>
-											</label>
-											<div class="col-lg-10">
-												<input class="form-control" id="nome" name="dto.programacao.nome"
-													value="${dto.programacao.nome}" minlength="5" type="text"
-													required />
-											</div>
-										</div>
+
 										<div class="form-group ">
 											<label for="data" class="control-label col-lg-2">Data
 												<span class="required">*</span>
@@ -372,7 +346,7 @@
 										<div class="form-group ">
 											<label for="hora" class="control-label col-lg-2">Hora</label>
 											<div class="col-lg-10">
-												<input class="form-control " id="hora" type="url"
+												<input class="form-control " id="hora" type="hour"
 													name="dto.programacao.hora" value="${dto.programacao.hora}" />
 											</div>
 										</div>
@@ -382,8 +356,8 @@
 											</label>
 											<div class="col-lg-10">
 												<input class="form-control " id="local"
-													name="dto.programacao.local" value="${dto.programacao.local}"
-													required />
+													name="dto.programacao.local"
+													value="${dto.programacao.local}" required />
 											</div>
 										</div>
 										<div class="form-group">
@@ -1015,10 +989,7 @@
 	<!-- custome script for all page -->
 	<script src="../js/scripts.js"></script>
 	<!-- jquery validate js -->
-	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 
-	<!-- custom form validation script for this page-->
-	<script src="../js/form-validation-script.js"></script>
 
 </body>
 </html>

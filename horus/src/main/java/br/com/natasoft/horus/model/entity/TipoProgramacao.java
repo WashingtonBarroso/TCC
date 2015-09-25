@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="tbtipoprogramacao")
+@Table(name="tbtipo_programacao")
 public class TipoProgramacao implements Serializable {
 
 	private static final long serialVersionUID = 1L;

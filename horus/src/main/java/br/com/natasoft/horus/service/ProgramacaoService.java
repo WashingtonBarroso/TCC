@@ -14,7 +14,7 @@ public class ProgramacaoService {
 	private ProgramacaoDAO dao;	
 
 	public ProgramacaoDTO loadForm(){   
-		return new ProgramacaoDTO(new Programacao(null, "", null, null, ""));	
+		return new ProgramacaoDTO(new Programacao(null, null,null, ""));	
 	}
 
 	public ProgramacaoDTO load(ProgramacaoDTO dto){

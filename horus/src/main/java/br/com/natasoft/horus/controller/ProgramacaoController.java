@@ -23,25 +23,24 @@ public class ProgramacaoController {
 	public ProgramacaoController() {
 		this(null);
 	}
-
 	@Inject
 	public ProgramacaoController(Result result) {
 		this.result = result;
 	}	
 
-	@Path("/horus/programacao/form")
+	@Path("/programacao/form")
 	public void form(ProgramacaoDTO programacaoDTO){
 		ProgramacaoDTO dto = service.loadForm();
 		result.include("dto",dto);
 	}
 
-	@Post("/horus/progamacao/save")
+	@Post("/programacao/save")
 	public void save(ProgramacaoDTO dto){
 		service.save(dto);
 		result.include("dto",dto);
 	}
 
-    @Path("/horus/programacao/lista")
+    @Path("/programacao/lista")
     public void lista(){
     	List<Programacao> programacao  = service.Lista(); 
     	result.include("list",programacao);
