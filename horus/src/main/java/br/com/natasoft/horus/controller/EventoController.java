@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
@@ -32,7 +33,7 @@ public class EventoController {
 	@Path("/evento/form")
 	public void form(EventoDTO eventoDTO){
 		EventoDTO dto = service.loadForm();
-		result.include("dto",dto);
+		result.include("dto", dto);
 	}
 	@Post("/evento/save")
 	public void save(EventoDTO dto){
@@ -44,4 +45,11 @@ public class EventoController {
 		List<Evento> eventos = service.listar();
 		result.include("list",eventos);
 	}
+	@Delete("/evento")
+	public void remove(Long id) {
+		//EventoDTO dto = new EventoDTO();
+		service.deleteById(id);	
+		//result.include("dto", dto);
+		result.redirectTo(this).lista();
+	}  
 } 

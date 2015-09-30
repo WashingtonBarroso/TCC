@@ -25,5 +25,5 @@ public class OrganizadorDTO {
 		this.organizador = organizador;
 		this.tipos = tipos;
 	}
-	
+
 }

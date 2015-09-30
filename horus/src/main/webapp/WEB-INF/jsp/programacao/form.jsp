@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -315,11 +316,11 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<h3 class="page-header">
-							<i class="fa fa-file-text-o"></i>Evento
+							<i class="fa fa-file-text-o"></i>Programação
 						</h3>
 						<ol class="breadcrumb">
 							<li><i class="fa fa-home"></i><a href="/horus/">Home</a></li>
-							<li><i class="icon_document_alt"></i>Evento</li>
+							<li><i class="icon_document_alt"></i>Programação</li>
 							<li><i class="fa fa-file-text-o"></i>Cadastro</li>
 						</ol>
 					</div>
@@ -335,7 +336,7 @@
 
 										<div class="form-group ">
 											<label for="data" class="control-label col-lg-2">Data
-												<span class="required">*</span>
+												<span class="required"></span>
 											</label>
 											<div class="col-lg-10">
 												<input class="form-control " id="Data"
@@ -352,12 +353,24 @@
 										</div>
 										<div class="form-group ">
 											<label for="local" class="control-label col-lg-2">Local
-												<span class="required">*</span>
+												<span class="required"></span>
 											</label>
 											<div class="col-lg-10">
 												<input class="form-control " id="local"
 													name="dto.programacao.local"
 													value="${dto.programacao.local}" required />
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-lg-10">
+												<label for="TipoProgramacao" class="control-label col-lg-2">Tipo Programação
+												<span class="required"></span>
+											</label>
+												<select class="form-control">
+													<c:forEach items="${dto.tipoProgramacao}" var="tipo">
+														<option>${tipo.id} - ${tipo.tipo}</option>
+													</c:forEach>
+												</select>
 											</div>
 										</div>
 										<div class="form-group">

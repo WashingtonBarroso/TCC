@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import br.com.natasoft.horus.dto.ProgramacaoDTO;
 import br.com.natasoft.horus.model.dao.impl.ProgramacaoDAO;
+import br.com.natasoft.horus.model.dao.impl.TipoProgramacaoDAO;
 import br.com.natasoft.horus.model.entity.Programacao;
 
 public class ProgramacaoService {
@@ -13,12 +14,16 @@ public class ProgramacaoService {
 	@Inject
 	private ProgramacaoDAO dao;	
 
-	public ProgramacaoDTO loadForm(){   
-		return new ProgramacaoDTO(new Programacao(null, null,null, ""));	
-	}
+	@Inject
+	private TipoProgramacaoDAO tipoProgramacaoDao;
 
+	public ProgramacaoDTO loadForm(){    
+		ProgramacaoDTO dto =  new ProgramacaoDTO();
+		dto.setTipoProgramacao(tipoProgramacaoDao.getAll());
+		return dto;
+	}
 	public ProgramacaoDTO load(ProgramacaoDTO dto){
-		return new ProgramacaoDTO(dao.getById(dto.getProgramacao().getId()));	
+		return new ProgramacaoDTO(dao.getById(dto.getProgramacao().getId()),null);	
 	}
 
 	public ProgramacaoDTO save(ProgramacaoDTO dto){
@@ -35,6 +40,6 @@ public class ProgramacaoService {
 
 	public List<Programacao> Lista(){
 		return	dao.getAll(); 
-	}
+	}	
 
 }

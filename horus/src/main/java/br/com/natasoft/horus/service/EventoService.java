@@ -26,11 +26,16 @@ public class EventoService {
 		dao.commit();
 		return dto;
 	}
+	
 
-	public EventoDTO delete(EventoDTO dto){
-		dao.remove(dto.getEvento());
+	public void deleteById(Long id){ 
+		dao.removeById(id);
 		dao.commit();
-		return dto;
+	}
+
+	public void delete(EventoDTO dto){ 
+		dao.removeById(dto.getEvento().getId());
+		dao.commit();
 	}
 
 	public List<Evento> listar(){

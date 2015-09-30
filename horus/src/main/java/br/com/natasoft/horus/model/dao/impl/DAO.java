@@ -22,7 +22,7 @@ public class DAO<T, PK> implements IDAO<T, PK> {
 	/*
 	 * PRIVATE METHODS
 	 */
-
+	
 	private void mergeLikePersist(T entity) {
 		try {
 			PropertyUtils.copyProperties(entity, entityManager.merge(entity));
@@ -123,7 +123,7 @@ public class DAO<T, PK> implements IDAO<T, PK> {
 
 	@Override
 	public void removeById(PK id) {
-		remove(getById(id));
+	remove(getById(id));
 	}
 
 	@Override

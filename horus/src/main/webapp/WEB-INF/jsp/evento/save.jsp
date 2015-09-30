@@ -6,13 +6,6 @@
 </head>
 <body>
 	
-<form action="/horus/evento/save" method="post">
-		 Nome: <input type="text" name="dto.evento.nome" value="${dto.evento.nome}" /><br /> 
-		 Local: <input type="text" name="dto.evento.local" value="${dto.evento.local}" /><br /> 
-		 Estado: <input type="text" name="dto.evento.estado" value="${dto.evento.estado}" /><br /> 
-		 Cidade: <input type="text" name="dto.evento.cidade" value="${dto.evento.cidade}" /><br />
-		 Site: <input type="text" name="dto.evento.site" value="${dto.evento.site}" /><br />
-		<input type="submit" value="Salvar" />
-	</form>
+<h1>Salvo com Sucesso</h1>
 </body>
 </html>

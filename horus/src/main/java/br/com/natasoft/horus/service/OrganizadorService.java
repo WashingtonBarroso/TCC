@@ -33,7 +33,7 @@ public class OrganizadorService {
 
 	public OrganizadorDTO save(OrganizadorDTO dto){
 		dao.save(dto.getOrganizador());
-		dao.commit();
+		dao.commit();	
 		return dto;
 	}
 

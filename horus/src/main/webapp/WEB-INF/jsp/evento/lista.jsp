@@ -94,9 +94,14 @@
 										<td>${evento.estado}</td>
 										<td>${evento.site}</td>
 									</tr>
+									<td>
+										<form action="<c:url value="/evento"/> method="post">
+											<input name="dto.evento.id" value="${dto.evento.id}" type="hidden" />
+											<button class="link" name="_method" value="DELETE">remover</button>
+										</form>
+									</td>
 								</c:forEach>
 							</tbody>
-
 						</table>
 
 						<!--Table-->

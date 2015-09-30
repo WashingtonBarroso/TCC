@@ -7,9 +7,9 @@
 <body>
 	
        <form action="/horus/programacao/save" method="post">
-		 Data: <input type="text" name="dto.programacao.data" value="${dto.programacao.data}" /><br /> 
-		 Cargo: <input type="text" name="dto.programacao.hora" value="${dto.programacao.hora}"/><br /> 
-		 Área: <input type="text" name="dto.programacao.local" value="${dto.programcao.local}" /><br /> 
+		 Data: <input type="text" name="dto.programacao.data" value="${dto.programacao.data}" /><br />  
+	     Hora: <input type="text" name="dto.programacao.hora" value="${dto.programacao.hora}"/><br /> 
+	     Área: <input type="text" name="dto.programacao.local" value="${dto.programacao.local}" /><br /> 	
 		
 		<input type="submit" value="Salvar" />
 	</form>
