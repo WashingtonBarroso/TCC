@@ -6,7 +6,7 @@
 </head>
 <body>
 	
-<form action="noticia/save" method="post">
+     <form action="/horus/noticia/save" method="post">
 		 Notícia: <input type="text" name="dto.noticia.mensagem" value="${dto.noticia.mensagem}" /><br /> 
 		
 		

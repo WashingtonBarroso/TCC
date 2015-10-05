@@ -2,12 +2,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Hórus</title>
+<title></title>
 </head>
 <body>
-	
-	<form action="/horus/genero/save" method="post">
-		Nome: <input type="text" name="dto.genero.nome" value="${dto.genero.nome}" /><br /> 
+		
+	<form action="/horus/noticia/save" method="post">
+		 Notícia: <input type="text" name="dto.noticia.mensagem" value="${dto.noticia.mensagem}" /><br /> 		
 		<input type="submit" value="Salvar" />
 	</form>
 </body>

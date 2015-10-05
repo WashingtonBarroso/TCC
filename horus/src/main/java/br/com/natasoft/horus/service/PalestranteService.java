@@ -35,5 +35,9 @@ public class PalestranteService {
 	public List<Palestrante> listar(){
 		return dao.getAll();
 	}
+	public void deleteById(Long id) {
+		dao.removeById(id);
+		dao.commit();
+	}
 
 }

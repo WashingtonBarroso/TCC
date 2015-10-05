@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
@@ -37,11 +38,16 @@ public class OrganizadorController {
 	public void save(OrganizadorDTO dto){
 		service.save(dto);
 		result.include("dto",dto);
-	
+
 	}
 	@Path("/organizador/lista")
 	public void lista(){
 		List<Organizador> organizadores = service.listar();
 		result.include("list",organizadores);
+	}
+	@Delete("/organizador")
+	public void remove(Long id){
+		service.deleteById(id);
+		result.redirectTo(this).lista();
 	}
 }

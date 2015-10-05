@@ -27,14 +27,18 @@ public class EventoService {
 		return dto;
 	}
 	
-
+	public void alterar(EventoDTO dto){
+		dao.save(dto.getEvento());
+		dao.commit();
+	}
+	
 	public void deleteById(Long id){ 
 		dao.removeById(id);
 		dao.commit();
 	}
 
 	public void delete(EventoDTO dto){ 
-		dao.removeById(dto.getEvento().getId());
+		dao.remove(dto.getEvento());
 		dao.commit();
 	}
 

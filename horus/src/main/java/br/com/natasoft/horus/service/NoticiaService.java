@@ -15,7 +15,7 @@ public class NoticiaService {
 
 	public NoticiaDTO loadForm(){
 		return new NoticiaDTO(new Noticia(null, ""));
-	}
+	}	
 
 	public NoticiaDTO load(NoticiaDTO dto){
 		return new NoticiaDTO(dao.getById(dto.getNoticia().getId()));
@@ -36,4 +36,13 @@ public class NoticiaService {
 		return dao.getAll();
 	}
 
-}
+	public void deleteById(Long id) {
+	   dao.removeById(id);
+	   dao.commit();		
+	}
+	public void modificarBy(Long id){
+		
+		
+	}
+		
+}// fim class

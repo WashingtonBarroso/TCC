@@ -47,9 +47,8 @@ public class EventoController {
 	}
 	@Delete("/evento")
 	public void remove(Long id) {
-		//EventoDTO dto = new EventoDTO();
 		service.deleteById(id);	
-		//result.include("dto", dto);
 		result.redirectTo(this).lista();
 	}  
+
 } 

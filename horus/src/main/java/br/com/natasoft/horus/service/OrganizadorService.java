@@ -22,7 +22,7 @@ public class OrganizadorService {
 		dto.setTipos(tipoOrganizadorDao.getAll());
 		return dto;
 	}
-	
+
 	public List<TipoOrganizador> loadForm2(){
 		return tipoOrganizadorDao.getAll();
 	}
@@ -45,5 +45,10 @@ public class OrganizadorService {
 	public List<Organizador> listar(){
 		return dao.getAll();
 	}
-	
+
+	public void deleteById(Long id){
+		dao.removeById(id);
+		dao.commit();
+	}
+
 }

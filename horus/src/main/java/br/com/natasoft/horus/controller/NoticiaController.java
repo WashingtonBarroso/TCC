@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
@@ -30,10 +31,11 @@ public class NoticiaController {
 	}
 
 	@Path("/noticia/form")
-	public void form(NoticiaDTO noticiaDTO){
+	public void form(NoticiaDTO noticiaDTO){ 
 		NoticiaDTO dto = service.loadForm();
 		result.include("dto", dto);
 	}
+
 	@Post("/noticia/save")
 	public void save(NoticiaDTO dto){
 		service.save(dto);
@@ -44,4 +46,15 @@ public class NoticiaController {
 		List<Noticia>noticias =  service.listar();
 		result.include("list", noticias);
 	}
+
+	@Delete("/noticia")
+	public void remove(Long id) {
+		service.deleteById(id);	
+		result.redirectTo(this).lista();
+	} 
+	@Path("/noticia/editar")
+	public void editar(Long id){
+
+	}
+
 }

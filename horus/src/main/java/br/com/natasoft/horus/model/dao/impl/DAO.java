@@ -15,14 +15,14 @@ import br.com.natasoft.horus.model.dao.IDAO;
 @Stateless
 public class DAO<T, PK> implements IDAO<T, PK> {
 
-	
+
 	@Inject
 	private EntityManager entityManager;
-	
+
 	/*
 	 * PRIVATE METHODS
 	 */
-	
+
 	private void mergeLikePersist(T entity) {
 		try {
 			PropertyUtils.copyProperties(entity, entityManager.merge(entity));
@@ -30,12 +30,12 @@ public class DAO<T, PK> implements IDAO<T, PK> {
 			throw new RuntimeException(e);
 		}
 	}
-	
-    private Class<?> getTypeClass() {
-        Class<?> clazz = (Class<?>) ((ParameterizedType) this.getClass()
-                .getGenericSuperclass()).getActualTypeArguments()[0];
-        return clazz;
-    }
+
+	private Class<?> getTypeClass() {
+		Class<?> clazz = (Class<?>) ((ParameterizedType) this.getClass()
+				.getGenericSuperclass()).getActualTypeArguments()[0];
+		return clazz;
+	}
 
 	private Query fillParams(String hql, Object... param) {
 		Query query = entityManager.createQuery(hql);
@@ -43,11 +43,11 @@ public class DAO<T, PK> implements IDAO<T, PK> {
 			query.setParameter((String) param[i], param[i + 1]);
 		return query;
 	}
-	
+
 	/*
 	 * PROTECTED METHODS
 	 */
-	
+
 	@SuppressWarnings("unchecked")
 	protected List<T> list(String hql, Object... params) {
 		return fillParams(hql, params).getResultList();
@@ -56,17 +56,17 @@ public class DAO<T, PK> implements IDAO<T, PK> {
 	protected List<?> genericList(String hql, Object... params) {
 		return fillParams(hql, params).getResultList();
 	}	
-	
+
 	protected int executeUpdate(String hql, Object... params){
 		begin();
 		return fillParams(hql, params).executeUpdate();
 	}	
-	
+
 	protected int executeSQL(String sql){
 		begin();
 		return entityManager.createNativeQuery(sql).executeUpdate();
 	}
-	
+
 
 	/*
 	 * PUBLIC METHODS
@@ -102,7 +102,6 @@ public class DAO<T, PK> implements IDAO<T, PK> {
 		else
 			return false;
 	}
-	
 
 	@Override
 	public void save(T entity) {
@@ -123,14 +122,14 @@ public class DAO<T, PK> implements IDAO<T, PK> {
 
 	@Override
 	public void removeById(PK id) {
-	remove(getById(id));
+		remove(getById(id));
 	}
 
 	@Override
 	public void deleteAll() {
 		entityManager.createNamedQuery("truncate table " + getTypeClass().getName()).executeUpdate();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public T getById(PK id) {
@@ -142,7 +141,7 @@ public class DAO<T, PK> implements IDAO<T, PK> {
 	public List<T> getAll() {
 		return (List<T>) entityManager.createQuery(("FROM " + getTypeClass().getName())).getResultList();
 	}
-	
+
 	@Override
 	public Long count() {
 		return (Long) entityManager.createQuery(("select count(*) FROM " + getTypeClass().getName())).getResultList().get(0);

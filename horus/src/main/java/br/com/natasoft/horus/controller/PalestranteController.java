@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.com.caelum.vraptor.Controller;
+import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
@@ -43,5 +44,9 @@ public class PalestranteController {
 		List<Palestrante> palestrantes = service.listar();
 		result.include("list", palestrantes);
 	}
-
+	@Delete("/palestrante")
+	public void remove(Long id){
+		service.deleteById(id);
+		result.redirectTo(this).lista();
+	}
 }
