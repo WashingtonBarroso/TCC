@@ -350,7 +350,7 @@
 											<td>${noticia.id}</td>
 											<td>${noticia.mensagem}</td>
                                          <td>
-								        <a class="btn btn-info" href="#"><i class="fa fa-pencil-square-o"></i></a>
+								        <a class="btn btn-info" href="<c:url value="/noticia/editar"/>"><i class="fa fa-pencil-square-o"></i></a>
 										</td>
 											<td>
 												<div class="btn-group">

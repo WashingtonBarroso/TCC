@@ -37,12 +37,11 @@ public class NoticiaService {
 	}
 
 	public void deleteById(Long id) {
-	   dao.removeById(id);
-	   dao.commit();		
+		dao.removeById(id);
+		dao.commit();		
 	}
-	public void modificarBy(Long id){
-		
-		
+	public Noticia editar(Long id){
+		return dao.getById(id);
 	}
-		
+
 }// fim class
