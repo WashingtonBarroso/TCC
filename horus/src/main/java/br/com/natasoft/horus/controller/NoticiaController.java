@@ -26,14 +26,13 @@ public class NoticiaController {
 	protected NoticiaController(){
 		this(null);
 	}
-
 	@Inject
 	public NoticiaController(Result result){
 		this.result = result;
 	}
 
 	@Path("/noticia/form")
-	public void form(NoticiaDTO noticiaDTO){ 
+	public void form(){ 
 		NoticiaDTO dto = service.loadForm();
 		result.include("dto", dto);
 	}
@@ -45,7 +44,7 @@ public class NoticiaController {
 	}
 	@Path("/noticia/lista")
 	public void lista(){
-		List<Noticia>noticias =  service.listar();
+		List<Noticia> noticias =  service.listar();
 		result.include("list", noticias);
 	}
 
@@ -54,14 +53,14 @@ public class NoticiaController {
 		service.deleteById(id);	
 		result.redirectTo(this).lista();
 	}
-	@Get("/noticia/{id}")
-	public void alterar(Long id){
-		service.editar(id);   
+	@Get("/noticia/editar/{id}")
+	public Noticia editar(Long id){
+		return service.alterar(id);
 	}
-	@Path("noticia/editar")
-	public void editar(NoticiaDTO dto){    	
-		service.save(dto);
-		result.include("dto", dto);
+	@Put	
+	@Path("/noticia")
+	public void modificar(Noticia noticia){
+		service.modificar(noticia);
+		result.redirectTo(this).lista();
 	}
-
 }

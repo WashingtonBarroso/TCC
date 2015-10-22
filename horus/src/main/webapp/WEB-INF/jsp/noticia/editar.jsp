@@ -14,20 +14,20 @@
 	Template</title>
 
 <!-- Bootstrap CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
 <!-- bootstrap theme -->
-<link href="../css/bootstrap-theme.css" rel="stylesheet">
+<link href="../../css/bootstrap-theme.css" rel="stylesheet">
 <!--external css-->
 <!-- font icon -->
-<link href="../css/elegant-icons-style.css" rel="stylesheet" />
-<link href="../css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../css/elegant-icons-style.css" rel="stylesheet" />
+<link href="../../css/font-awesome.min.css" rel="stylesheet" />
 <!-- date picker -->
 
 <!-- color picker -->
 
 <!-- Custom styles -->
-<link href="../css/style.css" rel="stylesheet">
-<link href="../css/style-responsive.css" rel="stylesheet" />
+<link href="../../css/style.css" rel="stylesheet">
+<link href="../../css/style-responsive.css" rel="stylesheet" />
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
 <!--[if lt IE 9]>
@@ -343,36 +343,21 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading"> Cadastro Notícia </header>
+							<header class="panel-heading"> Editar Notícia </header>
 							<div class="panel-body">
 								<div class="form">
-									<form action="/noticia/${noticia.id}"
-										class="form-validate form-horizontal" id="feedback_form"
-										method="post">
-
-										<div class="form-group ">
-											<label for="cname" class="control-label col-lg-2">
-												<span class="required"></span>
-											</label>
-											<div class="col-lg-10">
-												<input class="form-control" type="hidden" id="cid" name="noticia.id"
-													type="text" value="${noticia.id}"
-													required />
-											</div>
-										</div>
-
-										<div class="form-group ">
+									<form  class="form-validate form-horizontal" id="feedback_form"
+										method="post" action="<c:url value="/noticia"/>">
+									<div class="form-group ">
 											<label for="ccomment" class="control-label col-lg-2">Mensagem</label>
 											<div class="col-lg-10">
-												<textarea class="form-control" id="ccomment"
-													name="dto.noticia.mensagem"> ${dto.noticia.mensagem}</textarea>
+												<textarea class="form-control" id="ccomment" name="noticia.mensagem">${noticia.mensagem}</textarea>
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
-												<button name="_method" value="PUT" class="btn btn-success" type="submit">Salvar</button>
-												<a href="/horus/noticia/form" class="btn btn-danger"
-													type="button">Cancelar</a>
+												<button class="btn btn-success" name="_method" value="PUT" type="submit">Salvar</button>
+												<a href="/horus/noticia/form" class="btn btn-danger" type="button">Cancelar</a>
 											</div>
 										</div>
 									</form>
@@ -392,39 +377,39 @@
 	<!--main content end-->
 	<!-- container section end -->
 	<!-- javascripts -->
-	<script src="../js/jquery.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
 	<!-- nice scroll -->
-	<script src="../js/jquery.scrollTo.min.js"></script>
-	<script src="../js/jquery.nicescroll.js" type="text/javascript"></script>
+	<script src="../../js/jquery.scrollTo.min.js"></script>
+	<script src="../../js/jquery.nicescroll.js" type="text/javascript"></script>
 
 	<!-- jquery ui -->
-	<script src="../js/jquery-ui-1.9.2.custom.min.js"></script>
+	<script src="../../js/jquery-ui-1.9.2.custom.min.js"></script>
 
 	<!--custom checkbox & radio-->
-	<script type="text/javascript" src="../js/ga.js"></script>
+	<script type="text/javascript" src="../../js/ga.js"></script>
 	<!--custom switch-->
-	<script src="../js/bootstrap-switch.js"></script>
+	<script src="../../js/bootstrap-switch.js"></script>
 	<!--custom tagsinput-->
-	<script src="../js/jquery.tagsinput.js"></script>
+	<script src="../../js/jquery.tagsinput.js"></script>
 
 	<!-- colorpicker -->
 
 	<!-- bootstrap-wysiwyg -->
-	<script src="../js/jquery.hotkeys.js"></script>
-	<script src="../js/bootstrap-wysiwyg.js"></script>
-	<script src="../js/bootstrap-wysiwyg-custom.js"></script>
+	<script src="../../js/jquery.hotkeys.js"></script>
+	<script src="../../js/bootstrap-wysiwyg.js"></script>
+	<script src="../../js/bootstrap-wysiwyg-custom.js"></script>
 	<!-- ck editor -->
-	<script type="text/javascript" src="../assets/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="../../assets/ckeditor/ckeditor.js"></script>
 	<!-- custom form component script for this page-->
-	<script src="../js/form-component.js"></script>
+	<script src="../../js/form-component.js"></script>
 	<!-- custome script for all page -->
-	<script src="../js/scripts.js"></script>
+	<script src="../../js/scripts.js"></script>
 	<!-- jquery validate js -->
-	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="../../js/jquery.validate.min.js"></script>
 
 	<!-- custom form validation script for this page-->
-	<script src="../js/form-validation-script.js"></script>
+	<script src="../../js/form-validation-script.js"></script>
 
 </body>
 </html>
