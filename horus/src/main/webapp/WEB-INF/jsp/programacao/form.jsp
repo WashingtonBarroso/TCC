@@ -11,8 +11,7 @@
 	content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
 <link rel="shortcut icon" href="img/favicon.png">
 
-<title>Form Component | Creative - Bootstrap 3 Responsive Admin
-	Template</title>
+<title></title>
 
 <!-- Bootstrap CSS -->
 <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -248,7 +247,7 @@
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu">
-					<li class="active"><a class="" href="/horus/"> <i
+					<li class="active"><a class="" href="/appevent/"> <i
 							class="icon_house_alt"></i> <span>Home</span>
 					</a></li>
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
@@ -256,8 +255,8 @@
 							class="menu-arrow arrow_carrot-right"></span>
 					</a>
 						<ul class="sub">
-							<li><a class="" href="/horus/evento/form">Cadastrar</a></li>
-							<li><a class="" href="/horus/evento/lista">Consultar</a></li>
+							<li><a class="" href="/appevent/evento/form">Cadastrar</a></li>
+							<li><a class="" href="/appevent/evento/lista">Consultar</a></li>
 						</ul></li>
 
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
@@ -265,8 +264,8 @@
 							class="menu-arrow arrow_carrot-right"></span>
 					</a>
 						<ul class="sub">
-							<li><a class="" href="/horus/noticia/form">Cadastrar</a></li>
-							<li><a class="" href="/horus/noticia/lista">Consultar</a></li>
+							<li><a class="" href="/appevent/noticia/form">Cadastrar</a></li>
+							<li><a class="" href="/appevent/noticia/lista">Consultar</a></li>
 						</ul></li>
 
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
@@ -274,15 +273,15 @@
 							class="menu-arrow arrow_carrot-right"></span>
 					</a>
 						<ul class="sub">
-							<li><a class="" href="/horus/organizador/form">Cadastrar</a></li>
-							<li><a class="" href="/horus/organizador/lista">Consultar</a></li>
+							<li><a class="" href="/appevent/organizador/form">Cadastrar</a></li>
+							<li><a class="" href="/appevent/organizador/lista">Consultar</a></li>
 
 							<!-- submenu tipo de organização -->
 							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
 										de Organizador </span> <span class="menu-arrow arrow_carrot-right"></span></a>
 								<ul class="sub">
-									<li><a class="" href="/horus/tipoOrganizador/form">Cadastrar</a></li>
-									<li><a class="" href="/horus/tipoOrganizador/lista">Consultar</a></li>
+									<li><a class="" href="/appevent/tipoOrganizador/form">Cadastrar</a></li>
+									<li><a class="" href="/appevent/tipoOrganizador/lista">Consultar</a></li>
 								</ul></li>
 							<!-- Fim submenu -->
 
@@ -294,15 +293,15 @@
 							class="menu-arrow arrow_carrot-right"></span>
 					</a>
 						<ul class="sub">
-							<li><a class="" href="/horus/programacao/form">Cadastrar</a></li>
-							<li><a class="" href="/horus/programacao/lista">Consultar</a></li>
+							<li><a class="" href="/appevent/programacao/form">Cadastrar</a></li>
+							<li><a class="" href="/appevent/programacao/lista">Consultar</a></li>
 
 							<!-- submenu tipo de programação  -->
 							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
 										Programação</span> <span class="menu-arrow arrow_carrot-right"></span></a>
 								<ul class="sub">
-									<li><a class="" href="/horus/tipoProgramacao/form">Cadastrar</a></li>
-									<li><a class="" href="/horus/tipoProgramacao/lista">Consultar</a></li>
+									<li><a class="" href="/appevent/tipoProgramacao/form">Cadastrar</a></li>
+									<li><a class="" href="/appevent/tipoProgramacao/lista">Consultar</a></li>
 								</ul></li>
 							<!-- Fim submenu -->
 						</ul></li>
@@ -311,8 +310,8 @@
 							class="menu-arrow arrow_carrot-right"></span>
 					</a>
 						<ul class="sub">
-							<li><a class="" href="/horus/palestrante/form">Cadastrar</a></li>
-							<li><a class="" href="/horus/palestrante/lista">Consultar</a></li>
+							<li><a class="" href="/appevent/palestrante/form">Cadastrar</a></li>
+							<li><a class="" href="/appevent/palestrante/lista">Consultar</a></li>
 						</ul></li>
 
 				</ul>
@@ -331,7 +330,7 @@
 							<i class="icon_desktop"></i>Programação
 						</h3>
 						<ol class="breadcrumb">
-							<li><i class="fa fa-home"></i><a href="/horus/">Home</a></li>
+							<li><i class="fa fa-home"></i><a href="/appevent/">Home</a></li>
 							<li><i class="icon_desktop"></i>Programação</li>
 							<li><i class="fa fa-file-text-o"></i>Cadastro</li>
 						</ol>
@@ -344,7 +343,7 @@
 							<div class="panel-body">
 								<div class="form">
 									<form class="form-validate form-horizontal" id="feedback_form"
-										method="post" action="/horus/programacao/save">
+										method="post" action="/appevent/programacao/save">
 
 										<div class="form-group ">
 											<label for="data" class="control-label col-lg-2">Data
@@ -388,7 +387,7 @@
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
 												<input class="btn btn-success" type="submit" value="Salvar">
-												<a href="/horus/programacao/form" class="btn btn-danger">Cancelar</a>
+												<a href="/appevent/programacao/form" class="btn btn-danger">Cancelar</a>
 											</div>
 										</div>
 									</form>
