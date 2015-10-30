@@ -6,7 +6,7 @@
 </head>
 <body>
 	
-       <form action="/horus/organizador/save" method="post">
+       <form action="/dame/organizador/save" method="post">
 		 Nome: <input type="text" name="dto.organizador.nome" value="${dto.organizador.nome}" /><br /> 
 		 Cargo: <input type="text" name="dto.organizador.cargo" value="${dto.organizador.cargo}"/><br /> 
 		 Área: <input type="text" name="dto.organizador.area" value="${dto.organizador.area}" /><br /> 
