@@ -63,7 +63,6 @@
 				<!--  search form end -->
 			</div>
 
-	
 			<div class="top-nav notification-row">
 				<!-- notificatoin dropdown start-->
 				<ul class="nav pull-right top-menu">
@@ -107,7 +106,7 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/evento/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/evento/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/evento/lista">Consultar</a></li>
 						</ul></li>
 
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
@@ -116,7 +115,7 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/noticia/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/noticia/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/noticia/lista">Consultar</a></li>
 						</ul></li>
 
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
@@ -125,14 +124,14 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/organizador/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/organizador/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/organizador/lista">Consultar</a></li>
 
 							<!-- submenu tipo de organização -->
 							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
 										de Organizador </span> <span class="menu-arrow arrow_carrot-right"></span></a>
 								<ul class="sub">
 									<li><a class="" href="/ifeventos/tipoOrganizador/form">Cadastrar</a></li>
-									<li><a class="" href="/ifeventos/tipoOrganizador/list">Consultar</a></li>
+									<li><a class="" href="/ifeventos/tipoOrganizador/lista">Consultar</a></li>
 								</ul></li>
 							<!-- Fim submenu -->
 
@@ -178,58 +177,37 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<h3 class="page-header">
-							<i class="fa fa-user"></i>Palestrante
+							<i class="icon_documents_alt"></i>Notícia
 						</h3>
 						<ol class="breadcrumb">
 							<li><i class="fa fa-home"></i><a href="/ifeventos/">Home</a></li>
-							<li><i class="fa fa-user"></i>Palestrante</li>
-							<li><i class="icon_document_alt"></i>Cadastro</li>
+							<li><i class="icon_documents_alt"></i>Notícia</li>
+							<li><i class="fa fa-file-text-o"></i>Cadastro</li>
 						</ol>
 					</div>
 				</div>
-				<!-- Form cadastro de palestrante -->
+
+
+				<!-- Form validations -->
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading"> Editar Palestrante </header>
+							<header class="panel-heading"> Cadastro Notícia </header>
 							<div class="panel-body">
 								<div class="form">
-									<form action="/ifeventos/palestrante/save"
-										class="form-validate form-horizontal" id="feedback_form"
+									<form action="/ifeventos/noticia/save" class="form-validate form-horizontal" id="feedback_form"
 										method="post">
-										<input name="dto.palestrante.id" value="${dto.palestrante.id}"
-											type="hidden" />
-										<div class="form-group ">
-											<label for="cname" class="control-label col-lg-2">Nome
-												<span class="required"></span>
-											</label>
+									   <input type="hidden" name="dto.noticia.id" value="${dto.noticia.id}"/>
+									<div class="form-group ">
+											<label for="ccomment" class="control-label col-lg-2">Mensagem</label>
 											<div class="col-lg-10">
-												<input class="form-control" id="cname"
-													name="dto.palestrante.nome" value="${dto.palestrante.nome}"
-													minlength="5" type="text" required />
-											</div>
-										</div>
-										<div class="form-group ">
-											<label for="cemail" class="control-label col-lg-2">Título<span
-												class="required"></span></label>
-											<div class="col-lg-10">
-												<input class="form-control " id="ctitulo" type="text"
-													name="dto.palestrante.titulo"
-													value="${dto.palestrante.titulo}" required />
-											</div>
-										</div>
-										<div class="form-group ">
-											<label for="ccomment" class="control-label col-lg-2">Resumo</label>
-											<div class="col-lg-10">
-												<textarea class="form-control" id="ccomment"
-													name="dto.palestrante.resumo"> ${dto.palestrante.resumo}</textarea>
+												<textarea class="form-control" id="ccomment" name="dto.noticia.mensagem">${dto.noticia.mensagem}</textarea>
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
 												<button class="btn btn-success" type="submit">Salvar</button>
-												<a href="/ifeventos/palestrante/form" class="btn btn-danger"
-													type="button">Cancelar</a>
+												<a href="/ifeventos/noticia/form" class="btn btn-danger" type="button">Cancelar</a>
 											</div>
 										</div>
 									</form>

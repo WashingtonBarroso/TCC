@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,10 +21,6 @@
 <!-- font icon -->
 <link href="../css/elegant-icons-style.css" rel="stylesheet" />
 <link href="../css/font-awesome.min.css" rel="stylesheet" />
-<!-- date picker -->
-
-<!-- color picker -->
-
 <!-- Custom styles -->
 <link href="../css/style.css" rel="stylesheet">
 <link href="../css/style-responsive.css" rel="stylesheet" />
@@ -34,10 +31,9 @@
       <script src="js/respond.min.js"></script>
       <script src="js/lte-ie7.js"></script>
     <![endif]-->
-
 </head>
-<body>
 
+<body>
 	<!-- container section start -->
 	<section id="container" class="">
 		<!--header start-->
@@ -63,7 +59,6 @@
 				<!--  search form end -->
 			</div>
 
-	
 			<div class="top-nav notification-row">
 				<!-- notificatoin dropdown start-->
 				<ul class="nav pull-right top-menu">
@@ -173,63 +168,46 @@
 
 		<!--main content start-->
 		<section id="main-content">
-
 			<section class="wrapper">
 				<div class="row">
 					<div class="col-lg-12">
 						<h3 class="page-header">
-							<i class="fa fa-user"></i>Palestrante
+							<i class="fa fa-users"></i>Tipo de Organizador
 						</h3>
 						<ol class="breadcrumb">
 							<li><i class="fa fa-home"></i><a href="/ifeventos/">Home</a></li>
-							<li><i class="fa fa-user"></i>Palestrante</li>
+							<li><i class="fa fa-users"></i>Tipo de Organizador</li>
 							<li><i class="icon_document_alt"></i>Cadastro</li>
 						</ol>
 					</div>
 				</div>
-				<!-- Form cadastro de palestrante -->
+				<!-- Cadastro de Organizador -->
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading"> Editar Palestrante </header>
+							<header class="panel-heading"> Editar Tipo de
+								Organizador </header>
 							<div class="panel-body">
 								<div class="form">
-									<form action="/ifeventos/palestrante/save"
-										class="form-validate form-horizontal" id="feedback_form"
-										method="post">
-										<input name="dto.palestrante.id" value="${dto.palestrante.id}"
-											type="hidden" />
+									<form class="form-validate form-horizontal" id="feedback_form"
+										method="post" action="/ifeventos/tipoOrganizador/save">
+										<input name="dto.tipoOrganizador.id"
+											value="${dto.tipoOrganizador.id}" type="hidden" />
 										<div class="form-group ">
-											<label for="cname" class="control-label col-lg-2">Nome
-												<span class="required"></span>
-											</label>
+											<label for="curl" class="control-label col-lg-2">Tipo
+												de Organizador</label>
 											<div class="col-lg-10">
-												<input class="form-control" id="cname"
-													name="dto.palestrante.nome" value="${dto.palestrante.nome}"
-													minlength="5" type="text" required />
+												<input class="form-control " id="ctipo" type="text"
+													name="dto.tipoOrganizador.tipo"
+													value="${dto.tipoOrganizador.tipo}" />
 											</div>
 										</div>
-										<div class="form-group ">
-											<label for="cemail" class="control-label col-lg-2">Título<span
-												class="required"></span></label>
-											<div class="col-lg-10">
-												<input class="form-control " id="ctitulo" type="text"
-													name="dto.palestrante.titulo"
-													value="${dto.palestrante.titulo}" required />
-											</div>
-										</div>
-										<div class="form-group ">
-											<label for="ccomment" class="control-label col-lg-2">Resumo</label>
-											<div class="col-lg-10">
-												<textarea class="form-control" id="ccomment"
-													name="dto.palestrante.resumo"> ${dto.palestrante.resumo}</textarea>
-											</div>
-										</div>
+
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
 												<button class="btn btn-success" type="submit">Salvar</button>
-												<a href="/ifeventos/palestrante/form" class="btn btn-danger"
-													type="button">Cancelar</a>
+												<a href="/ifeventos/tipoOrganizador/form"
+													class="btn btn-danger" type="button">Cancelar</a>
 											</div>
 										</div>
 									</form>
@@ -240,48 +218,26 @@
 					</div>
 				</div>
 
-				<!-- Fim form validation -->
-
 			</section>
-			<!-- page end-->
 		</section>
+		<!--main content end-->
 	</section>
-	<!--main content end-->
 	<!-- container section end -->
+
 	<!-- javascripts -->
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<!-- nice scroll -->
 	<script src="../js/jquery.scrollTo.min.js"></script>
 	<script src="../js/jquery.nicescroll.js" type="text/javascript"></script>
-
-	<!-- jquery ui -->
-	<script src="../js/jquery-ui-1.9.2.custom.min.js"></script>
-
-	<!--custom checkbox & radio-->
-	<script type="text/javascript" src="../js/ga.js"></script>
-	<!--custom switch-->
-	<script src="../js/bootstrap-switch.js"></script>
-	<!--custom tagsinput-->
-	<script src="../js/jquery.tagsinput.js"></script>
-
-	<!-- colorpicker -->
-
-	<!-- bootstrap-wysiwyg -->
-	<script src="../js/jquery.hotkeys.js"></script>
-	<script src="../js/bootstrap-wysiwyg.js"></script>
-	<script src="../js/bootstrap-wysiwyg-custom.js"></script>
-	<!-- ck editor -->
-	<script type="text/javascript" src="../assets/ckeditor/ckeditor.js"></script>
-	<!-- custom form component script for this page-->
-	<script src="../js/form-component.js"></script>
-	<!-- custome script for all page -->
-	<script src="../js/scripts.js"></script>
 	<!-- jquery validate js -->
-	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 
 	<!-- custom form validation script for this page-->
-	<script src="../js/form-validation-script.js"></script>
+	<script src="js/form-validation-script.js"></script>
+	<!--custome script for all page-->
+	<script src="../js/scripts.js"></script>
+
 
 </body>
 </html>

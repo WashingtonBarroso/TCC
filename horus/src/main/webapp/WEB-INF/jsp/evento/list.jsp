@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,10 +21,6 @@
 <!-- font icon -->
 <link href="../css/elegant-icons-style.css" rel="stylesheet" />
 <link href="../css/font-awesome.min.css" rel="stylesheet" />
-<!-- date picker -->
-
-<!-- color picker -->
-
 <!-- Custom styles -->
 <link href="../css/style.css" rel="stylesheet">
 <link href="../css/style-responsive.css" rel="stylesheet" />
@@ -34,10 +31,9 @@
       <script src="js/respond.min.js"></script>
       <script src="js/lte-ie7.js"></script>
     <![endif]-->
-
 </head>
-<body>
 
+<body>
 	<!-- container section start -->
 	<section id="container" class="">
 		<!--header start-->
@@ -48,7 +44,7 @@
 			</div>
 
 			<!--logo start-->
-			<a href="/ifeventos/" class="logo">IFG <span class="lite">Eventos</span></a>
+			<a href="index.html" class="logo">IFG <span class="lite">Eventos</span></a>
 			<!--logo end-->
 
 			<div class="nav search-row" id="top_menu">
@@ -63,7 +59,6 @@
 				<!--  search form end -->
 			</div>
 
-	
 			<div class="top-nav notification-row">
 				<!-- notificatoin dropdown start-->
 				<ul class="nav pull-right top-menu">
@@ -92,6 +87,7 @@
 			</div>
 		</header>
 		<!--header end-->
+
 
 		<!--sidebar start-->
 		<aside>
@@ -173,115 +169,90 @@
 
 		<!--main content start-->
 		<section id="main-content">
-
 			<section class="wrapper">
 				<div class="row">
 					<div class="col-lg-12">
 						<h3 class="page-header">
-							<i class="fa fa-user"></i>Palestrante
+							<i class="fa fa-file-text-o"></i>Evento
 						</h3>
 						<ol class="breadcrumb">
 							<li><i class="fa fa-home"></i><a href="/ifeventos/">Home</a></li>
-							<li><i class="fa fa-user"></i>Palestrante</li>
-							<li><i class="icon_document_alt"></i>Cadastro</li>
+							<li><i class="icon_document_alt"></i>Evento</li>
+							<li><i class="fa fa-search"></i>Consultar</li>
 						</ol>
 					</div>
 				</div>
-				<!-- Form cadastro de palestrante -->
+
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading"> Editar Palestrante </header>
-							<div class="panel-body">
-								<div class="form">
-									<form action="/ifeventos/palestrante/save"
-										class="form-validate form-horizontal" id="feedback_form"
-										method="post">
-										<input name="dto.palestrante.id" value="${dto.palestrante.id}"
-											type="hidden" />
-										<div class="form-group ">
-											<label for="cname" class="control-label col-lg-2">Nome
-												<span class="required"></span>
-											</label>
-											<div class="col-lg-10">
-												<input class="form-control" id="cname"
-													name="dto.palestrante.nome" value="${dto.palestrante.nome}"
-													minlength="5" type="text" required />
-											</div>
-										</div>
-										<div class="form-group ">
-											<label for="cemail" class="control-label col-lg-2">Título<span
-												class="required"></span></label>
-											<div class="col-lg-10">
-												<input class="form-control " id="ctitulo" type="text"
-													name="dto.palestrante.titulo"
-													value="${dto.palestrante.titulo}" required />
-											</div>
-										</div>
-										<div class="form-group ">
-											<label for="ccomment" class="control-label col-lg-2">Resumo</label>
-											<div class="col-lg-10">
-												<textarea class="form-control" id="ccomment"
-													name="dto.palestrante.resumo"> ${dto.palestrante.resumo}</textarea>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-lg-offset-2 col-lg-10">
-												<button class="btn btn-success" type="submit">Salvar</button>
-												<a href="/ifeventos/palestrante/form" class="btn btn-danger"
-													type="button">Cancelar</a>
-											</div>
-										</div>
-									</form>
-								</div>
+							<header class="panel-heading"> Lista de Eventos </header>
 
-							</div>
+							<table class="table table-striped table-advance table-hover">
+								<tbody>
+									<tr>
+										<th><i class="fa fa-sort-numeric-asc"></i> Nº</th>
+										<th><i class=""></i>Nome</th>
+										<th><i class=""></i>Local</th>
+										<th><i class=""></i>Cidade</th>
+										<th><i class=""></i>Estado</th>
+										<th><i class=""></i>Site</th>
+										<th><i class=""></i>Editar</th>
+										<th><i class=""></i>Excluir</th>
+
+									</tr>
+
+									<c:forEach items="${list}" var="evento">
+										<tr>
+											<td>${evento.id}</td>
+											<td>${evento.nome}</td>
+											<td>${evento.local}</td>
+											<td>${evento.cidade}</td>
+											<td>${evento.estado}</td>
+											<td>${evento.site}</td>
+											<td>
+												<div class="btn-group">
+													<form action="<c:url value="/evento/edit"/>" method="post">
+														<input name="id" value="${evento.id}" type="hidden" />
+														<button class="btn btn-info">
+															<i class="fa fa-pencil-square-o"></i>
+														</button>
+													</form>
+												</div>
+											</td>
+											<td>
+												<div class="btn-group">
+													<form action="<c:url value="/evento"/>" method="post">
+														<input name="id" value="${evento.id}" type="hidden" />
+														<button class="btn btn-danger" name="_method"
+															value="DELETE">
+															<i class="icon_close_alt2"></i>
+														</button>
+													</form>
+												</div>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
 						</section>
 					</div>
 				</div>
-
-				<!-- Fim form validation -->
-
+				<!-- page end-->
 			</section>
-			<!-- page end-->
 		</section>
+		<!--main content end-->
 	</section>
-	<!--main content end-->
 	<!-- container section end -->
 	<!-- javascripts -->
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
-	<!-- nice scroll -->
+	<!-- nicescroll -->
 	<script src="../js/jquery.scrollTo.min.js"></script>
 	<script src="../js/jquery.nicescroll.js" type="text/javascript"></script>
-
-	<!-- jquery ui -->
-	<script src="../js/jquery-ui-1.9.2.custom.min.js"></script>
-
-	<!--custom checkbox & radio-->
-	<script type="text/javascript" src="../js/ga.js"></script>
-	<!--custom switch-->
-	<script src="../js/bootstrap-switch.js"></script>
-	<!--custom tagsinput-->
-	<script src="../js/jquery.tagsinput.js"></script>
-
-	<!-- colorpicker -->
-
-	<!-- bootstrap-wysiwyg -->
-	<script src="../js/jquery.hotkeys.js"></script>
-	<script src="../js/bootstrap-wysiwyg.js"></script>
-	<script src="../js/bootstrap-wysiwyg-custom.js"></script>
-	<!-- ck editor -->
-	<script type="text/javascript" src="../assets/ckeditor/ckeditor.js"></script>
-	<!-- custom form component script for this page-->
-	<script src="../js/form-component.js"></script>
-	<!-- custome script for all page -->
+	<!--custome script for all page-->
 	<script src="../js/scripts.js"></script>
-	<!-- jquery validate js -->
-	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 
-	<!-- custom form validation script for this page-->
-	<script src="../js/form-validation-script.js"></script>
 
 </body>
 </html>

@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +49,7 @@
 			</div>
 
 			<!--logo start-->
-			<a href="/ifeventos/" class="logo">IFG <span class="lite">Eventos</span></a>
+			<a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
 			<!--logo end-->
 
 			<div class="nav search-row" id="top_menu">
@@ -63,7 +64,6 @@
 				<!--  search form end -->
 			</div>
 
-	
 			<div class="top-nav notification-row">
 				<!-- notificatoin dropdown start-->
 				<ul class="nav pull-right top-menu">
@@ -178,75 +178,80 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<h3 class="page-header">
-							<i class="fa fa-user"></i>Palestrante
+							<i class="icon_calendar"></i>Programação
 						</h3>
 						<ol class="breadcrumb">
 							<li><i class="fa fa-home"></i><a href="/ifeventos/">Home</a></li>
-							<li><i class="fa fa-user"></i>Palestrante</li>
-							<li><i class="icon_document_alt"></i>Cadastro</li>
+							<li><i class="icon_calendar"></i>Programação</li>
+							<li><i class="fa fa-file-text-o"></i>Cadastro</li>
 						</ol>
 					</div>
 				</div>
-				<!-- Form cadastro de palestrante -->
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading"> Editar Palestrante </header>
+							<header class="panel-heading"> Cadastro de Programação </header>
 							<div class="panel-body">
 								<div class="form">
-									<form action="/ifeventos/palestrante/save"
-										class="form-validate form-horizontal" id="feedback_form"
-										method="post">
-										<input name="dto.palestrante.id" value="${dto.palestrante.id}"
-											type="hidden" />
+									<form class="form-validate form-horizontal" id="feedback_form"
+										method="post" action="/ifeventos/programacao/save">
+
 										<div class="form-group ">
-											<label for="cname" class="control-label col-lg-2">Nome
+											<label for="data" class="control-label col-lg-2">Data
 												<span class="required"></span>
 											</label>
 											<div class="col-lg-10">
-												<input class="form-control" id="cname"
-													name="dto.palestrante.nome" value="${dto.palestrante.nome}"
-													minlength="5" type="text" required />
+												<input class="form-control " id="Data"
+													name="dto.programacao.data" value="${dto.programacao.data}"
+													required />
 											</div>
 										</div>
 										<div class="form-group ">
-											<label for="cemail" class="control-label col-lg-2">Título<span
-												class="required"></span></label>
+											<label for="hora" class="control-label col-lg-2">Hora</label>
 											<div class="col-lg-10">
-												<input class="form-control " id="ctitulo" type="text"
-													name="dto.palestrante.titulo"
-													value="${dto.palestrante.titulo}" required />
+												<input class="form-control " id="hora"
+													name="dto.programacao.hora" value="${dto.programacao.hora}" />
 											</div>
 										</div>
 										<div class="form-group ">
-											<label for="ccomment" class="control-label col-lg-2">Resumo</label>
+											<label for="local" class="control-label col-lg-2">Local
+												<span class="required"></span>
+											</label>
 											<div class="col-lg-10">
-												<textarea class="form-control" id="ccomment"
-													name="dto.palestrante.resumo"> ${dto.palestrante.resumo}</textarea>
+												<input class="form-control " id="local"
+													name="dto.programacao.local"
+													value="${dto.programacao.local}" required />
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="cname" class="control-label col-lg-2">Tipo
+												de Programação<span class="required"></span>
+											</label>
+											<div class="col-lg-10">
+												<select class="form-control m-bot15"
+													name="dto.programacao.tipoProgramacao.id">
+													<c:forEach items="${dto.tipoProgramacao}" var="tipo">
+														<option ${tipo.id}>${tipo.tipo}</option>
+													</c:forEach>
+												</select>
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
-												<button class="btn btn-success" type="submit">Salvar</button>
-												<a href="/ifeventos/palestrante/form" class="btn btn-danger"
-													type="button">Cancelar</a>
+												<input class="btn btn-success" type="submit" value="Salvar">
+												<a href="/ifeventos/programacao/form" class="btn btn-danger">Cancelar</a>
 											</div>
 										</div>
 									</form>
 								</div>
-
 							</div>
 						</section>
 					</div>
 				</div>
-
-				<!-- Fim form validation -->
-
 			</section>
-			<!-- page end-->
 		</section>
+		<!--main content end-->
 	</section>
-	<!--main content end-->
 	<!-- container section end -->
 	<!-- javascripts -->
 	<script src="../js/jquery.js"></script>
@@ -278,10 +283,7 @@
 	<!-- custome script for all page -->
 	<script src="../js/scripts.js"></script>
 	<!-- jquery validate js -->
-	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 
-	<!-- custom form validation script for this page-->
-	<script src="../js/form-validation-script.js"></script>
 
 </body>
 </html>

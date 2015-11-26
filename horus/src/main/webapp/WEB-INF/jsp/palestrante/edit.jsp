@@ -62,7 +62,6 @@
 				</ul>
 				<!--  search form end -->
 			</div>
-
 	
 			<div class="top-nav notification-row">
 				<!-- notificatoin dropdown start-->
@@ -191,7 +190,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading"> Editar Palestrante </header>
+							<header class="panel-heading">Editar Palestrante </header>
 							<div class="panel-body">
 								<div class="form">
 									<form action="/ifeventos/palestrante/save"

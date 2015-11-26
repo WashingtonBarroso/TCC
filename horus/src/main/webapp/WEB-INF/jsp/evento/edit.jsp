@@ -63,7 +63,6 @@
 				<!--  search form end -->
 			</div>
 
-	
 			<div class="top-nav notification-row">
 				<!-- notificatoin dropdown start-->
 				<ul class="nav pull-right top-menu">
@@ -90,6 +89,7 @@
 				</ul>
 				<!-- notificatoin dropdown end-->
 			</div>
+
 		</header>
 		<!--header end-->
 
@@ -178,75 +178,90 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<h3 class="page-header">
-							<i class="fa fa-user"></i>Palestrante
+							<i class="fa fa-file-text-o"></i>Evento
 						</h3>
 						<ol class="breadcrumb">
 							<li><i class="fa fa-home"></i><a href="/ifeventos/">Home</a></li>
-							<li><i class="fa fa-user"></i>Palestrante</li>
-							<li><i class="icon_document_alt"></i>Cadastro</li>
+							<li><i class="icon_document_alt"></i>Evento</li>
+							<li><i class="fa fa-file-text-o"></i>Cadastro</li>
 						</ol>
 					</div>
 				</div>
-				<!-- Form cadastro de palestrante -->
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading"> Editar Palestrante </header>
+							<header class="panel-heading"> Cadastro Evento </header>
 							<div class="panel-body">
 								<div class="form">
-									<form action="/ifeventos/palestrante/save"
-										class="form-validate form-horizontal" id="feedback_form"
-										method="post">
-										<input name="dto.palestrante.id" value="${dto.palestrante.id}"
-											type="hidden" />
+									<form class="form-validate form-horizontal" id="feedback_form"
+										method="post" action="/ifeventos/evento/save">
+										<input type="hidden" name="dto.evento.id"
+											value="${dto.evento.id}" />
 										<div class="form-group ">
-											<label for="cname" class="control-label col-lg-2">Nome
-												<span class="required"></span>
+											<label for="cname" class="control-label col-lg-2">Evento
+												<span class="required">*</span>
 											</label>
 											<div class="col-lg-10">
-												<input class="form-control" id="cname"
-													name="dto.palestrante.nome" value="${dto.palestrante.nome}"
-													minlength="5" type="text" required />
+												<input class="form-control" id="nome" name="dto.evento.nome"
+													value="${dto.evento.nome}" minlength="5" type="text"
+													required />
 											</div>
 										</div>
 										<div class="form-group ">
-											<label for="cemail" class="control-label col-lg-2">Título<span
-												class="required"></span></label>
+											<label for="cemail" class="control-label col-lg-2">Local
+												<span class="required">*</span>
+											</label>
 											<div class="col-lg-10">
-												<input class="form-control " id="ctitulo" type="text"
-													name="dto.palestrante.titulo"
-													value="${dto.palestrante.titulo}" required />
+												<input class="form-control " id="local"
+													name="dto.evento.local" value="${dto.evento.local}"
+													required />
 											</div>
 										</div>
 										<div class="form-group ">
-											<label for="ccomment" class="control-label col-lg-2">Resumo</label>
+											<label for="curl" class="control-label col-lg-2">Website</label>
 											<div class="col-lg-10">
-												<textarea class="form-control" id="ccomment"
-													name="dto.palestrante.resumo"> ${dto.palestrante.resumo}</textarea>
+												<input class="form-control " id="curl" type="url"
+													name="dto.evento.site" value="${dto.evento.site}" />
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="cemail" class="control-label col-lg-2">Cidade
+												<span class="required">*</span>
+											</label>
+											<div class="col-lg-10">
+												<input class="form-control " id="cidade"
+													name="dto.evento.cidade" value="${dto.evento.cidade}"
+													required />
+											</div>
+										</div>
+										<div class="form-group ">
+											<label for="cemail" class="control-label col-lg-2">Estado
+												<span class="required">*</span>
+											</label>
+											<div class="col-lg-10">
+												<input class="form-control " id="estado"
+													name="dto.evento.estado" value="${dto.evento.estado}"
+													required />
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
-												<button class="btn btn-success" type="submit">Salvar</button>
-												<a href="/ifeventos/palestrante/form" class="btn btn-danger"
-													type="button">Cancelar</a>
+												<input class="btn btn-success" type="submit" value="Salvar">
+												<a href="/ifeventos/evento/form" class="btn btn-danger">Cancelar</a>
 											</div>
 										</div>
 									</form>
 								</div>
-
 							</div>
 						</section>
 					</div>
 				</div>
 
-				<!-- Fim form validation -->
-
+				<!-- page end-->
 			</section>
-			<!-- page end-->
 		</section>
+		<!--main content end-->
 	</section>
-	<!--main content end-->
 	<!-- container section end -->
 	<!-- javascripts -->
 	<script src="../js/jquery.js"></script>
