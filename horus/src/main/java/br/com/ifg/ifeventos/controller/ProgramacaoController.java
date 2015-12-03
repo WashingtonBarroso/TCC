@@ -13,14 +13,17 @@ import br.com.ifg.ifeventos.dto.ProgramacaoDTO;
 import br.com.ifg.ifeventos.model.entity.Programacao;
 import br.com.ifg.ifeventos.service.ProgramacaoService;
 
+
+
 @Controller
 public class ProgramacaoController {
 
 	private final Result result;	
 
 	@Inject
-	private ProgramacaoService service;
+	private ProgramacaoService service; 
 
+	
 	public ProgramacaoController() {
 		this(null);
 	}
@@ -41,6 +44,7 @@ public class ProgramacaoController {
 
 	@Post("/programacao/save")
 	public void save(ProgramacaoDTO dto){
+		
 		service.save(dto);
 		result.redirectTo(this).form();
 	}

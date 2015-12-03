@@ -63,11 +63,11 @@
 				</ul>
 				<!--  search form end -->
 			</div>
-		
+
 			<div class="top-nav notification-row">
 				<!-- notificatoin dropdown start-->
 				<ul class="nav pull-right top-menu">
-								
+
 					<!-- user login dropdown start-->
 					<li class="dropdown"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#"> <span class="profile-ava">
@@ -76,14 +76,20 @@
 					</a>
 						<ul class="dropdown-menu extended logout">
 							<div class="log-arrow-up"></div>
-							<li class="eborder-top"><a href="/ifeventos/evento/list"><i class="icon_document_alt"></i>Eventos</a></li>
-							<li><a href="/ifeventos/noticia/list"><i class="icon_documents_alt"></i>Notícias</a></li>
-							<li><a href="/ifeventos/organizador/list"><i class="fa fa-users"></i>Organizadores</a>
-							</li>
-							<li><a href="/ifeventos/organizador/list"><i class="icon_profile"></i>Palestrantes</a></li>
-							<li><a href="/ifeventos/programacao/list"><i class="icon_calendar"></i>Programação</a></li>
-							<li><a href="/ifeventos/tipoOrganizador/list"><i class="fa fa-users"></i>Tipo de Organizadores</a></li>
-							<li><a href="/ifeventos/tipoProgramacao/list"><i class="icon_calendar"></i>Tipo de Programação</a></li>
+							<li class="eborder-top"><a href="/ifeventos/evento/list"><i
+									class="icon_document_alt"></i>Eventos</a></li>
+							<li><a href="/ifeventos/noticia/list"><i
+									class="icon_documents_alt"></i>Notícias</a></li>
+							<li><a href="/ifeventos/organizador/list"><i
+									class="fa fa-users"></i>Organizadores</a></li>
+							<li><a href="/ifeventos/organizador/list"><i
+									class="icon_profile"></i>Palestrantes</a></li>
+							<li><a href="/ifeventos/programacao/list"><i
+									class="icon_calendar"></i>Programação</a></li>
+							<li><a href="/ifeventos/tipoOrganizador/list"><i
+									class="fa fa-users"></i>Tipo de Organizadores</a></li>
+							<li><a href="/ifeventos/tipoProgramacao/list"><i
+									class="icon_calendar"></i>Tipo de Programação</a></li>
 							<li></li>
 						</ul></li>
 					<!-- user login dropdown end -->

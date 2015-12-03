@@ -18,6 +18,11 @@
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.archive.autodetection" value="class" />
 
+			<!-- propriedades do TimeZone do JodaTime -->
+			<property name="jadira.usertype.autoRegisterUserTypes" value="true" />
+			<property name="jadira.usertype.databaseZone" value="UTC" />
+			<property name="jadira.usertype.javaZone" value="UTC" />
+
 			<!-- Important <property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" 
 				/> <property name="hibernate.c3p0.max_size" value="100" /> <property name="hibernate.c3p0.min_size" 
 				value="0" /> <property name="hibernate.c3p0.acquire_increment" value="1" 

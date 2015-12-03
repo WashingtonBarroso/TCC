@@ -8,6 +8,7 @@ import lombok.Setter;
 import br.com.ifg.ifeventos.model.entity.Programacao;
 import br.com.ifg.ifeventos.model.entity.TipoProgramacao;
 
+
 public class ProgramacaoDTO {
 
 	@Getter @Setter
@@ -20,6 +21,7 @@ public class ProgramacaoDTO {
 		this.tipoProgramacao = new ArrayList<TipoProgramacao>();
 	}
 
+	
 	public ProgramacaoDTO(Programacao programacao, List<TipoProgramacao> tipoProgramacao) {
 		this.programacao = programacao;
 		this.tipoProgramacao = tipoProgramacao;

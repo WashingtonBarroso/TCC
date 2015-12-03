@@ -128,7 +128,6 @@
 			<scope>test</scope>
 		</dependency>
 
-
 		<!-- Utils and Others -->
 
 		<dependency>
@@ -141,6 +140,20 @@
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.2</version>
+		</dependency>
+
+		<!-- API de Datas Joda-time -->
+
+		<dependency>
+			<groupId>br.com.caelum.vraptor</groupId>
+			<artifactId>vraptor-jodatime</artifactId>
+			<version>4.1.0-RC2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jadira.usertype</groupId>
+			<artifactId>usertype.core</artifactId>
+			<version>4.0.0.GA</version>
 		</dependency>
 
 	</dependencies>

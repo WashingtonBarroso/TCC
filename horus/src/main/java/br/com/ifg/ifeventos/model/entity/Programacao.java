@@ -1,7 +1,6 @@
 package br.com.ifg.ifeventos.model.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,8 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
+import org.hibernate.annotations.Type;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,10 +26,10 @@ public class Programacao implements Serializable{
 	@Id	
 	@GeneratedValue
 	@Getter @Setter private Long id;	
-	@Temporal(TemporalType.DATE)
-	@Getter @Setter private Date data;
-	@Temporal(TemporalType.TIME)
-	@Getter @Setter private Date hora;
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+    @Getter @Setter private LocalDate data;
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalTime")
+	@Getter @Setter private LocalTime hora;
 	@Getter @Setter private String local;
 	@ManyToOne
 	@JoinColumn(name="tp_programacao_id")
@@ -37,7 +38,8 @@ public class Programacao implements Serializable{
 	public Programacao() {
 		super();
 	}
-	public Programacao(Long id, Date data, Date hora, String local,
+	
+	public Programacao(Long id, LocalDate data, LocalTime hora, String local,
 			TipoProgramacao tipoProgramacao) {
 		super();
 		this.id = id;
@@ -46,5 +48,5 @@ public class Programacao implements Serializable{
 		this.local = local;
 		this.tipoProgramacao = tipoProgramacao;
 	}
-	
+
 }
