@@ -14,7 +14,6 @@ import br.com.ifg.ifeventos.model.entity.Programacao;
 import br.com.ifg.ifeventos.service.ProgramacaoService;
 
 
-
 @Controller
 public class ProgramacaoController {
 
@@ -23,7 +22,7 @@ public class ProgramacaoController {
 	@Inject
 	private ProgramacaoService service; 
 
-	
+
 	public ProgramacaoController() {
 		this(null);
 	}
@@ -43,8 +42,7 @@ public class ProgramacaoController {
 
 
 	@Post("/programacao/save")
-	public void save(ProgramacaoDTO dto){
-		
+	public void save(ProgramacaoDTO dto){		
 		service.save(dto);
 		result.redirectTo(this).form();
 	}
@@ -63,8 +61,8 @@ public class ProgramacaoController {
 		result.redirectTo(this).list();
 	}
 
-	
-    @Post("/programacao/edit")
+
+	@Post("/programacao/edit")
 	public void edit(Long id){
 		ProgramacaoDTO dto = new ProgramacaoDTO();
 		dto.getProgramacao().setId(id);
@@ -74,4 +72,3 @@ public class ProgramacaoController {
 
 
 }//fim
-	

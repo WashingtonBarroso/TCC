@@ -39,9 +39,8 @@
 		<!--header start-->
 		<header class="header dark-bg">
 			<div class="toggle-nav">
-				<div class="icon-reorder tooltips"
-					data-original-title="Toggle Navigation" data-placement="bottom"></div>
-			</div>
+                <div class="icon-reorder tooltips" data-original-title="Ocultar" data-placement="bottom"><i class="icon_menu"></i></div>
+            </div>
 
 			<!--logo start-->
 			<a href="/ifeventos/" class="logo">IFG <span class="lite">Eventos</span></a>

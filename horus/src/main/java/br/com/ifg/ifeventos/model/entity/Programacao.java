@@ -27,7 +27,7 @@ public class Programacao implements Serializable{
 	@GeneratedValue
 	@Getter @Setter private Long id;	
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-    @Getter @Setter private LocalDate data;
+	@Getter @Setter private LocalDate data;
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalTime")
 	@Getter @Setter private LocalTime hora;
 	@Getter @Setter private String local;
@@ -38,7 +38,7 @@ public class Programacao implements Serializable{
 	public Programacao() {
 		super();
 	}
-	
+
 	public Programacao(Long id, LocalDate data, LocalTime hora, String local,
 			TipoProgramacao tipoProgramacao) {
 		super();

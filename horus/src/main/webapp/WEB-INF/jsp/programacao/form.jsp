@@ -44,10 +44,8 @@
 		<!--header start-->
 		<header class="header dark-bg">
 			<div class="toggle-nav">
-				<div class="icon-reorder tooltips"
-					data-original-title="Toggle Navigation" data-placement="bottom"></div>
-			</div>
-
+                <div class="icon-reorder tooltips" data-original-title="Ocultar" data-placement="bottom"><i class="icon_menu"></i></div>
+            </div>
 			<!--logo start-->
 			<a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
 			<!--logo end-->
@@ -219,6 +217,7 @@
 													name="dto.programacao.hora" value="${dto.programacao.hora}" />
 											</div>
 										</div>
+
 										<div class="form-group ">
 											<label for="local" class="control-label col-lg-2">Local
 												<span class="required"></span>

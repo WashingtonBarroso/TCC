@@ -9,6 +9,7 @@ import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
 import br.com.ifg.ifeventos.dto.NoticiaDTO;
 import br.com.ifg.ifeventos.model.entity.Noticia;
 import br.com.ifg.ifeventos.service.NoticiaService;
@@ -31,18 +32,18 @@ public class NoticiaController {
 		this.result = result;
 	}
 
-	
+
 	@Path("/noticia/form")
 	public void form(){ 
 		NoticiaDTO dto = service.loadForm();
 		result.include("dto", dto);
 	}
 
-	
+
 	@Post("/noticia/save")
 	public void save(NoticiaDTO dto){
 		service.save(dto);
-	    result.redirectTo(this).form(); 
+		result.redirectTo(this).form(); 
 	}
 
 
@@ -67,6 +68,12 @@ public class NoticiaController {
 		dto = service.load(dto);
 		result.include("dto", dto);
 	}	
+
+	
+	@Path("/noticia/loadJson")
+	public void loadJson(){	
+		result.use(Results.json()).from(service.list()).serialize(); 
+	}
 
 	
 }//fim

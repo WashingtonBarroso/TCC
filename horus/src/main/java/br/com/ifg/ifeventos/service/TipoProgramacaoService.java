@@ -8,7 +8,6 @@ import br.com.ifg.ifeventos.dto.TipoProgramacaoDTO;
 import br.com.ifg.ifeventos.model.dao.impl.TipoProgramacaoDAO;
 import br.com.ifg.ifeventos.model.entity.TipoProgramacao;
 
-
 public class TipoProgramacaoService {
 
 	@Inject

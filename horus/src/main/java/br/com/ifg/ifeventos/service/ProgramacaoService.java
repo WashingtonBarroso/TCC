@@ -9,6 +9,7 @@ import br.com.ifg.ifeventos.model.dao.impl.ProgramacaoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.TipoProgramacaoDAO;
 import br.com.ifg.ifeventos.model.entity.Programacao;
 
+//import br.com.ifg.ifeventos.validacao.ConverterDataHora;
 
 public class ProgramacaoService {
 
@@ -17,6 +18,9 @@ public class ProgramacaoService {
 
 	@Inject
 	private TipoProgramacaoDAO tipoProgramacaoDao;
+    
+	@Inject
+   //private ConverterDataHora cData;
 	
 	public ProgramacaoDTO loadForm(){    
 		ProgramacaoDTO dto =  new ProgramacaoDTO();
@@ -31,6 +35,7 @@ public class ProgramacaoService {
 
 
 	public ProgramacaoDTO save(ProgramacaoDTO dto){			
+		//dto.getProgramacao().setData(cData.converterData());
 		dao.save(dto.getProgramacao());
 		dao.commit();
 		return dto; 
