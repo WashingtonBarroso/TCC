@@ -5,7 +5,7 @@
 	<artifactId>ifeventos</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1</version>
-	<name>ifeventos</name>
+	<name>horus Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -26,6 +26,7 @@
 			<version>1.2</version>
 		</dependency>
 
+
 		<!-- Controller (VRaptor) -->
 
 		<dependency>
@@ -33,6 +34,8 @@
 			<artifactId>vraptor</artifactId>
 			<version>4.1.3</version>
 		</dependency>
+
+
 
 		<!-- JBoss -->
 
@@ -47,6 +50,8 @@
 			<artifactId>weld-core-impl</artifactId>
 			<version>2.1.2.Final</version>
 		</dependency>
+
+
 
 		<!-- Java -->
 
@@ -99,6 +104,9 @@
 			<version>5.1.34</version>
 		</dependency>
 
+
+
+
 		<!-- Security -->
 
 		<dependency>
@@ -111,6 +119,8 @@
 			<artifactId>shiro-web</artifactId>
 			<version>${shiro.version}</version>
 		</dependency>
+
+
 
 		<!-- Test (Junit e JGlue) -->
 
@@ -136,16 +146,23 @@
 			<artifactId>lombok</artifactId>
 			<version>1.16.0</version>
 		</dependency>
+		<!-- Datas -->
 
 		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-			<version>1.2</version>
+			<groupId>br.com.caelum.vraptor</groupId>
+			<artifactId>vraptor-jodatime</artifactId>
+			<version>4.1.0-RC2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jadira.usertype</groupId>
+			<artifactId>usertype.core</artifactId>
+			<version>4.0.0.GA</version>
 		</dependency>
 
 	</dependencies>
 	<build>
-		<finalName>Horus</finalName>
+		<finalName>ifeventos</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -168,6 +185,5 @@
 
 		</plugins>
 	</build>
-
 
 </project>
