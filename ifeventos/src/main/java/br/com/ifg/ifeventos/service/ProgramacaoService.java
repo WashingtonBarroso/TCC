@@ -1,5 +1,6 @@
 package br.com.ifg.ifeventos.service;
 
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,7 +10,6 @@ import br.com.ifg.ifeventos.model.dao.impl.ProgramacaoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.TipoProgramacaoDAO;
 import br.com.ifg.ifeventos.model.entity.Programacao;
 
-//import br.com.ifg.ifeventos.validacao.ConverterDataHora;
 
 public class ProgramacaoService {
 
@@ -35,7 +35,6 @@ public class ProgramacaoService {
 
 
 	public ProgramacaoDTO save(ProgramacaoDTO dto){			
-		//dto.getProgramacao().setData(cData.converterData());
 		dao.save(dto.getProgramacao());
 		dao.commit();
 		return dto; 

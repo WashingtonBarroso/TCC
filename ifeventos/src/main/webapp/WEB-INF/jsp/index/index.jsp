@@ -20,11 +20,6 @@
 <!-- font icon -->
 <link href="css/elegant-icons-style.css" rel="stylesheet" />
 <link href="css/font-awesome.min.css" rel="stylesheet" />
-<!-- full calendar css-->
-<link href="assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css"
-	rel="stylesheet" />
-<link href="assets/fullcalendar/fullcalendar/fullcalendar.css"
-	rel="stylesheet" />
 <!-- easy pie chart-->
 <link href="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css"
 	rel="stylesheet" type="text/css" media="screen" />
@@ -36,7 +31,6 @@
 <link href="css/widgets.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <link href="css/style-responsive.css" rel="stylesheet" />
-<link href="css/xcharts.min.css" rel=" stylesheet">
 <link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
 <!--[if lt IE 9]>
@@ -52,10 +46,13 @@
 
 		<header class="header dark-bg">
 			<div class="toggle-nav">
-                <div class="icon-reorder tooltips" data-original-title="Ocultar" data-placement="bottom"><i class="icon_menu"></i></div>
-            </div>
+				<div class="icon-reorder tooltips" data-original-title="Ocultar"
+					data-placement="bottom">
+					<i class="icon_menu"></i>
+				</div>
+			</div>
 			<!--logo start-->
-			<a href="/ifeventos/" class="logo">IF<span class="lite">eventos</span></a>
+			<a href="/ifeventos/" class="logo">IF<span class="lite">Eventos</span></a>
 			<!--logo end-->
 
 			<div class="nav search-row" id="top_menu">
@@ -73,7 +70,7 @@
 			<div class="top-nav notification-row">
 				<!-- notificatoin dropdown start-->
 				<ul class="nav pull-right top-menu">
-								
+
 					<!-- user login dropdown start-->
 					<li class="dropdown"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#"> <span class="profile-ava">
@@ -82,14 +79,20 @@
 					</a>
 						<ul class="dropdown-menu extended logout">
 							<div class="log-arrow-up"></div>
-							<li class="eborder-top"><a href="/ifeventos/evento/list"><i class="icon_document_alt"></i>Eventos</a></li>
-							<li><a href="/ifeventos/noticia/list"><i class="icon_documents_alt"></i>Notícias</a></li>
-							<li><a href="/ifeventos/organizador/list"><i class="fa fa-users"></i>Organizadores</a>
-							</li>
-							<li><a href="/ifeventos/organizador/list"><i class="icon_profile"></i>Palestrantes</a></li>
-							<li><a href="/ifeventos/programacao/list"><i class="icon_calendar"></i>Programação</a></li>
-							<li><a href="/ifeventos/tipoOrganizador/list"><i class="fa fa-users"></i>Tipo de Organizadores</a></li>
-							<li><a href="/ifeventos/tipoProgramacao/list"><i class="icon_calendar"></i>Tipo de Programação</a></li>
+							<li class="eborder-top"><a href="/ifeventos/evento/list"><i
+									class="icon_document_alt"></i>Eventos</a></li>
+							<li><a href="/ifeventos/noticia/list"><i
+									class="icon_documents_alt"></i>Notícias</a></li>
+							<li><a href="/ifeventos/organizador/list"><i
+									class="fa fa-users"></i>Organizadores</a></li>
+							<li><a href="/ifeventos/organizador/list"><i
+									class="icon_profile"></i>Palestrantes</a></li>
+							<li><a href="/ifeventos/programacao/list"><i
+									class="icon_calendar"></i>Programação</a></li>
+							<li><a href="/ifeventos/tipoOrganizador/list"><i
+									class="fa fa-users"></i>Tipo de Organizadores</a></li>
+							<li><a href="/ifeventos/tipoProgramacao/list"><i
+									class="icon_calendar"></i>Tipo de Programação</a></li>
 							<li></li>
 						</ul></li>
 					<!-- user login dropdown end -->
@@ -109,7 +112,7 @@
 					</a></li>
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
 							class="icon_document_alt"></i> <span>Evento</span> <span
-							class="menu-arrow arrow_carrot-right"></span>	
+							class="menu-arrow arrow_carrot-right"></span>
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/evento/form">Cadastrar</a></li>
@@ -132,16 +135,6 @@
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/organizador/form">Cadastrar</a></li>
 							<li><a class="" href="/ifeventos/organizador/list">Consultar</a></li>
-
-							<!-- submenu tipo de organização -->
-							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
-										de Organizador </span> <span class="menu-arrow arrow_carrot-right"></span></a>
-								<ul class="sub">
-									<li><a class="" href="/ifeventos/tipoOrganizador/form">Cadastrar</a></li>
-									<li><a class="" href="/ifeventos/tipoOrganizador/list">Consultar</a></li>
-								</ul></li>
-							<!-- Fim submenu -->
-
 						</ul></li>
 
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
@@ -151,16 +144,9 @@
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/programacao/form">Cadastrar</a></li>
 							<li><a class="" href="/ifeventos/programacao/list">Consultar</a></li>
-
-							<!-- submenu tipo de programação  -->
-							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
-										Programação</span> <span class="menu-arrow arrow_carrot-right"></span></a>
-								<ul class="sub">
-									<li><a class="" href="/ifeventos/tipoProgramacao/form">Cadastrar</a></li>
-									<li><a class="" href="/ifeventos/tipoProgramacao/list">Consultar</a></li>
-								</ul></li>
-							<!-- Fim submenu -->
 						</ul></li>
+
+
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
 							class="fa fa-user"></i> <span>Palestrantes</span> <span
 							class="menu-arrow arrow_carrot-right"></span>
@@ -169,6 +155,22 @@
 							<li><a class="" href="/ifeventos/palestrante/form">Cadastrar</a></li>
 							<li><a class="" href="/ifeventos/palestrante/list">Consultar</a></li>
 						</ul></li>
+
+					<!-- Menu tipo de organização -->
+					<li class="sub-menu"><a href="javascript:;" class=""><i class="fa fa-users"></i><span>Tp Organizador</span> <span class="menu-arrow arrow_carrot-right"></span></a>
+						<ul class="sub">
+							<li><a class="" href="/ifeventos/tipoOrganizador/form">Cadastrar</a></li>
+							<li><a class="" href="/ifeventos/tipoOrganizador/list">Consultar</a></li>
+						</ul></li>
+					<!-- Fim submenu -->
+
+					<!-- Menu tipo de programação  -->
+					<li class="sub-menu"><a href="javascript:;" class=""><i class="icon_calendar"></i><span>Tp Programação</span> <span class="menu-arrow arrow_carrot-right"></span></a>
+						<ul class="sub">
+							<li><a class="" href="/ifeventos/tipoProgramacao/form">Cadastrar</a></li>
+							<li><a class="" href="/ifeventos/tipoProgramacao/list">Consultar</a></li>
+						</ul></li>
+					<!-- Fim submenu -->
 
 				</ul>
 				<!-- sidebar menu end-->
@@ -195,7 +197,6 @@
 					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 						<div class="info-box blue-bg">
 							<a href="/ifeventos/evento/form"><i class="icon_document_alt"></i></a>
-							<div class="count">0000</div>
 							<div class="title">Evento</div>
 						</div>
 						<!--/.info-box-->
@@ -204,8 +205,8 @@
 
 					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 						<div class="info-box green-bg">
-							<a href="/ifeventos/noticia/form"><i class="icon_documents_alt"></i></a>
-							<div class="count">0000</div>
+							<a href="/ifeventos/noticia/form"><i
+								class="icon_documents_alt"></i></a>
 							<div class="title">Notícia</div>
 						</div>
 						<!--/.info-box-->
@@ -215,7 +216,6 @@
 					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 						<div class="info-box dark-bg">
 							<a href="/ifeventos/organizador/form"><i class="fa fa-users"></i></a>
-							<div class="count">0000</div>
 							<div class="title">Organizadores</div>
 						</div>
 						<!--/.info-box-->
@@ -223,8 +223,8 @@
 					<!--/.col-->
 					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 						<div class="info-box yellow-bg">
-						<a href="/ifeventos/tipoOrganizador/form"><i class="fa fa-users"></i></a>
-							<div class="count">0000</div>
+							<a href="/ifeventos/tipoOrganizador/form"><i
+								class="fa fa-users"></i></a>
 							<div class="title">Tipo de Organizador</div>
 						</div>
 						<!--/.info-box-->
@@ -236,8 +236,8 @@
 				<div class="row">
 					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 						<div class="info-box blue-bg">
-							<a href="/ifeventos/programacao/form"><i class="icon_calendar"></i></a>
-							<div class="count">0000</div>
+							<a href="/ifeventos/programacao/form"><i
+								class="icon_calendar"></i></a>
 							<div class="title">Programação</div>
 						</div>
 						<!--/.info-box-->
@@ -247,7 +247,6 @@
 					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 						<div class="info-box green-bg">
 							<a href="/ifeventos/palestrante/form"><i class="fa fa-user"></i></a>
-							<div class="count">0000</div>
 							<div class="title">Palestrante</div>
 						</div>
 						<!--/.info-box-->
@@ -256,18 +255,18 @@
 
 					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 						<div class="info-box dark-bg">
-							<a href="/ifeventos/pontosturisticos/form"><i class="fa fa-picture-o"></i></a>
-							<div class="count">0000</div>
+							<a href="/ifeventos/pontosturisticos/form"><i
+								class="fa fa-picture-o"></i></a>
 							<div class="title">Pontos Turísticos</div>
 						</div>
 						<!--/.info-box-->
 					</div>
 					<!--/.col-->
 
-                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 						<div class="info-box yellow-bg">
-							<a href="/ifeventos/tipoProgramacao/form"><i class="icon_calendar"></i></a>
-							<div class="count">0000</div>
+							<a href="/ifeventos/tipoProgramacao/form"><i
+								class="icon_calendar"></i></a>
 							<div class="title">Tipo de Programação</div>
 						</div>
 						<!--/.info-box-->
@@ -300,14 +299,10 @@
 	<script src="js/owl.carousel.js"></script>
 	<!-- jQuery full calendar -->
 	<script src="js/fullcalendar.min.js"></script>
-	<!-- Full Google Calendar - Calendar -->
-	<script src="assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
 	<!--script for this page only-->
-	<script src="js/calendar-custom.js"></script>
 	<script src="js/jquery.rateit.min.js"></script>
 	<!-- custom select -->
 	<script src="js/jquery.customSelect.min.js"></script>
-	<script src="assets/chart-master/Chart.js"></script>
 
 	<!--custome script for all page-->
 	<script src="js/scripts.js"></script>
@@ -325,54 +320,50 @@
 	<script src="js/charts.js"></script>
 	<script src="js/jquery.slimscroll.min.js"></script>
 	<script>
+		//knob
+		$(function() {
+			$(".knob").knob({
+				'draw' : function() {
+					$(this.i).val(this.cv + '%')
+				}
+			})
+		});
 
-      //knob
-      $(function() {
-        $(".knob").knob({
-          'draw' : function () { 
-            $(this.i).val(this.cv + '%')
-          }
-        })
-      });
+		//carousel
+		$(document).ready(function() {
+			$("#owl-slider").owlCarousel({
+				navigation : true,
+				slideSpeed : 300,
+				paginationSpeed : 400,
+				singleItem : true
 
-      //carousel
-      $(document).ready(function() {
-          $("#owl-slider").owlCarousel({
-              navigation : true,
-              slideSpeed : 300,
-              paginationSpeed : 400,
-              singleItem : true
+			});
+		});
 
-          });
-      });
+		//custom select box
 
-      //custom select box
+		$(function() {
+			$('select.styled').customSelect();
+		});
 
-      $(function(){
-          $('select.styled').customSelect();
-      });
-	  
-	  /* ---------- Map ---------- */
-	$(function(){
-	  $('#map').vectorMap({
-	    map: 'world_mill_en',
-	    series: {
-	      regions: [{
-	        values: gdpData,
-	        scale: ['#000', '#000'],
-	        normalizeFunction: 'polynomial'
-	      }]
-	    },
-		backgroundColor: '#eef3f7',
-	    onLabelShow: function(e, el, code){
-	      el.html(el.html()+' (GDP - '+gdpData[code]+')');
-	    }
-	  });
-	});
-
-
-
-  </script>
+		/* ---------- Map ---------- */
+		$(function() {
+			$('#map').vectorMap({
+				map : 'world_mill_en',
+				series : {
+					regions : [ {
+						values : gdpData,
+						scale : [ '#000', '#000' ],
+						normalizeFunction : 'polynomial'
+					} ]
+				},
+				backgroundColor : '#eef3f7',
+				onLabelShow : function(e, el, code) {
+					el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+				}
+			});
+		});
+	</script>
 
 </body>
 </html>

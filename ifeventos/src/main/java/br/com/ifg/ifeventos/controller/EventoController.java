@@ -9,6 +9,7 @@ import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
 import br.com.ifg.ifeventos.dto.EventoDTO;
 import br.com.ifg.ifeventos.model.entity.Evento;
 import br.com.ifg.ifeventos.service.EventoService;
@@ -68,5 +69,12 @@ public class EventoController {
 		result.include("dto",dto);
 
 	}
+
+	
+	@Path("/evento/loadJson")
+	public void loadJson(){
+		result.use(Results.json()).from(service.list()).serialize();
+	}
+
 
 } 
