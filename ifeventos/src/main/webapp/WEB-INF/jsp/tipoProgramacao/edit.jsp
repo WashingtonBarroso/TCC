@@ -179,7 +179,7 @@
 						</ol>
 					</div>
 				</div>
-				<!-- Cadastro de Organizador -->
+				<!-- Editar de Tipo Programação -->
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
@@ -204,7 +204,7 @@
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
 												<button class="btn btn-success" type="submit">Salvar</button>
-												<a href="/ifeventos/tipoProgramacao/form"
+												<a href="/ifeventos/tipoProgramacao/list"
 													class="btn btn-danger" type="button">Cancelar</a>
 											</div>
 										</div>

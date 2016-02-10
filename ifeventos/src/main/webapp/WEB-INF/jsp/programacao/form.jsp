@@ -22,7 +22,8 @@
 <link href="../css/elegant-icons-style.css" rel="stylesheet" />
 <link href="../css/font-awesome.min.css" rel="stylesheet" />
 <!-- date picker -->
-
+<link href="../datetimepicker/css/bootstrap-datetimepicker.min.css"
+	rel="stylesheet" />
 <!-- color picker -->
 
 <!-- Custom styles -->
@@ -44,10 +45,13 @@
 		<!--header start-->
 		<header class="header dark-bg">
 			<div class="toggle-nav">
-                <div class="icon-reorder tooltips" data-original-title="Ocultar" data-placement="bottom"><i class="icon_menu"></i></div>
-            </div>
+				<div class="icon-reorder tooltips" data-original-title="Ocultar"
+					data-placement="bottom">
+					<i class="icon_menu"></i>
+				</div>
+			</div>
 			<!--logo start-->
-			<a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
+			<a href="index.html" class="logo">IF <span class="lite">Eventos</span></a>
 			<!--logo end-->
 
 			<div class="nav search-row" id="top_menu">
@@ -204,49 +208,65 @@
 											<label for="data" class="control-label col-lg-2">Data
 												<span class="required"></span>
 											</label>
-											<div class="col-lg-10">
-												<input class="form-control " id="Data"
-													name="dto.programacao.data" value="${dto.programacao.data}"
-													required />
+                                            
+											<div class="well">
+												<div id="pdata" class="input-append">
+													<input data-format="yyy-MM-dd" type="text"
+														name="dto.programacao.data"
+														class="add-on" value="${dto.programacao.data}"/> 
+													<span class="add-on">	
+														<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+													</span>
+												</div>
 											</div>
+										<script type="text/javascript">
+										$(function(){
+											$("#pdata").datatimepicker({
+											 pickDate:false	
+											});
+										});
+										</script>
 										</div>
-										<div class="form-group ">
-											<label for="hora" class="control-label col-lg-2">Hora</label>
-											<div class="col-lg-10">
-												<input class="form-control " id="hora"
-													name="dto.programacao.hora" value="${dto.programacao.hora}" />
+										
+											<div class="form-group ">
+												<label for="hora" class="control-label col-lg-2">Hora</label>
+												<div class="col-lg-10">
+													<input class="form-control " id="hora"
+														name="dto.programacao.hora"
+														value="${dto.programacao.hora}" />
+												</div>
 											</div>
-										</div>
 
-										<div class="form-group ">
-											<label for="local" class="control-label col-lg-2">Local
-												<span class="required"></span>
-											</label>
-											<div class="col-lg-10">
-												<input class="form-control " id="local"
-													name="dto.programacao.local"
-													value="${dto.programacao.local}" required />
+											<div class="form-group ">
+												<label for="local" class="control-label col-lg-2">Local
+													<span class="required"></span>
+												</label>
+												<div class="col-lg-10">
+													<input class="form-control " id="local"
+														name="dto.programacao.local"
+														value="${dto.programacao.local}" required />
+												</div>
 											</div>
-										</div>
-										<div class="form-group ">
-											<label for="cname" class="control-label col-lg-2">Tipo
-												de Programação<span class="required"></span>
-											</label>
-											<div class="col-lg-10">
-												<select class="form-control m-bot15"
-													name="dto.programacao.tipoProgramacao.id">
-													<c:forEach items="${dto.tipoProgramacao}" var="tipo">
-														<option value="${tipo.id}">${tipo.tipo}</option>
-													</c:forEach>
-												</select>
+											<div class="form-group ">
+												<label for="cname" class="control-label col-lg-2">Tipo
+													de Programação<span class="required"></span>
+												</label>
+												<div class="col-lg-10">
+													<select class="form-control m-bot15"
+														name="dto.programacao.tipoProgramacao.id">
+														<c:forEach items="${dto.tipoProgramacao}" var="tipo">
+															<option value="${tipo.id}">${tipo.tipo}</option>
+														</c:forEach>
+													</select>
+												</div>
 											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-lg-offset-2 col-lg-10">
-												<input class="btn btn-success" type="submit" value="Salvar">
-												<a href="/ifeventos/programacao/form" class="btn btn-danger">Cancelar</a>
+											<div class="form-group">
+												<div class="col-lg-offset-2 col-lg-10">
+													<input class="btn btn-success" type="submit" value="Salvar">
+													<a href="/ifeventos/programacao/form"
+														class="btn btn-danger">Cancelar</a>
+												</div>
 											</div>
-										</div>
 									</form>
 								</div>
 							</div>
@@ -274,9 +294,8 @@
 	<script src="../js/bootstrap-switch.js"></script>
 	<!--custom tagsinput-->
 	<script src="../js/jquery.tagsinput.js"></script>
-
-	<!-- colorpicker -->
-
+	<!-- datpicker -->
+	<script src="../datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 	<!-- bootstrap-wysiwyg -->
 	<script src="../js/jquery.hotkeys.js"></script>
 	<script src="../js/bootstrap-wysiwyg.js"></script>

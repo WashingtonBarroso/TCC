@@ -190,7 +190,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading"> Cadastro Notícia </header>
+							<header class="panel-heading"> Editar Notícia </header>
 							<div class="panel-body">
 								<div class="form">
 									<form action="/ifeventos/noticia/save" class="form-validate form-horizontal" id="feedback_form"
@@ -205,7 +205,7 @@
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
 												<button class="btn btn-success" type="submit">Salvar</button>
-												<a href="/ifeventos/noticia/form" class="btn btn-danger" type="button">Cancelar</a>
+												<a href="/ifeventos/noticia/list" class="btn btn-danger" type="button">Cancelar</a>
 											</div>
 										</div>
 									</form>

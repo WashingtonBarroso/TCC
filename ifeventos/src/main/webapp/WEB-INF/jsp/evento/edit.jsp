@@ -188,7 +188,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading"> Cadastro Evento </header>
+							<header class="panel-heading"> Editar Evento </header>
 							<div class="panel-body">
 								<div class="form">
 									<form class="form-validate form-horizontal" id="feedback_form"
@@ -245,7 +245,7 @@
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
 												<input class="btn btn-success" type="submit" value="Salvar">
-												<a href="/ifeventos/evento/form" class="btn btn-danger">Cancelar</a>
+												<a href="/ifeventos/evento/list" class="btn btn-danger">Cancelar</a>
 											</div>
 										</div>
 									</form>

@@ -38,12 +38,12 @@
 	<section id="container" class="">
 		<!--header start-->
 		<header class="header dark-bg">
-			<div class="toggle-nav">
+		<div class="toggle-nav">
                 <div class="icon-reorder tooltips" data-original-title="Ocultar" data-placement="bottom"><i class="icon_menu"></i></div>
             </div>
 
 			<!--logo start-->
-			<a href="/ifeventos/" class="logo">IFG <span class="lite">Eventos</span></a>
+			<a href="index.html" class="logo">IFG <span class="lite">Eventos</span></a>
 			<!--logo end-->
 
 			<div class="nav search-row" id="top_menu">
@@ -58,6 +58,7 @@
 				<!--  search form end -->
 			</div>
 
+	
 			<div class="top-nav notification-row">
 				<!-- notificatoin dropdown start-->
 				<ul class="nav pull-right top-menu">
@@ -132,7 +133,6 @@
 
 						</ul></li>
 
-
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
 							class="icon_calendar"></i> <span>Programação</span> <span
 							class="menu-arrow arrow_carrot-right"></span>
@@ -171,63 +171,75 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<h3 class="page-header">
-							<i class="fa fa-users"></i>Tipo de Organizador 
+							<i class="icon_documents_alt"></i>Mapa
 						</h3>
 						<ol class="breadcrumb">
 							<li><i class="fa fa-home"></i><a href="/ifeventos/">Home</a></li>
-							<li><i class="fa fa-users"></i>Tipo de Organizador</li>
-							<li><i class="icon_document_alt"></i>Cadastro</li>
+							<li><i class="fa fa-map-marker"></i>Mapa</li>
+							<li><i class="fa fa-search"></i>Consultar</li>
 						</ol>
 					</div>
 				</div>
-				<!-- Cadastro de Organizador -->
+
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading"> Cadastro Tipo de Organizador </header>
-							<div class="panel-body">
-								<div class="form">
-									<form class="form-validate form-horizontal" id="formorganizador"
-										method="post" action="/ifeventos/tipoOrganizador/save">
-											<div class="form-group ">
-											<label for="curl" class="control-label col-lg-2">Tipo de Organizador</label>
-											<div class="col-lg-10">
-												<input class="form-control " id="ctipo" type="text"
-													name="dto.tipoOrganizador.tipo" value="${dto.tipoOrganizador.tipo}" />
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-lg-offset-2 col-lg-10">
-												<button class="btn btn-success" type="submit">Salvar</button>
-												<a href="/ifeventos/tipoOrganizador/form" class="btn btn-danger"
-													type="button">Cancelar</a>
-											</div>
-										</div>
-									</form>
-								</div>
+							<header class="panel-heading">Lista Mapa</header>
 
-							</div>
+							<table class="table table-striped table-advance table-hover">
+								<tbody>
+									<tr>
+										<th><i class="fa fa-sort-numeric-asc"></i> Nº</th>
+										<th><i class=""></i>Latitude</th>
+										<th><i class=""></i>Longitude</th>
+										<th><i class=""></i>Editar</th>
+									    <th><i class=""></i>Excluir</th>
+									</tr>
+									<c:forEach items="${list}" var="mapa">
+										<tr>
+											<td>${mapa.id}</td>
+											<td>${mapa.latitude}</td>
+											<td>${mapa.longitude}</td>
+											<td>
+											<div class="btn-group">
+												<form action="<c:url value="/mapa/edit"/>" method="post">
+													<input name="id" type="hidden" value="${mapa.id}" />
+													<button class="btn btn-info">
+														<i class="fa fa-pencil-square-o"></i>
+													</button>
+												</form>
+											</div>	
+											</td>	
+												<td>
+												<div class="btn-group">
+													<form action="<c:url value="/mapa"/>" method="post">
+														<input name="id" value="${mapa.id}" type="hidden" />
+														<button class="btn btn-danger" name="_method"
+															value="DELETE">
+															<i class="icon_close_alt2"></i>
+														</button>
+													</form>
+												</div>
+											</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
 						</section>
 					</div>
 				</div>
-
+				<!-- page end-->
 			</section>
 		</section>
 		<!--main content end-->
 	</section>
 	<!-- container section end -->
-
 	<!-- javascripts -->
 	<script src="../js/jquery.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
-	<!-- nice scroll -->
+	<!-- nicescroll -->
 	<script src="../js/jquery.scrollTo.min.js"></script>
 	<script src="../js/jquery.nicescroll.js" type="text/javascript"></script>
-	<!-- jquery validate js -->
-	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-
-	<!-- custom form validation script for this page-->
-	<script src="js/form-validation-script.js"></script>
 	<!--custome script for all page-->
 	<script src="../js/scripts.js"></script>
 

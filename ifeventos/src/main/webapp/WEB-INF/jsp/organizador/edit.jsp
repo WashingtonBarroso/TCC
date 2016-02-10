@@ -232,7 +232,7 @@
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
 												<button class="btn btn-success" type="submit">Salvar</button>
-												<a href="/ifeventos/organizador/form" class="btn btn-danger"
+												<a href="/ifeventos/organizador/list" class="btn btn-danger"
 													type="button">Cancelar</a>
 											</div>
 										</div>

@@ -255,9 +255,9 @@
 
 					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 						<div class="info-box dark-bg">
-							<a href="/ifeventos/pontosturisticos/form"><i
-								class="fa fa-picture-o"></i></a>
-							<div class="title">Pontos Turísticos</div>
+							<a href="/ifeventos/mapa/form"><i
+								class="fa fa-map-marker"></i></a>
+							<div class="title">Mapa</div>
 						</div>
 						<!--/.info-box-->
 					</div>
@@ -307,17 +307,13 @@
 	<!--custome script for all page-->
 	<script src="js/scripts.js"></script>
 	<!-- custom script for this page-->
-	<script src="js/sparkline-chart.js"></script>
-	<script src="js/easy-pie-chart.js"></script>
 	<script src="js/jquery-jvectormap-1.2.2.min.js"></script>
 	<script src="js/jquery-jvectormap-world-mill-en.js"></script>
-	<script src="js/xcharts.min.js"></script>
 	<script src="js/jquery.autosize.min.js"></script>
 	<script src="js/jquery.placeholder.min.js"></script>
 	<script src="js/gdp-data.js"></script>
 	<script src="js/morris.min.js"></script>
 	<script src="js/sparklines.js"></script>
-	<script src="js/charts.js"></script>
 	<script src="js/jquery.slimscroll.min.js"></script>
 	<script>
 		//knob

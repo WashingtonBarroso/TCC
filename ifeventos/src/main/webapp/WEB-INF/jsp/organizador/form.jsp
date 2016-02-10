@@ -38,9 +38,12 @@
 	<section id="container" class="">
 		<!--header start-->
 		<header class="header dark-bg">
-		<div class="toggle-nav">
-                <div class="icon-reorder tooltips" data-original-title="Ocultar" data-placement="bottom"><i class="icon_menu"></i></div>
-            </div>
+			<div class="toggle-nav">
+				<div class="icon-reorder tooltips" data-original-title="Ocultar"
+					data-placement="bottom">
+					<i class="icon_menu"></i>
+				</div>
+			</div>
 
 			<!--logo start-->
 			<a href="/ifeventos/" class="logo">IFG <span class="lite">Eventos</span></a>
@@ -61,7 +64,7 @@
 			<div class="top-nav notification-row">
 				<!-- notificatoin dropdown start-->
 				<ul class="nav pull-right top-menu">
-								
+
 					<!-- user login dropdown start-->
 					<li class="dropdown"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#"> <span class="profile-ava">
@@ -70,14 +73,20 @@
 					</a>
 						<ul class="dropdown-menu extended logout">
 							<div class="log-arrow-up"></div>
-							<li class="eborder-top"><a href="/ifeventos/evento/list"><i class="icon_document_alt"></i>Eventos</a></li>
-							<li><a href="/ifeventos/noticia/list"><i class="icon_documents_alt"></i>Notícias</a></li>
-							<li><a href="/ifeventos/organizador/list"><i class="fa fa-users"></i>Organizadores</a>
-							</li>
-							<li><a href="/ifeventos/organizador/list"><i class="icon_profile"></i>Palestrantes</a></li>
-							<li><a href="/ifeventos/programacao/list"><i class="icon_calendar"></i>Programação</a></li>
-							<li><a href="/ifeventos/tipoOrganizador/list"><i class="fa fa-users"></i>Tipo de Organizadores</a></li>
-							<li><a href="/ifeventos/tipoProgramacao/list"><i class="icon_calendar"></i>Tipo de Programação</a></li>
+							<li class="eborder-top"><a href="/ifeventos/evento/list"><i
+									class="icon_document_alt"></i>Eventos</a></li>
+							<li><a href="/ifeventos/noticia/list"><i
+									class="icon_documents_alt"></i>Notícias</a></li>
+							<li><a href="/ifeventos/organizador/list"><i
+									class="fa fa-users"></i>Organizadores</a></li>
+							<li><a href="/ifeventos/organizador/list"><i
+									class="icon_profile"></i>Palestrantes</a></li>
+							<li><a href="/ifeventos/programacao/list"><i
+									class="icon_calendar"></i>Programação</a></li>
+							<li><a href="/ifeventos/tipoOrganizador/list"><i
+									class="fa fa-users"></i>Tipo de Organizadores</a></li>
+							<li><a href="/ifeventos/tipoProgramacao/list"><i
+									class="icon_calendar"></i>Tipo de Programação</a></li>
 							<li></li>
 						</ul></li>
 					<!-- user login dropdown end -->
@@ -171,7 +180,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<h3 class="page-header">
-							<i class="fa fa-users"></i> Organizador 
+							<i class="fa fa-users"></i> Organizador
 						</h3>
 						<ol class="breadcrumb">
 							<li><i class="fa fa-home"></i><a href="/ifeventos/">Home</a></li>
@@ -184,7 +193,8 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading"> Cadastro de Organizadores </header>
+							<header class="panel-heading"> Cadastro de Organizadores
+							</header>
 							<div class="panel-body">
 								<div class="form">
 									<form class="form-validate form-horizontal" id="feedback_form"
@@ -217,16 +227,21 @@
 											</div>
 										</div>
 										<div class="form-group ">
-											<label for="cname" class="control-label col-lg-2">Tipo de
-												Organizador<span class="required"></span>
+											<label for="cname" class="control-label col-lg-2">Tipo
+												de Organizador<span class="required"></span>
 											</label>
 											<div class="col-lg-10">
-												<select class="form-control m-bot15" name="dto.organizador.tipoOrganizador.id">
+												<select class="form-control m-bot15"
+													name="dto.organizador.tipoOrganizador.id">
 													<c:forEach items="${dto.tipos}" var="tipo">
 														<option value="${tipo.id}">${tipo.tipo}</option>
 													</c:forEach>
-												</select>
+												</select> 
+												
+												<a class="btn btn-default" data-toggle="modal"
+													data-target="#myModal" href=""><span class="fa fa-plus"></span></a>
 											</div>
+
 										</div>
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
@@ -237,7 +252,6 @@
 										</div>
 									</form>
 								</div>
-
 							</div>
 						</section>
 					</div>
