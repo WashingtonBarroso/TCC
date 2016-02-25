@@ -14,7 +14,7 @@ public class PalestranteService {
 	private PalestranteDAO dao;
 
 	public PalestranteDTO loadForm(){
-		return new PalestranteDTO(new Palestrante(null, "", "", ""));
+		return new PalestranteDTO(new Palestrante());
 	}
 
 

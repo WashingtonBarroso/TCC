@@ -14,7 +14,7 @@ public class NoticiaService {
 	private NoticiaDAO dao;	
 
 	public NoticiaDTO loadForm(){
-		return new NoticiaDTO(new Noticia(null, ""));
+		return new NoticiaDTO(new Noticia(null, "", null));
 	}	
 	
 	
@@ -28,7 +28,6 @@ public class NoticiaService {
 		dao.commit();
 		return dto;
 	}
-
 	
 	public NoticiaDTO delete(NoticiaDTO dto){
 		dao.remove(dto.getNoticia());

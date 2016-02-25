@@ -12,7 +12,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Entity
 @Table(name="tbevento")
 public class Evento implements Serializable{

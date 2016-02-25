@@ -34,7 +34,11 @@ public class Programacao implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="tp_programacao_id")
 	@Getter @Setter private TipoProgramacao tipoProgramacao;
-
+	@ManyToOne
+	@JoinColumn(name="evento_id")
+	@Getter @Setter
+	private Evento evento;
+	
 	public Programacao() {
 		super();
 	}

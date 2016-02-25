@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,15 +28,21 @@ public class Organizador implements Serializable{
 	@Getter @Setter
 	private TipoOrganizador tipoOrganizador;
 
+	@ManyToOne
+	@JoinColumn(name="evento_id")
+	@Getter @Setter
+	private Evento evento;
+	
 	public Organizador() {
 	}
 	public Organizador(Long id, String nome, String cargo, String area,
-			TipoOrganizador tipoOrganizador) {
+			TipoOrganizador tipoOrganizador, Evento evento) {
 		this.id = id;
 		this.nome = nome;
 		this.cargo = cargo;
 		this.area = area;
 		this.tipoOrganizador = tipoOrganizador;
+	    this.evento = evento;
 	}
 
 }

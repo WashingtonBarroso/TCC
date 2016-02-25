@@ -14,7 +14,7 @@ public class MapaService {
 	private MapaDAO dao;
 
 	public MapaDTO loadForm(){
-		return new MapaDTO(new Mapa(null, null, null));
+		return new MapaDTO(new Mapa());
 	}
 
 
