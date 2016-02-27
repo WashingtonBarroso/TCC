@@ -116,7 +116,7 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/evento/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/evento/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/evento/list">Listar</a></li>
 						</ul></li>
 
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
@@ -125,17 +125,36 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/noticia/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/noticia/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/noticia/list">Listar</a></li>
 						</ul></li>
 
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class="fa fa-map-marker"></i> <span>Mapa</span><span
+							class="menu-arrow arrow_carrot-right"></span>
+					</a>
+						<ul class="sub">
+							<li><a class="" href="/ifeventos/mapa/form">Cadastrar</a></li>
+							<li><a class="" href="/ifeventos/mapa/list">Listar</a></li>
+						</ul></li>
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
 							class="fa fa-users"></i> <span>Organizadores</span> <span
 							class="menu-arrow arrow_carrot-right"></span>
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/organizador/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/organizador/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/organizador/list">Listar</a></li>
+
+							<!-- submenu tipo de organização -->
+							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
+										de Organizador </span> <span class="menu-arrow arrow_carrot-right"></span></a>
+								<ul class="sub">
+									<li><a class="" href="/ifeventos/tipoOrganizador/form">Cadastrar</a></li>
+									<li><a class="" href="/ifeventos/tipoOrganizador/list">Listar</a></li>
+								</ul></li>
+							<!-- Fim submenu -->
+
 						</ul></li>
+
 
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
 							class="icon_calendar"></i> <span>Programação</span> <span
@@ -143,34 +162,25 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/programacao/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/programacao/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/programacao/list">Listar</a></li>
+
+							<!-- submenu tipo de programação  -->
+							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
+										Programação</span> <span class="menu-arrow arrow_carrot-right"></span></a>
+								<ul class="sub">
+									<li><a class="" href="/ifeventos/tipoProgramacao/form">Cadastrar</a></li>
+									<li><a class="" href="/ifeventos/tipoProgramacao/list">Listar</a></li>
+								</ul></li>
+							<!-- Fim submenu -->
 						</ul></li>
-
-
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
 							class="fa fa-user"></i> <span>Palestrantes</span> <span
 							class="menu-arrow arrow_carrot-right"></span>
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/palestrante/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/palestrante/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/palestrante/list">Listar</a></li>
 						</ul></li>
-
-					<!-- Menu tipo de organização -->
-					<li class="sub-menu"><a href="javascript:;" class=""><i class="fa fa-users"></i><span>Tp Organizador</span> <span class="menu-arrow arrow_carrot-right"></span></a>
-						<ul class="sub">
-							<li><a class="" href="/ifeventos/tipoOrganizador/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/tipoOrganizador/list">Consultar</a></li>
-						</ul></li>
-					<!-- Fim submenu -->
-
-					<!-- Menu tipo de programação  -->
-					<li class="sub-menu"><a href="javascript:;" class=""><i class="icon_calendar"></i><span>Tp Programação</span> <span class="menu-arrow arrow_carrot-right"></span></a>
-						<ul class="sub">
-							<li><a class="" href="/ifeventos/tipoProgramacao/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/tipoProgramacao/list">Consultar</a></li>
-						</ul></li>
-					<!-- Fim submenu -->
 
 				</ul>
 				<!-- sidebar menu end-->
@@ -255,8 +265,7 @@
 
 					<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 						<div class="info-box dark-bg">
-							<a href="/ifeventos/mapa/form"><i
-								class="fa fa-map-marker"></i></a>
+							<a href="/ifeventos/mapa/form"><i class="fa fa-map-marker"></i></a>
 							<div class="title">Mapa</div>
 						</div>
 						<!--/.info-box-->

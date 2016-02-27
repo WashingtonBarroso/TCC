@@ -6,8 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,17 +35,20 @@ public class Organizador implements Serializable{
 	@JoinColumn(name="evento_id")
 	@Getter @Setter
 	private Evento evento;
-	
+	@Getter @Setter
+	private String url;
+
 	public Organizador() {
 	}
 	public Organizador(Long id, String nome, String cargo, String area,
-			TipoOrganizador tipoOrganizador, Evento evento) {
+			TipoOrganizador tipoOrganizador, String url, Evento evento) {
 		this.id = id;
 		this.nome = nome;
 		this.cargo = cargo;
 		this.area = area;
 		this.tipoOrganizador = tipoOrganizador;
-	    this.evento = evento;
+		this.evento = evento;
+		this.url = url;
 	}
 
 }

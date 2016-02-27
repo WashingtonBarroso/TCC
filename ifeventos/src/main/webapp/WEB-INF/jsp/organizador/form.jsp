@@ -110,7 +110,7 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/evento/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/evento/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/evento/list">Listar</a></li>
 						</ul></li>
 
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
@@ -119,23 +119,31 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/noticia/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/noticia/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/noticia/list">Listar</a></li>
 						</ul></li>
 
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class="fa fa-map-marker"></i> <span>Mapa</span><span
+							class="menu-arrow arrow_carrot-right"></span>
+					</a>
+						<ul class="sub">
+							<li><a class="" href="/ifeventos/mapa/form">Cadastrar</a></li>
+							<li><a class="" href="/ifeventos/mapa/list">Listar</a></li>
+						</ul></li>
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
 							class="fa fa-users"></i> <span>Organizadores</span> <span
 							class="menu-arrow arrow_carrot-right"></span>
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/organizador/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/organizador/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/organizador/list">Listar</a></li>
 
 							<!-- submenu tipo de organização -->
 							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
 										de Organizador </span> <span class="menu-arrow arrow_carrot-right"></span></a>
 								<ul class="sub">
 									<li><a class="" href="/ifeventos/tipoOrganizador/form">Cadastrar</a></li>
-									<li><a class="" href="/ifeventos/tipoOrganizador/list">Consultar</a></li>
+									<li><a class="" href="/ifeventos/tipoOrganizador/list">Listar</a></li>
 								</ul></li>
 							<!-- Fim submenu -->
 
@@ -148,14 +156,14 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/programacao/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/programacao/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/programacao/list">Listar</a></li>
 
 							<!-- submenu tipo de programação  -->
 							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
 										Programação</span> <span class="menu-arrow arrow_carrot-right"></span></a>
 								<ul class="sub">
 									<li><a class="" href="/ifeventos/tipoProgramacao/form">Cadastrar</a></li>
-									<li><a class="" href="/ifeventos/tipoProgramacao/list">Consultar</a></li>
+									<li><a class="" href="/ifeventos/tipoProgramacao/list">Listar</a></li>
 								</ul></li>
 							<!-- Fim submenu -->
 						</ul></li>
@@ -165,7 +173,7 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/palestrante/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/palestrante/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/palestrante/list">Listar</a></li>
 						</ul></li>
 
 				</ul>
@@ -197,15 +205,24 @@
 							</header>
 							<div class="panel-body">
 								<div class="form">
+
 									<form class="form-validate form-horizontal" id="feedback_form"
-										method="post" action="/ifeventos/organizador/save">
+										method="post" action="/ifeventos/organizador/save/imagem" enctype="multipart/form-data">
+										
+										<div class="form-group">
+											<div class="col-lg-10">
+												<label for="inserirDados" class="control-label col-lg-2">Carregar
+													foto</label> <input type="file" id="idfile" name="imagem"/>
+											</div>
+										</div>
+										
 										<div class="form-group ">
 											<label for="cname" class="control-label col-lg-2">Nome
 												<span class="required"></span>
 											</label>
 											<div class="col-lg-10">
 												<input class="form-control" id="cname"
-													name="dto.organizador.nome" minlength="5" type="text"
+													name="dto.organizador.nome" type="text"
 													value="${dto.organizador.nome}" required />
 											</div>
 										</div>
@@ -222,7 +239,7 @@
 										<div class="form-group ">
 											<label for="curl" class="control-label col-lg-2">Área</label>
 											<div class="col-lg-10">
-												<input class="form-control " id="carea" type="text"
+												<input class="form-control" id="carea" type="text"
 													name="dto.organizador.area" value="${dto.organizador.area}" />
 											</div>
 										</div>
@@ -236,13 +253,10 @@
 													<c:forEach items="${dto.tipos}" var="tipo">
 														<option value="${tipo.id}">${tipo.tipo}</option>
 													</c:forEach>
-												</select> 
-												
-												<a class="btn btn-default" data-toggle="modal"
-													data-target="#myModal" href=""><span class="fa fa-plus"></span></a>
+												</select>
 											</div>
-
 										</div>
+
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
 												<button class="btn btn-success" type="submit">Salvar</button>

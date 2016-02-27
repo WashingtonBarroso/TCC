@@ -91,7 +91,7 @@
 		</header>
 		<!--header end-->
 
-		<!--sidebar start-->
+	<!--sidebar start-->
 		<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
@@ -105,7 +105,7 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/evento/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/evento/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/evento/list">Listar</a></li>
 						</ul></li>
 
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
@@ -114,23 +114,31 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/noticia/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/noticia/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/noticia/list">Listar</a></li>
 						</ul></li>
 
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class="fa fa-map-marker"></i> <span>Mapa</span><span
+							class="menu-arrow arrow_carrot-right"></span>
+					</a>
+						<ul class="sub">
+							<li><a class="" href="/ifeventos/mapa/form">Cadastrar</a></li>
+							<li><a class="" href="/ifeventos/mapa/list">Listar</a></li>
+						</ul></li>
 					<li class="sub-menu"><a href="javascript:;" class=""> <i
 							class="fa fa-users"></i> <span>Organizadores</span> <span
 							class="menu-arrow arrow_carrot-right"></span>
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/organizador/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/organizador/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/organizador/list">Listar</a></li>
 
 							<!-- submenu tipo de organização -->
 							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
 										de Organizador </span> <span class="menu-arrow arrow_carrot-right"></span></a>
 								<ul class="sub">
 									<li><a class="" href="/ifeventos/tipoOrganizador/form">Cadastrar</a></li>
-									<li><a class="" href="/ifeventos/tipoOrganizador/list">Consultar</a></li>
+									<li><a class="" href="/ifeventos/tipoOrganizador/list">Listar</a></li>
 								</ul></li>
 							<!-- Fim submenu -->
 
@@ -143,14 +151,14 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/programacao/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/programacao/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/programacao/list">Listar</a></li>
 
 							<!-- submenu tipo de programação  -->
 							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
 										Programação</span> <span class="menu-arrow arrow_carrot-right"></span></a>
 								<ul class="sub">
 									<li><a class="" href="/ifeventos/tipoProgramacao/form">Cadastrar</a></li>
-									<li><a class="" href="/ifeventos/tipoProgramacao/list">Consultar</a></li>
+									<li><a class="" href="/ifeventos/tipoProgramacao/list">Listar</a></li>
 								</ul></li>
 							<!-- Fim submenu -->
 						</ul></li>
@@ -160,7 +168,7 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" href="/ifeventos/palestrante/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/palestrante/list">Consultar</a></li>
+							<li><a class="" href="/ifeventos/palestrante/list">Listar</a></li>
 						</ul></li>
 
 				</ul>
@@ -168,6 +176,7 @@
 			</div>
 		</aside>
 		<!--sidebar end-->
+
 
 		<!--main content start-->
 		<section id="main-content">

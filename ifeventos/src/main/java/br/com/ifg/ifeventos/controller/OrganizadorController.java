@@ -1,5 +1,7 @@
 package br.com.ifg.ifeventos.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,6 +11,7 @@ import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.caelum.vraptor.view.Results;
 import br.com.ifg.ifeventos.dto.OrganizadorDTO;
 import br.com.ifg.ifeventos.model.entity.Organizador;
@@ -39,8 +42,10 @@ public class OrganizadorController {
 	}
 
 
-	@Post("/organizador/save")
-	public void save(OrganizadorDTO dto){
+	@Post("/organizador/save/imagem")
+	public void save(OrganizadorDTO dto, UploadedFile imagem) throws IOException {
+		File fotoSalva = new File("C:\\Users\\Personal\\Documents\\GitHub\\TCC\\ifeventos\\src\\main\\webapp\\WEB-INF\\jsp\\img", imagem.getFileName());
+		imagem.writeTo(fotoSalva);
 		service.save(dto);
 		result.redirectTo(this).form();
 
@@ -72,5 +77,6 @@ public class OrganizadorController {
     public void loadJson(){
     	result.use(Results.json()).from(service.list()).serialize();   
     }
+    
 
 }
