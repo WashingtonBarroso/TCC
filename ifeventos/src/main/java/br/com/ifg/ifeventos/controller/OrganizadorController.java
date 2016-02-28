@@ -20,7 +20,9 @@ import br.com.ifg.ifeventos.service.OrganizadorService;
 @Controller
 public class OrganizadorController {
 	private final Result result;
-
+    
+	final String PATH = "C:\\Users\\Personal\\Documents\\GitHub\\TCC\\ifeventos\\src\\main\\webapp\\img\\upload\\organizador";
+	
 	@Inject
 	private OrganizadorService service;
 
@@ -44,12 +46,16 @@ public class OrganizadorController {
 
 	@Post("/organizador/save/imagem")
 	public void save(OrganizadorDTO dto, UploadedFile imagem) throws IOException {
-		File fotoSalva = new File("C:\\Users\\Personal\\Documents\\GitHub\\TCC\\ifeventos\\src\\main\\webapp\\WEB-INF\\jsp\\img", imagem.getFileName());
+	
+		File fotoSalva = new File(PATH, imagem.getFileName());
+		dto.getOrganizador().setUrl(imagem.getFileName());
 		imagem.writeTo(fotoSalva);
 		service.save(dto);
 		result.redirectTo(this).form();
 
 	}
+	
+	
 	@Path("/organizador/list")
 	public void list(){
 		List<Organizador> organizadores = service.list();

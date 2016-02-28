@@ -207,15 +207,9 @@
 								<div class="form">
 
 									<form class="form-validate form-horizontal" id="feedback_form"
-										method="post" action="/ifeventos/organizador/save/imagem" enctype="multipart/form-data">
-										
-										<div class="form-group">
-											<div class="col-lg-10">
-												<label for="inserirDados" class="control-label col-lg-2">Carregar
-													foto</label> <input type="file" id="idfile" name="imagem"/>
-											</div>
-										</div>
-										
+										method="post" action="/ifeventos/organizador/save/imagem"
+										enctype="multipart/form-data">
+
 										<div class="form-group ">
 											<label for="cname" class="control-label col-lg-2">Nome
 												<span class="required"></span>
@@ -254,6 +248,13 @@
 														<option value="${tipo.id}">${tipo.tipo}</option>
 													</c:forEach>
 												</select>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="col-lg-10">
+												<label for="inserirDados" class="control-label col-lg-2">Carregar
+													foto</label> <input type="file" id="ofoto" name="imagem" />
 											</div>
 										</div>
 

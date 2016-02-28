@@ -42,9 +42,12 @@
 	<section id="container" class="">
 		<!--header start-->
 		<header class="header dark-bg">
-		<div class="toggle-nav">
-                <div class="icon-reorder tooltips" data-original-title="Ocultar" data-placement="bottom"><i class="icon_menu"></i></div>
-            </div>
+			<div class="toggle-nav">
+				<div class="icon-reorder tooltips" data-original-title="Ocultar"
+					data-placement="bottom">
+					<i class="icon_menu"></i>
+				</div>
+			</div>
 
 			<!--logo start-->
 			<a href="/ifeventos/" class="logo">IFG <span class="lite">Eventos</span></a>
@@ -97,7 +100,7 @@
 		</header>
 		<!--header end-->
 
-	<!--sidebar start-->
+		<!--sidebar start-->
 		<aside>
 			<div id="sidebar" class="nav-collapse ">
 				<!-- sidebar menu start-->
@@ -206,7 +209,8 @@
 							<div class="panel-body">
 								<div class="form">
 									<form class="form-validate form-horizontal" id="feedback_form"
-										action="/ifeventos/evento/save" method="post">
+										action="/ifeventos/evento/save" method="post"
+										enctype="multipart/form-data">
 										<div class="form-group ">
 											<label for="cname" class="control-label col-lg-2">Evento
 												<span class="required">*</span>
@@ -235,7 +239,7 @@
 											</div>
 										</div>
 										<div class="form-group ">
-											<label for="cemail" class="control-label col-lg-2">Cidade
+											<label for="ccidade" class="control-label col-lg-2">Cidade
 												<span class="required">*</span>
 											</label>
 											<div class="col-lg-10">
@@ -245,7 +249,7 @@
 											</div>
 										</div>
 										<div class="form-group ">
-											<label for="cemail" class="control-label col-lg-2">Estado
+											<label for="cestado" class="control-label col-lg-2">Estado
 												<span class="required">*</span>
 											</label>
 											<div class="col-lg-10">
@@ -254,6 +258,16 @@
 													required />
 											</div>
 										</div>
+
+										<div class="form-group">
+											<label for="cupload" class="control-label col-lg-2">Carregar
+												foto</label>
+											<div class="col-lg-10">
+											 <input type="file"
+													name="imagem" />
+											</div>
+										</div>
+
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
 												<input class="btn btn-success" type="submit" value="Salvar">

@@ -42,9 +42,12 @@
 	<section id="container" class="">
 		<!--header start-->
 		<header class="header dark-bg">
-		<div class="toggle-nav">
-                <div class="icon-reorder tooltips" data-original-title="Ocultar" data-placement="bottom"><i class="icon_menu"></i></div>
-            </div>
+			<div class="toggle-nav">
+				<div class="icon-reorder tooltips" data-original-title="Ocultar"
+					data-placement="bottom">
+					<i class="icon_menu"></i>
+				</div>
+			</div>
 
 			<!--logo start-->
 			<a href="/ifeventos/" class="logo">IFG <span class="lite">Eventos</span></a>
@@ -62,11 +65,11 @@
 				<!--  search form end -->
 			</div>
 
-	
+
 			<div class="top-nav notification-row">
 				<!-- notificatoin dropdown start-->
 				<ul class="nav pull-right top-menu">
-								
+
 					<!-- user login dropdown start-->
 					<li class="dropdown"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#"> <span class="profile-ava">
@@ -75,14 +78,20 @@
 					</a>
 						<ul class="dropdown-menu extended logout">
 							<div class="log-arrow-up"></div>
-							<li class="eborder-top"><a href="/ifeventos/evento/list"><i class="icon_document_alt"></i>Eventos</a></li>
-							<li><a href="/ifeventos/noticia/list"><i class="icon_documents_alt"></i>Notícias</a></li>
-							<li><a href="/ifeventos/organizador/list"><i class="fa fa-users"></i>Organizadores</a>
-							</li>
-							<li><a href="/ifeventos/organizador/list"><i class="icon_profile"></i>Palestrantes</a></li>
-							<li><a href="/ifeventos/programacao/list"><i class="icon_calendar"></i>Programação</a></li>
-							<li><a href="/ifeventos/tipoOrganizador/list"><i class="fa fa-users"></i>Tipo de Organizadores</a></li>
-							<li><a href="/ifeventos/tipoProgramacao/list"><i class="icon_calendar"></i>Tipo de Programação</a></li>
+							<li class="eborder-top"><a href="/ifeventos/evento/list"><i
+									class="icon_document_alt"></i>Eventos</a></li>
+							<li><a href="/ifeventos/noticia/list"><i
+									class="icon_documents_alt"></i>Notícias</a></li>
+							<li><a href="/ifeventos/organizador/list"><i
+									class="fa fa-users"></i>Organizadores</a></li>
+							<li><a href="/ifeventos/organizador/list"><i
+									class="icon_profile"></i>Palestrantes</a></li>
+							<li><a href="/ifeventos/programacao/list"><i
+									class="icon_calendar"></i>Programação</a></li>
+							<li><a href="/ifeventos/tipoOrganizador/list"><i
+									class="fa fa-users"></i>Tipo de Organizadores</a></li>
+							<li><a href="/ifeventos/tipoProgramacao/list"><i
+									class="icon_calendar"></i>Tipo de Programação</a></li>
 							<li></li>
 						</ul></li>
 					<!-- user login dropdown end -->
@@ -177,7 +186,7 @@
 			</div>
 		</aside>
 		<!--sidebar end-->
-		
+
 		<!--main content start-->
 		<section id="main-content">
 
@@ -198,12 +207,12 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading"> Editar Palestrante </header>
+							<header class="panel-heading"> Cadastrar Palestrante </header>
 							<div class="panel-body">
 								<div class="form">
-									<form action="/ifeventos/palestrante/save"
+									<form action="/ifeventos/palestrante/save/imagem"
 										class="form-validate form-horizontal" id="feedback_form"
-										method="post">
+										method="post" enctype="multipart/form-data">
 										<input name="dto.palestrante.id" value="${dto.palestrante.id}"
 											type="hidden" />
 										<div class="form-group ">
@@ -213,7 +222,7 @@
 											<div class="col-lg-10">
 												<input class="form-control" id="cname"
 													name="dto.palestrante.nome" value="${dto.palestrante.nome}"
-													minlength="5" type="text" required />
+													type="text" required />
 											</div>
 										</div>
 										<div class="form-group ">
@@ -232,6 +241,14 @@
 													name="dto.palestrante.resumo"> ${dto.palestrante.resumo}</textarea>
 											</div>
 										</div>
+										<div class="form-group">
+											<label for="pfoto" class="control-label col-lg-2">Carregar
+												foto</label>
+											<div class="col-lg-10">
+												<input type="file"  id="pfoto"name="imagem" />
+											</div>
+										</div>
+
 										<div class="form-group">
 											<div class="col-lg-offset-2 col-lg-10">
 												<button class="btn btn-success" type="submit">Salvar</button>

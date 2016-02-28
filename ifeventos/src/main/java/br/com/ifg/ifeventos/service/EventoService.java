@@ -14,7 +14,7 @@ public class EventoService {
 	private EventoDAO dao;
 
 	public EventoDTO loadForm(){
-		return new EventoDTO(new Evento(null, "", "", "", "", "")); 
+		return new EventoDTO(new Evento()); 
 	}
 
 	

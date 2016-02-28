@@ -27,13 +27,15 @@ public class Evento implements Serializable{
 	@Getter @Setter private String cidade; 
 	@Getter @Setter private String estado; 
 	@Getter @Setter private String site; 
-
+	@Getter @Setter private String duracao; 
+	@Getter @Setter private String url; 
+	
 	public Evento(){
 
 	}
 
 	public Evento(Long id, String nome, String local, String cidade,
-			String estado, String site) {
+			String estado, String site, String url) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -41,6 +43,7 @@ public class Evento implements Serializable{
 		this.cidade = cidade;
 		this.estado = estado;
 		this.site = site;
+		this.url =  url;
 	}
 
 }

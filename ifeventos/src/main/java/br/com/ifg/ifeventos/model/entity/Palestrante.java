@@ -24,7 +24,8 @@ public class Palestrante implements Serializable{
 	@Getter @Setter private Long id; 
 	@Getter @Setter private String nome;	
 	@Getter @Setter private String resumo;	
-	@Getter @Setter private  String titulo;
+	@Getter @Setter private String titulo;
+	@Getter @Setter private String url;
 	@ManyToOne
 	@JoinColumn(name="programacao_id")
 	@Getter @Setter
@@ -35,13 +36,14 @@ public class Palestrante implements Serializable{
 
 	}
 
-	public Palestrante(Long id, String nome, String resumo, String titulo, Programacao programacao) {
+	public Palestrante(Long id, String nome, String resumo, String titulo, String url, Programacao programacao) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.resumo = resumo;
 		this.titulo = titulo;
 		this.programacao = programacao;
+		this.url = url;
 	}
 
 }

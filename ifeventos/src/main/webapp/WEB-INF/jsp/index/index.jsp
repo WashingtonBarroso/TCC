@@ -55,18 +55,6 @@
 			<a href="/ifeventos/" class="logo">IF<span class="lite">Eventos</span></a>
 			<!--logo end-->
 
-			<div class="nav search-row" id="top_menu">
-				<!--  search form start -->
-				<ul class="nav top-menu">
-					<li>
-						<form class="navbar-form">
-							<input class="form-control" placeholder="Search" type="text">
-						</form>
-					</li>
-				</ul>
-				<!--  search form end -->
-			</div>
-
 			<div class="top-nav notification-row">
 				<!-- notificatoin dropdown start-->
 				<ul class="nav pull-right top-menu">
@@ -74,7 +62,6 @@
 					<!-- user login dropdown start-->
 					<li class="dropdown"><a data-toggle="dropdown"
 						class="dropdown-toggle" href="#"> <span class="profile-ava">
-								<img alt="" src="img/avatar1_small.jpg">
 						</span> <span class="username">IFG</span> <b class="caret"></b>
 					</a>
 						<ul class="dropdown-menu extended logout">
@@ -83,6 +70,8 @@
 									class="icon_document_alt"></i>Eventos</a></li>
 							<li><a href="/ifeventos/noticia/list"><i
 									class="icon_documents_alt"></i>Notícias</a></li>
+						    <li><a href="/ifeventos/mapa/list"><i
+									class="fa fa-map-markers"></i>Mapa</a></li>
 							<li><a href="/ifeventos/organizador/list"><i
 									class="fa fa-users"></i>Organizadores</a></li>
 							<li><a href="/ifeventos/organizador/list"><i
@@ -95,6 +84,7 @@
 									class="icon_calendar"></i>Tipo de Programação</a></li>
 							<li></li>
 						</ul></li>
+						
 					<!-- user login dropdown end -->
 				</ul>
 				<!-- notificatoin dropdown end-->

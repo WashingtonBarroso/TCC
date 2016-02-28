@@ -6,11 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -26,6 +24,7 @@ public class Organizador implements Serializable{
 	@Getter @Setter private String nome;	
 	@Getter @Setter private String cargo;
 	@Getter @Setter private String area;
+	@Getter @Setter private String url;
 	@ManyToOne
 	@JoinColumn(name="tipo_organizador_id")
 	@Getter @Setter
@@ -35,9 +34,7 @@ public class Organizador implements Serializable{
 	@JoinColumn(name="evento_id")
 	@Getter @Setter
 	private Evento evento;
-	@Getter @Setter
-	private String url;
-
+	
 	public Organizador() {
 	}
 	public Organizador(Long id, String nome, String cargo, String area,
