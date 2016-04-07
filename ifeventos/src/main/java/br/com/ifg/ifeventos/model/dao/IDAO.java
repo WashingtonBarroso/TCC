@@ -9,5 +9,6 @@ public interface IDAO <T, PK> {
 	  void deleteAll(); 
 	  T getById(PK id);
 	  List<T> getAll();
+	  List<T> getPage(int page); 
 	  Long count();
 	}

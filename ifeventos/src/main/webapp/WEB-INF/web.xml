@@ -12,13 +12,22 @@
 		<param-value>messages</param-value>
 	</context-param>
 
-	<context-param>
-		<param-name>javax.servlet.jsp.jstl.fmt.locale</param-name>
-		<param-value>pt_BR</param-value>
-	</context-param>
-
 	<listener>
 		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
 	</listener>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/jsp/erro/404.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/jsp/erro/500.jsp</location>
+	</error-page>
+	
+	<session-config>
+    	<session-timeout>5</session-timeout>
+	</session-config>
 
 </web-app>

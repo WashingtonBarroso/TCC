@@ -17,7 +17,7 @@ public class EntityManagerProducer implements Serializable {
 	private EntityManagerFactory factory;
 	
 	public EntityManagerProducer(){
-		factory = Persistence.createEntityManagerFactory("horus");
+		factory = Persistence.createEntityManagerFactory("database");
 	}
 
 	@RequestScoped

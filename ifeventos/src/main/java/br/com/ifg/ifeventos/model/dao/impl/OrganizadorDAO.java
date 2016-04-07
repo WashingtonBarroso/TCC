@@ -7,7 +7,7 @@ import br.com.ifg.ifeventos.model.entity.Organizador;
 public class OrganizadorDAO extends DAO<Organizador,Long> {
 	
 	public List<Organizador> getByTipoOrganizadorId(Long id){
-		return this.list("from Organizador where tipoOrganizador.id = :id", "id",id);
+		return (List<Organizador>) this.getList("from Organizador where tipoOrganizador.id = :id", "id",id);
 	}
 
 }

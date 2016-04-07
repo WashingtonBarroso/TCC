@@ -1,325 +1,324 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt" ng-app="app" ng-controller="EventoFormController"  ng-init='setDTO(${dto});'>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description"
-	content="Creative - Bootstrap 3 Responsive Admin Template">
-<meta name="author" content="GeeksLabs">
-<meta name="keyword"
-	content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-<link rel="shortcut icon" href="img/favicon.png">
-
-<title></title>
-
-<!-- Bootstrap CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<!-- bootstrap theme -->
-<link href="../css/bootstrap-theme.css" rel="stylesheet">
-<!--external css-->
-<!-- font icon -->
-<link href="../css/elegant-icons-style.css" rel="stylesheet" />
-<link href="../css/font-awesome.min.css" rel="stylesheet" />
-<!-- date picker -->
-
-<!-- color picker -->
-
-<!-- Custom styles -->
-<link href="../css/style.css" rel="stylesheet">
-<link href="../css/style-responsive.css" rel="stylesheet" />
-
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
-<!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-      <script src="js/lte-ie7.js"></script>
-    <![endif]-->
-
+<jsp:include page="/WEB-INF/jsp/template/head.jsp" />
+<link href="assets/global/bootstrap-table/bootstrap-table.css" rel="stylesheet" type="text/css" />
+<link href="assets/pages/css/global.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
 
-	<!-- container section start -->
-	<section id="container" class="">
-		<!--header start-->
-		<header class="header dark-bg">
-			<div class="toggle-nav">
-				<div class="icon-reorder tooltips" data-original-title="Ocultar"
-					data-placement="bottom">
-					<i class="icon_menu"></i>
+	<div id="wrapper">
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">IF Eventos - Administrativo</a>
+			</div>
+			<!-- /.navbar-header -->
+
+			<ul class="nav navbar-top-links navbar-right">
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
+						<i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="#"><i class="fa fa-user fa-fw"></i> User
+								Profile</a></li>
+						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+						</li>
+						<li class="divider"></li>
+						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>
+								Logout</a></li>
+					</ul> <!-- /.dropdown-user --></li>
+				<!-- /.dropdown -->
+			</ul>
+			<!-- /.navbar-top-links -->
+
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<jsp:include page="/WEB-INF/jsp/template/menu.jsp" />
 				</div>
+				<!-- /.sidebar-collapse -->
 			</div>
+			<!-- /.navbar-static-side -->
+		</nav>
 
-			<!--logo start-->
-			<a href="/ifeventos/" class="logo">IFG <span class="lite">Eventos</span></a>
-			<!--logo end-->
-
-			<div class="nav search-row" id="top_menu">
-				<!--  search form start -->
-				<ul class="nav top-menu">
-					<li>
-						<form class="navbar-form">
-							<input class="form-control" placeholder="Search" type="text">
-						</form>
-					</li>
-				</ul>
-				<!--  search form end -->
-			</div>
-
-			<div class="top-nav notification-row">
-				<!-- notificatoin dropdown start-->
-				<ul class="nav pull-right top-menu">
-
-					<!-- user login dropdown start-->
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#"> <span class="profile-ava">
-								<img alt="" src="img/avatar1_small.jpg">
-						</span> <span class="username">IFG</span> <b class="caret"></b>
-					</a>
-						<ul class="dropdown-menu extended logout">
-							<div class="log-arrow-up"></div>
-							<li class="eborder-top"><a href="/ifeventos/evento/list"><i
-									class="icon_document_alt"></i>Eventos</a></li>
-							<li><a href="/ifeventos/noticia/list"><i
-									class="icon_documents_alt"></i>Notícias</a></li>
-							<li><a href="/ifeventos/organizador/list"><i
-									class="fa fa-users"></i>Organizadores</a></li>
-							<li><a href="/ifeventos/organizador/list"><i
-									class="icon_profile"></i>Palestrantes</a></li>
-							<li><a href="/ifeventos/programacao/list"><i
-									class="icon_calendar"></i>Programação</a></li>
-							<li><a href="/ifeventos/tipoOrganizador/list"><i
-									class="fa fa-users"></i>Tipo de Organizadores</a></li>
-							<li><a href="/ifeventos/tipoProgramacao/list"><i
-									class="icon_calendar"></i>Tipo de Programação</a></li>
-							<li></li>
-						</ul></li>
-					<!-- user login dropdown end -->
-				</ul>
-				<!-- notificatoin dropdown end-->
-			</div>
-		</header>
-		<!--header end-->
-
-		<!--sidebar start-->
-		<aside>
-			<div id="sidebar" class="nav-collapse ">
-				<!-- sidebar menu start-->
-				<ul class="sidebar-menu">
-					<li class="active"><a class="" href="/ifeventos/"> <i
-							class="icon_house_alt"></i> <span>Home</span>
-					</a></li>
-					<li class="sub-menu"><a href="javascript:;" class=""> <i
-							class="icon_document_alt"></i> <span>Evento</span> <span
-							class="menu-arrow arrow_carrot-right"></span>
-					</a>
-						<ul class="sub">
-							<li><a class="" href="/ifeventos/evento/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/evento/list">Listar</a></li>
-						</ul></li>
-
-					<li class="sub-menu"><a href="javascript:;" class=""> <i
-							class="icon_documents_alt"></i> <span>Notícia</span> <span
-							class="menu-arrow arrow_carrot-right"></span>
-					</a>
-						<ul class="sub">
-							<li><a class="" href="/ifeventos/noticia/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/noticia/list">Listar</a></li>
-						</ul></li>
-
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-map-marker"></i> <span>Mapa</span><span
-							class="menu-arrow arrow_carrot-right"></span>
-					</a>
-						<ul class="sub">
-							<li><a class="" href="/ifeventos/mapa/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/mapa/list">Listar</a></li>
-						</ul></li>
-					<li class="sub-menu"><a href="javascript:;" class=""> <i
-							class="fa fa-users"></i> <span>Organizadores</span> <span
-							class="menu-arrow arrow_carrot-right"></span>
-					</a>
-						<ul class="sub">
-							<li><a class="" href="/ifeventos/organizador/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/organizador/list">Listar</a></li>
-
-							<!-- submenu tipo de organização -->
-							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
-										de Organizador </span> <span class="menu-arrow arrow_carrot-right"></span></a>
-								<ul class="sub">
-									<li><a class="" href="/ifeventos/tipoOrganizador/form">Cadastrar</a></li>
-									<li><a class="" href="/ifeventos/tipoOrganizador/list">Listar</a></li>
-								</ul></li>
-							<!-- Fim submenu -->
-
-						</ul></li>
-
-
-					<li class="sub-menu"><a href="javascript:;" class=""> <i
-							class="icon_calendar"></i> <span>Programação</span> <span
-							class="menu-arrow arrow_carrot-right"></span>
-					</a>
-						<ul class="sub">
-							<li><a class="" href="/ifeventos/programacao/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/programacao/list">Listar</a></li>
-
-							<!-- submenu tipo de programação  -->
-							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
-										Programação</span> <span class="menu-arrow arrow_carrot-right"></span></a>
-								<ul class="sub">
-									<li><a class="" href="/ifeventos/tipoProgramacao/form">Cadastrar</a></li>
-									<li><a class="" href="/ifeventos/tipoProgramacao/list">Listar</a></li>
-								</ul></li>
-							<!-- Fim submenu -->
-						</ul></li>
-					<li class="sub-menu"><a href="javascript:;" class=""> <i
-							class="fa fa-user"></i> <span>Palestrantes</span> <span
-							class="menu-arrow arrow_carrot-right"></span>
-					</a>
-						<ul class="sub">
-							<li><a class="" href="/ifeventos/palestrante/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/palestrante/list">Listar</a></li>
-						</ul></li>
-
-				</ul>
-				<!-- sidebar menu end-->
-			</div>
-		</aside>
-		<!--sidebar end-->
-
-		<!--main content start-->
-		<section id="main-content">
-
-			<section class="wrapper">
-				<div class="row">
-					<div class="col-lg-12">
-						<h3 class="page-header">
-							<i class="fa fa-file-text-o"></i>Evento
-						</h3>
-						<ol class="breadcrumb">
-							<li><i class="fa fa-home"></i><a href="/ifeventos/">Home</a></li>
-							<li><i class="icon_document_alt"></i>Evento</li>
-							<li><i class="fa fa-file-text-o"></i>Cadastro</li>
-						</ol>
-					</div>
+		<!-- Page Content -->
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Evento</h1>
 				</div>
-				<div class="row">
-					<div class="col-lg-12">
-						<section class="panel">
-							<header class="panel-heading"> Cadastro Evento </header>
-							<div class="panel-body">
-								<div class="form">
-									<form class="form-validate form-horizontal" id="feedback_form"
-										action="/ifeventos/evento/save" method="post"
-										enctype="multipart/form-data">
-										<div class="form-group ">
-											<label for="cname" class="control-label col-lg-2">Evento
-												<span class="required">*</span>
-											</label>
-											<div class="col-lg-10">
-												<input class="form-control" id="nome" name="dto.evento.nome"
-													value="${dto.evento.nome}" minlength="5" type="text"
-													required />
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div id="div_alert"></div>
+								<ul class="nav nav-tabs">
+									<li class="active">
+										<a href="#tab1" data-toggle="tab">Dados do Evento</a>
+									</li>
+									<li>
+										<a href="#tab2" data-toggle="tab">Imagem</a>
+									</li>
+									<li>
+										<a href="#tab4" data-toggle="tab">Mapa</a>
+									</li>
+									<li>
+										<a href="#tab5" data-toggle="tab">OrganizaÃ§Ã£o</a>
+									</li>
+									<li>
+										<a href="#tab6" data-toggle="tab">ProgramaÃ§Ã£o</a>
+									</li>
+								</ul>
+								<form id="form" name="form" role="form" enctype="multipart/form-data" novalidate>									
+									<div class="tab-content">
+										<div class="tab-pane fade tab-margin active in" id="tab1">
+											<div class="form-group" ng-class="{'has-error':form.nome.$invalid ,'has-success':form.nome.$valid}">
+												<label class="control-label">
+													Evento: <span
+													class="required"> * </span>
+												</label>
+												<div class="input-icon right">
+													<input class="form-control" type="text" name="nome"  placeholder="Digite a nome do evento"
+														ng-model="dto.nome" required ng-maxlength="200">												
+													<span class="help-block"
+														ng-show="form.nome.$error.required">
+														<i class="fa fa-warning"></i>
+														Favor inserir o dado requerido.</span> 
+													<span class="help-block"												
+														ng-show="form.nome.$error.maxlength">
+														<i class="fa fa-warning"></i>
+														O dado informado Ã© muito grande.</span>
+												</div>
+											</div>
+											<div class="form-group" ng-class="{'has-error':form.local.$invalid ,'has-success':form.local.$valid}">
+												<label class="control-label">Local
+													<span class="required">*</span>
+												</label>
+												<input class="form-control" type="text" name="local"  placeholder="Digite o local do evento"
+														ng-model="dto.local" required ng-maxlength="200">
+												<span class="help-block" ng-show="form.local.$error.required">
+													<i class="fa fa-warning"></i>
+													Favor inserir o dado requerido.</span> 
+												<span class="help-block" ng-show="form.local.$error.maxlength">
+													<i class="fa fa-warning"></i>
+													O dado informado Ã© muito grande.</span>
+											</div>
+											<div class="form-group" ng-class="{'has-error':form.logradouro.$invalid ,'has-success':form.logradouro.$valid}">
+												<label class="control-label">Logradouro
+													<span class="required">*</span>
+												</label>
+												<input class="form-control" type="text" name="logradouro"  placeholder="Digite o logradouro do evento"
+														ng-model="dto.endereco.logradouro" required ng-maxlength="200">
+												<span class="help-block" ng-show="form.logradouro.$error.required">
+													<i class="fa fa-warning"></i>
+													Favor inserir o dado requerido.</span> 
+												<span class="help-block" ng-show="form.logradouro.$error.maxlength">
+													<i class="fa fa-warning"></i>
+													O dado informado Ã© muito grande.</span>
+											</div>
+											<div class="form-group" ng-class="{'has-error':form.complemento.$invalid ,'has-success':form.complemento.$valid}">
+												<label class="control-label">Complemento
+													<span class="required">*</span>
+												</label>
+												<input class="form-control" type="text" name="complemento"  placeholder="Digite o complemento do evento"
+														ng-model="dto.endereco.complemento" required ng-maxlength="200">
+												<span class="help-block" ng-show="form.complemento.$error.required">
+													<i class="fa fa-warning"></i>
+													Favor inserir o dado requerido.</span> 
+												<span class="help-block" ng-show="form.complemento.$error.maxlength">
+													<i class="fa fa-warning"></i>
+													O dado informado Ã© muito grande.</span>
+											</div>
+											<div class="form-group" ng-class="{'has-error':form.bairro.$invalid ,'has-success':form.bairro.$valid}">
+												<label class="control-label">Bairro
+													<span class="required">*</span>
+												</label>
+												<input class="form-control" type="text" name="bairro"  placeholder="Digite o bairro do evento"
+														ng-model="dto.endereco.bairro" required ng-maxlength="200">
+												<span class="help-block" ng-show="form.bairro.$error.required">
+													<i class="fa fa-warning"></i>
+													Favor inserir o dado requerido.</span> 
+												<span class="help-block" ng-show="form.bairro.$error.maxlength">
+													<i class="fa fa-warning"></i>
+													O dado informado Ã© muito grande.</span>
+											</div>
+											<div class="form-group" ng-class="{'has-error':form.cidade.$invalid ,'has-success':form.cidade.$valid}">
+												<label class="control-label">Cidade
+													<span class="required">*</span>
+												</label>
+												<input class="form-control" type="text" name="cidade"  placeholder="Digite o cidade do evento"
+														ng-model="dto.endereco.cidade" required ng-maxlength="200">
+												<span class="help-block" ng-show="form.cidade.$error.required">
+													<i class="fa fa-warning"></i>
+													Favor inserir o dado requerido.</span> 
+												<span class="help-block" ng-show="form.cidade.$error.maxlength">
+													<i class="fa fa-warning"></i>
+													O dado informado Ã© muito grande.</span>
+											</div>
+											<div class="form-group" ng-class="{'has-error':form.estado.$invalid ,'has-success':form.estado.$valid}">
+												<label class="control-label">Estado
+													<span class="required">*</span>
+												</label>
+												<input class="form-control" type="text" name="estado"  placeholder="Digite o estado do evento"
+														ng-model="dto.endereco.estado" required ng-maxlength="200">
+												<span class="help-block" ng-show="form.estado.$error.required">
+													<i class="fa fa-warning"></i>
+													Favor inserir o dado requerido.</span> 
+												<span class="help-block" ng-show="form.estado.$error.maxlength">
+													<i class="fa fa-warning"></i>
+													O dado informado Ã© muito grande.</span>
+											</div>
+											<div class="form-group" ng-class="{'has-error':form.cep.$invalid ,'has-success':form.cep.$valid}">
+												<label class="control-label">Cep
+													<span class="required">*</span>
+												</label>
+												<input class="form-control" type="text" name="cep"  placeholder="Digite o cep do evento"
+														ng-model="dto.endereco.cep" required ng-maxlength="200">
+												<span class="help-block" ng-show="form.cep.$error.required">
+													<i class="fa fa-warning"></i>
+													Favor inserir o dado requerido.</span> 
+												<span class="help-block" ng-show="form.cep.$error.maxlength">
+													<i class="fa fa-warning"></i>
+													O dado informado Ã© muito grande.</span>
+											</div>
+											<div class="form-group" ng-class="{'has-error':form.site.$invalid ,'has-success':form.site.$valid}">
+												<label class="control-label">Website</label>											
+												<input class="form-control" type="text" name="site"  placeholder="Digite a url do Website do evento"
+														ng-model="dto.site" required ng-maxlength="200">
+												<span class="help-block" ng-show="form.site.$error.maxlength">
+													<i class="fa fa-warning"></i>
+													O dado informado Ã© muito grande.</span>
+											</div>											
+										</div>
+										<div class="tab-pane fade tab-margin" id="tab2">
+											<div class="form-group" ng-class="{'has-error':form.imagem.$invalid ,'has-success':form.imagem.$valid}">
+												<label class="control-label">Imagem</label>
+												<input type="file" ngf-select ng-model="imagem" name="imagem" accept="image/*" ngf-max-size="2MB" required ngf-model-invalid="errorFile"> 
+												<span class="help-block" ng-show="form.imagem.$error.required">
+													<i class="fa fa-warning"></i>
+													Favor inserir o dado requerido.
+												</span>
+												<img ng-show="form.file.$valid" ngf-thumbnail="imagem" class="thumb">
+												<div id="removeButton" class="btn btn-danger" ng-click="imagem = null" ng-show="imagem">
+													<i class="fa fa-times"></i> Remover
+												</div>
 											</div>
 										</div>
-										<div class="form-group ">
-											<label for="cemail" class="control-label col-lg-2">Local
-												<span class="required">*</span>
-											</label>
-											<div class="col-lg-10">
-												<input class="form-control " id="local"
-													name="dto.evento.local" value="${dto.evento.local}"
-													required />
+										<div class="tab-pane fade tab-margin" id="tab4">
+											<p>
+												 Insira o mapa do Google e com a funÃ§Ã£o para inserir marcador e capturar a latitute e longitude para salvar no banco.
+											</p>
+										</div>
+										<div class="tab-pane fade tab-margin" id="tab5">
+											<div class="form-group input-group">
+											<select name="organizacaoCombobox" class="form-control">
+	                                        	<option selected="selected" value="0">Selecione...</option>
+	                                        	<option ng-repeat="item in organizacoes" value="{{item.id}}">{{item.nome}}</option>
+											</select>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button"><i class="fa fa-plus"></i>
+                                                </button>
+                                            </span>
+	                                        </div>
+	                                        <div class="form-group">
+	                                            <div class="dataTable_wrapper">                                
+					                                <table id="table"
+															data-classes="table table-hover table-condensed"
+															data-striped="true"
+															data-search="true"
+					       									data-pagination="true"
+					       									data-toggle="table"
+					       									data-page-list="[5, 10, 20, 50, 100, 200]"  
+					       									data-toolbar="#toolbar"     									
+															>
+													    <thead>
+														    <tr>
+														        <th class="col-xs-1" data-field="id" data-sortable="true">CÃ³digo</th>
+														        <th data-field="nome" data-sortable="true">Nome</th>														        						        
+														    </tr>
+													    </thead>
+													</table>
+													<div id="toolbar" class="btn-group">
+													    <button type="button" class="btn btn-default">
+													        <i class="glyphicon glyphicon-trash"></i>
+													    </button>
+													</div>					                                
+					                            </div>
 											</div>
 										</div>
-										<div class="form-group ">
-											<label for="curl" class="control-label col-lg-2">Website</label>
-											<div class="col-lg-10">
-												<input class="form-control " id="curl" type="url"
-													name="dto.evento.site" value="${dto.evento.site}" />
-											</div>
+										<div class="tab-pane fade tab-margin" id="tab6">
+											<p>
+												 Dados da programaÃ§Ã£o
+											</p>
 										</div>
-										<div class="form-group ">
-											<label for="ccidade" class="control-label col-lg-2">Cidade
-												<span class="required">*</span>
-											</label>
-											<div class="col-lg-10">
-												<input class="form-control " id="cidade"
-													name="dto.evento.cidade" value="${dto.evento.cidade}"
-													required />
-											</div>
+									</div>
+									<div class="form-group" style="float: right;">
+										<div id="newButton" class="btn btn-primary"
+											ng-click="newForm()">
+											<i class="fa fa-file-o"></i> Limpar
 										</div>
-										<div class="form-group ">
-											<label for="cestado" class="control-label col-lg-2">Estado
-												<span class="required">*</span>
-											</label>
-											<div class="col-lg-10">
-												<input class="form-control " id="estado"
-													name="dto.evento.estado" value="${dto.evento.estado}"
-													required />
-											</div>
+										<div id="saveButton" class="btn btn-success" 
+											ng-click="save()"
+											ng-disabled="form.$invalid">
+											<i class="fa fa-check"></i> Salvar
 										</div>
-
-										<div class="form-group">
-											<label for="cupload" class="control-label col-lg-2">Carregar
-												foto</label>
-											<div class="col-lg-10">
-											 <input type="file"
-													name="imagem" />
-											</div>
+										<div id="removeButton" class="btn btn-danger"
+											ng-click="remove()">
+											<i class="fa fa-times"></i> Remover
 										</div>
-
-										<div class="form-group">
-											<div class="col-lg-offset-2 col-lg-10">
-												<input class="btn btn-success" type="submit" value="Salvar">
-												<a href="/ifeventos/evento/form" class="btn btn-danger">Cancelar</a>
-											</div>
+										<div id="cancelButton" class="btn btn-outline btn-default" 
+											ng-click="cancel()">
+											<i class="fa fa-times"></i> Desistir
 										</div>
-									</form>
-								</div>
+									</div>
+								</form>
 							</div>
-						</section>
+						</div>
 					</div>
+
+					<!-- /.col-lg-12 -->
 				</div>
-				<!-- page end-->
-			</section>
-		</section>
-		<!--main content end-->
-	</section>
-	<!-- container section end -->
-	<!-- javascripts -->
-	<script src="../js/jquery.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-	<!-- nice scroll -->
-	<script src="../js/jquery.scrollTo.min.js"></script>
-	<script src="../js/jquery.nicescroll.js" type="text/javascript"></script>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /#page-wrapper -->
 
-	<!-- jquery ui -->
-	<script src="../js/jquery-ui-1.9.2.custom.min.js"></script>
+	</div>
+	<!-- /#wrapper -->
 
-	<!--custom checkbox & radio-->
-	<script type="text/javascript" src="../js/ga.js"></script>
-	<!--custom switch-->
-	<script src="../js/bootstrap-switch.js"></script>
-	<!--custom tagsinput-->
-	<script src="../js/jquery.tagsinput.js"></script>
+	<!-- /#wrapper -->
 
-	<!-- colorpicker -->
+	<jsp:include page="/WEB-INF/jsp/template/scripts.jsp" />
 
-	<!-- bootstrap-wysiwyg -->
-	<script src="../js/jquery.hotkeys.js"></script>
-	<script src="../js/bootstrap-wysiwyg.js"></script>
-	<script src="../js/bootstrap-wysiwyg-custom.js"></script>
-	<!-- ck editor -->
-	<script type="text/javascript" src="../assets/ckeditor/ckeditor.js"></script>
-	<!-- custom form component script for this page-->
-	<script src="../js/form-component.js"></script>
-	<!-- custome script for all page -->
-	<script src="../js/scripts.js"></script>
-	<!-- jquery validate js -->
-	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+	<!-- Bootstrap Table -->
+	<script type="text/javascript" src="assets/global/bootstrap-table/bootstrap-table.min.js"></script>
+	<script type="text/javascript" src="assets/global/bootstrap-table/extensions/angular/bootstrap-table-angular.min.js"></script>
+	<script type="text/javascript" src="assets/global/bootstrap-table/locale/bootstrap-table-pt-BR.min.js"></script>
 
-	<!-- custom form validation script for this page-->
-	<script src="../js/form-validation-script.js"></script>
+	<!-- Factories  -->
+	<script type="text/javascript" src="assets/pages/js/factory/evento-factory.js"></script>
+	<script type="text/javascript" src="assets/pages/js/factory/endereco-factory.js"></script>
 
+	<!-- Page Controller -->
+	<script type="text/javascript" src="assets/pages/js/controller/evento-form-controller.js"></script>
+	
 </body>
+
 </html>

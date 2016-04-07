@@ -3,8 +3,6 @@ package br.com.ifg.ifeventos.model.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -12,19 +10,16 @@ import lombok.Setter;
 
 @Entity
 @Table(name="tbtipo_programacao")
-public class TipoProgramacao implements Serializable {
+public class TipoProgramacao extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-    
-	@Id
-    @GeneratedValue
-	@Getter @Setter private Long id;	
-	@Getter @Setter private String tipo;
+	
+	@Getter @Setter private String descricao;
 	public TipoProgramacao() {
 	}
-	public TipoProgramacao(Long id, String tipo) {
+	public TipoProgramacao(Long id, String descricao) {
 		super();
 		this.id = id;
-		this.tipo = tipo;
+		this.descricao = descricao;
 	}
 }

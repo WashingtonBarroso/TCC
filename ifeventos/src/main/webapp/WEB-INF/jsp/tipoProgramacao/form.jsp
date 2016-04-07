@@ -1,245 +1,149 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt" ng-app="app" ng-controller="TipoProgramacaoFormController"  ng-init='setDTO(${dto});'>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description"
-	content="Creative - Bootstrap 3 Responsive Admin Template">
-<meta name="author" content="GeeksLabs">
-<meta name="keyword"
-	content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-<link rel="shortcut icon" href="img/favicon.png">
-
-<title></title>
-
-<!-- Bootstrap CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-<!-- bootstrap theme -->
-<link href="../css/bootstrap-theme.css" rel="stylesheet">
-<!--external css-->
-<!-- font icon -->
-<link href="../css/elegant-icons-style.css" rel="stylesheet" />
-<link href="../css/font-awesome.min.css" rel="stylesheet" />
-<!-- Custom styles -->
-<link href="../css/style.css" rel="stylesheet">
-<link href="../css/style-responsive.css" rel="stylesheet" />
-
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
-<!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-      <script src="js/lte-ie7.js"></script>
-    <![endif]-->
+<jsp:include page="/WEB-INF/jsp/template/head.jsp" />
+<link href="assets/global/bootstrap-table/bootstrap-table.css"
+	rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-	<!-- container section start -->
-	<section id="container" class="">
-		<!--header start-->
-		<header class="header dark-bg">
-		<div class="toggle-nav">
-                <div class="icon-reorder tooltips" data-original-title="Ocultar" data-placement="bottom"><i class="icon_menu"></i></div>
-            </div>
 
-			<!--logo start-->
-			<a href="/ifeventos/" class="logo">IFG <span class="lite">Eventos</span></a>
-			<!--logo end-->
+	<div id="wrapper">
 
-			<div class="nav search-row" id="top_menu">
-				<!--  search form start -->
-				<ul class="nav top-menu">
-					<li>
-						<form class="navbar-form">
-							<input class="form-control" placeholder="Search" type="text">
-						</form>
-					</li>
-				</ul>
-				<!--  search form end -->
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top" role="navigation"
+			style="margin-bottom: 0">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">IF Eventos - Administrativo</a>
 			</div>
+			<!-- /.navbar-header -->
 
-			<div class="top-nav notification-row">
-				<!-- notificatoin dropdown start-->
-				<ul class="nav pull-right top-menu">
-								
-					<!-- user login dropdown start-->
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#"> <span class="profile-ava">
-								<img alt="" src="img/avatar1_small.jpg">
-						</span> <span class="username">IFG</span> <b class="caret"></b>
-					</a>
-						<ul class="dropdown-menu extended logout">
-							<div class="log-arrow-up"></div>
-							<li class="eborder-top"><a href="/ifeventos/evento/list"><i class="icon_document_alt"></i>Eventos</a></li>
-							<li><a href="/ifeventos/noticia/list"><i class="icon_documents_alt"></i>Notícias</a></li>
-							<li><a href="/ifeventos/organizador/list"><i class="fa fa-users"></i>Organizadores</a>
-							</li>
-							<li><a href="/ifeventos/organizador/list"><i class="icon_profile"></i>Palestrantes</a></li>
-							<li><a href="/ifeventos/programacao/list"><i class="icon_calendar"></i>Programação</a></li>
-							<li><a href="/ifeventos/tipoOrganizador/list"><i class="fa fa-users"></i>Tipo de Organizadores</a></li>
-							<li><a href="/ifeventos/tipoProgramacao/list"><i class="icon_calendar"></i>Tipo de Programação</a></li>
-							<li></li>
-						</ul></li>
-					<!-- user login dropdown end -->
-				</ul>
-				<!-- notificatoin dropdown end-->
-			</div>
-		</header>
-		<!--header end-->
+			<ul class="nav navbar-top-links navbar-right">
+				<!-- /.dropdown -->
+				<li class="dropdown"><a class="dropdown-toggle"
+					data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
+						<i class="fa fa-caret-down"></i>
+				</a>
+					<ul class="dropdown-menu dropdown-user">
+						<li><a href="#"><i class="fa fa-user fa-fw"></i> User
+								Profile</a></li>
+						<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+						</li>
+						<li class="divider"></li>
+						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i>
+								Logout</a></li>
+					</ul> <!-- /.dropdown-user --></li>
+				<!-- /.dropdown -->
+			</ul>
+			<!-- /.navbar-top-links -->
 
-	<!--sidebar start-->
-		<aside>
-			<div id="sidebar" class="nav-collapse ">
-				<!-- sidebar menu start-->
-				<ul class="sidebar-menu">
-					<li class="active"><a class="" href="/ifeventos/"> <i
-							class="icon_house_alt"></i> <span>Home</span>
-					</a></li>
-					<li class="sub-menu"><a href="javascript:;" class=""> <i
-							class="icon_document_alt"></i> <span>Evento</span> <span
-							class="menu-arrow arrow_carrot-right"></span>
-					</a>
-						<ul class="sub">
-							<li><a class="" href="/ifeventos/evento/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/evento/list">Listar</a></li>
-						</ul></li>
-
-					<li class="sub-menu"><a href="javascript:;" class=""> <i
-							class="icon_documents_alt"></i> <span>Notícia</span> <span
-							class="menu-arrow arrow_carrot-right"></span>
-					</a>
-						<ul class="sub">
-							<li><a class="" href="/ifeventos/noticia/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/noticia/list">Listar</a></li>
-						</ul></li>
-
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class="fa fa-map-marker"></i> <span>Mapa</span><span
-							class="menu-arrow arrow_carrot-right"></span>
-					</a>
-						<ul class="sub">
-							<li><a class="" href="/ifeventos/mapa/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/mapa/list">Listar</a></li>
-						</ul></li>
-					<li class="sub-menu"><a href="javascript:;" class=""> <i
-							class="fa fa-users"></i> <span>Organizadores</span> <span
-							class="menu-arrow arrow_carrot-right"></span>
-					</a>
-						<ul class="sub">
-							<li><a class="" href="/ifeventos/organizador/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/organizador/list">Listar</a></li>
-
-							<!-- submenu tipo de organização -->
-							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
-										de Organizador </span> <span class="menu-arrow arrow_carrot-right"></span></a>
-								<ul class="sub">
-									<li><a class="" href="/ifeventos/tipoOrganizador/form">Cadastrar</a></li>
-									<li><a class="" href="/ifeventos/tipoOrganizador/list">Listar</a></li>
-								</ul></li>
-							<!-- Fim submenu -->
-
-						</ul></li>
-
-
-					<li class="sub-menu"><a href="javascript:;" class=""> <i
-							class="icon_calendar"></i> <span>Programação</span> <span
-							class="menu-arrow arrow_carrot-right"></span>
-					</a>
-						<ul class="sub">
-							<li><a class="" href="/ifeventos/programacao/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/programacao/list">Listar</a></li>
-
-							<!-- submenu tipo de programação  -->
-							<li class="sub-menu"><a href="javascript:;" class=""> <span>Tipo
-										Programação</span> <span class="menu-arrow arrow_carrot-right"></span></a>
-								<ul class="sub">
-									<li><a class="" href="/ifeventos/tipoProgramacao/form">Cadastrar</a></li>
-									<li><a class="" href="/ifeventos/tipoProgramacao/list">Listar</a></li>
-								</ul></li>
-							<!-- Fim submenu -->
-						</ul></li>
-					<li class="sub-menu"><a href="javascript:;" class=""> <i
-							class="fa fa-user"></i> <span>Palestrantes</span> <span
-							class="menu-arrow arrow_carrot-right"></span>
-					</a>
-						<ul class="sub">
-							<li><a class="" href="/ifeventos/palestrante/form">Cadastrar</a></li>
-							<li><a class="" href="/ifeventos/palestrante/list">Listar</a></li>
-						</ul></li>
-
-				</ul>
-				<!-- sidebar menu end-->
-			</div>
-		</aside>
-		<!--sidebar end-->
-
-		<!--main content start-->
-		<section id="main-content">
-			<section class="wrapper">
-				<div class="row">
-					<div class="col-lg-12">
-						<h3 class="page-header">
-							<i class="icon_calendar"></i>Tipo de Programação 
-						</h3>
-						<ol class="breadcrumb">
-							<li><i class="fa fa-home"></i><a href="/ifeventos/">Home</a></li>
-							<li><i class="icon_calendar"></i>Tipo de Programação</li>
-							<li><i class="icon_document_alt"></i>Cadastro</li>
-						</ol>
-					</div>
+			<div class="navbar-default sidebar" role="navigation">
+				<div class="sidebar-nav navbar-collapse">
+					<jsp:include page="/WEB-INF/jsp/template/menu.jsp" />
 				</div>
-				<!-- Cadastro de Organizador -->
-				<div class="row">
-					<div class="col-lg-12">
-						<section class="panel">
-							<header class="panel-heading"> Cadastro Tipo de Programação </header>
-							<div class="panel-body">
-								<div class="form">
-									<form class="form-validate form-horizontal" id="feedback_form"
-										method="post" action="/ifeventos/tipoProgramacao/save">
-											<div class="form-group ">
-											<label for="curl" class="control-label col-lg-2">Tipo de Programação</label>
-											<div class="col-lg-10">
-												<input class="form-control " id="ctipo" type="text"
-													name="dto.tipoProgramacao.tipo" value="${dto.tipoProgramacao.tipo}" />
-											</div>
-										</div>
-									
-										<div class="form-group">
-											<div class="col-lg-offset-2 col-lg-10">
-												<button class="btn btn-success" type="submit">Salvar</button>
-												<a href="/ifeventos/tipoProgramacao/form" class="btn btn-danger"
-													type="button">Cancelar</a>
-											</div>
-										</div>
-									</form>
-								</div>
+				<!-- /.sidebar-collapse -->
+			</div>
+			<!-- /.navbar-static-side -->
+		</nav>
 
+		<!-- Page Content -->
+		<div id="page-wrapper">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Tipo ProgramaÃ§Ã£o</h1>
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			<!-- /.row -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<div id="div_alert"></div>
+								<form id="form" name="form" role="form" novalidate>
+									<div class="form-group" 
+										ng-class="{'has-error':form.descricao.$invalid ,'has-success':form.descricao.$valid}">
+										<label class="control-label">
+											DescriÃ§Ã£o: <span
+											class="required"> * </span>
+										</label>
+										<div class="input-icon right">
+											<input class="form-control" placeholder="Digite a descriÃ§Ã£o"
+												name="descricao" type="text" ng-model="dto.descricao"
+												required ng-maxlength="20">												
+											<span class="help-block"
+												ng-show="form.descricao.$error.required">
+												<i class="fa fa-warning"></i>
+												Favor inserir o dado requerido.</span> 
+											<span class="help-block"												
+												ng-show="form.descricao.$error.maxlength">
+												<i class="fa fa-warning"></i>
+												O dado informado Ã© muito grande.</span>
+										</div>
+									</div>
+									<div class="form-group" style="float: right;">
+										<div id="newButton" class="btn btn-primary"
+											ng-click="newForm()">
+											<i class="fa fa-file-o"></i> Limpar
+										</div>
+										<div id="saveButton" class="btn btn-success" 
+											ng-click="save()"
+											ng-disabled="form.$invalid">
+											<i class="fa fa-check"></i> Salvar
+										</div>
+										<div id="removeButton" class="btn btn-danger"
+											ng-click="remove()">
+											<i class="fa fa-times"></i> Remover
+										</div>
+										<div id="cancelButton" class="btn btn-outline btn-default" 
+											ng-click="cancel()">
+											<i class="fa fa-times"></i> Desistir
+										</div>
+									</div>
+								</form>
 							</div>
-						</section>
+						</div>
 					</div>
+
+					<!-- /.col-lg-12 -->
 				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /.container-fluid -->
+		</div>
+		<!-- /#page-wrapper -->
 
-			</section>
-		</section>
-		<!--main content end-->
-	</section>
-	<!-- container section end -->
+	</div>
+	<!-- /#wrapper -->
 
-	<!-- javascripts -->
-	<script src="../js/jquery.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-	<!-- nice scroll -->
-	<script src="../js/jquery.scrollTo.min.js"></script>
-	<script src="../js/jquery.nicescroll.js" type="text/javascript"></script>
-	<!-- jquery validate js -->
-	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+	<!-- /#wrapper -->
 
-	<!-- custom form validation script for this page-->
-	<script src="js/form-validation-script.js"></script>
-	<!--custome script for all page-->
-	<script src="../js/scripts.js"></script>
+	<jsp:include page="/WEB-INF/jsp/template/scripts.jsp" />
 
+	<!-- Bootstrap Table -->
+	<script type="text/javascript"
+		src="assets/global/bootstrap-table/bootstrap-table.min.js"></script>
+	<script type="text/javascript"
+		src="assets/global/bootstrap-table/extensions/angular/bootstrap-table-angular.min.js"></script>
+	<script type="text/javascript"
+		src="assets/global/bootstrap-table/locale/bootstrap-table-pt-BR.min.js"></script>
+
+
+
+	<!-- Page Controller -->
+	<script type="text/javascript"
+		src="assets/pages/js/factory/tipo-programacao-factory.js"></script>
+	<script type="text/javascript"
+		src="assets/pages/js/controller/tipo-programacao-form-controller.js"></script>
 
 </body>
+
 </html>
