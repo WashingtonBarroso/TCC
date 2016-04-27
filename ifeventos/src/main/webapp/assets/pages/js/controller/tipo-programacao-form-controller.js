@@ -5,7 +5,7 @@ app.controller('TipoProgramacaoFormController', function($compile, $scope, $http
 	 */    
     $scope.url = 'tipoprogramacao';
     $scope.dto = new TipoProgramacao();
-    
+    $scope.tipoProgramacao = [];
     /**
      *Functions
      */
@@ -13,6 +13,11 @@ app.controller('TipoProgramacaoFormController', function($compile, $scope, $http
     $scope.setDTO = function(dto){
     	if (dto != "")
     		$scope.dto = dto;
+    }
+   
+    $scope.setForm = function(form){
+    		$scope.tipoProgramacao = form;
+    		console.log($scope.tipoProgramacao);
     }
     
     $scope.newForm = function(){

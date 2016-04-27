@@ -32,6 +32,7 @@ app.controller('TipoProgramacaoListController', function($compile, $scope, $http
     	});
     }
     
+    
     /**
      *Init
      */   

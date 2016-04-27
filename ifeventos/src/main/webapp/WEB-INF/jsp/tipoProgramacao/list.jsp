@@ -101,15 +101,14 @@
 									    <button type="button" class="btn btn-default" ng-click="newForm()">
 									        <i class="glyphicon glyphicon-plus"></i>
 									    </button>
-									    <button type="button" class="btn btn-default">
+									    <button type="button" class="btn btn-default" ng-click="remove()">
 									        <i class="glyphicon glyphicon-trash"></i>
 									    </button>
 									</div>
                                 
                             </div>
-                           <!-- 
+                         
                         </div>
-                            -->
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->

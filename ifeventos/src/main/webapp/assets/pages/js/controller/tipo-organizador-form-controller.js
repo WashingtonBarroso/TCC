@@ -19,7 +19,7 @@ app.controller('TipoOrganizadorFormController', function($compile, $scope, $http
     	$scope.dto = new TipoOrganizador();
     }
     
-    $scope.save = function(){    	
+    $scope.save = function(){    
     	$http.post($scope.url+"/save", $scope.dto)
 		.then(function success(response){
 			console.log("response: "+response);
@@ -39,7 +39,7 @@ app.controller('TipoOrganizadorFormController', function($compile, $scope, $http
     	$http.post($scope.url+"/delete", $scope.dto)
     	.then(function success(response){
     		console.log("response: "+response);
-    		$scope.dto = new TipoOrganizador();
+    		$scope.dto = new Organizador();
     	}, function error(response){    		
     		console.log(response);
     	});

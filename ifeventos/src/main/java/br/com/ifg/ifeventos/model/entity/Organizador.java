@@ -20,18 +20,24 @@ public class Organizador extends AbstractEntity implements Serializable {
 	@Getter @Setter private String cargo;
 	@Getter @Setter private String area;
 	@Getter @Setter private String url;
+
 	@ManyToOne @JoinColumn(name="tipo_organizador_id")
 	@Getter @Setter private TipoOrganizador tipoOrganizador;
 	
+	@ManyToOne
+	@JoinColumn(name="evento_id")
+	@Getter @Setter private Evento evento;
+
 	public Organizador() {
 	}
 	public Organizador(Long id, String nome, String cargo, String area,
-			TipoOrganizador tipoOrganizador, String url) {
+			TipoOrganizador tipoOrganizador, Evento evento, String url) {
 		this.id = id;
 		this.nome = nome;
 		this.cargo = cargo;
 		this.area = area;
 		this.tipoOrganizador = tipoOrganizador;
+		this.evento = evento; 
 		this.url = url;
 	}
 }

@@ -31,15 +31,14 @@ public class TipoOrganizadorController {
 		this(null);
 	}
 
-
 	@Inject
 	public TipoOrganizadorController(Result result){
 		this.result = result;
 	}
 
-
 	@Path("/tipoorganizador/form")
 	public void form(){
+		
 	}
 	
 	@Get("/tipoorganizador/form/{id}")

@@ -18,6 +18,7 @@ public class Mapa extends AbstractEntity implements Serializable{
 
 	@Getter @Setter private Double latitude;
 	@Getter @Setter private Double longitude;
+	
 	@ManyToOne @JoinColumn(name="evento_id")
 	@Getter @Setter private Evento evento;
 

@@ -137,7 +137,6 @@
 		src="assets/global/bootstrap-table/locale/bootstrap-table-pt-BR.min.js"></script>
 
 
-
 	<!-- Page Controller -->
 	<script type="text/javascript"
 		src="assets/pages/js/factory/tipo-organizador-factory.js"></script>

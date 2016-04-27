@@ -21,10 +21,11 @@ public class Evento extends AbstractEntity implements Serializable{
 	@NotEmpty 
 	@Getter @Setter private String nome; 
  	@Getter @Setter private String local;
- 	@ManyToOne @JoinColumn(name="endereco_id")
- 	@Getter @Setter private Endereco endereco;
 	@Getter @Setter private String site;
 	@Getter @Setter private String imagem; 
+	@ManyToOne @JoinColumn(name="endereco_id")
+	@Getter @Setter private Endereco endereco;
+	
 	
 	public Evento(){
 		super();
