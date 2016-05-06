@@ -18,6 +18,7 @@ public class Mapa extends AbstractEntity implements Serializable{
 
 	@Getter @Setter private Double latitude;
 	@Getter @Setter private Double longitude;
+	@Getter @Setter private String descricao;
 	
 	@ManyToOne @JoinColumn(name="evento_id")
 	@Getter @Setter private Evento evento;
@@ -25,11 +26,12 @@ public class Mapa extends AbstractEntity implements Serializable{
 	public Mapa() {
 	}  
 
-	public Mapa(Long id, Double latitude, Double longitude, Evento evento) {
+	public Mapa(Long id, Double latitude, Double longitude, String descricao, Evento evento) {
 		super();
 		this.id = id;
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.descricao = descricao;
 		this.evento = evento;
 	}
 }

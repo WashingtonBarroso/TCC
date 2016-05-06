@@ -5,7 +5,8 @@ app.controller('ProgramacaoFormController', function($compile, $scope, $http, $w
 	 */    
     $scope.url = 'programacao';
     $scope.dto = new Programacao();
-    $scope.tipoProgramacao = [];  
+    $scope.tiposProgramacoes = [];  
+    $scope.tipoProgramacaoId;
     
     /**
 	 *Functions
@@ -17,14 +18,22 @@ app.controller('ProgramacaoFormController', function($compile, $scope, $http, $w
     }
     
     $scope.setForm = function(form){
-    		$scope.tipoProgramacao = form;
+    		$scope.tiposProgramacoes = form;
     }
     
     $scope.newForm = function(){
     	$scope.dto = new Programacao();
     }
     
-    $scope.save = function(){    
+    
+    $scope.fillForm = function(){
+    	$scope.dto.tipoProgramacao = new TipoProgramacao();
+    	$scope.dto.tipoProgramacao.descricao = "a";
+    	$scope.dto.tipoProgramacao.id = $scope.tipoProgramacaoId; 
+    };
+   
+    $scope.save = function(){  
+    	$scope.fillForm();
     	$http.post($scope.url+"/save", $scope.dto)
 		.then(function success(response){
 			console.log("response: "+response);

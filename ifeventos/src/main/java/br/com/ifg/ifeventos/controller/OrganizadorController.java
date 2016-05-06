@@ -81,8 +81,7 @@ public class OrganizadorController {
 		}
 		result.use(Results.json())
 		.withoutRoot()
-		.from(dto)
-		.serialize();
+		.from(dto).recursive().serialize();
 	}
 
 

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="pt" ng-app="app" ng-controller="OrganizadorFormController"
@@ -130,8 +130,9 @@
 											</label>
 											<div class="input-icon right">
 												<select class="form-control" name="tipoOrganizador"
-													ng-model="dto.tipoOrganizador"><option
-														ng-repeat="tipo in tipoOrganizador">{{tipo.descricao}}</option></select>
+													ng-model="tipoOrganizadorId" value="{{tipo.id}}" ng-options="tipo.descricao for tipo in tiposOrganizadores">
+													<option value="">Selecione</option>
+												</select>
 											</div>
 										</div>
 

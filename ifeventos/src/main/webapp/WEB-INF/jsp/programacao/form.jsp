@@ -11,8 +11,6 @@
 	type="text/css" />
 <link rel="stylesheet"
 	href="assets/global/bootstrap/css/bootstrap.min.css" />
-<link rel="stylesheet"
-	href="assets/datapicker/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 </head>
 <body>
 	<div id="wrapper">
@@ -83,78 +81,54 @@
 											<div class="input-icon right">
 												<input class="form-control" placeholder="Digite o local"
 													name="local" type="text" ng-model="dto.local" required
-													ng-maxlength="20"> <span class="help-block"
-													ng-show="form.local.$error.required"> <i
-													class="fa fa-warning"></i> Favor inserir o dado requerido.
-												</span> <span class="help-block"
-													ng-show="form.local.$error.maxlength"> <i
-													class="fa fa-warning"></i> O dado informado é muito grande.
+													ng-maxlength="20"> 
+											    <span class="help-block"
+													ng-show="form.local.$error.required"> 
+													<i class="fa fa-warning"></i> Favor inserir o dado requerido.
+												</span> 
+												<span class="help-block" ng-show="form.local.$error.maxlength">
+												  	<i class="fa fa-warning"></i> O dado informado é muito grande.
 												</span>
 											</div>
 										</div>
 									</div>
-
-									<label class="control-label"> Hora: <span
-										class="required"> * </span>
-									</label>
-									<div class="input-icon right">
-										<!-- 											<div class="row"> -->
-										<!-- 											 <div class='col-sm-6'> -->
-										<div class="form-group">
-											<div class='input-group date' id='time'>
-												<span class="input-group-addon"> <span
-													class="glyphicon glyphicon-time"></span>
-												</span> <input type='text' name="hora" class="form-control"
-													ng-model="dto.hora" required>
-											</div>
-										</div>
-										<script type="text/javascript">
-											$(function() {
-												$('#time').datetimepicker({
-													format : 'LT'
-												});
-											});
-										</script>
-										<!-- 										 </div> -->
-										<!-- 										</div> -->
-									</div>
-
-									<label class="control-label"> Data: <span
-										class="required"> * </span>
-									</label>
-									<div class="input-icon right">
-										<!-- 											<div class="row"> -->
-										<!-- 												<div class='col-sm-6'> -->
-										<div class="form-group">
-											<div class='input-group date' id='data'>
-												<span class="input-group-addon"> <span
-													class="glyphicon glyphicon-calendar"></span>
-												</span><input type='text' class="form-control" ng-model="dto.data"
-													required />
-											</div>
-										</div>
-										<!-- 												</div> -->
-										<script type="text/javascript">
-											$(function() {
-												$('#data').datetimepicker({
-													locale : 'pt-br'
-												});
-											});
-										</script>
-										<!-- 											</div> -->
-									</div>
-
-									<div>
+                                   
+                                    <div class="form-group">
+                                    	<div ng-class="{'has-error':form.data.$invalid ,'has-success':form.data.$valid}">
+											<label class="control-label"> Data: <span
+												class="required"> * </span>
+											</label>
+											<input type="date" name="data" class="form-control" ng-model="dto.data" value="{{dto.data | date: 'dd/MM/yyyy'}}" required>
+								    	     <span class="help-block"
+													ng-show="form.data.$error.required"> 
+													<i class="fa fa-warning"></i> Favor inserir o dado requerido.
+											</span> 
+								    	</div>
+								    </div>
+								    
+								    <div class="form-group">
+										<div ng-class="{'has-error':form.hora.$invalid ,'has-success':form.hora.$valid}">
+											<label class="control-label"> Hora: <span
+												class="required"> * </span> </label>
+											<input type="time" name="hora" class="form-control" ng-model="dto.hora" value="{{dto.hora | date: 'h:mm'}}" required>
+											 <span class="help-block"
+													ng-show="form.hora.$error.required"> 
+													<i class="fa fa-warning"></i> Favor inserir o dado requerido.
+											</span> 		
+				                    	</div>
+				                    </div>
+				                  	
+									<div class="form-group"> 
 										<label class="control-label"> Tipo Programação: <span
 											class="required"> * </span>
 										</label>
 										<div class="input-icon right">
-											<select class="form-control" name="tipoProgramacao"
-												ng-model="dto.tipoProgramacao"><option
-													ng-repeat="tipo in tipoProgramacao">{{tipo.descricao}}</option></select>
-										</div>
+											<select class="form-control" name="tipoProgramacaoid"
+												ng-model="tipoProgramacaoId" value="{{tipo.id}}" ng-options="tipo.descricao for tipo in tiposProgramacoes">
+												<option value="">Selecione</option>
+										   </select>
+									   </div>
 									</div>
-
 
 									<div class="form-group" style="float: right;">
 										<div id="newButton" class="btn btn-primary"
@@ -210,19 +184,6 @@
 		src="assets/pages/js/factory/tipo-programacao-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/controller/programacao-form-controller.js"></script>
-
-	<!-- Bootstrap Data e Time -->
-	<script type="text/javascript" src="assets/global/jquery/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="assets/datapicker/moment/min/moment.min.js"></script>
-	<script type="text/javascript"
-		src="assets/global/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript"
-		src="assets/datapicker/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
-	<script type="text/javascript"
-		src="assets/datapicker/bootstrap-datetimepicker/build/js/bootstrap-datepicker.js"></script>
-	<script type="text/javascript"
-		src="assets/datapicker/moment/locale/pt-br.js"></script>
 
 </body>
 
