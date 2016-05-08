@@ -93,6 +93,7 @@
 									    <tr>
 									    	<th data-field="state" data-checkbox="true"></th>
 									        <th class="col-xs-1" data-field="id" data-sortable="true">Código</th>
+									        <th data-field="descricao" data-sortable="true">Descrição</th>
 									        <th data-field="latitude" data-sortable="true">Latitude</th>						        
 									        <th data-field="longitude" data-sortable="true">Longitude<th>
 									    </tr>

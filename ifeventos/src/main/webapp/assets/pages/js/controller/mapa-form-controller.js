@@ -53,7 +53,7 @@ app.controller('MapaFormController', function($compile, $scope, $http, $window, 
 	// Maps
 
 	var myLocal = {lat: -16.255613, lng: -47.9267677};
-  
+
 	$scope.markers = [];
 
 	$scope.map = new google.maps.Map(document.getElementById('map'), {
@@ -63,71 +63,85 @@ app.controller('MapaFormController', function($compile, $scope, $http, $window, 
 	});
 	// Adiciona as marker no map com click
 	$scope.map.addListener('click', function(event){
+
 		$scope.dto = new Mapa(); 
-        
+
 		$scope.dto.latitude = event.latLng.lat();
 		$scope.dto.longitude = event.latLng.lng();
-		$scope.addMarker(event.latLng);
+
+		$scope.position = {
+				lat: $scope.dto.latitude,	
+				lng: $scope.dto.longitude
+		}
+
+		$scope.addMarker($scope.position);
 
 	});
-
+	
+	$scope.map.addListener('dblclick', function(event){
+	    console.log("Opa");
+		$scope.marker.setMap(null);
+	 
+	});
+	
 	//Adcionar a mapa no array 
 	$scope.addMarker = function(myLocal){
 
 		$scope.marker = new google.maps.Marker({
 			map: $scope.map,
 			position: myLocal, 
-			
+
 		});
-     $scope.markers.push($scope.marker);
+		//$scope.markers.push($scope.marker);
 	}
 
 
-	$scope.set = function(map) {
-	  	
-	  for (var i = 0; i < $scope.markers.length; i++) {
-	    $scope.markers[i].setMap($scope.map);
-	  }
-	}
 
+	/*	$scope.set = function(map) {
+		map = $scope.map;
+		for (var i = 0; i < $scope.markers.length; i++) {
+			$scope.markers[i].setMap(map);
+		}
+	}
 
 	$scope.clear = function() {
-	  $scope.set(null);
+		$scope.set(null);
 	}
-	
+
 	$scope.deletar = function() {
 		$scope.clear();
 	  $scope.markers = [];
 	} 
-	
-	
+
+	 */
 	var infoWindow = new google.maps.InfoWindow({map: $scope.map});
 
 	if (navigator.geolocation) {
-	    navigator.geolocation.getCurrentPosition(function(position) {
-        
-			 var pos = {
-				        lat: position.coords.latitude,
-				        lng: position.coords.longitude
-		     };
-			
-	        infoWindow.setPosition(pos);
-	        infoWindow.setContent('Seu local.');
-	        $scope.map.setCenter(pos);
-	    }, function() {
-	      handleLocationError(true, infoWindow, $scope.map.getCenter());
-	    });
-	  } else {
-	    // Browser doesn't support Geolocation
-	     alert("Browser não suporta geolocalização");
-		 handleLocationError(false, infoWindow, $scope.map.getCenter());
-	  }
+		navigator.geolocation.getCurrentPosition(function(position) {
+
+			var pos = {
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
+			};
+			console.log(pos);
+
+			infoWindow.setPosition(pos);
+			infoWindow.setContent('Seu local.');
+			$scope.map.setCenter(pos);
+		}, function() {
+			handleLocationError(true, infoWindow, $scope.map.getCenter());
+		});
+	} else {
+		// Browser doesn't support Geolocation
+		alert("Browser não suporta geolocalocation");
+		handleLocationError(false, infoWindow, $scope.map.getCenter());
+	}
 
 	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-	  infoWindow.setPosition(pos);
-	  infoWindow.setContent(browserHasGeolocation ?
-	                        'Error: O serviço de localização falhou.' :
-	                        'Error: Seu browser não suporta geolocalização.');
+		infoWindow.setPosition(pos);
+		infoWindow.setContent(browserHasGeolocation ?
+				'Error: O serviço de location falhou.' :
+		'Error: Seu browser não suporta geolocation.');
 	}
 
 });   

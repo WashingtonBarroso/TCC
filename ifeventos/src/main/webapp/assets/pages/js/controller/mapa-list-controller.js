@@ -4,7 +4,7 @@ app.controller('MapaListController', function($compile, $scope, $http, $window, 
 	 *Variables
 	 */    
     $scope.url = 'mapa';
-    
+    $scope.selectedRows = [];
     /**
      *Functions
      */   
@@ -38,5 +38,10 @@ app.controller('MapaListController', function($compile, $scope, $http, $window, 
     globalService.setBootstrapTableEvent('table', 'clickRow', function(e, row, element){
     	$scope.edit(row.id);
     });
-      
+    
+    globalService.setBootstrapTableEvent('table', 'onClickCell', function(e, field, value, row, $element){
+    	if (field = 'id')
+    	$scope.edit(row.id);
+    });
+    
 });

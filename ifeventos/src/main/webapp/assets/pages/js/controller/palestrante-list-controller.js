@@ -4,7 +4,7 @@ app.controller('PalestranteListController', function($compile, $scope, $http, $w
 	 *Variables
 	 */    
     $scope.url = 'palestrante';
-    
+    $scope.selectedRows = [];
     /**
      *Functions
      */   
@@ -38,5 +38,10 @@ app.controller('PalestranteListController', function($compile, $scope, $http, $w
     globalService.setBootstrapTableEvent('table', 'clickRow', function(e, row, element){
     	$scope.edit(row.id);
     });
-      
+    
+    globalService.setBootstrapTableEvent('table', 'onClickCell', function(e, field, value, row, $element){
+    	if (field = 'id')
+    	$scope.edit(row.id);
+    });
+    
 });

@@ -4,7 +4,7 @@ app.controller('OrganizadorListController', function($compile, $scope, $http, $w
 	 *Variables
 	 */    
     $scope.url = 'organizador';
-    
+    $scope.selectedRows = [];
     /**
      *Functions
      */   
@@ -34,7 +34,12 @@ app.controller('OrganizadorListController', function($compile, $scope, $http, $w
     /**
      *Init
      */   
-    globalService.setBootstrapTableEvent('table', 'clickRow', function(e, row, element){
+    globalService.setBootstrapTableEvent('table', 'onClickRow', function(e, row, element){
+    	$scope.edit(row.id);
+    });
+    
+    globalService.setBootstrapTableEvent('table', 'onClickCell', function(e, field, value, row, $element){
+    	if (field = 'id')
     	$scope.edit(row.id);
     });
       

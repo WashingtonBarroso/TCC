@@ -4,6 +4,7 @@ app.controller('NoticiaListController', function($compile, $scope, $http, $windo
 	 *Variables
 	 */    
     $scope.url = 'noticia';
+    $scope.selectedRows = [];
     
     /**
      *Functions
@@ -38,5 +39,9 @@ app.controller('NoticiaListController', function($compile, $scope, $http, $windo
     globalService.setBootstrapTableEvent('table', 'clickRow', function(e, row, element){
     	$scope.edit(row.id);
     });
-      
+    
+    globalService.setBootstrapTableEvent('table', 'onClickCell', function(e, field, value, row, $element){
+    	if (field = 'id')
+    	$scope.edit(row.id);
+    });   
 });

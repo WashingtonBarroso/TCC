@@ -71,55 +71,25 @@
 							<div class="col-lg-12">
 								<div id="div_alert"></div>
 								<form id="form" name="form" role="form" novalidate>
-									<!--
+								
 									<div class="form-group">
-									  <div ng-class="{'has-error':form.latitude.$invalid ,'has-success':form.latitude.$valid}">
-										<label class="control-label">
-											Latitude: <span
-											class="required"> * </span>
-										</label>
-										<div class="input-icon right" >
-											<input class="form-control" placeholder="Digite a latitude"
-												name="latitude" type="text" ng-model="dto.latitude"
-												required ng-maxlength="11">												
-											<span class="help-block"
-												ng-show="form.latitude.$error.required">
+										<div ng-class="{'has-error':form.descricao.$invalid ,'has-success':form.descricao.$valid}">
+										<label class="control-label"> Descrição:
+											<span class="required"> * </span>
+										 </label>
+									    <div class="row">
+												<div class="col-md-4">
+												<input class="form-control" name="descricao" type="text"
+													ng-model=dto.descricao required ng-maxlength="11">
+												<span class="help-block"
+												ng-show="form.descricao.$error.required">
 												<i class="fa fa-warning"></i>
 												Favor inserir o dado requerido.</span> 
-											<span class="help-block"												
-												ng-show="form.latitude.$error.maxlength">
+											   <span class="help-block"												
+												ng-show="form.descricao.$error.maxlength">
 												<i class="fa fa-warning"></i>
-												O dado informado é muito grande.</span>
-										</div>
-									    </div>
-									    <div ng-class="{'has-error':form.longitude.$invalid ,'has-success':form.longitude.$valid}">
-										<label class="control-label">
-										Longitude: <span
-											class="required"> * </span>
-										</label>
-										<div class="input-icon right">
-											<input class="form-control" placeholder="Digite a longitude"
-												name="longitude" type="text" ng-model="dto.longitude"
-												required ng-maxlength="11">												
-											<span class="help-block"
-												ng-show="form.longitude.$error.required">
-												<i class="fa fa-warning"></i>
-												Favor inserir o dado requerido.</span> 
-											<span class="help-block"												
-												ng-show="form.longitude.$error.maxlength">
-												<i class="fa fa-warning"></i>
-												O dado informado é muito grande.</span>
-										</div>
-									   </div>
-									</div>
-									 -->
-
-									<div class="form-group">
-										<label class="control-label"> Descrição: </label>
-										<div class="row">
-											<div class="col-md-4">
-												<input class="form-control" type="text"
-													ng-model=dto.descricao>
+												O dado informado é muito grande.</span>	
+												</div>
 											</div>
 										</div>
 									</div>
@@ -138,10 +108,10 @@
 											ng-disabled="form.$invalid">
 											<i class="fa fa-check"></i> Salvar
 										</div>
-										<div id="removeButton" class="btn btn-danger"
-											ng-click="deletar()">
+									<!-- 	<div id="removeButton" class="btn btn-danger"
+											ng-click="">
 											<i class="fa fa-times"></i> Remover
-										</div>
+										</div> -->
 										<div id="cancelButton" class="btn btn-outline btn-default"
 											ng-click="cancel()">
 											<i class="fa fa-times"></i> Desistir

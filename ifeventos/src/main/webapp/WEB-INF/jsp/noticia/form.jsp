@@ -141,8 +141,6 @@
 		src="assets/pages/js/factory/noticia-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/controller/noticia-form-controller.js"></script>
-	<script type="text/javascript"
-		src="assets/pages/js/resource/debug.js"></script>
 </body>
 
 </html>

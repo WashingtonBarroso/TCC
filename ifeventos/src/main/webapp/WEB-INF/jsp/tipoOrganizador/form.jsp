@@ -142,10 +142,7 @@
 		src="assets/pages/js/factory/tipo-organizador-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/controller/tipo-organizador-form-controller.js"></script>
-	<script type="text/javascript"
-		src="assets/pages/js/resource/debug.js"></script>
 		
-
 </body>
 
 </html>

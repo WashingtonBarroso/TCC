@@ -4,7 +4,7 @@ app.controller('TipoOrganizadorListController', function($compile, $scope, $http
 	 *Variables
 	 */    
     $scope.url = 'tipoorganizador';
-    
+    $scope.selectedRows = [];
     /**
      *Functions
      */   
@@ -38,5 +38,9 @@ app.controller('TipoOrganizadorListController', function($compile, $scope, $http
     globalService.setBootstrapTableEvent('table', 'clickRow', function(e, row, element){
     	$scope.edit(row.id);
     });
-      
+    
+    globalService.setBootstrapTableEvent('table', 'onClickCell', function(e, field, value, row, $element){
+    	if (field = 'id')
+    	$scope.edit(row.id);
+    });  
 });

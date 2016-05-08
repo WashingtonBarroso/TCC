@@ -130,8 +130,8 @@
 											</label>
 											<div class="input-icon right">
 												<select class="form-control" name="tipoOrganizador"
-													ng-model="tipoOrganizadorId" value="{{tipo.id}}" ng-options="tipo.descricao for tipo in tiposOrganizadores">
-													<option value="">Selecione</option>
+													ng-model="tipoOrganizadorId">
+													<option value="{{tipo.id}}" ng-repeat="tipo in tiposOrganizadores">{{tipo.descricao}}</option>
 												</select>
 											</div>
 										</div>
@@ -190,7 +190,6 @@
 		src="assets/pages/js/factory/tipo-organizador-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/controller/organizador-form-controller.js"></script>
-	<script type="text/javascript" src="assets/pages/js/resource/debug.js"></script>
 </body>
 
 </html>
