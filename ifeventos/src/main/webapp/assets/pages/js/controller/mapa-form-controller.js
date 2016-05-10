@@ -4,7 +4,8 @@ app.controller('MapaFormController', function($compile, $scope, $http, $window, 
 	 *Variables
 	 */    
 	$scope.url = 'mapa';
-	$scope.dto = new Mapa(); 
+	$scope.dto = new Mapa();
+	$scope.descricao; 
 	/**
 	 *Functions
 	 */  
@@ -65,10 +66,11 @@ app.controller('MapaFormController', function($compile, $scope, $http, $window, 
 	$scope.map.addListener('click', function(event){
 
 		$scope.dto = new Mapa(); 
-
+		$scope.dto.descricao = $scope.descricao;
 		$scope.dto.latitude = event.latLng.lat();
 		$scope.dto.longitude = event.latLng.lng();
-
+        console.log($scope.dto.descricao);
+		 
 		$scope.position = {
 				lat: $scope.dto.latitude,	
 				lng: $scope.dto.longitude

@@ -14,7 +14,7 @@ public class MapaDAO extends DAO<Mapa, Long> {
 			id = Long.parseLong(params.getSearch());
 		}catch(Exception e){
 		};
-		return (List<Mapa>) this.getPageableList(params.getOffset(),"from Mapa m where m.latitude like :param or m.id = :id order by m."+params.getSort()+" "+params.getOrder(),
+		return (List<Mapa>) this.getPageableList(params.getOffset(),"from Mapa m where m.descricao like :param or m.id = :id order by m."+params.getSort()+" "+params.getOrder(),
 				"id",id,
 				"param","%"+params.getSearch()+"%");
 	}
@@ -26,7 +26,7 @@ public class MapaDAO extends DAO<Mapa, Long> {
 			id = Long.parseLong(params.getSearch());
 		}catch(Exception e){}
 		
-		return (Long) this.getGenericList("select count(*) from Mapa where latitude like :param or id = :id",
+		return (Long) this.getGenericList("select count(*) from Mapa where descricao like :param or id = :id",
 				"id",id,
 				"param","%"+params.getSearch()+"%").get(0);
 	}

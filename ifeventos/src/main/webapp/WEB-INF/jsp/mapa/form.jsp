@@ -80,7 +80,7 @@
 									    <div class="row">
 												<div class="col-md-4">
 												<input class="form-control" name="descricao" type="text"
-													ng-model=dto.descricao required ng-maxlength="11">
+													ng-model="descricao" value="{{dto.descricao}}" required ng-maxlength="11">
 												<span class="help-block"
 												ng-show="form.descricao.$error.required">
 												<i class="fa fa-warning"></i>
