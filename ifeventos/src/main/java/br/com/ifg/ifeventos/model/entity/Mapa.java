@@ -2,8 +2,8 @@ package br.com.ifg.ifeventos.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -20,7 +20,7 @@ public class Mapa extends AbstractEntity implements Serializable{
 	@Getter @Setter private Double longitude;
 	@Getter @Setter private String descricao;
 	
-	@ManyToOne @JoinColumn(name="evento_id")
+	@ManyToOne(cascade=CascadeType.ALL)
 	@Getter @Setter private Evento evento;
 
 	public Mapa() {

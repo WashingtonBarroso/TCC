@@ -7,8 +7,11 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
     $scope.dto = new Evento();
     $scope.organizadores = [];
     $scope.programacoes = [];
+    $scope.mapas = [];
+    
     $scope.listOrganizadores = [];
     $scope.listProgramacao = [];
+    
     
     // Recebe uma lista de organizadores 
     $scope.setListOrganizador = function(listOrganizador){
@@ -20,6 +23,11 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
     	$scope.programacoes = listProgramacao;
     }
    
+    // Recebe uma lista de pontos mapa
+    $scope.setListMapa = function(listMapa){
+    	$scope.mapas = listMapa;
+    }
+    
     $scope.adicionarOrganizador = function(item){
     	$scope.listOrganizadores.push(item);
     }

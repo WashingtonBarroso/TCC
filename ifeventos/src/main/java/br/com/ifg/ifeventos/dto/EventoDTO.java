@@ -2,6 +2,7 @@ package br.com.ifg.ifeventos.dto;
 
 import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.ifg.ifeventos.model.entity.Evento;
+import br.com.ifg.ifeventos.model.entity.Mapa;
 import br.com.ifg.ifeventos.model.entity.Programacao;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,8 @@ public class EventoDTO {
     private List<Organizador> organizadores; 
 	@Getter @Setter
 	private List<Programacao> programacoes;
+	@Getter @Setter
+	private List<Mapa> pontos;
 	
 	public EventoDTO(){
 		this.evento = new Evento();
@@ -32,11 +35,12 @@ public class EventoDTO {
 		this.evento = evento;
 	}
 	
-	public EventoDTO(Evento evento, UploadedFile imagem, List<Organizador> organizadores, List<Programacao> programacoes){
+	public EventoDTO(Evento evento, UploadedFile imagem, List<Organizador> organizadores, List<Programacao> programacoes, List<Mapa> pontos){
 		this.evento = evento;
 		this.imagem = imagem;
 		this.organizadores = organizadores;
 		this.programacoes = programacoes;
+		this.pontos = pontos;   
 	}
 
 }

@@ -23,6 +23,7 @@ import br.com.ifg.ifeventos.dto.BootstrapTableDTO;
 import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
 import br.com.ifg.ifeventos.model.dao.impl.EnderecoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.EventoDAO;
+import br.com.ifg.ifeventos.model.dao.impl.MapaDAO;
 import br.com.ifg.ifeventos.model.dao.impl.OrganizadorDAO;
 import br.com.ifg.ifeventos.model.dao.impl.ProgramacaoDAO;
 import br.com.ifg.ifeventos.model.entity.Endereco;
@@ -49,7 +50,9 @@ public class EventoController {
 
 	@Inject
 	private ProgramacaoDAO programacaoDao;
-
+	
+	@Inject
+    private MapaDAO mapaDao;
 	
 	protected EventoController(){
 		this(null);
@@ -65,6 +68,7 @@ public class EventoController {
 		Gson  gson =  new Gson();
 		result.include("listOrganizador", gson.toJson(oganizadorDao.getAll()));
 		result.include("listProgramacao", gson.toJson(programacaoDao.getAll()));
+		result.include("listMapa", gson.toJson(mapaDao.getAll()));
 	}
 
 	@Get("/evento/form/{id}")

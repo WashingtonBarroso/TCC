@@ -134,7 +134,6 @@
 	
     <!-- Page Controller -->
 	<script type="text/javascript" src="assets/pages/js/controller/programacao-list-controller.js"></script>
-	
 </body>
 
 </html>

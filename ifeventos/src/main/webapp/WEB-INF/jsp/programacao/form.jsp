@@ -60,7 +60,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Palestras</h1>
+					<h1 class="page-header">Programação</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -72,6 +72,29 @@
 							<div class="col-lg-12">
 								<div id="div_alert"></div>
 								<form id="form" name="form" role="form" novalidate>
+								
+										<div class="form-group">
+										<div
+											ng-class="{'has-error':form.descricao.$invalid ,'has-success':form.descricao.$valid}">
+											<label class="control-label"> Descrição: <span
+												class="required"> * </span>
+											</label>
+											<div class="input-icon right">
+												<input class="form-control" placeholder="Descreva a programação"
+													name="descricao" type="text" ng-model="dto.descricao" required
+													ng-maxlength="20"> 
+											    <span class="help-block"
+													ng-show="form.local.$error.required"> 
+													<i class="fa fa-warning"></i> Favor inserir o dado requerido.
+												</span> 
+												<span class="help-block" ng-show="form.local.$error.maxlength">
+												  	<i class="fa fa-warning"></i> O dado informado é muito grande.
+												</span>
+											</div>
+										</div>
+									</div>
+                                  
+								
 									<div class="form-group">
 										<div
 											ng-class="{'has-error':form.local.$invalid ,'has-success':form.local.$valid}">
@@ -119,13 +142,13 @@
 				                    </div>
 				                  	
 									<div class="form-group"> 
-										<label class="control-label"> Tipo Palestra: <span
+										<label class="control-label"> Tipo Programação: <span
 											class="required"> * </span>
 										</label>
 										<div class="input-icon right">
-											<select class="form-control" name="tipoPalestraid"
-												ng-model="tipoPalestraId">
-												<option ng-repeat="tipo in tiposPalestras" value="{{tipo.id}}">{{tipo.descricao}}</option>
+											<select class="form-control" name="tipoProgramacaoid"
+												ng-model="tipoProgramacaoId">
+												<option ng-repeat="tipo in tiposProgramacoes" value="{{tipo.id}}">{{tipo.descricao}}</option>
 										   </select>
 									   </div>
 									</div>

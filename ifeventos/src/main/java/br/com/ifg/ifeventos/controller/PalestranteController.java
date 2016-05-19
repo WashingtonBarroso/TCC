@@ -73,6 +73,7 @@ public class PalestranteController {
 		.serialize();
 	}
 
+	
 	@Consumes(value = "application/json", options = WithoutRoot.class)
 	@Post("/palestrante/delete")
 	public void delete(Palestrante entity) {
