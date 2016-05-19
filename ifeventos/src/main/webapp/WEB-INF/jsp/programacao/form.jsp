@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="pt" ng-app="app" ng-controller="ProgramacaoFormController"
-	ng-init='setDTO(${dto}); setForm(${form});'>
+	ng-init='setDTO(${dto}); setListTpProgramacao(${listTpProgramacao});'>
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />
 <link href="assets/global/bootstrap-table/bootstrap-table.css"
@@ -60,7 +60,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Programação</h1>
+					<h1 class="page-header">Palestras</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -98,7 +98,7 @@
 											<label class="control-label"> Data: <span
 												class="required"> * </span>
 											</label>
-											<input type="date" name="data" class="form-control" ng-model="dto.data" value="{{dto.data | date: 'dd/MM/yyyy'}}" required>
+											<input type="date" name="data" class="form-control" ng-model="dto.data.value" value="{{dto.data.value}}" required>
 								    	     <span class="help-block"
 													ng-show="form.data.$error.required"> 
 													<i class="fa fa-warning"></i> Favor inserir o dado requerido.
@@ -110,7 +110,7 @@
 										<div ng-class="{'has-error':form.hora.$invalid ,'has-success':form.hora.$valid}">
 											<label class="control-label"> Hora: <span
 												class="required"> * </span> </label>
-											<input type="time" name="hora" class="form-control" ng-model="dto.hora" value="{{dto.hora | date: 'h:mm'}}" required>
+											<input type="time" name="hora" class="form-control" ng-model="dto.hora.value" value="{{dto.hora.value}}" required>
 											 <span class="help-block"
 													ng-show="form.hora.$error.required"> 
 													<i class="fa fa-warning"></i> Favor inserir o dado requerido.
@@ -119,13 +119,13 @@
 				                    </div>
 				                  	
 									<div class="form-group"> 
-										<label class="control-label"> Tipo Programação: <span
+										<label class="control-label"> Tipo Palestra: <span
 											class="required"> * </span>
 										</label>
 										<div class="input-icon right">
-											<select class="form-control" name="tipoProgramacaoid"
-												ng-model="tipoProgramacaoId" value="{{tipo.id}}" ng-options="tipo.descricao for tipo in tiposProgramacoes">
-												<option value="">Selecione</option>
+											<select class="form-control" name="tipoPalestraid"
+												ng-model="tipoPalestraId">
+												<option ng-repeat="tipo in tiposPalestras" value="{{tipo.id}}">{{tipo.descricao}}</option>
 										   </select>
 									   </div>
 									</div>

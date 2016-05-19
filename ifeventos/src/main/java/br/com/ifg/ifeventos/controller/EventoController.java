@@ -23,6 +23,8 @@ import br.com.ifg.ifeventos.dto.BootstrapTableDTO;
 import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
 import br.com.ifg.ifeventos.model.dao.impl.EnderecoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.EventoDAO;
+import br.com.ifg.ifeventos.model.dao.impl.OrganizadorDAO;
+import br.com.ifg.ifeventos.model.dao.impl.ProgramacaoDAO;
 import br.com.ifg.ifeventos.model.entity.Endereco;
 import br.com.ifg.ifeventos.model.entity.Evento;
 import br.com.ifg.ifeventos.utils.HashUtils;
@@ -32,14 +34,22 @@ public class EventoController {
 
 	private final Result result;
 	final String PATH = "img\\evento";
-	
+
 	@Inject
 	private EventoDAO dao;	
+	
 	@Inject
 	private EnderecoDAO enderecoDao;	
-	
+
 	@Inject 
 	private HttpServletRequest request;
+
+	@Inject
+	private OrganizadorDAO oganizadorDao;
+
+	@Inject
+	private ProgramacaoDAO programacaoDao;
+
 	
 	protected EventoController(){
 		this(null);
@@ -49,11 +59,14 @@ public class EventoController {
 	public EventoController(Result result){
 		this.result = result; 
 	}
-		
+
 	@Path("/evento/form")
 	public void form(){	
+		Gson  gson =  new Gson();
+		result.include("listOrganizador", gson.toJson(oganizadorDao.getAll()));
+		result.include("listProgramacao", gson.toJson(programacaoDao.getAll()));
 	}
-	
+
 	@Get("/evento/form/{id}")
 	public void form(Long id){
 		Evento entity = dao.getById(id);; 
@@ -64,11 +77,11 @@ public class EventoController {
 			result.include("dto",gson.toJson(entity));
 		}	
 	}
-	
+
 	@Path("/evento/list")
 	public void list(){	
 	}
-	
+
 	@Post("/evento/save2")
 	@UploadSizeLimit(sizeLimit=1 * 1024 * 1024, fileSizeLimit=1 * 1024 * 1024)
 	public void save(UploadedFile imagem){
@@ -76,10 +89,10 @@ public class EventoController {
 			String ext[] = imagem.getFileName().split("\\.");
 			File imageFile = new File(request.getServletContext().getRealPath("")+ File.separator + PATH, HashUtils.hash(imagem.getFileName())+"."+ext[1]);
 			imagem.writeTo(imageFile);
-//			dto.setImagem(imageFile.getName());
-//			enderecoDao.save(dto.getEndereco());
-//			dao.save(dto);
-//			dao.commit();
+			//			dto.setImagem(imageFile.getName());
+			//			enderecoDao.save(dto.getEndereco());
+			//			dao.save(dto);
+			//			dao.commit();
 		}
 		catch(Exception e){
 			dao.rollback();
@@ -87,12 +100,12 @@ public class EventoController {
 		}
 		result.use(Results.json())
 		.withoutRoot()
-//		.from(dto)
+		//		.from(dto)
 		.from("")
 		.recursive()
 		.serialize();
 	}
-	
+
 	@Post("/evento/save")
 	@Consumes(value = "application/json", options = WithoutRoot.class)
 	public void save(Evento dto){		
@@ -120,20 +133,20 @@ public class EventoController {
 	 */
 	@Post("/evento/delete")
 	@Consumes(value = "application/json", options = WithoutRoot.class)
-//	public void delete(Evento entity) {
+	//	public void delete(Evento entity) {
 	public void delete(Long id) {
 		try{
-//			Endereco endereco = enderecoDao.getByEventoId(entity.getId());
-//			dao.removeById(entity.getId());
+			//			Endereco endereco = enderecoDao.getByEventoId(entity.getId());
+			//			dao.removeById(entity.getId());
 			Endereco endereco = enderecoDao.getByEventoId(id);
 			dao.removeById(id);
 			enderecoDao.remove(endereco);
 			dao.commit();
 		}catch(ConstraintViolationException cve){
 			dao.rollback();
-//			entity.setAtivo(false);
-//			dao.save(entity);
-//			dao.commit();
+			//			entity.setAtivo(false);
+			//			dao.save(entity);
+			//			dao.commit();
 		}finally{
 			result.use(Results.json())
 			.withoutRoot()
@@ -141,7 +154,7 @@ public class EventoController {
 			.serialize();
 		}		
 	}
-	
+
 	@Get("/evento/search")
 	public void search(String search, String sort, String order, Integer limit, Integer offset){
 		BootstrapTableParamsDTO params = new BootstrapTableParamsDTO(search, sort, order, limit, offset);

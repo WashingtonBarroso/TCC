@@ -66,11 +66,11 @@ app.controller('MapaFormController', function($compile, $scope, $http, $window, 
 	$scope.map.addListener('click', function(event){
 
 		$scope.dto = new Mapa(); 
+		
 		$scope.dto.descricao = $scope.descricao;
 		$scope.dto.latitude = event.latLng.lat();
 		$scope.dto.longitude = event.latLng.lng();
-        console.log($scope.dto.descricao);
-		 
+		
 		$scope.position = {
 				lat: $scope.dto.latitude,	
 				lng: $scope.dto.longitude
@@ -81,7 +81,6 @@ app.controller('MapaFormController', function($compile, $scope, $http, $window, 
 	});
 	
 	$scope.map.addListener('dblclick', function(event){
-	    console.log("Opa");
 		$scope.marker.setMap(null);
 	 
 	});

@@ -1,11 +1,32 @@
-app.controller('EventoFormController', function($compile, $scope, $http, $window, $resource, Evento, Endereco, globalService, Upload, $timeout){
+app.controller('EventoFormController', function($compile, $scope, $http, $window, $resource, Evento, Endereco, Organizador, Programacao, globalService, Upload, $timeout){
 
 	/**
 	 *Variables
 	 */    
     $scope.url = 'evento';
     $scope.dto = new Evento();
-    $scope.organizacoes = [{id: 1, nome:'fulano'},{id: 2, nome: 'beltrano'}];
+    $scope.organizadores = [];
+    $scope.programacoes = [];
+    $scope.listOrganizadores = [];
+    $scope.listProgramacao = [];
+    
+    // Recebe uma lista de organizadores 
+    $scope.setListOrganizador = function(listOrganizador){
+    	$scope.organizadores = listOrganizador;
+    }
+    
+    // Recebe uma lista de programacao 
+    $scope.setListProgramacao = function(listProgramacao){
+    	$scope.programacoes = listProgramacao;
+    }
+   
+    $scope.adicionarOrganizador = function(item){
+    	$scope.listOrganizadores.push(item);
+    }
+   
+    $scope.adicionarProgramacao = function(item){
+    	$scope.listProgramacao.push(item);
+    }
     
 	$scope.uploadPic = function(file) {
 		file.upload = Upload.upload({
@@ -38,7 +59,7 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
     $scope.newForm = function(){
     	$scope.dto = new Evento();
     }
-  
+    
     $scope.save = function(file){
     	console.log($scope.dto);
     	$http.post($scope.url+"/save", $scope.dto)

@@ -5,8 +5,10 @@ app.controller('ProgramacaoFormController', function($compile, $scope, $http, $w
 	 */    
     $scope.url = 'programacao';
     $scope.dto = new Programacao();
-    $scope.tiposProgramacoes = [];  
+    $scope.tiposProgramacaos = [];  
     $scope.tipoProgramacaoId;
+    $scope.hora = {value: new Date()};
+    $scope.dto.data = {value: new Date()};
     
     /**
 	 *Functions
@@ -17,14 +19,13 @@ app.controller('ProgramacaoFormController', function($compile, $scope, $http, $w
     		$scope.dto = dto;
     }
     
-    $scope.setForm = function(form){
-    		$scope.tiposProgramacoes = form;
+    $scope.setTpProgramacao = function(listTpProgramacao){
+    		$scope.tiposProgramacaos = listTpProgramacao;
     }
     
     $scope.newForm = function(){
     	$scope.dto = new Programacao();
     }
-    
     
     $scope.fillForm = function(){
     	$scope.dto.tipoProgramacao = new TipoProgramacao();

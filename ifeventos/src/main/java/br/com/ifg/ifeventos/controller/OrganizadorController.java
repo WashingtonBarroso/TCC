@@ -46,9 +46,8 @@ public class OrganizadorController {
 	@Path("/organizador/form")
 	public void form(){	
 		Gson gson = new Gson();
-		result.include("form",gson.toJson(tipoOrganizadorDao.getAll()));
+		result.include("listTpOrganizador",gson.toJson(tipoOrganizadorDao.getAll()));
 	}
-
 
 
 	@Get("/organizador/form/{id}")

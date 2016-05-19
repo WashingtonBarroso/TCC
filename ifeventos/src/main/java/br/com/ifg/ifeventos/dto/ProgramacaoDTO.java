@@ -22,8 +22,8 @@ public class ProgramacaoDTO {
 	}
 
 	
-	public ProgramacaoDTO(Programacao programacao, List<TipoProgramacao> tipoProgramacao) {
-		this.programacao = programacao;
+	public ProgramacaoDTO(Programacao Programacao, List<TipoProgramacao> tipoProgramacao) {
+		this.programacao = Programacao;
 		this.tipoProgramacao = tipoProgramacao;
 	} 		
 

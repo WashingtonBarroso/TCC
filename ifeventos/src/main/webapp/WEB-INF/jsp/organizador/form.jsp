@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="pt" ng-app="app" ng-controller="OrganizadorFormController"
-	ng-init='setDTO(${dto}); setForm(${form});'>
+	ng-init='setDTO(${dto}); setListTpOrganizador(${listTpOrganizador});'>
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />
 <link href="assets/global/bootstrap-table/bootstrap-table.css"
@@ -123,7 +123,6 @@
 												</span>
 											</div>
 										</div>
-
 										<div class="form-group" >
 											<label class="control-label"> Tipo Organizador: <span
 												class="required"> * </span>
@@ -135,7 +134,6 @@
 												</select>
 											</div>
 										</div>
-
 									</div>
 									<div class="form-group" style="float: right;">
 										<div id="newButton" class="btn btn-primary"
@@ -183,11 +181,13 @@
 	<script type="text/javascript"
 		src="assets/global/bootstrap-table/locale/bootstrap-table-pt-BR.min.js"></script>
 
-	<!-- Page Controller -->
+	<!-- Page Factory -->
 	<script type="text/javascript"
 		src="assets/pages/js/factory/organizador-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/factory/tipo-organizador-factory.js"></script>
+	
+	<!-- Page Controller -->
 	<script type="text/javascript"
 		src="assets/pages/js/controller/organizador-form-controller.js"></script>
 </body>

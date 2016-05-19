@@ -31,7 +31,7 @@ public class TipoProgramacaoController {
 		this(null);
 	}
 
-
+	
 	@Inject
 	public TipoProgramacaoController(Result result){
 		this.result = result;
@@ -41,6 +41,7 @@ public class TipoProgramacaoController {
 	@Path("/tipoprogramacao/form")
 	public void form(){
 	}
+	
 	
 	@Get("/tipoprogramacao/form/{id}")
 	public void form(Long id){

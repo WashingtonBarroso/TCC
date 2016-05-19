@@ -20,8 +20,8 @@ app.controller('OrganizadorFormController', function($compile, $scope, $http, $w
     }
     
    
-    $scope.setForm = function(form){
-    		$scope.tiposOrganizadores = form;
+    $scope.setListTpOrganizador = function(listTpOrganizador){
+    		$scope.tiposOrganizadores = listTpOrganizador;
     }
     
     $scope.newForm = function(){
@@ -32,7 +32,6 @@ app.controller('OrganizadorFormController', function($compile, $scope, $http, $w
     	$scope.dto.tipoOrganizador = new TipoOrganizador();
     	$scope.dto.tipoOrganizador.descricao = "a";
     	$scope.dto.tipoOrganizador.id = $scope.tipoOrganizadorId;
-    	console.log($scope.dto);
     }
     
     $scope.save = function(){    

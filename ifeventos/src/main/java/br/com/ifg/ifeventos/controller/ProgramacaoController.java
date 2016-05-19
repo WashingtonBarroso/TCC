@@ -44,7 +44,7 @@ public class ProgramacaoController {
 	@Path("/programacao/form")
 	public void form(){	
 		Gson gson = new Gson();		
-		result.include("form",gson.toJson(tipoProgramacaoDao.getAll()));
+		result.include("listTpProgramacao",gson.toJson(tipoProgramacaoDao.getAll()));
 	}
 
 	@Get("/programacao/form/{id}")

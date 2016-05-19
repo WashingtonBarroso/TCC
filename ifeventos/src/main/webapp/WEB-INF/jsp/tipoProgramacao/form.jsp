@@ -57,7 +57,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Tipo Programação</h1>
+					<h1 class="page-header">Tipo Palestra</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
