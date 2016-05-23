@@ -53,7 +53,7 @@ app.controller('MapaFormController', function($compile, $scope, $http, $window, 
 
 	// Maps
 
-	var myLocal = {lat: -16.255613, lng: -47.9267677};
+	var myLocal = {lat: 0, lng: 0};
 
 	$scope.markers = [];
 
@@ -62,6 +62,8 @@ app.controller('MapaFormController', function($compile, $scope, $http, $window, 
 		center: myLocal,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
+
+	
 	// Adiciona as marker no map com click
 	$scope.map.addListener('click', function(event){
 
@@ -72,6 +74,7 @@ app.controller('MapaFormController', function($compile, $scope, $http, $window, 
 		$scope.dto.longitude = event.latLng.lng();
 		
 		$scope.position = {
+				descricao: $scope.dto.descricao,
 				lat: $scope.dto.latitude,	
 				lng: $scope.dto.longitude
 		}

@@ -1,46 +1,41 @@
 package br.com.ifg.ifeventos.dto;
 
-import br.com.caelum.vraptor.observer.upload.UploadedFile;
-import br.com.ifg.ifeventos.model.entity.Evento;
-import br.com.ifg.ifeventos.model.entity.Mapa;
-import br.com.ifg.ifeventos.model.entity.Programacao;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.ifg.ifeventos.model.entity.Organizador;
+import lombok.Getter;
+import lombok.Setter;
+import br.com.ifg.ifeventos.model.entity.Evento;
+import br.com.ifg.ifeventos.model.entity.TipoOrganizador;
+import br.com.ifg.ifeventos.model.entity.TipoProgramacao;
 
 public class EventoDTO {
 
 
 	@Getter @Setter	
-	private Evento evento;
-	@Getter @Setter	
-	private UploadedFile imagem;    
+	private Evento evento;    
 	@Getter @Setter 
-    private List<Organizador> organizadores; 
+    private List<TipoOrganizador> tiposOrganizador; 
 	@Getter @Setter
-	private List<Programacao> programacoes;
-	@Getter @Setter
-	private List<Mapa> pontos;
+	private List<TipoProgramacao> tiposProgramacao;
+	
 	
 	public EventoDTO(){
 		this.evento = new Evento();
-		this.organizadores = new ArrayList<Organizador>();
+		this.tiposOrganizador = new ArrayList<TipoOrganizador>();
+		this.tiposProgramacao = new ArrayList<TipoProgramacao>();
 	}
 
 	public EventoDTO(Evento evento){
 		this.evento = evento;
+		this.tiposOrganizador = new ArrayList<TipoOrganizador>();
+		this.tiposProgramacao = new ArrayList<TipoProgramacao>();
 	}
 	
-	public EventoDTO(Evento evento, UploadedFile imagem, List<Organizador> organizadores, List<Programacao> programacoes, List<Mapa> pontos){
+	public EventoDTO(Evento evento, List<TipoOrganizador> tiposOrganizador, List<TipoProgramacao> tiposProgramacao){
 		this.evento = evento;
-		this.imagem = imagem;
-		this.organizadores = organizadores;
-		this.programacoes = programacoes;
-		this.pontos = pontos;   
+		this.tiposOrganizador = tiposOrganizador;
+		this.tiposProgramacao = tiposProgramacao;
 	}
 
 }

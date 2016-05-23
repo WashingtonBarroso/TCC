@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="pt" ng-app="app" ng-controller="ProgramacaoFormController"
-	ng-init='setDTO(${dto}); setListTpProgramacao(${listTpProgramacao});'>
+	ng-init='setDTO(${dto}); setListTpProgramacao(${listTpProgramacao}); setListPalestrante(${listPalestrante});'>
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />
 <link href="assets/global/bootstrap-table/bootstrap-table.css"
@@ -82,7 +82,7 @@
 											<div class="input-icon right">
 												<input class="form-control" placeholder="Descreva a programação"
 													name="descricao" type="text" ng-model="dto.descricao" required
-													ng-maxlength="20"> 
+													ng-maxlength="150"> 
 											    <span class="help-block"
 													ng-show="form.local.$error.required"> 
 													<i class="fa fa-warning"></i> Favor inserir o dado requerido.
@@ -140,18 +140,28 @@
 											</span> 		
 				                    	</div>
 				                    </div>
-				                  	
-									<div class="form-group"> 
-										<label class="control-label"> Tipo Programação: <span
-											class="required"> * </span>
-										</label>
-										<div class="input-icon right">
-											<select class="form-control" name="tipoProgramacaoid"
-												ng-model="tipoProgramacaoId">
-												<option ng-repeat="tipo in tiposProgramacoes" value="{{tipo.id}}">{{tipo.descricao}}</option>
-										   </select>
-									   </div>
-									</div>
+				                  	<div class="form-group" >
+											<label class="control-label"> Palestrante: <span
+												class="required"> * </span>
+											</label>
+											<div class="input-icon right">
+												<select class="form-control" name="palestrante"
+													ng-model="palestranteId">
+													<option value="{{palestrante.id}}" ng-repeat="palestrante in palestrantes">{{palestrante.nome}}</option>
+												</select>
+											</div>
+										</div>
+  	                                  <div class="form-group" >
+											<label class="control-label"> Tipo Programação: <span
+												class="required"> * </span>
+											</label>
+											<div class="input-icon right">
+												<select class="form-control" name="tipoProgramacao"
+													ng-model="tipoProgramacaoId">
+													<option value="{{tipo.id}}" ng-repeat="tipo in tiposProgramacao">{{tipo.descricao}}</option>
+												</select>
+											</div>
+										</div>
 
 									<div class="form-group" style="float: right;">
 										<div id="newButton" class="btn btn-primary"
@@ -207,7 +217,8 @@
 		src="assets/pages/js/factory/tipo-programacao-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/controller/programacao-form-controller.js"></script>
-
+	<script type="text/javascript"
+		src="assets/pages/js/factory/palestrante-factory.js"></script>
 </body>
 
 </html>

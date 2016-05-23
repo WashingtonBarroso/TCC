@@ -16,6 +16,7 @@ import br.com.caelum.vraptor.serialization.gson.WithoutRoot;
 import br.com.caelum.vraptor.view.Results;
 import br.com.ifg.ifeventos.dto.BootstrapTableDTO;
 import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
+import br.com.ifg.ifeventos.model.dao.impl.PalestranteDAO;
 import br.com.ifg.ifeventos.model.dao.impl.ProgramacaoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.TipoProgramacaoDAO;
 import br.com.ifg.ifeventos.model.entity.Programacao;
@@ -32,6 +33,9 @@ public class ProgramacaoController {
 	@Inject
 	private TipoProgramacaoDAO tipoProgramacaoDao;
 	
+	@Inject
+	private PalestranteDAO palestranteDao;
+	
 	protected ProgramacaoController(){
 		this(null);
 	}
@@ -45,6 +49,7 @@ public class ProgramacaoController {
 	public void form(){	
 		Gson gson = new Gson();		
 		result.include("listTpProgramacao",gson.toJson(tipoProgramacaoDao.getAll()));
+		result.include("listPalestrante", gson.toJson(palestranteDao.getAll()));
 	}
 
 	@Get("/programacao/form/{id}")

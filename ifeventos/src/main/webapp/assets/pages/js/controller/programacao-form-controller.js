@@ -1,12 +1,15 @@
-app.controller('ProgramacaoFormController', function($compile, $scope, $http, $window, $resource, Programacao, TipoProgramacao, globalService){
+app.controller('ProgramacaoFormController', function($compile, $scope, $http, $window, $resource, Programacao, Palestrante, TipoProgramacao, globalService){
     
      /**
 	 *Variables
 	 */    
     $scope.url = 'programacao';
     $scope.dto = new Programacao();
-    $scope.tiposProgramacoes = [];  
+    
+    $scope.palestrantes = [];
+    $scope.tiposProgramacao = [];  
     $scope.tipoProgramacaoId;
+    
     $scope.hora = {value: new Date()};
     $scope.dto.data = {value: new Date()};
     
@@ -19,8 +22,12 @@ app.controller('ProgramacaoFormController', function($compile, $scope, $http, $w
     		$scope.dto = dto;
     }
     
-    $scope.setTpProgramacao = function(listTpProgramacao){
-    		$scope.tiposProgramacoes = listTpProgramacao;
+    $scope.setListPalestrante = function(listPalestrante){
+    	$scope.palestrantes = listPalestrante; 
+    }
+    
+    $scope.setListTpProgramacao = function(listTpProgramacao){	
+    	$scope.tiposProgramacao = listTpProgramacao;
     }
     
     $scope.newForm = function(){

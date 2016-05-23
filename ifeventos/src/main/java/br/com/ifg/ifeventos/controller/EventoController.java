@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.exception.ConstraintViolationException;
 
-import com.google.gson.Gson;
-
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
@@ -21,6 +19,7 @@ import br.com.caelum.vraptor.serialization.gson.WithoutRoot;
 import br.com.caelum.vraptor.view.Results;
 import br.com.ifg.ifeventos.dto.BootstrapTableDTO;
 import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
+import br.com.ifg.ifeventos.dto.EventoDTO;
 import br.com.ifg.ifeventos.model.dao.impl.EnderecoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.EventoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.MapaDAO;
@@ -29,6 +28,8 @@ import br.com.ifg.ifeventos.model.dao.impl.ProgramacaoDAO;
 import br.com.ifg.ifeventos.model.entity.Endereco;
 import br.com.ifg.ifeventos.model.entity.Evento;
 import br.com.ifg.ifeventos.utils.HashUtils;
+
+import com.google.gson.Gson;
 
 @Controller
 public class EventoController {
@@ -46,7 +47,7 @@ public class EventoController {
 	private HttpServletRequest request;
 
 	@Inject
-	private OrganizadorDAO oganizadorDao;
+	private OrganizadorDAO organizadorDao;
 
 	@Inject
 	private ProgramacaoDAO programacaoDao;
@@ -66,9 +67,9 @@ public class EventoController {
 	@Path("/evento/form")
 	public void form(){	
 		Gson  gson =  new Gson();
-		result.include("listOrganizador", gson.toJson(oganizadorDao.getAll()));
+		result.include("listOrganizador", gson.toJson(organizadorDao.getAll()));
 		result.include("listProgramacao", gson.toJson(programacaoDao.getAll()));
-		result.include("listMapa", gson.toJson(mapaDao.getAll()));
+		//result.include("listMapa", gson.toJson(mapaDao.getAll()));
 	}
 
 	@Get("/evento/form/{id}")
@@ -112,10 +113,15 @@ public class EventoController {
 
 	@Post("/evento/save")
 	@Consumes(value = "application/json", options = WithoutRoot.class)
-	public void save(Evento dto){		
+	public void save(EventoDTO dto){		
 		try{
-			enderecoDao.save(dto.getEndereco());
-			dao.save(dto);
+			enderecoDao.save(dto.getEvento().getEndereco());
+			dao.save(dto.getEvento());
+			programacaoDao.removeByEventoId(dto.getEvento().getId());
+			for (int i=0; i < dto.getEvento().getProgramacao().size(); i++){
+				dto.getEvento().getProgramacao().get(i).setEvento(dto.getEvento());
+				programacaoDao.save(dto.getEvento().getProgramacao().get(i));
+			}
 			dao.commit();
 		}
 		catch(Exception e){

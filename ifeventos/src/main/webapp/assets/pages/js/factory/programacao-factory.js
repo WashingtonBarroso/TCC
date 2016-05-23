@@ -1,4 +1,4 @@
-app.factory('Programacao', function(TipoProgramacao){    
+app.factory('Programacao', function(TipoProgramacao, Palestrante){    
     return function(){    	
     	this.id = null; 
     	this.descricao = "";
@@ -6,6 +6,7 @@ app.factory('Programacao', function(TipoProgramacao){
     	this.hora = new Date();    	
     	this.local = "";   	    	
     	this.tipoProgramacao = new TipoProgramacao();
+    	this.palestrante = new Palestrante;
     	this.ativo = true;
     }
 });

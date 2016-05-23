@@ -31,6 +31,8 @@ public class ProgramacaoDAO extends DAO<Programacao, Long> {
 				"param","%"+params.getSearch()+"%").get(0);
 	}	
 	
-	
+	public void removeByEventoId(Long id){
+		this.executeUpdate("delete * from Programacao p where p.evento.id = :id","id",id);
+	}
 	
 }

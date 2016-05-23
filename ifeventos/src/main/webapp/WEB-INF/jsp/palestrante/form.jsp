@@ -77,7 +77,7 @@
 										<div class="input-icon right">
 											<input class="form-control" placeholder="Digite o nome"
 												name="nome" type="text" ng-model="dto.nome"
-												required ng-maxlength="20">												
+												required ng-maxlength="50">												
 											<span class="help-block"
 												ng-show="form.nome.$error.required">
 												<i class="fa fa-warning"></i>

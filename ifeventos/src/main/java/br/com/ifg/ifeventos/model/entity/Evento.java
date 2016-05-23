@@ -39,7 +39,7 @@ public class Evento extends AbstractEntity implements Serializable{
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER) 
 	@JoinColumn(name="evento_id")
-	@Getter @Setter private List<Programacao> programacoes;
+	@Getter @Setter private List<Programacao> programacao;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="evento_id")
@@ -49,7 +49,7 @@ public class Evento extends AbstractEntity implements Serializable{
 		super();
 	}
 
-	public Evento(Long id, String nome, String local, String site, String imagem, Endereco endereco, List<Programacao> programacoes, List<Organizador> organizadores, List<Mapa> pontos, Boolean ativo) {
+	public Evento(Long id, String nome, String local, String site, String imagem, Endereco endereco, List<Programacao> programacao, List<Organizador> organizadores, List<Mapa> pontos, Boolean ativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -58,7 +58,7 @@ public class Evento extends AbstractEntity implements Serializable{
 		this.site = site;
 		this.imagem =  imagem;
 		this.ativo = ativo;
-		this.programacoes = programacoes;
+		this.programacao = programacao;
 		this.organizadores = organizadores;
 		this.pontos = pontos;
 	}

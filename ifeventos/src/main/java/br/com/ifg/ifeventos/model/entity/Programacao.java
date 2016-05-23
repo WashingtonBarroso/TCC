@@ -45,13 +45,14 @@ public class Programacao extends AbstractEntity implements Serializable {
 	}
 
 	public Programacao(Long id, LocalDate data, LocalTime hora, String local,
-			TipoProgramacao tipoProgramacao, Evento evento) {
+			TipoProgramacao tipoProgramacao, Palestrante palestrante, Evento evento) {
 		super();
 		this.id = id;
 		this.data = data;
 		this.hora = hora;
 		this.local = local;
 		this.tipoProgramacao = tipoProgramacao;
+		this.palestrante = palestrante;
 		this.evento = evento;
 	}
 

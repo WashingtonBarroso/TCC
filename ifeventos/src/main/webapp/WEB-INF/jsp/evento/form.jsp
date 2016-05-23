@@ -12,7 +12,6 @@
 </head>
 
 <body>
-
 	<div id="wrapper">
 
 		<!-- Navigation -->
@@ -239,51 +238,81 @@
 											</div>
 										</div>
 										<div class="tab-pane fade tab-margin" id="tab4">
-											<p>Insira o mapa do Google e com a função para inserir
-												marcador e capturar a latitute e longitude para salvar no
-												banco.</p>
+											<div class="form-group">
+												<div
+													ng-class="{'has-error':form.descricao.$invalid ,'has-success':form.descricao.$valid}">
+													<label class="control-label"> Descrição: <span
+														class="required"> * </span>
+													</label>
+													<div class="row">
+														<div class="col-md-4">
+															<input class="form-control" name="descricao" type="text"
+																ng-model="descricao" value="{{dto.descricao}}" required
+																ng-maxlength="11"> <span class="help-block"
+																ng-show="form.descricao.$error.required"> <i
+																class="fa fa-warning"></i> Favor inserir o dado
+																requerido.
+															</span> <span class="help-block"
+																ng-show="form.descricao.$error.maxlength"> <i
+																class="fa fa-warning"></i> O dado informado é muito
+																grande.
+															</span>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!-- Mapa -->
+											<div id="map"
+												style="width: 1000px; height: 380px; margin-bottom: 1cm;"
+												ng-model="dto.latitude" ng-model="dto.longitude"></div>
+											<!-- Fim mapa -->
 										</div>
 										<div class="tab-pane fade tab-margin" id="tab5">
 											<div class="form-group input-group">
-												<select ng-model="organizadorSelect" ng-options="organizador as organizador.nome for organizador in organizadores" name="organizadoresSelect" class="form-control">
+												<select ng-model="organizadorSelect"
+													ng-options="organizador as organizador.nome for organizador in organizadores"
+													name="organizadoresSelect" class="form-control">
 												</select> <span class="input-group-btn">
 													<button class="btn btn-default" type="button">
-														<i class="fa fa-plus" ng-click="adicionarOrganizador(organizadorSelect)"></i>
+														<i class="fa fa-plus"
+															ng-click="adicionarOrganizador(organizadorSelect)"></i>
 													</button>
 												</span>
 											</div>
 										</div>
 										<div class="tab-pane fade tab-margin" id="tab6">
-												<div class="form-group input-group">
-												<select ng-model="programacaoSelect" ng-options="programacao as programacao.local for programacao in programacoes" name="programacaoSelect" class="form-control">
+											<div class="form-group input-group">
+												<select ng-model="programacaoSelect"
+													ng-options="programacao as programacao.local for programacao in programacoes"
+													name="programacaoSelect" class="form-control">
 												</select> <span class="input-group-btn">
 													<button class="btn btn-default" type="button">
-														<i class="fa fa-plus" ng-click="adicionarProgramacao(programacaoSelect)"></i>
+														<i class="fa fa-plus"
+															ng-click="adicionarProgramacao(programacaoSelect)"></i>
 													</button>
 												</span>
 											</div>
 										</div>
 									</div>
-									<div class="form-group" style="float: right;">
-										<div id="newButton" class="btn btn-primary"
-											ng-click="newForm()">
-											<i class="fa fa-file-o"></i> Limpar
-										</div>
-										<div id="saveButton" class="btn btn-success" ng-click="save()"
-											ng-disabled="form.$invalid">
-											<i class="fa fa-check"></i> Salvar
-										</div>
-										<div id="removeButton" class="btn btn-danger"
-											ng-click="remove()">
-											<i class="fa fa-times"></i> Remover
-										</div>
-										<div id="cancelButton" class="btn btn-outline btn-default"
-											ng-click="cancel()">
-											<i class="fa fa-times"></i> Desistir
-										</div>
-									</div>
-								</form>
 							</div>
+							<div class="form-group" style="float: right;">
+								<div id="newButton" class="btn btn-primary" ng-click="newForm()">
+									<i class="fa fa-file-o"></i> Limpar
+								</div>
+								<div id="saveButton" class="btn btn-success" ng-click="save()"
+									ng-disabled="form.$invalid">
+									<i class="fa fa-check"></i> Salvar
+								</div>
+								<div id="removeButton" class="btn btn-danger"
+									ng-click="remove()">
+									<i class="fa fa-times"></i> Remover
+								</div>
+								<div id="cancelButton" class="btn btn-outline btn-default"
+									ng-click="cancel()">
+									<i class="fa fa-times"></i> Desistir
+								</div>
+							</div>
+							</form>
 						</div>
 					</div>
 
@@ -310,20 +339,25 @@
 	<script type="text/javascript"
 		src="assets/global/bootstrap-table/locale/bootstrap-table-pt-BR.min.js"></script>
 
+	<!--  Google Maps -->
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+
 	<!-- Factories  -->
 	<script type="text/javascript"
 		src="assets/pages/js/factory/evento-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/factory/endereco-factory.js"></script>
-    <script type="text/javascript"
-		src="assets/pages/js/factory/organizador-factory.js"></script>	
+	<script type="text/javascript"
+		src="assets/pages/js/factory/organizador-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/factory/tipo-organizador-factory.js"></script>
-    <script type="text/javascript"
+	<script type="text/javascript"
 		src="assets/pages/js/factory/programacao-factory.js"></script>
-    <script type="text/javascript"
+	<script type="text/javascript"
 		src="assets/pages/js/factory/tipo-programacao-factory.js"></script>
-			
+    <script type="text/javascript"
+		src="assets/pages/js/factory/palestrante-factory.js"></script>
+
 	<!-- Page Controller -->
 	<script type="text/javascript"
 		src="assets/pages/js/controller/evento-form-controller.js"></script>
