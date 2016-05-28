@@ -1,4 +1,4 @@
-app.controller('EventoFormController', function($compile, $scope, $http, $window, $resource, Evento, Endereco, Organizador, Programacao, globalService, Upload, $timeout){
+app.controller('EventoFormController', function($compile, $scope, $http, $window, $resource, Evento, Endereco, Organizador, Programacao, Mapa, Palestrante, globalService, Upload, $timeout){
 
 	/**
 	 *Variables
@@ -7,12 +7,13 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
     $scope.dto = new Evento();
     $scope.organizadores = [];
     $scope.programacoes = [];
+ 
     $scope.mapas = [];
     $scope.descricao; 
     
     $scope.listOrganizadores = [];
     $scope.listProgramacao = [];
-    
+    $scope.listPontos = []; 
     
     // Recebe uma lista de organizadores 
     $scope.setListOrganizador = function(listOrganizador){
@@ -121,76 +122,39 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
     	$window.location.href = $scope.url+"/list";
     }
     
-    /**
-     *Init
-     */
     
-
 	// Mapas
-
-	var myLocal = {lat: 0, lng: 0};
-
+ 
 	$scope.markers = [];
 
 	$scope.map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 15,
-		center: myLocal,
+		center: {lat: -15.397, lng: -47.644},
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
+	
+	
+	 $scope.adicionarPonto = function(item){
+	   $scope.listPontos.push(item);
+	 }
+	    
+
 	// Adiciona as marker no map com click
-	$scope.map.addListener('click', function(event){
-
-		$scope.dto = new Evento(); 
+	$scope.map.addListener('click', function(event, item){ 
+	   
+		$scope.dto = new Mapa();
+	    $scope.dto.latitude = //item.latitude;
+	    $scope.dto.longitude = //item.longitude;
 		
-		$scope.dto.descricao = $scope.descricao;
-		$scope.dto.latitude = event.latLng.lat();
-		$scope.dto.longitude = event.latLng.lng();
-		
-		$scope.position = {
-				lat: $scope.dto.latitude,	
-				lng: $scope.dto.longitude
-		}
-
-		$scope.addMarker($scope.position);
-
-	});
-	
-	$scope.map.addListener('dblclick', function(event){
-		$scope.marker.setMap(null);
-	 
-	});
-	
-	//Adcionar a mapa no array 
-	$scope.addMarker = function(myLocal){
-
 		$scope.marker = new google.maps.Marker({
 			map: $scope.map,
-			position: myLocal, 
-
+			position: {lat:$scope.dto.latitude, lng: $scope.dto.longitude} 
 		});
-		//$scope.markers.push($scope.marker);
-	}
+		
+		$scope.listPontos.push($scope.marker.position);	
+	});
+	
 
-
-
-	/*	$scope.set = function(map) {
-		map = $scope.map;
-		for (var i = 0; i < $scope.markers.length; i++) {
-			$scope.markers[i].setMap(map);
-		}
-	}
-
-	$scope.clear = function() {
-		$scope.set(null);
-	}
-
-	$scope.deletar = function() {
-		$scope.clear();
-	  $scope.markers = [];
-	} 
-
-	 */
-	// Mapas
 	var infoWindow = new google.maps.InfoWindow({map: $scope.map});
 
 	if (navigator.geolocation) {
@@ -208,10 +172,10 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 		}, function() {
 			handleLocationError(true, infoWindow, $scope.map.getCenter());
 		});
-	} else {
+	}else {
 		// Browser doesn't support Geolocation
 		alert("Browser não suporta geolocalocation");
-		handleLocationError(false, infoWindow, $scope.map.getCenter());
+        handleLocationError(false, infoWindow, $scope.map.getCenter());
 	}
 
 	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -220,8 +184,6 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 				'Error: O serviço de location falhou.' :
 		'Error: Seu browser não suporta geolocation.');
 	}
-    
-    
-    
+
       
 });

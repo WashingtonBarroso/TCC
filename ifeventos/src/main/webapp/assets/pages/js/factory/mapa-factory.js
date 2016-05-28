@@ -3,7 +3,6 @@ app.factory('Mapa', function(){
     	this.id = null;    	
     	this.latitude = 0;    	
     	this.longitude = 0;    	    	    	
-    	this.descricao = "";
     	this.ativo = true;
     }
 });

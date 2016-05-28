@@ -2,7 +2,7 @@
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="pt" ng-app="app" ng-controller="EventoFormController"
-	ng-init='setDTO(${dto}); setListOrganizador(${listOrganizador}); setListProgramacao(${listProgramacao});'>
+	ng-init='setDTO(${dto}); setListOrganizador(${listOrganizador}); setListProgramacao(${listProgramacao}); setListMapa(${listMapa});'>
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />
 <link href="assets/global/bootstrap-table/bootstrap-table.css"
@@ -239,32 +239,26 @@
 										</div>
 										<div class="tab-pane fade tab-margin" id="tab4">
 											<div class="form-group">
-												<div
-													ng-class="{'has-error':form.descricao.$invalid ,'has-success':form.descricao.$valid}">
-													<label class="control-label"> Descrição: <span
+													<label class="control-label"> Pontos: <span
 														class="required"> * </span>
 													</label>
-													<div class="row">
-														<div class="col-md-4">
-															<input class="form-control" name="descricao" type="text"
-																ng-model="descricao" value="{{dto.descricao}}" required
-																ng-maxlength="11"> <span class="help-block"
-																ng-show="form.descricao.$error.required"> <i
-																class="fa fa-warning"></i> Favor inserir o dado
-																requerido.
-															</span> <span class="help-block"
-																ng-show="form.descricao.$error.maxlength"> <i
-																class="fa fa-warning"></i> O dado informado é muito
-																grande.
-															</span>
-														</div>
+													<div class="form-group input-group">
+														<select ng-model="pontoSelect"
+															ng-options="mapa as mapa.descricao for mapa in mapas"
+															name="pontoSelect" class="form-control">
+														</select> <span class="input-group-btn">
+															<button class="btn btn-default" type="button">
+																<i class="fa fa-plus"
+																	ng-click="adicionarPonto(pontoSelect)"></i>
+															</button>
+														</span>
 													</div>
-												</div>
 											</div>
 											<!-- Mapa -->
 											<div id="map"
-												style="width: 1000px; height: 380px; margin-bottom: 1cm;"
-												ng-model="dto.latitude" ng-model="dto.longitude"></div>
+										style="width: 800px; height: 380px; margin-bottom: 1cm;"></div>
+									<!-- Fim mapa -->
+											
 											<!-- Fim mapa -->
 										</div>
 										<div class="tab-pane fade tab-margin" id="tab5">
@@ -355,8 +349,10 @@
 		src="assets/pages/js/factory/programacao-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/factory/tipo-programacao-factory.js"></script>
-    <script type="text/javascript"
+	<script type="text/javascript"
 		src="assets/pages/js/factory/palestrante-factory.js"></script>
+	<script type="text/javascript"
+		src="assets/pages/js/factory/mapa-factory.js"></script>
 
 	<!-- Page Controller -->
 	<script type="text/javascript"

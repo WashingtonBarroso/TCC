@@ -69,7 +69,7 @@ public class EventoController {
 		Gson  gson =  new Gson();
 		result.include("listOrganizador", gson.toJson(organizadorDao.getAll()));
 		result.include("listProgramacao", gson.toJson(programacaoDao.getAll()));
-		//result.include("listMapa", gson.toJson(mapaDao.getAll()));
+		result.include("listMapa", gson.toJson(mapaDao.getAll()));
 	}
 
 	@Get("/evento/form/{id}")
@@ -118,10 +118,17 @@ public class EventoController {
 			enderecoDao.save(dto.getEvento().getEndereco());
 			dao.save(dto.getEvento());
 			programacaoDao.removeByEventoId(dto.getEvento().getId());
+		
 			for (int i=0; i < dto.getEvento().getProgramacao().size(); i++){
 				dto.getEvento().getProgramacao().get(i).setEvento(dto.getEvento());
 				programacaoDao.save(dto.getEvento().getProgramacao().get(i));
 			}
+			
+			for	(int i=0; i<dto.getEvento().getOrganizadores().size(); i++){
+				dto.getEvento().getOrganizadores().get(i).setEvento(dto.getEvento());
+				organizadorDao.save(dto.getEvento().getOrganizadores().get(i));
+			}
+			
 			dao.commit();
 		}
 		catch(Exception e){

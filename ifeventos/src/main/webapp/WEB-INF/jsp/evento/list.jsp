@@ -130,6 +130,12 @@
     <!-- Factories  -->
 	<script type="text/javascript" src="assets/pages/js/factory/evento-factory.js"></script>
 	<script type="text/javascript" src="assets/pages/js/factory/endereco-factory.js"></script>
+	<script type="text/javascript" src="assets/pages/js/factory/organizador-factory.js"></script>
+    <script type="text/javascript" src="assets/pages/js/factory/tipo-organizador-factory.js"></script>
+    <script type="text/javascript" src="assets/pages/js/factory/programacao-factory.js"></script>
+	<script type="text/javascript" src="assets/pages/js/factory/tipo-programacao-factory.js"></script>
+	<script type="text/javascript" src="assets/pages/js/factory/palestrante-factory.js"></script>
+	<script type="text/javascript" src="assets/pages/js/factory/mapa-factory.js"></script>
 	
     <!-- Page Controller -->
 	<script type="text/javascript" src="assets/pages/js/controller/evento-list-controller.js"></script>
