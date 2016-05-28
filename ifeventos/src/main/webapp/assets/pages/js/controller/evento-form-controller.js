@@ -13,7 +13,12 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
     
     $scope.listOrganizadores = [];
     $scope.listProgramacao = [];
-    $scope.listPontos = []; 
+    $scope.listPontos = [];
+    
+    $scope.markers = [];
+    
+    $scope.map = '';
+    
     
     // Recebe uma lista de organizadores 
     $scope.setListOrganizador = function(listOrganizador){
@@ -121,40 +126,50 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
     $scope.cancel = function(){
     	$window.location.href = $scope.url+"/list";
     }
-    
-    
+        
 	// Mapas
  
-	$scope.markers = [];
-
-	$scope.map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 15,
-		center: {lat: -15.397, lng: -47.644},
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	});
-	
-	
-	 $scope.adicionarPonto = function(item){
+    $scope.initGoogleMap = function(){
+    	$scope.map = new google.maps.Map(document.getElementById('map'), {
+    		zoom: 15,
+    		center: {lat: -15.397, lng: -47.644},
+    		mapTypeId: google.maps.MapTypeId.ROADMAP
+    	});
+    	
+    	// Adiciona as marker no map com click
+    	$scope.map.addListener('click', function(event){
+    		var ponto = $scope.getGPS(event);
+    		$scope.dto.pontos.push(ponto);
+    		
+    		$scope.marker = new google.maps.Marker({
+    			map: $scope.map,
+    			position: {lat:ponto.latitude, lng: ponto.longitude} 
+    		});    			
+    	});
+    }
+    
+	$scope.adicionarPonto = function(item){
 	   $scope.listPontos.push(item);
-	 }
-	    
-
-	// Adiciona as marker no map com click
-	$scope.map.addListener('click', function(event, item){ 
-	   
-		$scope.dto = new Mapa();
-	    $scope.dto.latitude = //item.latitude;
-	    $scope.dto.longitude = //item.longitude;
-		
-		$scope.marker = new google.maps.Marker({
-			map: $scope.map,
-			position: {lat:$scope.dto.latitude, lng: $scope.dto.longitude} 
-		});
-		
-		$scope.listPontos.push($scope.marker.position);	
-	});
+	}
 	
-
+	
+	
+	$scope.getGPS = function(event){
+		var ponto = new Mapa(); 		
+		ponto.descricao = $scope.descricao;
+		ponto.latitude = event.latLng.lat();
+		ponto.longitude = event.latLng.lng();		
+		$scope.position = {
+				descricao: ponto.descricao,
+				lat: ponto.latitude,	
+				lng: ponto.longitude
+		}
+		$scope.addMarker($scope.position);
+		
+		return ponto;
+	}
+	
+	
 	var infoWindow = new google.maps.InfoWindow({map: $scope.map});
 
 	if (navigator.geolocation) {

@@ -82,7 +82,7 @@
 								<form id="form" name="form" role="form"
 									enctype="multipart/form-data" novalidate>
 									<div class="tab-content">
-										<div class="tab-pane fade tab-margin active in" id="tab1">
+										<div class="tab-pane fade tab-margin" id="tab1">
 											<div class="form-group"
 												ng-class="{'has-error':form.nome.$invalid ,'has-success':form.nome.$valid}">
 												<label class="control-label"> Evento: <span
@@ -219,7 +219,7 @@
 												</span>
 											</div>
 										</div>
-										<div class="tab-pane fade tab-margin" id="tab2">
+										<div class="tab-pane fade tab-margin active in" id="tab2">
 											<div class="form-group"
 												ng-class="{'has-error':form.imagem.$invalid ,'has-success':form.imagem.$valid}">
 												<label class="control-label">Imagem</label> <input

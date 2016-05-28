@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -21,6 +22,7 @@ public class Mapa extends AbstractEntity implements Serializable{
 	@Getter @Setter private String descricao;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "evento_id")
 	@Getter @Setter private Evento evento;
 
 	public Mapa() {

@@ -34,6 +34,7 @@ public class Programacao extends AbstractEntity implements Serializable {
 	@Getter @Setter private TipoProgramacao tipoProgramacao;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "evento_id")
 	@Getter @Setter private Evento evento;
 	
 	@ManyToOne @JoinColumn(name="palestrante_id")

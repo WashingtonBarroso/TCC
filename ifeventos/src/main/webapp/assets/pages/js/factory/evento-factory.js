@@ -1,15 +1,14 @@
-app.factory('Evento', function(Endereco, Organizador, Programacao, Mapa){    
-    return function(){    	
+app.factory('Evento', function(Endereco){    
+    return function(){
     	this.id = null;    	
     	this.nome = "";    	
     	this.local = "";    	
+    	this.site = "";    	
+    	this.imagem = "";
     	this.endereco = new Endereco();
-    	this.organizador = new Organizador();
-    	this.mapa = new Mapa();
     	this.organizadores = [];
     	this.programacoes = [];
-    	this.site = "";    	
-    	this.imagem = "";    	
+    	this.pontos = [];
     	this.ativo = true;
     }
 });
