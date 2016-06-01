@@ -3,8 +3,7 @@ app.factory('Palestrante', function(){
     	this.id = null;    	
     	this.nome = "";    	
     	this.resumo = "";    	
-    	this.titulo = "";
-    	this.url = "";    	    	
+    	this.titulo = "";  	    	
     	this.ativo = true;
     }
 });

@@ -216,9 +216,12 @@
 	<script type="text/javascript"
 		src="assets/pages/js/factory/tipo-programacao-factory.js"></script>
 	<script type="text/javascript"
-		src="assets/pages/js/controller/programacao-form-controller.js"></script>
-	<script type="text/javascript"
 		src="assets/pages/js/factory/palestrante-factory.js"></script>
+	
+	<!-- Page Factory -->	
+	<script type="text/javascript"
+		src="assets/pages/js/controller/programacao-form-controller.js"></script>
+
 </body>
 
 </html>

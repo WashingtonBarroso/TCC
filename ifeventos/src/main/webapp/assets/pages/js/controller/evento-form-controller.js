@@ -29,19 +29,21 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
     $scope.setListProgramacao = function(listProgramacao){
     	$scope.programacoes = listProgramacao;
     }
+  
+    $scope.adicionarOrganizador = function(organizador){
+    	$scope.listOrganizadores.push(organizador);
+    }
    
-    // Recebe uma lista de pontos mapa
-    $scope.setListMapa = function(listMapa){
-    	$scope.mapas = listMapa;
+    $scope.adicionarProgramacao = function(programacao){
+    	$scope.listProgramacao.push(programacao);
     }
     
-    $scope.adicionarOrganizador = function(item){
-    	$scope.listOrganizadores.push(item);
-    }
-   
-    $scope.adicionarProgramacao = function(item){
-    	$scope.listProgramacao.push(item);
-    }
+  /*  $scope.apagarOrganizador = function(organizador){
+    	$scope.listOrganizadores = organizador.filter(function(item){
+    	if(!organizador.selecionado) return organizador;
+    }); 
+    };*/
+      
     
 	$scope.uploadPic = function(file) {
 		file.upload = Upload.upload({
@@ -128,47 +130,27 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
     }
         
 	// Mapas
- 
-    $scope.initGoogleMap = function(){
-    	$scope.map = new google.maps.Map(document.getElementById('map'), {
-    		zoom: 15,
-    		center: {lat: -15.397, lng: -47.644},
-    		mapTypeId: google.maps.MapTypeId.ROADMAP
-    	});
-    	
-    	// Adiciona as marker no map com click
-    	$scope.map.addListener('click', function(event){
-    		var ponto = $scope.getGPS(event);
-    		$scope.dto.pontos.push(ponto);
-    		
-    		$scope.marker = new google.maps.Marker({
-    			map: $scope.map,
-    			position: {lat:ponto.latitude, lng: ponto.longitude} 
-    		});    			
-    	});
-    }
     
-	$scope.adicionarPonto = function(item){
-	   $scope.listPontos.push(item);
-	}
-	
-	
-	
-	$scope.getGPS = function(event){
-		var ponto = new Mapa(); 		
-		ponto.descricao = $scope.descricao;
-		ponto.latitude = event.latLng.lat();
-		ponto.longitude = event.latLng.lng();		
-		$scope.position = {
-				descricao: ponto.descricao,
-				lat: ponto.latitude,	
-				lng: ponto.longitude
-		}
-		$scope.addMarker($scope.position);
-		
-		return ponto;
-	}
-	
+    //var myCenter = new google.maps.LatLng(-15.397,-47.644);
+    
+    myCenter = {lat:-15.397, long:-47.644}
+    
+    $scope.initialize = function(){
+    	var prop = {
+    		zoom: 15,
+    		center: myCenter,
+    		mapTypeId: google.maps.MapTypeId.ROADMAP
+    	};
+    	
+    $scope.map = new google.maps.Map(document.getElementById('map'), prop); 	
+   
+    $scope.marker.setMap($scope.map);
+    
+    	// Adiciona as marker no map com click
+    $scope.map.addListener('click', function(event){	
+    $scope.marker = new google.maps.Marker({position:myCenter,});	
+    });
+    
 	
 	var infoWindow = new google.maps.InfoWindow({map: $scope.map});
 
@@ -199,6 +181,7 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 				'Error: O serviço de location falhou.' :
 		'Error: Seu browser não suporta geolocation.');
 	}
-
-      
+    }// fim maps
+    
+	//google.maps.event.addDomListener(infoWindow, 'load', initialize); 
 });

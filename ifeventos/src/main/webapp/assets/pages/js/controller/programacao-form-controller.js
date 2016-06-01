@@ -9,6 +9,7 @@ app.controller('ProgramacaoFormController', function($compile, $scope, $http, $w
     $scope.palestrantes = [];
     $scope.tiposProgramacao = [];  
     $scope.tipoProgramacaoId;
+    $scope.palestranteId;
     
     $scope.hora = {value: new Date()};
     $scope.dto.data = {value: new Date()};
@@ -38,6 +39,12 @@ app.controller('ProgramacaoFormController', function($compile, $scope, $http, $w
     	$scope.dto.tipoProgramacao = new TipoProgramacao();
     	$scope.dto.tipoProgramacao.descricao = "a";
     	$scope.dto.tipoProgramacao.id = $scope.tipoProgramacaoId; 
+ 
+    	$scope.dto.palestrante = new Palestrante();
+    	$scope.dto.palestrante.nome = "a";
+    	$scope.dto.palestrante.resumo = "a";
+    	$scope.dto.palestrante.titulo = "a";
+    	$scope.dto.palestrante.id = $scope.palestranteId;
     };
    
     $scope.save = function(){  

@@ -6,7 +6,7 @@ app.factory('Programacao', function(TipoProgramacao, Palestrante){
     	this.hora = new Date();    	
     	this.local = "";   	    	
     	this.tipoProgramacao = new TipoProgramacao();
-    	this.palestrante = new Palestrante;
+    	this.palestrante = new Palestrante();
     	this.ativo = true;
     }
 });
