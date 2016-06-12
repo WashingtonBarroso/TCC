@@ -11,7 +11,7 @@ app.controller('NoticiaFormController', function($compile, $scope, $http, $windo
 	 */  
     
     $scope.setDTO = function(dto){
-    	if (dto != "")
+    	if (dto != undefined)
     		$scope.dto = dto;
     }
     

@@ -18,17 +18,16 @@ public class Palestrante extends AbstractEntity implements Serializable {
 	@Getter @Setter private String nome;	
 	@Getter @Setter private String resumo;	
 	@Getter @Setter private String titulo;
-	@Getter @Setter private String url;
+	//@Getter @Setter private String url;
 
 	public Palestrante(){
 	}
 
-	public Palestrante(Long id, String nome, String resumo, String titulo, String url) {
+	public Palestrante(Long id, String nome, String resumo, String titulo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.resumo = resumo;
 		this.titulo = titulo;
-		this.url = url;
 	}
 }

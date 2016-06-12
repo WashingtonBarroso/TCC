@@ -14,7 +14,7 @@ public class ProgramacaoDAO extends DAO<Programacao, Long> {
 			id = Long.parseLong(params.getSearch());
 		}catch(Exception e){
 		};
-		return (List<Programacao>) this.getPageableList(params.getOffset(),"from Programacao pr where pr.local like :param or pr.id = :id order by pr."+params.getSort()+" "+params.getOrder(),
+		return (List<Programacao>) this.getPageableList(params.getOffset(),"from Programacao pr where pr.descricao like :param or pr.id = :id order by pr."+params.getSort()+" "+params.getOrder(),
 				"id",id,
 				"param","%"+params.getSearch()+"%");
 	}

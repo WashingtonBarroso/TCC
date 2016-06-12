@@ -5,38 +5,25 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 	 */    
     $scope.url = 'evento';
     $scope.dto = new Evento();
+    
     $scope.organizadores = [];
-    $scope.programacoes = [];
- 
-    $scope.mapas = [];
-    $scope.descricao; 
     
-    $scope.listOrganizadores = [];
-    $scope.listProgramacao = [];
-    $scope.listPontos = [];
+    //result.include("listOrganizador", gson.toJson(organizadorDao.getAll()));
+	//result.include("listProgramacao", gson.toJson(programacaoDao.getAll()));
+	//result.include("listTpProgramacao",gson.toJson(tipoProgramacaoDao.getAll()));
+	//result.include("listPalestrante"
     
-    $scope.markers = [];
-    
-    $scope.map = '';
-    
-    
+      
     // Recebe uma lista de organizadores 
     $scope.setListOrganizador = function(listOrganizador){
     	$scope.organizadores = listOrganizador;
     }
     
-    // Recebe uma lista de programacao 
-    $scope.setListProgramacao = function(listProgramacao){
-    	$scope.programacoes = listProgramacao;
+    $scope.adicionarOrganizador = function(organizador){
+    	$scope.dto.organizadores.push(angular.copy(organizador));
+    	delete $scope.organizador;
     }
   
-    $scope.adicionarOrganizador = function(organizador){
-    	$scope.listOrganizadores.push(organizador);
-    }
-   
-    $scope.adicionarProgramacao = function(programacao){
-    	$scope.listProgramacao.push(programacao);
-    }
     
   /*  $scope.apagarOrganizador = function(organizador){
     	$scope.listOrganizadores = organizador.filter(function(item){
@@ -69,7 +56,7 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
      */
     
     $scope.setDTO = function(dto){
-    	if (dto != "")
+    	if (dto != undefined)
     		$scope.dto = dto;
     }
     
@@ -77,7 +64,7 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
     	$scope.dto = new Evento();
     }
     
-    $scope.save = function(file){
+    $scope.save = function(){
     	console.log($scope.dto);
     	$http.post($scope.url+"/save", $scope.dto)
 		.then(function success(response){
@@ -129,29 +116,75 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
     	$window.location.href = $scope.url+"/list";
     }
         
-	// Mapas
+    //tab4
     
-    //var myCenter = new google.maps.LatLng(-15.397,-47.644);
     
-    myCenter = {lat:-15.397, long:-47.644}
+  /*  $scope.setListPalestrante = function(listPalestrante){
+    	$scope.palestrantes = listPalestrante; 
+    }
     
-    $scope.initialize = function(){
-    	var prop = {
-    		zoom: 15,
-    		center: myCenter,
-    		mapTypeId: google.maps.MapTypeId.ROADMAP
-    	};
-    	
-    $scope.map = new google.maps.Map(document.getElementById('map'), prop); 	
-   
-    $scope.marker.setMap($scope.map);
+    $scope.setListTpProgramacao = function(listTpProgramacao){	
+    	$scope.tiposProgramacao = listTpProgramacao;
+    }*/
     
-    	// Adiciona as marker no map com click
-    $scope.map.addListener('click', function(event){	
-    $scope.marker = new google.maps.Marker({position:myCenter,});	
-    });
+  
+    $scope.adicionarProgramacao = function(programacao){
+    	$scope.dto.programacoes.push(angular.copy(programacao));
+    	delete $scope.programacao;
+    };
     
+    $scope.apagarProgramacao = function(listProgramacao){
+     	$scope.dto.programacoes = listProgramacao.filter(function(programacao){
+     		if(!programacao.selecionado) return programacao;
+     	});
+    };
+    // fim tab4
+    
+    // Mapas
+    
+    var myLocal = {lat: 0, lng: 0};
+
+	$scope.map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 15,
+		center: myLocal,
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+
 	
+	// Adiciona as marker no map com click
+	$scope.map.addListener('click', function(event){
+
+		//latitude = event.latLng.lat();
+	//	longitude = event.latLng.lng();
+		
+		$scope.mapa = {
+				descricao: $scope.mapa.descricao,
+				lat: event.latLng.lat(),	
+				lng: event.latLng.lng()
+		}
+
+		$scope.addMarker($scope.mapa);
+	});
+	
+	
+	 $scope.adicionarMapa = function(mapa){
+		 console.log($scope.dto);
+		 console.log($scope.dto.mapas);		 
+		 $scope.dto.mapas.push(angular.copy(mapa));
+	     delete $scope.mapa;
+	 };
+	
+	 $scope.apagarMapa = function(listMapa){
+		$scope.dto.mapas = listMapa.filter(function (mapa){
+			if(!mapa.selecionado) return mapa;
+		}); 
+	 };
+	 
+    // adiciona marcação
+	$scope.addMarker = function(myLocal){
+		$scope.marker = new google.maps.Marker({map: $scope.map,position: myLocal,});
+	}
+
 	var infoWindow = new google.maps.InfoWindow({map: $scope.map});
 
 	if (navigator.geolocation) {
@@ -169,10 +202,10 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 		}, function() {
 			handleLocationError(true, infoWindow, $scope.map.getCenter());
 		});
-	}else {
+	} else {
 		// Browser doesn't support Geolocation
 		alert("Browser não suporta geolocalocation");
-        handleLocationError(false, infoWindow, $scope.map.getCenter());
+		handleLocationError(false, infoWindow, $scope.map.getCenter());
 	}
 
 	function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -181,7 +214,5 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 				'Error: O serviço de location falhou.' :
 		'Error: Seu browser não suporta geolocation.');
 	}
-    }// fim maps
     
-	//google.maps.event.addDomListener(infoWindow, 'load', initialize); 
 });

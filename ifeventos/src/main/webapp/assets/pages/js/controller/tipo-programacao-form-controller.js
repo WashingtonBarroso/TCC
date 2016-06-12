@@ -11,7 +11,7 @@ app.controller('TipoProgramacaoFormController', function($compile, $scope, $http
      */
     
     $scope.setDTO = function(dto){
-    	if (dto != "")
+    	if (dto != undefined)
     		$scope.dto = dto;
     }
    
@@ -24,7 +24,8 @@ app.controller('TipoProgramacaoFormController', function($compile, $scope, $http
     	$scope.dto = new TipoProgramacao();
     }
     
-    $scope.save = function(){    	
+    $scope.save = function(){
+    	console.log($scope.dto);
     	$http.post($scope.url+"/save", $scope.dto)
     		.then(function success(response){
     			console.log("response: "+response);

@@ -72,7 +72,6 @@
 							<div class="col-lg-12">
 								<div id="div_alert"></div>
 								<form id="form" name="form" role="form" novalidate>
-								
 										<div class="form-group">
 										<div
 											ng-class="{'has-error':form.descricao.$invalid ,'has-success':form.descricao.$valid}">
@@ -146,8 +145,8 @@
 											</label>
 											<div class="input-icon right">
 												<select class="form-control" name="palestrante"
-													ng-model="palestranteId">
-													<option value="{{palestrante.id}}" ng-repeat="palestrante in palestrantes">{{palestrante.nome}}</option>
+													ng-model="dto.palestrante" ng-options="palestrante as palestrante.nome for palestrante in palestrantes">
+													<option value="">Selecione</option>
 												</select>
 											</div>
 										</div>
@@ -157,12 +156,11 @@
 											</label>
 											<div class="input-icon right">
 												<select class="form-control" name="tipoProgramacao"
-													ng-model="tipoProgramacaoId">
-													<option value="{{tipo.id}}" ng-repeat="tipo in tiposProgramacao">{{tipo.descricao}}</option>
+													ng-model="dto.tipoProgramacao" ng-options="tipoProgramacao as tipoProgramacao.descricao for tipoProgramacao in tiposProgramacao">
+													<option value="">Selecione</option>
 												</select>
 											</div>
 										</div>
-
 									<div class="form-group" style="float: right;">
 										<div id="newButton" class="btn btn-primary"
 											ng-click="newForm()">

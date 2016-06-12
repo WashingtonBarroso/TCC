@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="pt" ng-app="app" ng-controller="EventoFormController"
-	ng-init='setDTO(${dto}); setListOrganizador(${listOrganizador}); setListProgramacao(${listProgramacao});'>
+<html lang="pt" ng-app="app" ng-controller="EventoFormController" ng-init='setDTO(${dto}); setListOrganizador(${listOrganizador});'>
+
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />
 <link href="assets/global/bootstrap-table/bootstrap-table.css"
@@ -13,7 +13,6 @@
 	rel="stylesheet" />
 <link href="assets/global/bootstrap-wizard/prettify.css"
 	rel="stylesheet" />
-
 </head>
 
 <body>
@@ -66,6 +65,9 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">Evento</h1>
+					<pre>
+					{{dto}}
+					</pre>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -83,17 +85,18 @@
 												<ul class="nav nav-pills">
 													<li><a href="#tab1" data-toggle="tab">Dado do
 															Evento</a></li>
-													<li><a href="#tab2" data-toggle="tab">Imagem</a></li>
-													<li><a href="#tab4" data-toggle="tab">Mapa</a></li>
-													<li><a href="#tab5" data-toggle="tab">Organização</a></li>
-													<li><a href="#tab6" data-toggle="tab">Programação</a></li>
+													<li><a href="#tab2" data-toggle="tab">Mapa</a></li>
+													<li><a href="#tab3" data-toggle="tab">Organização</a></li>
+													<li><a href="#tab4" data-toggle="tab">Programação</a></li>
+													<li><a href="#tab5" data-toggle="tab">Imagem</a></li>
 												</ul>
 											</div>
 										</div>
 									</div>
-									<form id="form" name="form" role="form"
-										enctype="multipart/form-data" novalidate>
+									<form id="form" name="form" role="form" novalidate>
+										<!-- enctype="multipart/form-data" -->
 										<div class="tab-content">
+											<!-- Init tab1 -->
 											<div class="tab-pane fade tab-margin" id="tab1">
 												<div class="form-group"
 													ng-class="{'has-error':form.nome.$invalid ,'has-success':form.nome.$valid}">
@@ -238,7 +241,305 @@
 													</span>
 												</div>
 											</div>
+											
+											<!-- Exit tab1 -->
+
+											<!-- Init tab2 -->
 											<div class="tab-pane fade tab-margin active in" id="tab2">
+												<div class="form-group">
+													<div
+														ng-class="{'has-error':form.descricao.$invalid ,'has-success':form.descricao.$valid}">
+														<label class="control-label"> Descrição: <span
+															class="required"> * </span>
+														</label>
+														<div class="row">
+															<div class="col-md-4">
+																<input class="form-control" name="descricao" type="text"
+																	ng-model="mapa.descricao" value="{{mapa.descricao}}"
+																	required ng-maxlength="11"> <span
+																	class="help-block"
+																	ng-show="form.descricao.$error.required"> <i
+																	class="fa fa-warning"></i> Favor inserir o dado
+																	requerido.
+																</span> <span class="help-block"
+																	ng-show="form.descricao.$error.maxlength"> <i
+																	class="fa fa-warning"></i> O dado informado é muito
+																	grande.
+																</span>
+															</div>
+														</div>
+													</div>
+												</div>
+												<p>{{mapa}}</p>
+												<!-- Mapa -->
+												
+												<div id="map" class="img-responsive"
+													style="width: 500px; height: 380px; margin-bottom: 1cm;"
+													ng-init="initialize()"></div>
+					
+												<!-- Fim mapa -->
+											
+											<button class="btn btn-success" type="button" ng-click="adicionarMapa(mapa)">Adicionar</button>
+										    <button class="btn btn-danger" type="button" ng-click="apagarMapa(listMapa)">Remover</button>
+										   <br>
+                                                    <!-- /.row -->
+												<div class="row">
+													<div class="col-lg-12">
+														<div class="panel-body">
+															<div class="table-responsive">
+																<table
+																	class="table table-striped table-bordered table-hover"
+																	id="dataTablesMapa" ng-show="dto.mapas.length>0">
+																	<thead>
+																		<tr>
+																		    <th></th>
+																			<th>Descrição</th>
+																			<th>Latitude</th>
+																			<th>Longitude</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr ng-repeat="mapa in dto.mapas track by $index">
+																			<td><input type="checkbox" ng-model="mapa.selecionado"></td>
+																			<td>{{mapa.descricao}}</td>
+																			<td>{{mapa.lat}}</td>
+																			<td>{{mapa.lng}}</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+															<!-- /.table-responsive -->
+														</div>
+														<!-- /.panel-body -->
+													</div>
+													<!-- /.col-lg-12 -->
+												</div>
+												<!-- /.row -->							
+                                          
+                                            </div>
+											<!-- Exit tab2 -->
+
+                                            <!-- Init tab3 -->
+											<div class="tab-pane fade tab-margin" id="tab3">
+												
+												<div class="form-group input-group">
+													<select ng-model="organizador"
+														ng-options="organizador as organizador.nome for organizador in organizadores"
+														name="organizador" class="form-control">
+														<option value="">Selecione</option>
+													</select>
+													<span class="input-group-btn">
+														<button class="btn btn-success" type="button">
+															<i class="fa fa-plus"
+																ng-click="adicionarOrganizador(organizador)"></i>
+														</button>
+													</span> 
+												</div>                                              
+												<!-- /.row -->
+												<div class="row">
+													<div class="col-lg-12">
+														<div class="panel-body">
+															<div class="table-responsive">
+																<table
+																	class="table table-striped table-bordered table-hover"
+																	id="dataTablesOrganizador" ng-show="listOrganizadores.length>0">
+																	<thead>
+																		<tr>
+																		    <th></th>
+																			<th data-field="nome">Nome</th>
+																			<th data-field="cargo">Cargo</th>
+																			<th data-field="area">Área</th>
+																			<th data-field="tipoOrganizador">Tipo Organizador</th>
+																		</tr>
+																	</thead>
+																	<!-- <tbody>
+																		<tr ng-repeat="organizador in listOrganizadores">
+																			<td><input type="checkbox" ng-model="organizador.selecionado"></td>
+																			<td>{{organizador.nome}}</td>
+																			<td>{{organizador.cargo}}</td>
+																			<td>{{organizador.area}}</td>
+																			<td>{{organizador.tipoOrganizador.descricao}}</td>
+																		</tr>
+																	</tbody> -->
+																</table>
+															</div>
+															<!-- /.table-responsive -->
+														</div>
+														<!-- /.panel-body -->
+													</div>
+													<!-- /.col-lg-12 -->
+												</div>
+												<!-- /.row -->										
+											</div>
+										    <!-- Exit tab3 -->
+										<!-- Início tab4 -->
+										 <div class="tab-pane fade tab-margin" id="tab4" ng-controller="ProgramacaoFormController" ng-init='setListTpProgramacao(${listTpProgramacao}); setListPalestrante(${listPalestrante});'>
+											<!-- /.row -->
+												<div class="row">
+													<div class="col-lg-12">
+														<div class="panel-body">
+															<div class="row">
+																<div class="col-lg-12">
+																	<div id="div_alert"></div>
+																		<div class="form-group">
+																			<div ng-class="{'has-error':form.descricao.$invalid ,'has-success':form.descricao.$valid}">
+																				<label class="control-label"> Descrição: <span
+																					class="required"> * </span>
+																				</label>
+																				<div class="input-icon right">
+																					<input class="form-control"
+																						placeholder="Descreva a programação"
+																						name="descricao" type="text"
+																						ng-model="programacao.descricao" required
+																						ng-maxlength="150"> <span
+																						class="help-block"
+																						ng-show="form.local.$error.required"> <i
+																						class="fa fa-warning"></i> Favor inserir o dado
+																						requerido.
+																					</span> <span class="help-block"
+																						ng-show="form.local.$error.maxlength"> <i
+																						class="fa fa-warning"></i> O dado informado é
+																						muito grande.
+																					</span>
+																				</div>
+																			</div>
+																		</div>
+
+																		<div class="form-group">
+																			<div
+																				ng-class="{'has-error':form.local.$invalid ,'has-success':form.local.$valid}">
+																				<label class="control-label"> Local: <span
+																					class="required"> * </span>
+																				</label>
+																				<div class="input-icon right">
+																					<input class="form-control"
+																						placeholder="Digite o local" name="local"
+																						type="text" ng-model="programacao.local" required
+																						ng-maxlength="20"> <span
+																						class="help-block"
+																						ng-show="form.local.$error.required"> <i
+																						class="fa fa-warning"></i> Favor inserir o dado
+																						requerido.
+																					</span> <span class="help-block"
+																						ng-show="form.local.$error.maxlength"> <i
+																						class="fa fa-warning"></i> O dado informado é
+																						muito grande.
+																					</span>
+																				</div>
+																			</div>
+																		</div>
+
+																		<div class="form-group">
+																			<div
+																				ng-class="{'has-error':form.data.$invalid ,'has-success':form.data.$valid}">
+																				<label class="control-label"> Data: <span
+																					class="required"> * </span>
+																				</label> <input type="date" name="data" class="form-control"
+																					ng-model="programacao.data.value"
+																					value="{{programacao.data.value}}" required> <span
+																					class="help-block"
+																					ng-show="form.data.$error.required"> <i
+																					class="fa fa-warning"></i> Favor inserir o dado
+																					requerido.
+																				</span>
+																			</div>
+																		</div>
+
+																		<div class="form-group">
+																			<div
+																				ng-class="{'has-error':form.hora.$invalid ,'has-success':form.hora.$valid}">
+																				<label class="control-label"> Hora: <span
+																					class="required"> * </span>
+																				</label> <input type="time" name="hora" class="form-control"
+																					ng-model="programacao.hora.value"
+																					value="{{programacao.hora.value}}" required> <span
+																					class="help-block"
+																					ng-show="form.hora.$error.required"> <i
+																					class="fa fa-warning"></i> Favor inserir o dado
+																					requerido.
+																				</span>
+																			</div>
+																		</div>
+																		<div class="form-group">
+																			<label class="control-label"> Palestrante: <span
+																				class="required"> * </span>
+																			</label>
+																			<div class="input-icon right">
+																				<select class="form-control" name="palestrante"
+																					ng-model="programacao.palestrante" ng-options="palestrante as palestrante.nome for palestrante in palestrantes">
+																					<option value="">Selecione</option>
+																				</select>
+																			</div>
+																		</div>
+																		<div class="form-group">
+																			<label class="control-label"> Tipo
+																				Programação: <span class="required"> * </span>
+																			</label>
+																			<div class="input-icon right">
+																				<select class="form-control" name="tipoProgramacao"
+																					ng-model="programacao.tipoProgramacao" ng-options="tipoProgramacao as tipoProgramacao.descricao for tipoProgramacao in tiposProgramacao">
+																					<option value="">Selecione</option>
+																				</select>
+																			</div>
+																		</div>
+																		<button class="btn btn-success" type="button" ng-click="adicionarProgramacao(programacao)">Adicionar</button>
+																		<button class="btn btn-danger" type="button" ng-click="apagarProgramacao(listProgramacao)">Remover</button>
+																	    <br>
+																</div>
+																
+															</div>
+														</div>
+													<!-- /.col-lg-12 -->	    	
+													</div>
+												</div>
+												<!-- /.row -->
+                                                  <!-- /.row -->
+												<div class="row">
+													<div class="col-lg-12">
+														<div class="panel-body">
+															<div class="table-responsive">
+																<table
+																	class="table table-striped table-bordered table-hover"
+																	id="dataTablesProgramacao" ng-show="programacoes.length>0">
+																	<thead>
+																		<tr>
+																		    <th></th>
+																			<th>Descrição</th>
+																			<th>Data</th>
+																			<th>Hora</th>
+																			<th>Local</th>
+																			<th>Palestrante</th>
+																			<th>Tipo Programação</th>		
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr ng-repeat="programacao in programacoes track by $index">
+																			<td><input type="checkbox" ng-model="programacao.selecionado"></td>
+																			<td>{{programacao.descricao}}</td>
+																			<td>{{programacao.data.value | date: 'dd.MM.y'}}</td>
+																			<td>{{programacao.hora.value | date: 'h:mm'}}</td>
+																			<td>{{programacao.local}}</td>
+																			<td>{{programacao.palestrante.nome}}</td>
+																			<td>{{programacao.tipoProgramacao.descricao}}</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+															<!-- /.table-responsive -->
+														</div>
+														<!-- /.panel-body -->
+													</div>
+													<!-- /.col-lg-12 -->
+												</div>
+												<!-- /.row -->
+										   
+										</div>
+										<!-- Exit tab4 -->
+															
+										
+											<!-- Início tab 5  -->
+											<!-- <div class="tab-pane fade tab-margin" id="tab5">
+													
 												<div class="form-group"
 													ng-class="{'has-error':form.imagem.$invalid ,'has-success':form.imagem.$valid}">
 													<label class="control-label">Imagem</label> <input
@@ -255,129 +556,7 @@
 														<i class="fa fa-times"></i> Remover
 													</div>
 												</div>
-											</div>
-											<div class="tab-pane fade tab-margin" id="tab4">
-												<div class="form-group">
-													<label class="control-label"> Pontos: <span
-														class="required"> * </span>
-													</label>
-												</div>
-												<!-- Mapa -->
-												<div id="map"
-													style="width: 800px; height: 380px; margin-bottom: 1cm;"></div>
-												<!-- Fim mapa -->
-											</div>
-										
-											<!-- Início tab 5  -->
-											<div class="tab-pane fade tab-margin" id="tab5">
-												<div class="form-group input-group">
-													<select ng-model="organizador"
-														ng-options="organizador as organizador.nome for organizador in organizadores"
-														name="organizador" class="form-control">
-														<option value="">Selecione</option>
-													</select>
-													<span class="input-group-btn">
-														<button class="btn btn-success" type="button">
-															<i class="fa fa-plus"
-																ng-click="adicionarOrganizador(organizador)"></i>
-														</button>
-													</span> 
-												</div>
-
-												<!-- /.row -->
-												<div class="row">
-													<div class="col-lg-12">
-														<div class="panel-body">
-															<div class="table-responsive">
-																<table
-																	class="table table-striped table-bordered table-hover"
-																	id="dataTablesOrganizador">
-																	<thead>
-																		<tr>
-																		    <th></th>
-																			<th>Nome</th>
-																			<th>Cargo</th>
-																			<th>Área</th>
-																			<th>Tipo Organizador</th>
-																		</tr>
-																	</thead>
-																	<tbody>
-																		<tr ng-repeat="organizador in listOrganizadores">
-																			<td><input type="checkbox" ng-model="organizador.selecionado"></td>
-																			<td>{{organizador.nome}}</td>
-																			<td>{{organizador.cargo}}</td>
-																			<td>{{organizador.area}}</td>
-																			<td>{{organizador.tipoOrganizador.descricao}}</td>
-																		</tr>
-																	</tbody>
-																</table>
-															</div>
-															<!-- /.table-responsive -->
-														</div>
-														<!-- /.panel-body -->
-													</div>
-													<!-- /.col-lg-12 -->
-												</div>
-												<!-- /.row -->
-
-											</div>
-											<!-- Fim tab 5 -->
-
-											<!-- Fim tab 6 -->
-											<div class="tab-pane fade tab-margin" id="tab6">
-												<div class="form-group input-group">
-													<select ng-model="programacao"
-														ng-options="programacao as programacao.local for programacao in programacoes"
-														name="programacao" class="form-control">
-														<option value="">Selecione</option>
-													</select> <span class="input-group-btn">
-														<button class="btn btn-success" type="button">
-															<i class="fa fa-plus"
-																ng-click="adicionarProgramacao(programacao)"></i>
-														</button>
-													</span>
-												</div>
-                                                  <!-- /.row -->
-												<div class="row">
-													<div class="col-lg-12">
-														<div class="panel-body">
-															<div class="table-responsive">
-																<table
-																	class="table table-striped table-bordered table-hover"
-																	id="dataTablesProgramacao">
-																	<thead>
-																		<tr>
-																		    <th></th>
-																			<th>Descrição</th>
-																			<th>Data</th>
-																			<th>Hora</th>
-																			<th>Local</th>
-																			<th>Palestrante</th>
-																			<th>Tipo Programação</th>
-																			
-																		</tr>
-																	</thead>
-																	<tbody>
-																		<tr ng-repeat="programacao in listProgramacao">
-																			<td><input type="checkbox" ng-model="organizador.selecionado"></td>
-																			<td>{{programacao.descricao}}</td>
-																			<td>{{programacao.data}}</td>
-																			<td>{{programacao.hora}}</td>
-																			<td>{{programacao.local}}</td>
-																			<td>{{programacao.palestrante.nome}}</td>
-																			<td>{{programacao.tipoProgramacao.descricao}}</td>
-																		</tr>
-																	</tbody>
-																</table>
-															</div>
-															<!-- /.table-responsive -->
-														</div>
-														<!-- /.panel-body -->
-													</div>
-													<!-- /.col-lg-12 -->
-												</div>
-												<!-- /.row -->
-
+												 -->
                                                 <!-- Grup button  -->
 												<div class="form-group" style="float: right;">
 													<div id="newButton" class="btn btn-primary"
@@ -385,7 +564,7 @@
 														<i class="fa fa-file-o"></i> Limpar
 													</div>
 													<div id="saveButton" class="btn btn-success"
-														ng-click="save()" ng-disabled="form.$invalid">
+														ng-click="save()"> <!-- ng-disabled="form.$invalid" -->
 														<i class="fa fa-check"></i> Salvar
 													</div>
 													<div id="removeButton" class="btn btn-danger"
@@ -399,8 +578,9 @@
 												</div>
 												<!-- Fim button -->
 											</div>
-											<!-- Fim tab 6 -->
-											
+											<!-- Fim tab 5 -->
+							              </form>
+							              				
 											<!-- Steps wizard -->
 											<ul class="pager wizard">
 												<li class="previous first" style="display: none;"><a
@@ -414,8 +594,7 @@
 										</div>
 								</div>
 							</div>
-
-							</form>
+				
 						</div>
 					</div>
 
@@ -442,9 +621,15 @@
 		src="assets/global/bootstrap-table/extensions/angular/bootstrap-table-angular.min.js"></script>
 	<script type="text/javascript"
 		src="assets/global/bootstrap-table/locale/bootstrap-table-pt-BR.min.js"></script>
+    <script> $(function (){
+    	$('#dataTablesOrganizador').bootstrapTable({
+    	data:listOrganizadores
+    });
+    });
+    </script>
 
 	<!--  Google Maps -->
-	<script src="http://maps.googleapis.com/maps/api/js" async defer></script>
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
 
 	<!-- Factories  -->
 	<script type="text/javascript"
@@ -467,6 +652,8 @@
 	<!-- Page Controller -->
 	<script type="text/javascript"
 		src="assets/pages/js/controller/evento-form-controller.js"></script>
+    <script type="text/javascript"
+		src="assets/pages/js/controller/programacao-form-controller.js"></script>
 
 	<!-- Boostraps Wizard  -->
 	<script src="http://code.jquery.com/jquery-latest.js"></script>

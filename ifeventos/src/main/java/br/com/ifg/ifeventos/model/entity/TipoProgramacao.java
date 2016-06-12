@@ -15,8 +15,10 @@ public class TipoProgramacao extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Getter @Setter private String descricao;
+	
 	public TipoProgramacao() {
 	}
+	
 	public TipoProgramacao(Long id, String descricao) {
 		super();
 		this.id = id;

@@ -13,17 +13,17 @@ public class OrganizadorDTO {
 	@Getter @Setter
 	private Organizador organizador;
 	@Getter @Setter
-	private List<TipoOrganizador> tipos;
+	private List<TipoOrganizador> tiposOrganizador;
 
 	public OrganizadorDTO() {
 		this.organizador = new Organizador();
-		this.tipos = new ArrayList<TipoOrganizador>();
+		this.tiposOrganizador = new ArrayList<TipoOrganizador>();
 	}
 
-	public OrganizadorDTO(Organizador organizador, List<TipoOrganizador> tipos) {
+	public OrganizadorDTO(Organizador organizador, List<TipoOrganizador> tiposOrganizador) {
 		super();
 		this.organizador = organizador;
-		this.tipos = tipos;
+		this.tiposOrganizador = tiposOrganizador;
 	}
 
 }

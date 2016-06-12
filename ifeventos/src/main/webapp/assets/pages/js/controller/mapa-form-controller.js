@@ -11,8 +11,8 @@ app.controller('MapaFormController', function($compile, $scope, $http, $window, 
 	 */  
 
 	$scope.setDTO = function(dto){
-		if (dto != "")
-			$scope.dto = dto;
+		if (dto != undefined)
+    		$scope.dto = dto;
 	}
 
 	$scope.newForm = function(){
@@ -91,11 +91,7 @@ app.controller('MapaFormController', function($compile, $scope, $http, $window, 
 	//Adcionar a mapa no array 
 	$scope.addMarker = function(myLocal){
 
-		$scope.marker = new google.maps.Marker({
-			map: $scope.map,
-			position: myLocal, 
-
-		});
+		$scope.marker = new google.maps.Marker({map: $scope.map,position: myLocal,});
 		//$scope.markers.push($scope.marker);
 	}
 

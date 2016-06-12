@@ -4,11 +4,10 @@ app.factory('Evento', function(Endereco){
     	this.nome = "";    	
     	this.local = "";    	
     	this.site = "";    	
-    	this.imagem = "";
     	this.endereco = new Endereco();
     	this.organizadores = [];
     	this.programacoes = [];
-    	this.pontos = [];
+    	this.mapas = [];
     	this.ativo = true;
     }
 });

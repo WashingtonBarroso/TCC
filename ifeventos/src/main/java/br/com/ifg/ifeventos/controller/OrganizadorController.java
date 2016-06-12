@@ -16,7 +16,6 @@ import br.com.caelum.vraptor.serialization.gson.WithoutRoot;
 import br.com.caelum.vraptor.view.Results;
 import br.com.ifg.ifeventos.dto.BootstrapTableDTO;
 import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
-import br.com.ifg.ifeventos.dto.OrganizadorDTO;
 import br.com.ifg.ifeventos.model.dao.impl.OrganizadorDAO;
 import br.com.ifg.ifeventos.model.dao.impl.TipoOrganizadorDAO;
 import br.com.ifg.ifeventos.model.entity.Organizador;
@@ -69,15 +68,15 @@ public class OrganizadorController {
 
 	@Consumes(value = "application/json", options = WithoutRoot.class)
 	@Post("/organizador/save")
-	public void save(OrganizadorDTO dto){
+	public void save(Organizador dto){
 		try{
-			dao.save(dto.getOrganizador());
+			dao.save(dto);
 			dao.commit();
 		}
 		catch(Exception e){
 			dao.rollback();
 			e.printStackTrace();
-			dto = new OrganizadorDTO();
+			dto = new Organizador();
 		}
 		result.use(Results.json())
 		.withoutRoot()

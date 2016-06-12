@@ -14,9 +14,8 @@ app.controller('OrganizadorFormController', function($compile, $scope, $http, $w
 	 */  
     
     $scope.setDTO = function(dto){
-    	if (dto != "")
-    		$scope.dto = dto; 
-   
+    	if (dto != undefined)
+    		$scope.dto = dto;
     }
     
    

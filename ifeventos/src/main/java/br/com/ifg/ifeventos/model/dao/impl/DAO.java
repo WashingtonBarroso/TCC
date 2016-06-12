@@ -27,7 +27,6 @@ public class DAO<T, PK> implements IDAO<T, PK> {
 	@Getter @Setter
 	Integer pageSize = 10;
 	
-
 	/*
 	 * PRIVATE METHODS
 	 */

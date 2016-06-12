@@ -5,21 +5,15 @@ app.controller('ProgramacaoFormController', function($compile, $scope, $http, $w
 	 */    
     $scope.url = 'programacao';
     $scope.dto = new Programacao();
-    
     $scope.palestrantes = [];
     $scope.tiposProgramacao = [];  
-    $scope.tipoProgramacaoId;
-    $scope.palestranteId;
-    
-    $scope.hora = {value: new Date()};
-    $scope.dto.data = {value: new Date()};
     
     /**
 	 *Functions
 	 */  
     
     $scope.setDTO = function(dto){
-    	if (dto != "")
+    	if (dto != undefined)
     		$scope.dto = dto;
     }
     
@@ -34,21 +28,8 @@ app.controller('ProgramacaoFormController', function($compile, $scope, $http, $w
     $scope.newForm = function(){
     	$scope.dto = new Programacao();
     }
-    
-    $scope.fillForm = function(){
-    	$scope.dto.tipoProgramacao = new TipoProgramacao();
-    	$scope.dto.tipoProgramacao.descricao = "a";
-    	$scope.dto.tipoProgramacao.id = $scope.tipoProgramacaoId; 
- 
-    	$scope.dto.palestrante = new Palestrante();
-    	$scope.dto.palestrante.nome = "a";
-    	$scope.dto.palestrante.resumo = "a";
-    	$scope.dto.palestrante.titulo = "a";
-    	$scope.dto.palestrante.id = $scope.palestranteId;
-    };
    
     $scope.save = function(){  
-    	$scope.fillForm();
     	$http.post($scope.url+"/save", $scope.dto)
 		.then(function success(response){
 			console.log("response: "+response);

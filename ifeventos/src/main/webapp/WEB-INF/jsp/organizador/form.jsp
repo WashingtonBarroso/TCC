@@ -129,8 +129,8 @@
 											</label>
 											<div class="input-icon right">
 												<select class="form-control" name="tipoOrganizador"
-													ng-model="tipoOrganizadorId">
-													<option value="{{tipo.id}}" ng-repeat="tipo in tiposOrganizadores">{{tipo.descricao}}</option>
+													ng-model="dto.tipoOrganizador" ng-options="tipoOrganizador as tipoOrganizador.descricao for tipoOrganizador in tiposOrganizadores">
+													<option value="">Selecione</option>
 												</select>
 											</div>
 										</div>

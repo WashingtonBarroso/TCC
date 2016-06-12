@@ -93,9 +93,11 @@
 									    <tr>
 									    	<th data-field="state" data-checkbox="true"></th>
 									        <th class="col-xs-1" data-field="id" data-sortable="true">Código</th>
-									        <th data-field="nome" data-sortable="true">Data</th>						        
-									        <th data-field="cargo" data-sortable="true">Hora<th>
-									       <th data-field="area" data-sortable="true">Local<th>
+									        <th data-field="data" data-sortable="true">Data</th>						        
+									        <th data-field="hora" data-sortable="true">Hora<th>
+									        <th data-field="local" data-sortable="true">Local<th>
+									        <th data-field="tipoProgramacao.descricao" data-sortable="true">Tipo Programação<th>
+									         <th data-field="palestrante.nome" data-sortable="true">Palestrante<th>
 									    </tr>
 									    </thead>
 									</table>

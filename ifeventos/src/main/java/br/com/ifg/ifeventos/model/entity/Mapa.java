@@ -17,8 +17,8 @@ public class Mapa extends AbstractEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	@Getter @Setter private Double latitude;
-	@Getter @Setter private Double longitude;
+	@Getter @Setter private Double lat;
+	@Getter @Setter private Double lng;
 	@Getter @Setter private String descricao;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
@@ -28,11 +28,11 @@ public class Mapa extends AbstractEntity implements Serializable{
 	public Mapa() {
 	}  
 
-	public Mapa(Long id, Double latitude, Double longitude, String descricao, Evento evento) {
+	public Mapa(Long id, Double lat, Double lng, String descricao, Evento evento) {
 		super();
 		this.id = id;
-		this.latitude = latitude;
-		this.longitude = longitude;
+		this.lat = lat;
+		this.lng = lng;
 		this.descricao = descricao;
 		this.evento = evento;
 	}

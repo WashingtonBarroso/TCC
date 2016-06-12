@@ -23,7 +23,9 @@ import br.com.ifg.ifeventos.dto.EventoDTO;
 import br.com.ifg.ifeventos.model.dao.impl.EnderecoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.EventoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.OrganizadorDAO;
+import br.com.ifg.ifeventos.model.dao.impl.PalestranteDAO;
 import br.com.ifg.ifeventos.model.dao.impl.ProgramacaoDAO;
+import br.com.ifg.ifeventos.model.dao.impl.TipoProgramacaoDAO;
 import br.com.ifg.ifeventos.model.entity.Endereco;
 import br.com.ifg.ifeventos.model.entity.Evento;
 import br.com.ifg.ifeventos.utils.HashUtils;
@@ -51,6 +53,13 @@ public class EventoController {
 	@Inject
 	private ProgramacaoDAO programacaoDao;
 	
+	@Inject
+	private TipoProgramacaoDAO tipoProgramacaoDao;
+	
+	@Inject
+	private PalestranteDAO palestranteDao;
+	
+	
 	protected EventoController(){
 		this(null);
 	}
@@ -65,6 +74,8 @@ public class EventoController {
 		Gson  gson =  new Gson();
 		result.include("listOrganizador", gson.toJson(organizadorDao.getAll()));
 		result.include("listProgramacao", gson.toJson(programacaoDao.getAll()));
+		result.include("listTpProgramacao",gson.toJson(tipoProgramacaoDao.getAll()));
+		result.include("listPalestrante", gson.toJson(palestranteDao.getAll()));
 	}
 
 	@Get("/evento/form/{id}")
@@ -105,18 +116,27 @@ public class EventoController {
 		.recursive()
 		.serialize();
 	}
-
-	@Post("/evento/save")
 	@Consumes(value = "application/json", options = WithoutRoot.class)
-	public void save(EventoDTO dto){		
+	@Post("/evento/save")
+	public void save(Evento dto){		
 		try{
-			enderecoDao.save(dto.getEvento().getEndereco());
-			dao.save(dto.getEvento());
-			programacaoDao.removeByEventoId(dto.getEvento().getId());		
-			for (int i=0; i < dto.getEvento().getProgramacao().size(); i++){
+			//enderecoDao.save(dto.getEvento().getEndereco());
+			enderecoDao.save(dto.getEndereco());
+			dao.save(dto);
+			//dao.save(dto.getEvento());
+			//programacaoDao.removeByEventoId(dto.getEvento().getId());		
+			programacaoDao.removeByEventoId(dto.getId());
+			
+			/*for (int i=0; i < dto.getEvento().getProgramacao().size(); i++){
 				dto.getEvento().getProgramacao().get(i).setEvento(dto.getEvento());
 				programacaoDao.save(dto.getEvento().getProgramacao().get(i));
-			}			
+			}*/
+			
+			for (int i=0; i < dto.getProgramacao().size(); i++){
+				dto.getProgramacao().get(i).setEvento(dto);
+				programacaoDao.save(dto.getProgramacao().get(i));
+			}
+			
 			dao.commit();
 		}
 		catch(Exception e){

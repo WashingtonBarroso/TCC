@@ -28,7 +28,7 @@ public class Evento extends AbstractEntity implements Serializable{
 	@Getter @Setter private String nome; 
  	@Getter @Setter private String local;
 	@Getter @Setter private String site;
-	@Getter @Setter private String imagem; 
+	//@Getter @Setter private String imagem; 
 	
 	@ManyToOne @JoinColumn(name="endereco_id")
 	@Getter @Setter private Endereco endereco;
@@ -43,24 +43,23 @@ public class Evento extends AbstractEntity implements Serializable{
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="evento_id")
-	@Getter @Setter private List<Mapa> pontos;
+	@Getter @Setter private List<Mapa> mapa;
 	
 	public Evento(){
 		super();
 	}
 
-	public Evento(Long id, String nome, String local, String site, String imagem, Endereco endereco, List<Programacao> programacao, List<Organizador> organizadores, List<Mapa> pontos, Boolean ativo) {
+	public Evento(Long id, String nome, String local, String site, Endereco endereco, List<Programacao> programacao, List<Organizador> organizadores, List<Mapa> mapa, Boolean ativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.local = local;
 		this.endereco = endereco;
 		this.site = site;
-		this.imagem =  imagem;
 		this.ativo = ativo;
 		this.programacao = programacao;
 		this.organizadores = organizadores;
-		this.pontos = pontos;
+		this.mapa = mapa;
 	}
 
 }

@@ -7,16 +7,15 @@ import br.com.ifg.ifeventos.model.entity.TipoProgramacao;
 public class TipoProgramacaoDTO {
     
 	
-	@Getter @Setter private TipoProgramacao tipoPalestra;
-
+	@Getter @Setter private TipoProgramacao tipoProgramacao;
+    
 	public TipoProgramacaoDTO() {
-		this.tipoPalestra = new TipoProgramacao();
+		super();
+		this.tipoProgramacao = new TipoProgramacao();
 	}
 
-	public TipoProgramacaoDTO(TipoProgramacao tipoPalestra) {
-		this.tipoPalestra = tipoPalestra;
+	public TipoProgramacaoDTO(TipoProgramacao tipoProgramacao) {
+		this.tipoProgramacao = tipoProgramacao;
 	}	
-
-
 
 }

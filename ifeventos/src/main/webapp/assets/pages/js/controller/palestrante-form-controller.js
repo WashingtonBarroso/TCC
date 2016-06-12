@@ -11,7 +11,7 @@ app.controller('PalestranteFormController', function($compile, $scope, $http, $w
 	 */  
     
     $scope.setDTO = function(dto){
-    	if (dto != "")
+    	if (dto != undefined)
     		$scope.dto = dto;
     }
     
