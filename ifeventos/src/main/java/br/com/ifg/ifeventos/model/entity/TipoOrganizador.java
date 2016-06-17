@@ -19,9 +19,8 @@ public class TipoOrganizador extends AbstractEntity implements Serializable {
 	public TipoOrganizador() {
 	}
 
-	public TipoOrganizador(Long id, String descricao) {
+	public TipoOrganizador(String descricao) {
 		super();
-		this.id = id;
 		this.descricao = descricao;
 	} 
 

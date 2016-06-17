@@ -17,7 +17,7 @@ public class LogInterceptor {
 
     @AroundCall
     public void intercept(SimpleInterceptorStack stack) {
-        System.out.println("Interceptando " + request.getRequestURI()+request.getParameter("descricao"));
+        System.out.println("Interceptando " + request.getRequestURI());
         stack.next();
     }
 }
