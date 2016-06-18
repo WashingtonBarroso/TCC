@@ -7,8 +7,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -33,9 +31,15 @@ public class Evento extends AbstractEntity implements Serializable{
 	@ManyToOne @JoinColumn(name="endereco_id")
 	@Getter @Setter private Endereco endereco;
 	
-	@ManyToMany
-	@JoinTable(name="tb_evento_has_organizador", joinColumns={@JoinColumn(name="evento_id")}, inverseJoinColumns={@JoinColumn(name="organizador_id")})
-	@Getter @Setter private List<Organizador> organizadores;
+	//@ManyToMany
+	//@JoinTable(name="tb_evento_has_organizador", 
+	//joinColumns={@JoinColumn(name="evento_id")}, 
+	//inverseJoinColumns={@JoinColumn(name="organizador_id")})
+	//@Getter @Setter private List<Organizador> organizadores;
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER) 
+	@JoinColumn(name="organizador_evento_id")
+	@Getter @Setter private List<OrganizadorEvento> organizadores;	
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER) 
 	@JoinColumn(name="evento_id")
@@ -49,7 +53,7 @@ public class Evento extends AbstractEntity implements Serializable{
 		super();
 	}
 
-	public Evento(Long id, String nome, String local, String site, Endereco endereco, List<Programacao> programacao, List<Organizador> organizadores, List<Mapa> mapa, Boolean ativo) {
+	public Evento(Long id, String nome, String local, String site, Endereco endereco, List<Programacao> programacao, List<OrganizadorEvento> organizadores, List<Mapa> mapa, Boolean ativo) {
 		super();
 		this.id = id;
 		this.nome = nome;

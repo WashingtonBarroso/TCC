@@ -16,7 +16,6 @@ import br.com.caelum.vraptor.serialization.gson.WithoutRoot;
 import br.com.caelum.vraptor.view.Results;
 import br.com.ifg.ifeventos.dto.BootstrapTableDTO;
 import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
-import br.com.ifg.ifeventos.dto.TipoProgramacaoDTO;
 import br.com.ifg.ifeventos.model.dao.impl.TipoProgramacaoDAO;
 import br.com.ifg.ifeventos.model.entity.TipoProgramacao;
 
@@ -60,17 +59,15 @@ public class TipoProgramacaoController {
 
 	@Consumes(value = "application/json", options = WithoutRoot.class)
 	@Post("/tipoprogramacao/save")
-	public void save(TipoProgramacaoDTO dto){
+	public void save(TipoProgramacao dto){
 		
 		try{
-			System.out.println(""+dto.getTipoProgramacao().getDescricao());
-			dao.save(dto.getTipoProgramacao());
+			dao.save(dto);
 			dao.commit();
 		}
 		catch(Exception e){
 			dao.rollback();
 			e.printStackTrace();
-			//dto = new TipoProgramacao();
 		}
 		result.use(Results.json())
 		.withoutRoot()

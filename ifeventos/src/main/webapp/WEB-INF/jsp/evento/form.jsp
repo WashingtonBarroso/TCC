@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="pt" ng-app="app" ng-controller="EventoFormController" ng-init='setDTO(${dto}); setListOrganizador(${listOrganizador});'>
+<html lang="pt" ng-app="app" ng-controller="EventoFormController" ng-init='setDTO(${dto}); setListOrganizadores(${listOrganizador}); setListTipoOrganizadores(${listTipoOrganizador});'>
 
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />

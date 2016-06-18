@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.exception.ConstraintViolationException;
 
+import com.google.gson.Gson;
+
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
@@ -19,18 +21,15 @@ import br.com.caelum.vraptor.serialization.gson.WithoutRoot;
 import br.com.caelum.vraptor.view.Results;
 import br.com.ifg.ifeventos.dto.BootstrapTableDTO;
 import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
-import br.com.ifg.ifeventos.dto.EventoDTO;
 import br.com.ifg.ifeventos.model.dao.impl.EnderecoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.EventoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.OrganizadorDAO;
-import br.com.ifg.ifeventos.model.dao.impl.PalestranteDAO;
+import br.com.ifg.ifeventos.model.dao.impl.OrganizadorEventoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.ProgramacaoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.TipoProgramacaoDAO;
 import br.com.ifg.ifeventos.model.entity.Endereco;
 import br.com.ifg.ifeventos.model.entity.Evento;
 import br.com.ifg.ifeventos.utils.HashUtils;
-
-import com.google.gson.Gson;
 
 @Controller
 public class EventoController {
@@ -49,6 +48,9 @@ public class EventoController {
 
 	@Inject
 	private OrganizadorDAO organizadorDao;
+	
+	@Inject
+	private OrganizadorEventoDAO organizadorEventoDao;
 
 	@Inject
 	private ProgramacaoDAO programacaoDao;
@@ -56,8 +58,6 @@ public class EventoController {
 	@Inject
 	private TipoProgramacaoDAO tipoProgramacaoDao;
 	
-	@Inject
-	private PalestranteDAO palestranteDao;
 	
 	
 	protected EventoController(){
@@ -71,11 +71,11 @@ public class EventoController {
 
 	@Path("/evento/form")
 	public void form(){	
-		Gson  gson =  new Gson();
+		Gson  gson =  new Gson();		
 		result.include("listOrganizador", gson.toJson(organizadorDao.getAll()));
-		result.include("listProgramacao", gson.toJson(programacaoDao.getAll()));
 		result.include("listTpProgramacao",gson.toJson(tipoProgramacaoDao.getAll()));
-		result.include("listPalestrante", gson.toJson(palestranteDao.getAll()));
+		//result.include("listProgramacao", gson.toJson(programacaoDao.getAll()));
+		//result.include("listPalestrante", gson.toJson(palestranteDao.getAll()));
 	}
 
 	@Get("/evento/form/{id}")
@@ -119,24 +119,22 @@ public class EventoController {
 	@Consumes(value = "application/json", options = WithoutRoot.class)
 	@Post("/evento/save")
 	public void save(Evento dto){		
+		organizadorEventoDao.setEntityManager(dao.getEntityManager());
+		programacaoDao.setEntityManager(dao.getEntityManager());
+		enderecoDao.setEntityManager(dao.getEntityManager());
 		try{
-			//enderecoDao.save(dto.getEvento().getEndereco());
-			enderecoDao.save(dto.getEndereco());
-			dao.save(dto);
-			//dao.save(dto.getEvento());
-			//programacaoDao.removeByEventoId(dto.getEvento().getId());		
+			enderecoDao.save(dto.getEndereco());			
+			dao.save(dto);		
 			programacaoDao.removeByEventoId(dto.getId());
-			
-			/*for (int i=0; i < dto.getEvento().getProgramacao().size(); i++){
-				dto.getEvento().getProgramacao().get(i).setEvento(dto.getEvento());
-				programacaoDao.save(dto.getEvento().getProgramacao().get(i));
-			}*/
-			
 			for (int i=0; i < dto.getProgramacao().size(); i++){
 				dto.getProgramacao().get(i).setEvento(dto);
 				programacaoDao.save(dto.getProgramacao().get(i));
 			}
-			
+			organizadorEventoDao.removeByEventoId(dto.getId());
+			for (int i=0; i < dto.getOrganizadores().size(); i++){
+				dto.getOrganizadores().get(i).setEvento(dto);
+				organizadorEventoDao.save(dto.getOrganizadores().get(i));
+			}			
 			dao.commit();
 		}
 		catch(Exception e){

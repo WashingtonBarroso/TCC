@@ -1,4 +1,4 @@
-app.controller('EventoFormController', function($compile, $scope, $http, $window, $resource, Evento, Endereco, Organizador, Programacao, Mapa, Palestrante, globalService, Upload, $timeout){
+app.controller('EventoFormController', function($compile, $scope, $http, $window, $resource, Evento, Endereco, Organizador, Programacao, Mapa, Palestrante, OrganizadorEvento, globalService, Upload, $timeout){
 
 	/**
 	 *Variables
@@ -7,30 +7,23 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
     $scope.dto = new Evento();
     
     $scope.organizadores = [];
-    
-    //result.include("listOrganizador", gson.toJson(organizadorDao.getAll()));
-	//result.include("listProgramacao", gson.toJson(programacaoDao.getAll()));
-	//result.include("listTpProgramacao",gson.toJson(tipoProgramacaoDao.getAll()));
-	//result.include("listPalestrante"
-    
-      
-    // Recebe uma lista de organizadores 
-    $scope.setListOrganizador = function(listOrganizador){
-    	$scope.organizadores = listOrganizador;
+    $scope.tipoOrganizadores = [];
+          
+    // Recebe uma lista de organizadores
+    //listOrganizador é do tipo Organizador
+    $scope.setListOrganizadores = function(listOrganizadores){
+    	$scope.organizadores = listOrganizadores;
     }
     
+    $scope.setListTipoOrganizadores = function(listTipoOrganizadores){
+    	$scope.tipoOrganizadores = listTipoOrganizadores;
+    }
+    
+    //organizador é do tipo OrganizadorEvento
     $scope.adicionarOrganizador = function(organizador){
     	$scope.dto.organizadores.push(angular.copy(organizador));
     	delete $scope.organizador;
-    }
-  
-    
-  /*  $scope.apagarOrganizador = function(organizador){
-    	$scope.listOrganizadores = organizador.filter(function(item){
-    	if(!organizador.selecionado) return organizador;
-    }); 
-    };*/
-      
+    } 
     
 	$scope.uploadPic = function(file) {
 		file.upload = Upload.upload({
@@ -50,6 +43,30 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 			file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
 		});
 	}
+	
+
+	
+//	file.upload = Upload.upload({
+//        url: $scope.url+"/save",
+//        data: {
+//        	evento: $scope.dto, 
+//        	imagem: file
+//        },
+//      });
+//      
+//	    file.upload.then(function (response) {
+//	        $timeout(function () {
+//	          file.result = response.data;
+//	        });
+//	      }, function (response) {
+//	        if (response.status > 0)
+//	          $scope.errorMsg = response.status + ': ' + response.data;
+//	      }, function (evt) {
+//	        // Math.min is to fix IE which reports 200% sometimes
+//	        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+//	      });
+
+
     
     /**
      *Functions
@@ -78,28 +95,8 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 		}, function error(response){
 			console.log(response);
 		});
-    	
-//    	file.upload = Upload.upload({
-//            url: $scope.url+"/save",
-//            data: {
-//            	evento: $scope.dto, 
-//            	imagem: file
-//            },
-//          });
-//          
-//  	    file.upload.then(function (response) {
-//  	        $timeout(function () {
-//  	          file.result = response.data;
-//  	        });
-//  	      }, function (response) {
-//  	        if (response.status > 0)
-//  	          $scope.errorMsg = response.status + ': ' + response.data;
-//  	      }, function (evt) {
-//  	        // Math.min is to fix IE which reports 200% sometimes
-//  	        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-//  	      });
     }
-    
+    	
     $scope.remove = function(){
     	$scope.dto.ativo = false;
     	$http.post($scope.url+"/delete", $scope.dto)
@@ -116,18 +113,7 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
     	$window.location.href = $scope.url+"/list";
     }
         
-    //tab4
-    
-    
-  /*  $scope.setListPalestrante = function(listPalestrante){
-    	$scope.palestrantes = listPalestrante; 
-    }
-    
-    $scope.setListTpProgramacao = function(listTpProgramacao){	
-    	$scope.tiposProgramacao = listTpProgramacao;
-    }*/
-    
-  
+    //tab
     $scope.adicionarProgramacao = function(programacao){
     	$scope.dto.programacoes.push(angular.copy(programacao));
     	delete $scope.programacao;
@@ -140,8 +126,7 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
     };
     // fim tab4
     
-    // Mapas
-    
+    // Mapas    
     var myLocal = {lat: 0, lng: 0};
 
 	$scope.map = new google.maps.Map(document.getElementById('map'), {
