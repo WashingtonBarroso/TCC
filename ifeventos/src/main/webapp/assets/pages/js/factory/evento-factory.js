@@ -6,8 +6,8 @@ app.factory('Evento', function(Endereco){
     	this.site = "";    	
     	this.endereco = new Endereco();
     	this.organizadores = [];
-    	this.programacoes = [];
-    	this.mapas = [];
+    	this.programacao = [];
+    	this.mapa = [];
     	this.ativo = true;
     }
 });

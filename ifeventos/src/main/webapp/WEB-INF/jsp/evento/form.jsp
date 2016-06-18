@@ -66,7 +66,7 @@
 				<div class="col-lg-12">
 					<h1 class="page-header">Evento</h1>
 					<pre>
-					{{dto}}
+					{{dto | json}}
 					</pre>
 				</div>
 				<!-- /.col-lg-12 -->
@@ -117,21 +117,13 @@
 														</span>
 													</div>
 												</div>
-												<div class="form-group"
-													ng-class="{'has-error':form.local.$invalid ,'has-success':form.local.$valid}">
-													<label class="control-label">Local <span
-														class="required">*</span>
-													</label> <input class="form-control" type="text" name="local"
-														placeholder="Digite o local do evento"
-														ng-model="dto.local" required ng-maxlength="200">
-													<span class="help-block"
-														ng-show="form.local.$error.required"> <i
-														class="fa fa-warning"></i> Favor inserir o dado requerido.
-													</span> <span class="help-block"
-														ng-show="form.local.$error.maxlength"> <i
-														class="fa fa-warning"></i> O dado informado é muito
-														grande.
-													</span>
+												<div class="form-group" ng-class="{'has-error':form.localEvento.$invalid ,'has-success':form.localEvento.$valid}">
+													<label class="control-label">Local <span class="required">*</span>
+													</label> <input class="form-control" type="text" name="localEvento" placeholder="Digite o local do evento" ng-model="dto.local" required ng-maxlength="200">
+													<span class="help-block" ng-show="form.localEvento.$error.required"> 
+														<i class="fa fa-warning"></i> Favor inserir o dado requerido.</span> 
+													<span class="help-block" ng-show="form.localEvento.$error.maxlength">
+														<i class="fa fa-warning"></i> O dado informado é muito grande.</span>
 												</div>
 												<div class="form-group"
 													ng-class="{'has-error':form.logradouro.$invalid ,'has-success':form.logradouro.$valid}">
@@ -255,7 +247,7 @@
 														<div class="row">
 															<div class="col-md-4">
 																<input class="form-control" name="descricao" type="text"
-																	ng-model="mapa.descricao" value="{{mapa.descricao}}"
+																	ng-model="mapa.descricao" 
 																	required ng-maxlength="11"> <span
 																	class="help-block"
 																	ng-show="form.descricao.$error.required"> <i
@@ -270,7 +262,7 @@
 														</div>
 													</div>
 												</div>
-												<p>{{mapa}}</p>
+												<p>{{mapa | json}}</p>
 												<!-- Mapa -->
 												
 												<div id="map" class="img-responsive"
@@ -393,11 +385,11 @@
 																						ng-model="programacao.descricao" required
 																						ng-maxlength="150"> <span
 																						class="help-block"
-																						ng-show="form.local.$error.required"> <i
+																						ng-show="form.descricao.$error.required"> <i
 																						class="fa fa-warning"></i> Favor inserir o dado
 																						requerido.
 																					</span> <span class="help-block"
-																						ng-show="form.local.$error.maxlength"> <i
+																						ng-show="form.descricao.$error.maxlength"> <i
 																						class="fa fa-warning"></i> O dado informado é
 																						muito grande.
 																					</span>
@@ -407,21 +399,21 @@
 
 																		<div class="form-group">
 																			<div
-																				ng-class="{'has-error':form.local.$invalid ,'has-success':form.local.$valid}">
+																				ng-class="{'has-error':form.localProgramacao.$invalid ,'has-success':form.localProgramacao.$valid}">
 																				<label class="control-label"> Local: <span
 																					class="required"> * </span>
 																				</label>
 																				<div class="input-icon right">
 																					<input class="form-control"
-																						placeholder="Digite o local" name="local"
+																						placeholder="Digite o local" name="localProgramacao"
 																						type="text" ng-model="programacao.local" required
 																						ng-maxlength="20"> <span
 																						class="help-block"
-																						ng-show="form.local.$error.required"> <i
+																						ng-show="form.localProgramacao.$error.required"> <i
 																						class="fa fa-warning"></i> Favor inserir o dado
 																						requerido.
 																					</span> <span class="help-block"
-																						ng-show="form.local.$error.maxlength"> <i
+																						ng-show="form.localProgramacao.$error.maxlength"> <i
 																						class="fa fa-warning"></i> O dado informado é
 																						muito grande.
 																					</span>
