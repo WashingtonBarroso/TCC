@@ -1,4 +1,4 @@
-app.controller('OrganizadorFormController', function($compile, $scope, $http, $window, $resource, Organizador, TipoOrganizador, globalService){
+app.controller('OrganizadorFormController', function($compile, $scope, $http, $window, $resource, Organizador, globalService){
     
      /**
 	 *Variables 
@@ -6,8 +6,6 @@ app.controller('OrganizadorFormController', function($compile, $scope, $http, $w
     
 	$scope.url = 'organizador';
     $scope.dto = new Organizador();
-    $scope.tiposOrganizadores = []; 
-    $scope.tipoOrganizadorId;
     
     /**
 	 *Functions
@@ -18,23 +16,11 @@ app.controller('OrganizadorFormController', function($compile, $scope, $http, $w
     		$scope.dto = dto;
     }
     
-   
-    $scope.setListTpOrganizador = function(listTpOrganizador){
-    		$scope.tiposOrganizadores = listTpOrganizador;
-    }
-    
     $scope.newForm = function(){
     	$scope.dto = new Organizador();
     }
     
-    $scope.fillForm = function(){
-    	$scope.dto.tipoOrganizador = new TipoOrganizador();
-    	$scope.dto.tipoOrganizador.descricao = "a";
-    	$scope.dto.tipoOrganizador.id = $scope.tipoOrganizadorId;
-    }
-    
     $scope.save = function(){    
-    	$scope.fillForm();
     	$http.post($scope.url+"/save", $scope.dto)
 		.then(function success(response){
 			console.log("response: "+response);

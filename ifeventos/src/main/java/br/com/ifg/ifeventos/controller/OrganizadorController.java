@@ -17,7 +17,6 @@ import br.com.caelum.vraptor.view.Results;
 import br.com.ifg.ifeventos.dto.BootstrapTableDTO;
 import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
 import br.com.ifg.ifeventos.model.dao.impl.OrganizadorDAO;
-import br.com.ifg.ifeventos.model.dao.impl.TipoOrganizadorDAO;
 import br.com.ifg.ifeventos.model.entity.Organizador;
 
 @Controller
@@ -27,10 +26,6 @@ public class OrganizadorController {
 
 	@Inject 
 	private OrganizadorDAO dao;
-
-	@Inject
-	private TipoOrganizadorDAO tipoOrganizadorDao;
-
 
 	protected OrganizadorController(){
 		this(null);
@@ -45,8 +40,6 @@ public class OrganizadorController {
 
 	@Path("/organizador/form")
 	public void form(){	
-		Gson gson = new Gson();
-		result.include("listTpOrganizador",gson.toJson(tipoOrganizadorDao.getAll()));
 	}
 
 

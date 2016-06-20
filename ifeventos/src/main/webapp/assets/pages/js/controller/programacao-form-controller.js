@@ -17,13 +17,13 @@ app.controller('ProgramacaoFormController', function($compile, $scope, $http, $w
     		$scope.dto = dto;
     }
     
-    $scope.setListPalestrante = function(listPalestrante){
+/*    $scope.setListPalestrante = function(listPalestrante){
     	$scope.palestrantes = listPalestrante; 
     }
     
     $scope.setListTpProgramacao = function(listTpProgramacao){	
     	$scope.tiposProgramacao = listTpProgramacao;
-    }
+    }*/
     
     $scope.newForm = function(){
     	$scope.dto = new Programacao();

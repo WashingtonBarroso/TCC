@@ -4,7 +4,6 @@ app.factory('Organizador', function(TipoOrganizador){
     	this.nome = "";    	
     	this.cargo = "";    	
     	this.area = "";
-    	this.tipoOrganizador = new TipoOrganizador();
     	this.url = "";
     	this.ativo = true;
     }

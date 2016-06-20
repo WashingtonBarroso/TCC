@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="pt" ng-app="app" ng-controller="OrganizadorFormController"
-	ng-init='setDTO(${dto}); setListTpOrganizador(${listTpOrganizador});'>
+	ng-init='setDTO(${dto});'>
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />
 <link href="assets/global/bootstrap-table/bootstrap-table.css"
@@ -123,17 +123,25 @@
 												</span>
 											</div>
 										</div>
-										<div class="form-group" >
-											<label class="control-label"> Tipo Organizador: <span
+													
+										<div
+											ng-class="{'has-error':form.url.$invalid ,'has-success':form.url.$valid}">
+											<label class="control-label"> Site: <span
 												class="required"> * </span>
 											</label>
 											<div class="input-icon right">
-												<select class="form-control" name="tipoOrganizador"
-													ng-model="dto.tipoOrganizador" ng-options="tipoOrganizador as tipoOrganizador.descricao for tipoOrganizador in tiposOrganizadores">
-													<option value="">Selecione</option>
-												</select>
+												<input class="form-control" placeholder="Digite a url"
+													name="url" type="text" ng-model="dto.url" required
+													ng-maxlength="20"> <span class="help-block"
+													ng-show="form.url.$error.required"> <i
+													class="fa fa-warning"></i> Favor inserir o dado requerido.
+												</span> <span class="help-block"
+													ng-show="form.url.$error.maxlength"> <i
+													class="fa fa-warning"></i> O dado informado é muito grande.
+												</span>
 											</div>
 										</div>
+															
 									</div>
 									<div class="form-group" style="float: right;">
 										<div id="newButton" class="btn btn-primary"

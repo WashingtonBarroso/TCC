@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="pt" ng-app="app" ng-controller="EventoFormController" ng-init='setDTO(${dto}); setListOrganizadores(${listOrganizador}); setListTipoOrganizadores(${listTipoOrganizador});'>
+<html lang="pt" ng-app="app" ng-controller="EventoFormController"
+	ng-init='setDTO(${dto}); setListOrganizadores(${listOrganizador}); setListTipoOrganizadores(${listTpOrganizador}); setListTpProgramacao(${listTpProgramacao}); setListPalestrante(${listPalestrante});'>
 
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />
@@ -237,7 +238,7 @@
 											<!-- Exit tab1 -->
 
 											<!-- Init tab2 -->
-											<div class="tab-pane fade tab-margin active in" id="tab2">
+											<div class="tab-pane fade tab-margin" id="tab2">
 												<div class="form-group">
 													<div
 														ng-class="{'has-error':form.descricao.$invalid ,'has-success':form.descricao.$valid}">
@@ -311,202 +312,220 @@
                                             </div>
 											<!-- Exit tab2 -->
 
-                                            <!-- Init tab3 -->
+                                            
+											<!-- Init tab3 -->
 											<div class="tab-pane fade tab-margin" id="tab3">
-												
-												<div class="form-group input-group">
-													<select ng-model="organizador"
-														ng-options="organizador as organizador.nome for organizador in organizadores"
-														name="organizador" class="form-control">
-														<option value="">Selecione</option>
-													</select>
-													<span class="input-group-btn">
-														<button class="btn btn-success" type="button">
-															<i class="fa fa-plus"
-																ng-click="adicionarOrganizador(organizador)"></i>
-														</button>
-													</span> 
-												</div>                                              
+
+												<select class="form-control"
+													ng-model="organizadorEvento.organizador"
+													ng-options="organizador as organizador.nome for organizador in organizadores"
+													name="organizador" class="form-control">
+													<option value="">Selecione</option>
+												</select> <br> <select class="form-control"
+													ng-model="organizadorEvento.tipoOrganizador"
+													ng-options="tipoOrganizador as tipoOrganizador.descricao for tipoOrganizador in tipoOrganizadores"
+													name="organizador" class="form-control">
+													<option value="">Selecione</option>
+												</select> <br>
+												<button class="btn btn-success" type="button"
+													ng-click="adicionarOrganizador(organizadorEvento)">Adicionar</button>
+												<button class="btn btn-danger" type="button"
+													ng-click="apagarOrganizador(listOrganizador)">Remover</button>
+
 												<!-- /.row -->
-												<div class="row">
+<!-- 												<div class="row">
 													<div class="col-lg-12">
 														<div class="panel-body">
 															<div class="table-responsive">
-																<table
-																	class="table table-striped table-bordered table-hover"
-																	id="dataTablesOrganizador" ng-show="listOrganizadores.length>0">
-																	<thead>
+																<table data-toggle="table" data-toggle="table"
+																	data-url=""
+																	data-pagination="true" data-search="true"
+																	data-height="300">
+																<thead>
 																		<tr>
-																		    <th></th>
+																			<th></th>
 																			<th data-field="nome">Nome</th>
 																			<th data-field="cargo">Cargo</th>
 																			<th data-field="area">Área</th>
-																			<th data-field="tipoOrganizador">Tipo Organizador</th>
+																			<th data-field="tipoOrganizador">Tipo
+																				Organizador</th>
 																		</tr>
 																	</thead>
-																	<!-- <tbody>
-																		<tr ng-repeat="organizador in listOrganizadores">
-																			<td><input type="checkbox" ng-model="organizador.selecionado"></td>
+																	<tbody>
+																		<tr ng-repeat="organizador in organizadores">
+																			<td><input type="checkbox"
+																				ng-model="organizador.selecionado"></td>
 																			<td>{{organizador.nome}}</td>
 																			<td>{{organizador.cargo}}</td>
 																			<td>{{organizador.area}}</td>
 																			<td>{{organizador.tipoOrganizador.descricao}}</td>
 																		</tr>
-																	</tbody> -->
+																	</tbody>
 																</table>
 															</div>
-															<!-- /.table-responsive -->
+															/.table-responsive
 														</div>
-														<!-- /.panel-body -->
+														/.panel-body
 													</div>
-													<!-- /.col-lg-12 -->
+													/.col-lg-12
 												</div>
-												<!-- /.row -->										
+												/.row -->
+												
 											</div>
-										    <!-- Exit tab3 -->
-										<!-- Início tab4 -->
-										 <div class="tab-pane fade tab-margin" id="tab4" ng-controller="ProgramacaoFormController" ng-init='setListTpProgramacao(${listTpProgramacao}); setListPalestrante(${listPalestrante});'>
-											<!-- /.row -->
+											<!-- Exit tab3 -->
+											
+											
+											<!-- Início tab4 -->
+											<div class="tab-pane fade tab-margin" id="tab4">
+												<!-- /.row -->
 												<div class="row">
 													<div class="col-lg-12">
 														<div class="panel-body">
 															<div class="row">
 																<div class="col-lg-12">
 																	<div id="div_alert"></div>
-																		<div class="form-group">
-																			<div ng-class="{'has-error':form.descricao.$invalid ,'has-success':form.descricao.$valid}">
-																				<label class="control-label"> Descrição: <span
-																					class="required"> * </span>
-																				</label>
-																				<div class="input-icon right">
-																					<input class="form-control"
-																						placeholder="Descreva a programação"
-																						name="descricao" type="text"
-																						ng-model="programacao.descricao" required
-																						ng-maxlength="150"> <span
-																						class="help-block"
-																						ng-show="form.descricao.$error.required"> <i
-																						class="fa fa-warning"></i> Favor inserir o dado
-																						requerido.
-																					</span> <span class="help-block"
-																						ng-show="form.descricao.$error.maxlength"> <i
-																						class="fa fa-warning"></i> O dado informado é
-																						muito grande.
-																					</span>
-																				</div>
-																			</div>
-																		</div>
-
-																		<div class="form-group">
-																			<div
-																				ng-class="{'has-error':form.localProgramacao.$invalid ,'has-success':form.localProgramacao.$valid}">
-																				<label class="control-label"> Local: <span
-																					class="required"> * </span>
-																				</label>
-																				<div class="input-icon right">
-																					<input class="form-control"
-																						placeholder="Digite o local" name="localProgramacao"
-																						type="text" ng-model="programacao.local" required
-																						ng-maxlength="20"> <span
-																						class="help-block"
-																						ng-show="form.localProgramacao.$error.required"> <i
-																						class="fa fa-warning"></i> Favor inserir o dado
-																						requerido.
-																					</span> <span class="help-block"
-																						ng-show="form.localProgramacao.$error.maxlength"> <i
-																						class="fa fa-warning"></i> O dado informado é
-																						muito grande.
-																					</span>
-																				</div>
-																			</div>
-																		</div>
-
-																		<div class="form-group">
-																			<div
-																				ng-class="{'has-error':form.data.$invalid ,'has-success':form.data.$valid}">
-																				<label class="control-label"> Data: <span
-																					class="required"> * </span>
-																				</label> <input type="date" name="data" class="form-control"
-																					ng-model="programacao.data.value"
-																					value="{{programacao.data.value}}" required> <span
-																					class="help-block"
-																					ng-show="form.data.$error.required"> <i
-																					class="fa fa-warning"></i> Favor inserir o dado
-																					requerido.
-																				</span>
-																			</div>
-																		</div>
-
-																		<div class="form-group">
-																			<div
-																				ng-class="{'has-error':form.hora.$invalid ,'has-success':form.hora.$valid}">
-																				<label class="control-label"> Hora: <span
-																					class="required"> * </span>
-																				</label> <input type="time" name="hora" class="form-control"
-																					ng-model="programacao.hora.value"
-																					value="{{programacao.hora.value}}" required> <span
-																					class="help-block"
-																					ng-show="form.hora.$error.required"> <i
-																					class="fa fa-warning"></i> Favor inserir o dado
-																					requerido.
-																				</span>
-																			</div>
-																		</div>
-																		<div class="form-group">
-																			<label class="control-label"> Palestrante: <span
+																	<div class="form-group">
+																		<div
+																			ng-class="{'has-error':form.descricao.$invalid ,'has-success':form.descricao.$valid}">
+																			<label class="control-label"> Descrição: <span
 																				class="required"> * </span>
 																			</label>
 																			<div class="input-icon right">
-																				<select class="form-control" name="palestrante"
-																					ng-model="programacao.palestrante" ng-options="palestrante as palestrante.nome for palestrante in palestrantes">
-																					<option value="">Selecione</option>
-																				</select>
+																				<input class="form-control"
+																					placeholder="Descreva a programação"
+																					name="descricao" type="text"
+																					ng-model="programacao.descricao" required
+																					ng-maxlength="150"> <span
+																					class="help-block"
+																					ng-show="form.descricao.$error.required"> <i
+																					class="fa fa-warning"></i> Favor inserir o dado
+																					requerido.
+																				</span> <span class="help-block"
+																					ng-show="form.descricao.$error.maxlength"> <i
+																					class="fa fa-warning"></i> O dado informado é muito
+																					grande.
+																				</span>
 																			</div>
 																		</div>
-																		<div class="form-group">
-																			<label class="control-label"> Tipo
-																				Programação: <span class="required"> * </span>
+																	</div>
+
+																	<div class="form-group">
+																		<div
+																			ng-class="{'has-error':form.localProgramacao.$invalid ,'has-success':form.localProgramacao.$valid}">
+																			<label class="control-label"> Local: <span
+																				class="required"> * </span>
 																			</label>
 																			<div class="input-icon right">
-																				<select class="form-control" name="tipoProgramacao"
-																					ng-model="programacao.tipoProgramacao" ng-options="tipoProgramacao as tipoProgramacao.descricao for tipoProgramacao in tiposProgramacao">
-																					<option value="">Selecione</option>
-																				</select>
+																				<input class="form-control"
+																					placeholder="Digite o local"
+																					name="localProgramacao" type="text"
+																					ng-model="programacao.local" required
+																					ng-maxlength="20"> <span class="help-block"
+																					ng-show="form.localProgramacao.$error.required">
+																					<i class="fa fa-warning"></i> Favor inserir o dado
+																					requerido.
+																				</span> <span class="help-block"
+																					ng-show="form.localProgramacao.$error.maxlength">
+																					<i class="fa fa-warning"></i> O dado informado é
+																					muito grande.
+																				</span>
 																			</div>
 																		</div>
-																		<button class="btn btn-success" type="button" ng-click="adicionarProgramacao(programacao)">Adicionar</button>
-																		<button class="btn btn-danger" type="button" ng-click="apagarProgramacao(listProgramacao)">Remover</button>
-																	    <br>
+																	</div>
+
+																	<div class="form-group">
+																		<div
+																			ng-class="{'has-error':form.data.$invalid ,'has-success':form.data.$valid}">
+																			<label class="control-label"> Data: <span
+																				class="required"> * </span>
+																			</label> <input type="text" name="data" class="form-control"
+																				ng-model="programacao.data"
+																				value="{{programacao.data}}" required> <span
+																				class="help-block"
+																				ng-show="form.data.$error.required"> <i
+																				class="fa fa-warning"></i> Favor inserir o dado
+																				requerido.
+																			</span>
+																		</div>
+																	</div>
+
+																	<div class="form-group">
+																		<div
+																			ng-class="{'has-error':form.hora.$invalid ,'has-success':form.hora.$valid}">
+																			<label class="control-label"> Hora: <span
+																				class="required"> * </span>
+																			</label> <input type="text" name="hora" class="form-control"
+																				ng-model="programacao.hora"
+																				value="{{programacao.hora}}" required> <span
+																				class="help-block"
+																				ng-show="form.hora.$error.required"> <i
+																				class="fa fa-warning"></i> Favor inserir o dado
+																				requerido.
+																			</span>
+																		</div>
+																	</div>
+																	<div class="form-group">
+																		<label class="control-label"> Palestrante: <span
+																			class="required"> * </span>
+																		</label>
+																		<div class="input-icon right">
+																			<select class="form-control" name="palestrante"
+																				ng-model="programacao.palestrante"
+																				ng-options="palestrante as palestrante.nome for palestrante in palestrantes">
+																				<option value="">Selecione</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="form-group">
+																		<label class="control-label"> Tipo
+																			Programação: <span class="required"> * </span>
+																		</label>
+																		<div class="input-icon right">
+																			<select class="form-control" name="tipoProgramacao"
+																				ng-model="programacao.tipoProgramacao"
+																				ng-options="tipoProgramacao as tipoProgramacao.descricao for tipoProgramacao in tiposProgramacao">
+																				<option value="">Selecione</option>
+																			</select>
+																		</div>
+																	</div>
+																	<button class="btn btn-success" type="button"
+																		ng-click="adicionarProgramacao(programacao)">Adicionar</button>
+																	<button class="btn btn-danger" type="button"
+																		ng-click="apagarProgramacao(listProgramacao)">Remover</button>
+																	<br>
 																</div>
-																
+
 															</div>
 														</div>
-													<!-- /.col-lg-12 -->	    	
+														<!-- /.col-lg-12 -->
 													</div>
 												</div>
 												<!-- /.row -->
-                                                  <!-- /.row -->
+												<!-- /.row -->
 												<div class="row">
 													<div class="col-lg-12">
 														<div class="panel-body">
 															<div class="table-responsive">
 																<table
 																	class="table table-striped table-bordered table-hover"
-																	id="dataTablesProgramacao" ng-show="programacoes.length>0">
+																	id="dataTablesProgramacao"
+																	ng-show="programacoes.length>0">
 																	<thead>
 																		<tr>
-																		    <th></th>
+																			<th></th>
 																			<th>Descrição</th>
 																			<th>Data</th>
 																			<th>Hora</th>
 																			<th>Local</th>
 																			<th>Palestrante</th>
-																			<th>Tipo Programação</th>		
+																			<th>Tipo Programação</th>
 																		</tr>
 																	</thead>
 																	<tbody>
-																		<tr ng-repeat="programacao in programacoes track by $index">
-																			<td><input type="checkbox" ng-model="programacao.selecionado"></td>
+																		<tr
+																			ng-repeat="programacao in programacoes track by $index">
+																			<td><input type="checkbox"
+																				ng-model="programacao.selecionado"></td>
 																			<td>{{programacao.descricao}}</td>
 																			<td>{{programacao.data.value | date: 'dd.MM.y'}}</td>
 																			<td>{{programacao.hora.value | date: 'h:mm'}}</td>
@@ -524,15 +543,15 @@
 													<!-- /.col-lg-12 -->
 												</div>
 												<!-- /.row -->
-										   
-										</div>
-										<!-- Exit tab4 -->
+
+											</div>
+											<!-- Exit tab4 -->
 															
 										
 											<!-- Início tab 5  -->
-											<!-- <div class="tab-pane fade tab-margin" id="tab5">
+											<div class="tab-pane fade tab-margin" id="tab5">
 													
-												<div class="form-group"
+											<!-- 	<div class="form-group"
 													ng-class="{'has-error':form.imagem.$invalid ,'has-success':form.imagem.$valid}">
 													<label class="control-label">Imagem</label> <input
 														type="file" ngf-select ng-model="imagem" name="imagem"
@@ -548,7 +567,7 @@
 														<i class="fa fa-times"></i> Remover
 													</div>
 												</div>
-												 -->
+											 -->	
                                                 <!-- Grup button  -->
 												<div class="form-group" style="float: right;">
 													<div id="newButton" class="btn btn-primary"
@@ -640,6 +659,10 @@
 		src="assets/pages/js/factory/palestrante-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/factory/mapa-factory.js"></script>
+	<script type="text/javascript"
+		src="assets/pages/js/factory/organizador-evento-factory.js"></script>
+
+
 
 	<!-- Page Controller -->
 	<script type="text/javascript"

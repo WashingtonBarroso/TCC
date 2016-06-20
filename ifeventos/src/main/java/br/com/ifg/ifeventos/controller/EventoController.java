@@ -25,7 +25,9 @@ import br.com.ifg.ifeventos.model.dao.impl.EnderecoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.EventoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.OrganizadorDAO;
 import br.com.ifg.ifeventos.model.dao.impl.OrganizadorEventoDAO;
+import br.com.ifg.ifeventos.model.dao.impl.PalestranteDAO;
 import br.com.ifg.ifeventos.model.dao.impl.ProgramacaoDAO;
+import br.com.ifg.ifeventos.model.dao.impl.TipoOrganizadorDAO;
 import br.com.ifg.ifeventos.model.dao.impl.TipoProgramacaoDAO;
 import br.com.ifg.ifeventos.model.entity.Endereco;
 import br.com.ifg.ifeventos.model.entity.Evento;
@@ -50,10 +52,16 @@ public class EventoController {
 	private OrganizadorDAO organizadorDao;
 	
 	@Inject
+	private TipoOrganizadorDAO tipoOrganizadorDao;
+	
+	@Inject
 	private OrganizadorEventoDAO organizadorEventoDao;
 
 	@Inject
 	private ProgramacaoDAO programacaoDao;
+	
+	@Inject
+	private PalestranteDAO palestranteDao;
 	
 	@Inject
 	private TipoProgramacaoDAO tipoProgramacaoDao;
@@ -74,8 +82,8 @@ public class EventoController {
 		Gson  gson =  new Gson();		
 		result.include("listOrganizador", gson.toJson(organizadorDao.getAll()));
 		result.include("listTpProgramacao",gson.toJson(tipoProgramacaoDao.getAll()));
-		//result.include("listProgramacao", gson.toJson(programacaoDao.getAll()));
-		//result.include("listPalestrante", gson.toJson(palestranteDao.getAll()));
+		result.include("listTpOrganizador", gson.toJson(tipoOrganizadorDao.getAll()));
+		result.include("listPalestrante", gson.toJson(palestranteDao.getAll()));
 	}
 
 	@Get("/evento/form/{id}")
@@ -125,12 +133,12 @@ public class EventoController {
 		try{
 			enderecoDao.save(dto.getEndereco());			
 			dao.save(dto);		
-			programacaoDao.removeByEventoId(dto.getId());
+			//programacaoDao.removeByEventoId(dto.getId());
 			for (int i=0; i < dto.getProgramacao().size(); i++){
 				dto.getProgramacao().get(i).setEvento(dto);
 				programacaoDao.save(dto.getProgramacao().get(i));
 			}
-			organizadorEventoDao.removeByEventoId(dto.getId());
+			//organizadorEventoDao.removeByEventoId(dto.getId());
 			for (int i=0; i < dto.getOrganizadores().size(); i++){
 				dto.getOrganizadores().get(i).setEvento(dto);
 				organizadorEventoDao.save(dto.getOrganizadores().get(i));
@@ -140,11 +148,11 @@ public class EventoController {
 		catch(Exception e){
 			dao.rollback();
 			e.printStackTrace();
+			dto = new Evento();
 		}
 		result.use(Results.json())
 		.withoutRoot()
 		.from(dto)
-		.recursive()
 		.serialize();
 	}
 

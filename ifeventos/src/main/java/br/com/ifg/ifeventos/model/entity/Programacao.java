@@ -20,11 +20,11 @@ import lombok.Setter;
 public class Programacao extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L; 
-	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-	@Getter @Setter private LocalDate data;
+	//@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
+	@Getter @Setter private String data;
 	
-	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalTime")
-	@Getter @Setter private LocalTime hora;	
+	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalTime")
+	@Getter @Setter private String hora;	
 	
 	@Getter @Setter private String descricao;
 	@Getter @Setter private String local;
@@ -45,7 +45,7 @@ public class Programacao extends AbstractEntity implements Serializable {
 		super();
 	}
 
-	public Programacao(Long id, LocalDate data, LocalTime hora, String local,
+	public Programacao(Long id, String data, String hora, String local,
 			TipoProgramacao tipoProgramacao, Palestrante palestrante, Evento evento) {
 		super();
 		this.id = id;

@@ -3,28 +3,41 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 	/**
 	 *Variables
 	 */    
-    $scope.url = 'evento';
-    $scope.dto = new Evento();
-    
-    $scope.organizadores = [];
-    $scope.tipoOrganizadores = [];
-          
-    // Recebe uma lista de organizadores
-    //listOrganizador é do tipo Organizador
-    $scope.setListOrganizadores = function(listOrganizadores){
-    	$scope.organizadores = listOrganizadores;
-    }
-    
-    $scope.setListTipoOrganizadores = function(listTipoOrganizadores){
-    	$scope.tipoOrganizadores = listTipoOrganizadores;
-    }
-    
-    //organizador é do tipo OrganizadorEvento
-    $scope.adicionarOrganizador = function(organizador){
-    	$scope.dto.organizadores.push(angular.copy(organizador));
-    	delete $scope.organizador;
-    } 
-    
+	$scope.url = 'evento';
+	$scope.dto = new Evento();
+
+	$scope.organizadores = [];
+	$scope.tipoOrganizadores = [];
+
+	$scope.palestrantes = [];
+	$scope.tiposProgramacao = [];  
+
+
+	// Recebe uma lista de organizadores
+	$scope.setListOrganizadores = function(listOrganizadores){
+		$scope.organizadores = listOrganizadores;
+	}
+
+	$scope.setListTipoOrganizadores = function(listTpOrganizadores){
+		$scope.tipoOrganizadores = listTpOrganizadores;
+	}
+
+	//organizador é do tipo OrganizadorEvento
+	$scope.adicionarOrganizador = function(organizadorEvento){
+		$scope.dto.organizadores.push(angular.copy(organizadorEvento));
+		delete $scope.organizadorEvento;
+	} 
+
+   // Recebe lista de palestrantes 
+	$scope.setListPalestrante = function(listPalestrante){
+		$scope.palestrantes = listPalestrante; 
+	}
+     // Recebe lista de tipos de programacao
+	$scope.setListTpProgramacao = function(listTpProgramacao){	
+		$scope.tiposProgramacao = listTpProgramacao;
+	}
+
+
 	$scope.uploadPic = function(file) {
 		file.upload = Upload.upload({
 			url: $scope.url+"/save2",
@@ -43,47 +56,47 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 			file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
 		});
 	}
-	
 
-	
+
+
 //	file.upload = Upload.upload({
-//        url: $scope.url+"/save",
-//        data: {
-//        	evento: $scope.dto, 
-//        	imagem: file
-//        },
-//      });
-//      
-//	    file.upload.then(function (response) {
-//	        $timeout(function () {
-//	          file.result = response.data;
-//	        });
-//	      }, function (response) {
-//	        if (response.status > 0)
-//	          $scope.errorMsg = response.status + ': ' + response.data;
-//	      }, function (evt) {
-//	        // Math.min is to fix IE which reports 200% sometimes
-//	        file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-//	      });
+//	url: $scope.url+"/save",
+//	data: {
+//	evento: $scope.dto, 
+//	imagem: file
+//	},
+//	});
+
+//	file.upload.then(function (response) {
+//	$timeout(function () {
+//	file.result = response.data;
+//	});
+//	}, function (response) {
+//	if (response.status > 0)
+//	$scope.errorMsg = response.status + ': ' + response.data;
+//	}, function (evt) {
+//	// Math.min is to fix IE which reports 200% sometimes
+//	file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
+//	});
 
 
-    
-    /**
-     *Functions
-     */
-    
-    $scope.setDTO = function(dto){
-    	if (dto != undefined)
-    		$scope.dto = dto;
-    }
-    
-    $scope.newForm = function(){
-    	$scope.dto = new Evento();
-    }
-    
-    $scope.save = function(){
-    	console.log($scope.dto);
-    	$http.post($scope.url+"/save", $scope.dto)
+
+	/**
+	 *Functions
+	 */
+
+	$scope.setDTO = function(dto){
+		if (dto != undefined)
+			$scope.dto = dto;
+	}
+
+	$scope.newForm = function(){
+		$scope.dto = new Evento();
+	}
+
+	$scope.save = function(){
+		console.log($scope.dto);
+		$http.post($scope.url+"/save", $scope.dto)
 		.then(function success(response){
 			console.log("response: "+response);
 			if (response.data.id != null){
@@ -95,39 +108,39 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 		}, function error(response){
 			console.log(response);
 		});
-    }
-    	
-    $scope.remove = function(){
-    	$scope.dto.ativo = false;
-    	$http.post($scope.url+"/delete", $scope.dto)
-    	.then(function success(response){
-    		console.log("response: "+response);
-    		$scope.dto = new EventoDTO();
-    	}, function error(response){    		
-    		console.log(response);
-    	});
-    	$scope.save();
-    }
-    
-    $scope.cancel = function(){
-    	$window.location.href = $scope.url+"/list";
-    }
-        
-    //tab
-    $scope.adicionarProgramacao = function(programacao){
-    	$scope.dto.programacoes.push(angular.copy(programacao));
-    	delete $scope.programacao;
-    };
-    
-    $scope.apagarProgramacao = function(listProgramacao){
-     	$scope.dto.programacoes = listProgramacao.filter(function(programacao){
-     		if(!programacao.selecionado) return programacao;
-     	});
-    };
-    // fim tab4
-    
-    // Mapas    
-    var myLocal = {lat: 0, lng: 0};
+	}
+
+	$scope.remove = function(){
+		$scope.dto.ativo = false;
+		$http.post($scope.url+"/delete", $scope.dto)
+		.then(function success(response){
+			console.log("response: "+response);
+			$scope.dto = new EventoDTO();
+		}, function error(response){    		
+			console.log(response);
+		});
+		$scope.save();
+	}
+
+	$scope.cancel = function(){
+		$window.location.href = $scope.url+"/list";
+	}
+
+	//tab 4
+	$scope.adicionarProgramacao = function(programacao){
+		$scope.dto.programacao.push(angular.copy(programacao));
+		delete $scope.programacao;
+	};
+
+	$scope.apagarProgramacao = function(listProgramacao){
+		$scope.dto.programacao = listProgramacao.filter(function(programacao){
+			if(!programacao.selecionado) return programacao;
+		});
+	};
+	// fim tab4
+
+	// Mapas    
+	var myLocal = {lat: 0, lng: 0};
 
 	$scope.map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 15,
@@ -135,13 +148,13 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 
-	
+
 	// Adiciona as marker no map com click
 	$scope.map.addListener('click', function(event){
 
 		//latitude = event.latLng.lat();
-	//	longitude = event.latLng.lng();
-		
+		//	longitude = event.latLng.lng();
+
 		$scope.mapa = {
 				descricao: $scope.mapa.descricao,
 				lat: event.latLng.lat(),	
@@ -150,22 +163,19 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 
 		$scope.addMarker($scope.mapa);
 	});
-	
-	
-	 $scope.adicionarMapa = function(mapa){
-		 console.log($scope.dto);
-		 console.log($scope.dto.mapas);		 
-		 $scope.dto.mapas.push(angular.copy(mapa));
-	     delete $scope.mapa;
-	 };
-	
-	 $scope.apagarMapa = function(listMapa){
-		$scope.dto.mapas = listMapa.filter(function (mapa){
+
+	$scope.adicionarMapa = function(mapa){	 
+		$scope.dto.mapa.push(angular.copy(mapa));
+		delete $scope.mapa;
+	};
+
+	$scope.apagarMapa = function(listMapa){
+		$scope.dto.mapa = listMapa.filter(function (mapa){
 			if(!mapa.selecionado) return mapa;
 		}); 
-	 };
-	 
-    // adiciona marcação
+	};
+
+	// adiciona marcação
 	$scope.addMarker = function(myLocal){
 		$scope.marker = new google.maps.Marker({map: $scope.map,position: myLocal,});
 	}
@@ -199,5 +209,5 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 				'Error: O serviço de location falhou.' :
 		'Error: Seu browser não suporta geolocation.');
 	}
-    
+
 });

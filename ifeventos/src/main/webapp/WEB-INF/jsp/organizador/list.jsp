@@ -96,7 +96,7 @@
 									        <th data-field="nome" data-sortable="true">Nome</th>						        
 									        <th data-field="cargo" data-sortable="true">Cargo<th>
 									        <th data-field="area" data-sortable="true">Área<th>
-									        <th data-field="tipoOrganizador.descricao" data-sortable="true">Tipo Organizador<th>
+									        <th data-field="url" data-sortable="true">Site<th>
 									    </tr>
 									    </thead>
 									</table>
