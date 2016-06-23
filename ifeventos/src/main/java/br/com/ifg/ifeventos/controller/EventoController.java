@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.exception.ConstraintViolationException;
+import org.junit.internal.runners.model.EachTestNotifier;
 
 import com.google.gson.Gson;
 
@@ -79,7 +80,7 @@ public class EventoController {
 
 	@Path("/evento/form")
 	public void form(){	
-		Gson  gson =  new Gson();		
+		Gson gson = new Gson();		
 		result.include("listOrganizador", gson.toJson(organizadorDao.getAll()));
 		result.include("listTpProgramacao",gson.toJson(tipoProgramacaoDao.getAll()));
 		result.include("listTpOrganizador", gson.toJson(tipoOrganizadorDao.getAll()));
@@ -131,9 +132,20 @@ public class EventoController {
 		programacaoDao.setEntityManager(dao.getEntityManager());
 		enderecoDao.setEntityManager(dao.getEntityManager());
 		try{
-			enderecoDao.save(dto.getEndereco());			
+			enderecoDao.save(dto.getEndereco());
+			
+			for (int i=0; i < dto.getMapa().size(); i++)
+				dto.getMapa().get(i).setEvento(dto);
+			
+			for (int i=0; i < dto.getProgramacao().size(); i++)
+				dto.getProgramacao().get(i).setEvento(dto);
+
+			for (int i=0; i < dto.getOrganizadores().size(); i++)
+				dto.getOrganizadores().get(i).setEvento(dto);
+			
 			dao.save(dto);		
 			//programacaoDao.removeByEventoId(dto.getId());
+			/*
 			for (int i=0; i < dto.getProgramacao().size(); i++){
 				dto.getProgramacao().get(i).setEvento(dto);
 				programacaoDao.save(dto.getProgramacao().get(i));
@@ -142,7 +154,8 @@ public class EventoController {
 			for (int i=0; i < dto.getOrganizadores().size(); i++){
 				dto.getOrganizadores().get(i).setEvento(dto);
 				organizadorEventoDao.save(dto.getOrganizadores().get(i));
-			}			
+			}
+			*/			
 			dao.commit();
 		}
 		catch(Exception e){
@@ -151,9 +164,7 @@ public class EventoController {
 			dto = new Evento();
 		}
 		result.use(Results.json())
-		.withoutRoot()
-		.from(dto)
-		.serialize();
+		.withoutRoot().from(dto).recursive().serialize();
 	}
 
 	/**
@@ -198,6 +209,5 @@ public class EventoController {
 		.recursive()
 		.serialize();
 	}
-
-
+	
 } 

@@ -86,8 +86,10 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 	 */
 
 	$scope.setDTO = function(dto){
-		if (dto != undefined)
+		if (dto != undefined){
 			$scope.dto = dto;
+			//$tableMapa.bootstrapTable('load', dto.mapa);			
+		}
 	}
 
 	$scope.newForm = function(){
@@ -95,6 +97,7 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 	}
 
 	$scope.save = function(){
+		//$scope.dto.mapa = $tableMapa.bootstrapTable('getData');
 		console.log($scope.dto);
 		$http.post($scope.url+"/save", $scope.dto)
 		.then(function success(response){
@@ -140,7 +143,7 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 	// fim tab4
 
 	// Mapas    
-	var myLocal = {lat: 0, lng: 0};
+/*	var myLocal = {lat: 0, lng: 0};
 
 	$scope.map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 15,
@@ -151,10 +154,6 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 
 	// Adiciona as marker no map com click
 	$scope.map.addListener('click', function(event){
-
-		//latitude = event.latLng.lat();
-		//	longitude = event.latLng.lng();
-
 		$scope.mapa = {
 				descricao: $scope.mapa.descricao,
 				lat: event.latLng.lat(),	
@@ -166,6 +165,7 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 
 	$scope.adicionarMapa = function(mapa){	 
 		$scope.dto.mapa.push(angular.copy(mapa));
+		//$tableMapa.bootstrapTable('append', mapa);
 		delete $scope.mapa;
 	};
 
@@ -209,5 +209,9 @@ app.controller('EventoFormController', function($compile, $scope, $http, $window
 				'Error: O serviço de location falhou.' :
 		'Error: Seu browser não suporta geolocation.');
 	}
-
+*/
 });
+/*var $table = ("#tableMapa");
+function addMapa(mapa){
+return $table.bootstrapTable('append', mapa);
+}*/
