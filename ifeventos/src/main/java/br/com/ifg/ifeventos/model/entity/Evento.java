@@ -22,38 +22,25 @@ public class Evento extends AbstractEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	@NotEmpty 
-	@Getter @Setter private String nome; 
+	@NotEmpty
+	@Getter @Setter private String nome;
  	@Getter @Setter private String local;
 	@Getter @Setter private String site;
-	//@Getter @Setter private String imagem; 
-	
+	@Getter @Setter private String imagem;
 	@ManyToOne @JoinColumn(name="endereco_id")
-	@Getter @Setter private Endereco endereco;
-	
-	//@ManyToMany
-	//@JoinTable(name="tb_evento_has_organizador", 
-	//joinColumns={@JoinColumn(name="evento_id")}, 
-	//inverseJoinColumns={@JoinColumn(name="organizador_id")})
-	//@Getter @Setter private List<Organizador> organizadores;
-	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER) 
-	@JoinColumn(name="organizador_evento_id")
-	@Getter @Setter private List<OrganizadorEvento> organizadores;	
-	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER) 
-	@JoinColumn(name="evento_id")
+	@Getter @Setter private Endereco endereco;	
+	@OneToMany(mappedBy = "evento", targetEntity = OrganizadorEvento.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL,  orphanRemoval=true)
+	@Getter @Setter private List<OrganizadorEvento> organizadores;
+	@OneToMany(mappedBy = "evento", targetEntity = Programacao.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL,  orphanRemoval=true)
 	@Getter @Setter private List<Programacao> programacao;
-	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinColumn(name="evento_id")
-	@Getter @Setter private List<Mapa> mapa;
+	@OneToMany(mappedBy = "evento", targetEntity = Mapa.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL,  orphanRemoval=true)
+	@Getter @Setter private List<Mapa> mapas;
 	
 	public Evento(){
 		super();
 	}
 
-	public Evento(Long id, String nome, String local, String site, Endereco endereco, List<Programacao> programacao, List<OrganizadorEvento> organizadores, List<Mapa> mapa, Boolean ativo) {
+	public Evento(Long id, String nome, String local, String site, Endereco endereco, List<Programacao> programacao, List<OrganizadorEvento> organizadores, List<Mapa> mapas, Boolean ativo) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -63,7 +50,7 @@ public class Evento extends AbstractEntity implements Serializable{
 		this.ativo = ativo;
 		this.programacao = programacao;
 		this.organizadores = organizadores;
-		this.mapa = mapa;
+		this.mapas = mapas;
 	}
 
 }

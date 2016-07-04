@@ -7,28 +7,52 @@ import br.com.ifg.ifeventos.model.entity.TipoOrganizador;
 
 public class TipoOrganizadorDAO extends DAO<TipoOrganizador, Long> {
 	
-	public List<TipoOrganizador> search(BootstrapTableParamsDTO params){
-		pageSize = params.getLimit();		
-		Long id = -1L;
-		try{
-			id = Long.parseLong(params.getSearch());
-		}catch(Exception e){
-		};
-		return (List<TipoOrganizador>) this.getPageableList(params.getOffset(),"from TipoOrganizador tp where tp.descricao like :param or tp.id = :id order by tp."+params.getSort()+" "+params.getOrder(),
-				"id",id,
-				"param","%"+params.getSearch()+"%");
+	public List<TipoOrganizador> getAllActives() {
+		return (List<TipoOrganizador>) this.getList("from TipoOrganizador to where to.ativo = true");
 	}
 	
-	public Long count(BootstrapTableParamsDTO params){
-		pageSize = params.getLimit();		
+	public TipoOrganizador getByDescricao(String descricao){
+		return ((List<TipoOrganizador>) this.getList("from TipoOrganizador to where to.descricao = :param", "param",descricao)).get(0);		
+	}
+	
+	public List<TipoOrganizador> search(BootstrapTableParamsDTO params) {
+		pageSize = params.getLimit();
 		Long id = -1L;
-		try{
+		try {
 			id = Long.parseLong(params.getSearch());
-		}catch(Exception e){}
-		
-		return (Long) this.getGenericList("select count(*) from TipoOrganizador where descricao like :param or id = :id",
-				"id",id,
-				"param","%"+params.getSearch()+"%").get(0);
+		} 
+		catch (Exception e) {};
+		return (List<TipoOrganizador>) this.getPageableList(
+				params.getOffset(), "from TipoOrganizador to where to.descricao like :param or to.id = :id order by to."
+					+ params.getSort() + " " + params.getOrder(),
+					"id", id, "param", "%" + params.getSearch() + "%");
+	}
+	
+	public List<TipoOrganizador> searchOnActiveRecords(BootstrapTableParamsDTO params) {
+		pageSize = params.getLimit();
+		Long id = -1L;
+		try {
+			id = Long.parseLong(params.getSearch());
+		} 
+		catch (Exception e) {};
+		return (List<TipoOrganizador>) this.getPageableList(
+				params.getOffset(), "from TipoOrganizador to where to.ativo = true and to.descricao like :param or to.id = :id order by to."
+					+ params.getSort() + " " + params.getOrder(),
+					"id", id, "param", "%" + params.getSearch() + "%");
+	}
+	
+
+	public Long count(BootstrapTableParamsDTO params) {
+		pageSize = params.getLimit();
+		Long id = -1L;
+		try {
+			id = Long.parseLong(params.getSearch());
+		} 
+		catch (Exception e) {}
+
+		return (Long) this
+				.getGenericList("select count(*) from TipoOrganizador where descricao like :param or id = :id", "id",
+						id, "param", "%" + params.getSearch() + "%").get(0);
 	}
 
 }

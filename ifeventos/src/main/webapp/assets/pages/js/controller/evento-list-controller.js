@@ -1,4 +1,4 @@
-app.controller('EventoListController', function($compile, $scope, $http, $window, $resource, globalService, Evento){
+app.controller('EventoListController', function($scope, $http, $window, Id, globalService){
 
 	/**
 	 *Variables
@@ -11,6 +11,7 @@ app.controller('EventoListController', function($compile, $scope, $http, $window
      */   
     
     $scope.newForm = function(){
+    	console.log('newForm');
     	$window.location.href = $scope.url+'/form';
     }
     
@@ -18,48 +19,43 @@ app.controller('EventoListController', function($compile, $scope, $http, $window
     	$window.location.href = $scope.url+'/form/'+id;
     }
     
-    $scope.removeValidate = function(id){
-    	bootbox.confirm("Tem certeza que deseja remover esse registro?", function(result) {
-    		if (result)
-    			$scope.remove(id);
-    	});
+    $scope.removeMapaEvento = function(){
+		var mapas = $scope.mapaTable.bootstrapTable('getAllSelections');
+	}
+    
+    $scope.remove = function(){
+    	var rows = $scope.table.bootstrapTable('getAllSelections');
+    	if (rows.length > 0){
+    		var excluir = [];		
+    		for(var i=0; i < rows.length; i++){
+    			excluir.push(new Id(rows[i].id));
+    		}		
+    		$http.post($scope.url+"/deleteAllSelected", excluir)
+    		.then(function success(response){
+    			if (response.data.message != "")
+        			globalService.showMensage('div_alert',response.data.message,'danger');
+        		else {
+        			$scope.table.bootstrapTable('refresh');
+        			globalService.showMensage('div_alert','Registro(s) removido(s) com sucesso!','success');
+        		}
+        	}, function error(response){    		
+        		globalService.showMensage('div_alert',"Falha ao tentar remover o registro.",'danger');
+        	});
+    	}
     }
     
-    $scope.remove = function(id){
-//    	TODO AS LINHAS COMENTADAS FUNCIONAM, ENTRETANTO TRAFEGAM LIXO ENTRE AS REQUISIÇÕES.
-//    	
-//    	var dto = new Evento();
-//    	dto.id = id;
-//    	$http.post($scope.url+"/delete", dto)
-    	$http.post($scope.url+"/delete", id)
-    	.then(function success(response){
-    		if (response.data == true){
-    			$scope.table.bootstrapTable('load');
-    			console.log("carregou");
-    		}
-    		else
-    			alert('Error');
-    	}, function error(response){
-    		console.log(response);
-    		alert('Error');
-    	});
-    }
     
     /**
      *Init
      */   
        
     globalService.setBootstrapTableEvent('table', 'onClickRow', function(e, row, element){
-//    	$scope.edit(row.id);
+    	$scope.edit(row.id);
     });
     
     globalService.setBootstrapTableEvent('table', 'onClickCell', function(e, field, value, row, $element){
-    	if (field != 'state'){    		
-    		if (field == 'removeButton')
-    			$scope.removeValidate(row.id);
-    		else
-    			$scope.edit(row.id);
-    	}
+    	if (field = 'id')
+    	$scope.edit(row.id);
     });
       
 });
@@ -69,8 +65,4 @@ function imagemFormatter(value, row, index) {
 		return '<img src="img/evento/'+value+'" class="thumb" />';
 	else
 		return '<img src="img/evento/not_found.jpg" class="thumb" />';
-}
-
-function removeFormatter(value, row, index) {	
-	return '<div id="removeButton" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></div>'
 }

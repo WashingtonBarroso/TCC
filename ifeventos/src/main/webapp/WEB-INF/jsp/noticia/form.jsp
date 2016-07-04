@@ -1,13 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html>
 <html lang="pt" ng-app="app" ng-controller="NoticiaFormController"  ng-init='setDTO(${dto});'>
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />
-<link href="assets/global/bootstrap-table/bootstrap-table.css" rel="stylesheet" type="text/css" />
-<link href="assets/pages/css/global.css" rel="stylesheet" type="text/css" />
+<link href="assets/global/bootstrap-table/bootstrap-table.css"
+	rel="stylesheet" type="text/css" />
 </head>
+
 <body>
+
 	<div id="wrapper">
 
 		<!-- Navigation -->
@@ -56,7 +57,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">NotÌcia</h1>
+					<h1 class="page-header">Not√≠cia</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -71,22 +72,16 @@
 									<div class="form-group" 
 										ng-class="{'has-error':form.mensagem.$invalid ,'has-success':form.mensagem.$valid}">
 										<label class="control-label">
-									        Mensagem: <span
-											class="required">*</span>
+											Mensagem: <span
+											class="required"> * </span>
 										</label>
 										<div class="input-icon right">
 											<textarea class="form-control" placeholder="Digite a mensagem"
-												name="mensagem" ng-model="dto.mensagem"
-												required ng-maxlength="120">	
-											</textarea>												
-											<span class="help-block"
-												ng-show="form.mensagem.$error.required">
-												<i class="fa fa-warning"></i>
-												Favor inserir o dado requerido.</span> 
-											<span class="help-block"												
-												ng-show="form.mensagem.$error.maxlength">
-												<i class="fa fa-warning"></i>
-												O dado informado È muito grande.</span>
+												name="mensagem" type="text" ng-model="dto.mensagem"
+												required maxlength="200"></textarea>
+											<div class="validation-messages help-block" ng-messages="form.mensagem.$error">
+										        <div ng-message="required"><i class="fa fa-warning"></i> Esse campo √© obrigat√≥rio!</div>														        
+										    </div>
 										</div>
 									</div>
 									<div class="form-group" style="float: right;">
@@ -99,13 +94,13 @@
 											ng-disabled="form.$invalid">
 											<i class="fa fa-check"></i> Salvar
 										</div>
-										<div id="removeButton" class="btn btn-danger"
+										<div id="removeButton" class="btn btn-danger" ng-class="{'ng-hide' : dto.id==null}"
 											ng-click="remove()">
 											<i class="fa fa-times"></i> Remover
 										</div>
 										<div id="cancelButton" class="btn btn-outline btn-default" 
 											ng-click="cancel()">
-											<i class="fa fa-times"></i> Desistir
+											<i class="fa fa-reply"></i> Voltar
 										</div>
 									</div>
 								</form>
@@ -126,7 +121,7 @@
 
 	<!-- /#wrapper -->
 
-<jsp:include page="/WEB-INF/jsp/template/scripts.jsp" />
+	<jsp:include page="/WEB-INF/jsp/template/scripts.jsp" />
 
 	<!-- Bootstrap Table -->
 	<script type="text/javascript"
@@ -136,11 +131,16 @@
 	<script type="text/javascript"
 		src="assets/global/bootstrap-table/locale/bootstrap-table-pt-BR.min.js"></script>
 
+
+
 	<!-- Page Controller -->
+	<script type="text/javascript"
+		src="assets/pages/js/factory/id-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/factory/noticia-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/controller/noticia-form-controller.js"></script>
+
 </body>
 
 </html>

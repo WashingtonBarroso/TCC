@@ -1,10 +1,10 @@
-app.controller('TipoProgramacaoListController', function($compile, $scope, $http, $window, $resource, globalService){
+app.controller('TipoProgramacaoListController', function($scope, $http, $window, Id, globalService){
 
 	/**
 	 *Variables
 	 */    
     $scope.url = 'tipoprogramacao';
-    $scope.selectedRows = [];
+    $scope.table = jQuery('#table');
     
     /**
      *Functions
@@ -19,17 +19,29 @@ app.controller('TipoProgramacaoListController', function($compile, $scope, $http
     	$window.location.href = $scope.url+'/form/'+id;
     }
     
-    $scope.remove = function(){    	
-    	$http.post($scope.url+"/delete", id)
-    	.then(function success(response){
-    		if (response.data == true)
-    			$scope.array.splice(index, 1);
-    		else
-    			alert('Error');
-    	}, function error(response){
-    		console.log(response);
-    		alert('Error');
-    	});
+    $scope.removeMapaEvento = function(){
+		var mapas = $scope.mapaTable.bootstrapTable('getAllSelections');
+	}
+    
+    $scope.remove = function(){
+    	var rows = $scope.table.bootstrapTable('getAllSelections');
+    	if (rows.length > 0){
+    		var excluir = [];		
+    		for(var i=0; i < rows.length; i++){
+    			excluir.push(new Id(rows[i].id));
+    		}		
+    		$http.post($scope.url+"/deleteAllSelected", excluir)
+    		.then(function success(response){
+    			if (response.data.message != "")
+        			globalService.showMensage('div_alert',response.data.message,'danger');
+        		else {
+        			$scope.table.bootstrapTable('refresh');
+        			globalService.showMensage('div_alert','Registro(s) removido(s) com sucesso!','success');
+        		}
+        	}, function error(response){    		
+        		globalService.showMensage('div_alert',"Falha ao tentar remover o registro.",'danger');
+        	});
+    	}
     }
     
     

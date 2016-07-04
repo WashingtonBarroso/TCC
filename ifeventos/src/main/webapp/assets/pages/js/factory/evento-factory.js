@@ -7,7 +7,7 @@ app.factory('Evento', function(Endereco){
     	this.endereco = new Endereco();
     	this.organizadores = [];
     	this.programacao = [];
-    	this.mapa = [];
+    	this.mapas = [];
     	this.ativo = true;
     }
 });

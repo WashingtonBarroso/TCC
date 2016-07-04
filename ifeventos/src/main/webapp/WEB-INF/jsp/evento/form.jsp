@@ -2,21 +2,11 @@
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="pt" ng-app="app" ng-controller="EventoFormController"
-	ng-init='setDTO(${dto}); setListOrganizadores(${listOrganizador}); setListTipoOrganizadores(${listTpOrganizador}); setListTpProgramacao(${listTpProgramacao}); setListPalestrante(${listPalestrante});'>
+	ng-init='setDTO(${dto}); setOrganizadores(${listOrganizador}); setTiposDeOrganizadores(${listTpOrganizador}); setTiposDeProgramacao(${listTpProgramacao}); setPalestrantes(${listPalestrante});'>
 
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />
-
-<link href="assets/global/bootstrap-wizard/bootstrap.min.css"
-	rel="stylesheet" type="text/css"/>
-<link href="assets/global/bootstrap-table/bootstrap-table.css"
-	rel="stylesheet" type="text/css" />
-<link href="assets/global/bootstrap-wizard/prettify.css"
-	rel="stylesheet" />
-
-<link href="assets/pages/css/global.css" rel="stylesheet"
-	type="text/css" />
-
+<link href="assets/global/bootstrap-table/bootstrap-table.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -69,29 +59,29 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<h1 class="page-header">Evento</h1>
-					<pre>
-					{{dto | json}}
-					</pre>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
 			<!-- /.row -->
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="panel-body">
-						<div class="row">
-							<div class="col-lg-12">
-								<div id="div_alert"></div>
-								<div id="rootwizard">
+					<div class="panel panel-default">
+					
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-lg-12">
+									<div id="div_alert"></div>						
 									<div class="navbar">
 										<div class="navbar-inner">
 											<div class="container-right">
-												<ul class="nav nav-pills">
-													<li><a href="#tab1" data-toggle="tab">Evento</a></li>
-													<li><a href="#tab2" data-toggle="tab">Mapa</a></li>
-													<li><a href="#tab3" data-toggle="tab">Organização</a></li>
+												<ul class="nav nav-tabs">
+													<li class="active"><a href="#tab1" data-toggle="tab">Dado do Evento</a></li>
+													<li><a href="#tab2" data-toggle="tab">Organização</a></li>
+													<li><a href="#tab3" data-toggle="tab" ng-click="initMapViewerWithDelay();">Mapa</a></li>
 													<li><a href="#tab4" data-toggle="tab">Programação</a></li>
+													<!-- 
 													<li><a href="#tab5" data-toggle="tab">Imagem</a></li>
+													 -->
 												</ul>
 											</div>
 										</div>
@@ -99,9 +89,8 @@
 									<form id="form" name="form" role="form" novalidate>
 										<!-- enctype="multipart/form-data" -->
 										<div class="tab-content">
-
 											<!-- Init tab1 -->
-											<div class="tab-pane" id="tab1">
+											<div class="tab-pane fade tab-margin active in" id="tab1">
 												<div class="form-group"
 													ng-class="{'has-error':form.nome.$invalid ,'has-success':form.nome.$valid}">
 													<label class="control-label"> Evento: <span
@@ -110,32 +99,37 @@
 													<div class="input-icon right">
 														<input class="form-control" type="text" name="nome"
 															placeholder="Digite a nome do evento" ng-model="dto.nome"
-															required ng-maxlength="200"> <span
-															class="help-block" ng-show="form.nome.$error.required">
-															<i class="fa fa-warning"></i> Favor inserir o dado
-															requerido.
-														</span> <span class="help-block"
-															ng-show="form.nome.$error.maxlength"> <i
-															class="fa fa-warning"></i> O dado informado é muito
-															grande.
-														</span>
+															required ng-maxlength="200">
+														<div class="validation-messages help-block" ng-messages="form.nome.$error">
+													        <div ng-message="maxlength"><i class="fa fa-warning"></i> O dado informado é muito grande.</div>
+													        <div ng-message="required"><i class="fa fa-warning"></i> Favor inserir o dado requerido.</div>														        
+													    </div>
 													</div>
 												</div>
 												<div class="form-group"
 													ng-class="{'has-error':form.localEvento.$invalid ,'has-success':form.localEvento.$valid}">
 													<label class="control-label">Local <span
 														class="required">*</span>
-													</label> <input class="form-control" type="text" name="localEvento"
+													</label> 
+													<input class="form-control" type="text" name="localEvento"
 														placeholder="Digite o local do evento"
 														ng-model="dto.local" required ng-maxlength="200">
-													<span class="help-block"
-														ng-show="form.localEvento.$error.required"> <i
-														class="fa fa-warning"></i> Favor inserir o dado requerido.
-													</span> <span class="help-block"
-														ng-show="form.localEvento.$error.maxlength"> <i
-														class="fa fa-warning"></i> O dado informado é muito
-														grande.
-													</span>
+													<div class="validation-messages help-block" ng-messages="form.localEvento.$error">
+												        <div ng-message="maxlength"><i class="fa fa-warning"></i> O dado informado é muito grande.</div>
+												        <div ng-message="required"><i class="fa fa-warning"></i> Favor inserir o dado requerido.</div>														        
+												    </div>
+												</div>											
+												<div class="form-group"
+													ng-class="{'has-error':form.cep.$invalid ,'has-success':form.cep.$valid}">
+													<label class="control-label">Cep <span
+														class="required">*</span>
+													</label> <input class="form-control" type="text" name="cep" maxlength="10"
+														placeholder="Digite o cep do evento"
+														ng-model="dto.endereco.cep" required ng-maxlength="10" ng-keyup="cepFormatter($event)">
+													<div class="validation-messages help-block" ng-messages="form.cep.$error">
+												        <div ng-message="maxlength"><i class="fa fa-warning"></i> O dado informado é muito grande.</div>
+												        <div ng-message="required"><i class="fa fa-warning"></i> Favor inserir o dado requerido.</div>														        
+												    </div>
 												</div>
 												<div class="form-group"
 													ng-class="{'has-error':form.logradouro.$invalid ,'has-success':form.logradouro.$valid}">
@@ -218,22 +212,6 @@
 													</span>
 												</div>
 												<div class="form-group"
-													ng-class="{'has-error':form.cep.$invalid ,'has-success':form.cep.$valid}">
-													<label class="control-label">Cep <span
-														class="required">*</span>
-													</label> <input class="form-control" type="text" name="cep"
-														placeholder="Digite o cep do evento"
-														ng-model="dto.endereco.cep" required ng-maxlength="200">
-													<span class="help-block" ng-show="form.cep.$error.required">
-														<i class="fa fa-warning"></i> Favor inserir o dado
-														requerido.
-													</span> <span class="help-block"
-														ng-show="form.cep.$error.maxlength"> <i
-														class="fa fa-warning"></i> O dado informado é muito
-														grande.
-													</span>
-												</div>
-												<div class="form-group"
 													ng-class="{'has-error':form.site.$invalid ,'has-success':form.site.$valid}">
 													<label class="control-label">Website</label> <input
 														class="form-control" type="text" name="site"
@@ -245,315 +223,259 @@
 													</span>
 												</div>
 											</div>
-
-											<!-- Exit tab1 -->
-
+											<!-- End tab1 -->
+	
 											<!-- Init tab2 -->
-											<div class="tab-pane" id="tab2">
-												<div class="form-group">
-													<div
-														ng-class="{'has-error':form.descricao.$invalid ,'has-success':form.descricao.$valid}">
-														<label class="control-label"> Descrição: <span
-															class="required"> * </span>
-														</label>
-														<div class="row">
-															<div class="col-md-4">
-																<input class="form-control" name="descricao" type="text"
-																	ng-model="mapa.descricao" required ng-maxlength="11">
-																<span class="help-block"
-																	ng-show="form.descricao.$error.required"> <i
-																	class="fa fa-warning"></i> Favor inserir o dado
-																	requerido.
-																</span> <span class="help-block"
-																	ng-show="form.descricao.$error.maxlength"> <i
-																	class="fa fa-warning"></i> O dado informado é muito
-																	grande.
-																</span>
-															</div>
-														</div>
-													</div>
-												</div>
-												<p>{{mapa | json}}</p>
-												<!-- Mapa -->
-
-												<!-- 	<div id="map" class="img-responsive"
-													style="width: 500px; height: 380px; margin-bottom: 1cm;"></div>
- -->
-												<!-- Fim mapa -->
-
-												<button id="button" class="btn btn-success" type="button"
-													ng-click="adicionarMapa(mapa)">Adicionar</button>
-												<button class="btn btn-danger" type="button"
-													ng-click="apagarMapa(listMapa)">Remover</button>
-												<br>
-
-												<div class="panel-body">
-													<div class="dataTable_wrapper">
-														<table id="tableMapa" name="tableMapa"
-															data-classes="table table-hover table-condensed"
-															data-striped="true" data-search="true"
-															data-click-to-select="true" data-show-refresh="true"
-															data-show-toggle="true" data-show-columns="true"
-															data-show-export="true" data-toolbar="#toolbar"
-															data-pagination="true" data-toggle="table"
-															data-page-list="[5, 10, 20, 50, 100, 200]" data->
-															<thead>
-																<tr>
-																	<th data-field="state" data-checkbox="true"></th>
-																	<th data-field="descricao" data-sortable="true">Descrição</th>
-																	<th data-field="latitude" data-sortable="true">Latitude</th>
-																	<th data-field="longitude" data-sortable="true">Longitude
-																	<th>
-																</tr>
-															</thead>
-														</table>
-													</div>
-													<!-- 
-                        </div>
-                            -->
-													<!-- /.panel-body -->
-												</div>
-
-
-
-
-
-
-
-
-
-
-
-
-											</div>
-											<!-- Exit tab2 -->
-
-
-											<!-- Init tab3 -->
-											<div class="tab-pane" id="tab3">
-
-												<select class="form-control"
-													ng-model="organizadorEvento.organizador"
-													ng-options="organizador as organizador.nome for organizador in organizadores"
-													name="organizador" class="form-control">
-													<option value="">Selecione</option>
-												</select> <br> <select class="form-control"
-													ng-model="organizadorEvento.tipoOrganizador"
-													ng-options="tipoOrganizador as tipoOrganizador.descricao for tipoOrganizador in tipoOrganizadores"
-													name="organizador" class="form-control">
-													<option value="">Selecione</option>
-												</select> <br>
-												<button id="btn" name="btn" class="btn btn-success" type="button"
-													>Adicionar</button>
-													<!--ng-click="adicionarOrganizador(organizadorEvento)" -->
-												<button class="btn btn-danger" type="button"
-													ng-click="apagarOrganizador(listOrganizador)">Remover</button>
-
-												<div class="panel-body">
-													<div class="dataTable_wrapper">
-														<table id="tableOrganizador" name="tableOrganizador"
-															data-classes="table table-hover table-condensed"
-															data-striped="true" data-search="true"
-															data-click-to-select="true" data-show-refresh="true"
-															data-show-toggle="true" data-show-columns="true"
-															data-show-export="true" data-toolbar="#toolbar"
-															data-pagination="true" data-toggle="table"
-															data-page-list="[5, 10, 20, 50, 100, 200]" data->
-															<thead>
-																<tr>
-																	<th></th>
-																	<th data-field="nome">Nome</th>
-																	<th data-field="cargo">Cargo</th>
-																	<th data-field="area">Área</th>
-																	<th data-field="tipoOrganizador">Tipo Organizador</th>
-																</tr>
-															</thead>
-														</table>
-													</div>
-													<!-- /.panel-body -->
-												</div>
-
-											</div>
-											<!-- Exit tab3 -->
-
-
-											<!-- Início tab4 -->
-											<div class="tab-pane" id="tab4">
+											<div class="tab-pane fade tab-margin" id="tab2">											
 												<!-- /.row -->
 												<div class="row">
 													<div class="col-lg-12">
 														<div class="panel-body">
-															<div class="row">
-																<div class="col-lg-12">
-																	<div id="div_alert"></div>
+															<div class="panel panel-default">
+																<div class="panel-body">
+																	<div id="div_organizacao_alert"></div>
 																	<div class="form-group">
-																		<div
-																			ng-class="{'has-error':form.descricao.$invalid ,'has-success':form.descricao.$valid}">
-																			<label class="control-label"> Descrição: <span
-																				class="required"> * </span>
-																			</label>
-																			<div class="input-icon right">
-																				<input class="form-control"
-																					placeholder="Descreva a programação"
-																					name="descricao" type="text"
-																					ng-model="programacao.descricao" required
-																					ng-maxlength="150"> <span
-																					class="help-block"
-																					ng-show="form.descricao.$error.required"> <i
-																					class="fa fa-warning"></i> Favor inserir o dado
-																					requerido.
-																				</span> <span class="help-block"
-																					ng-show="form.descricao.$error.maxlength"> <i
-																					class="fa fa-warning"></i> O dado informado é muito
-																					grande.
-																				</span>
-																			</div>
-																		</div>
-																	</div>
-
-																	<div class="form-group">
-																		<div
-																			ng-class="{'has-error':form.localProgramacao.$invalid ,'has-success':form.localProgramacao.$valid}">
-																			<label class="control-label"> Local: <span
-																				class="required"> * </span>
-																			</label>
-																			<div class="input-icon right">
-																				<input class="form-control"
-																					placeholder="Digite o local"
-																					name="localProgramacao" type="text"
-																					ng-model="programacao.local" required
-																					ng-maxlength="20"> <span class="help-block"
-																					ng-show="form.localProgramacao.$error.required">
-																					<i class="fa fa-warning"></i> Favor inserir o dado
-																					requerido.
-																				</span> <span class="help-block"
-																					ng-show="form.localProgramacao.$error.maxlength">
-																					<i class="fa fa-warning"></i> O dado informado é
-																					muito grande.
-																				</span>
-																			</div>
-																		</div>
-																	</div>
-
-																	<div class="form-group">
-																		<div
-																			ng-class="{'has-error':form.data.$invalid ,'has-success':form.data.$valid}">
-																			<label class="control-label"> Data: <span
-																				class="required"> * </span>
-																			</label> <input type="text" name="data" class="form-control"
-																				ng-model="programacao.data"
-																				value="{{programacao.data}}" required> <span
-																				class="help-block"
-																				ng-show="form.data.$error.required"> <i
-																				class="fa fa-warning"></i> Favor inserir o dado
-																				requerido.
-																			</span>
-																		</div>
-																	</div>
-
-																	<div class="form-group">
-																		<div
-																			ng-class="{'has-error':form.hora.$invalid ,'has-success':form.hora.$valid}">
-																			<label class="control-label"> Hora: <span
-																				class="required"> * </span>
-																			</label> <input type="text" name="hora" class="form-control"
-																				ng-model="programacao.hora"
-																				value="{{programacao.hora}}" required> <span
-																				class="help-block"
-																				ng-show="form.hora.$error.required"> <i
-																				class="fa fa-warning"></i> Favor inserir o dado
-																				requerido.
-																			</span>
-																		</div>
-																	</div>
-																	<div class="form-group">
-																		<label class="control-label"> Palestrante: <span
-																			class="required"> * </span>
+																		<label class="control-label"> Organizador: 
 																		</label>
 																		<div class="input-icon right">
-																			<select class="form-control" name="palestrante"
-																				ng-model="programacao.palestrante"
-																				ng-options="palestrante as palestrante.nome for palestrante in palestrantes">
-																				<option value="">Selecione</option>
+																			<select class="form-control"
+																				ng-model="organizadorEvento.organizador"
+																				ng-options="organizador as organizador.nome for organizador in organizadores"
+																				name="organizador" class="form-control">
 																			</select>
 																		</div>
 																	</div>
 																	<div class="form-group">
-																		<label class="control-label"> Tipo
-																			Programação: <span class="required"> * </span>
+																		<label class="control-label"> Papel na organização: 
 																		</label>
 																		<div class="input-icon right">
-																			<select class="form-control" name="tipoProgramacao"
-																				ng-model="programacao.tipoProgramacao"
-																				ng-options="tipoProgramacao as tipoProgramacao.descricao for tipoProgramacao in tiposProgramacao">
-																				<option value="">Selecione</option>
+																			<select class="form-control"
+																				ng-model="organizadorEvento.tipoOrganizador"
+																				ng-options="tipoOrganizador as tipoOrganizador.descricao for tipoOrganizador in tiposDeOrganizadores"
+																				name="tipoOrganizador" class="form-control">
 																			</select>
 																		</div>
 																	</div>
-																	<button class="btn btn-success" type="button"
-																		ng-click="adicionarProgramacao(programacao)">Adicionar</button>
-																	<button class="btn btn-danger" type="button"
-																		ng-click="apagarProgramacao(listProgramacao)">Remover</button>
-																	<br>
+																	<div class="form-group" style="float: right;">																	
+																		<div id="newButton" class="btn btn-success"
+																			ng-click="addOrganizador()">
+																			<i class="fa fa-plus"></i> Adicionar
+																		</div>
+																	</div>
 																</div>
-
+															</div>																
+															<div class="dataTable_wrapper">
+																<table id="organizacaoTable"
+																	data-classes="table table-hover table-condensed"
+																	data-striped="true"
+																	data-show-toggle="true"
+																	data-show-columns="true" 
+																	data-show-export="true"
+																	data-pagination="true"
+																	data-toggle="table"
+																	data-page-list="[5, 10, 20, 50, 100, 200]">
+																	<thead>
+																		<tr>													
+																			<th data-valign="middle" data-field="organizador.nome"
+																				data-sortable="true">Nome</th>
+																			<th data-valign="middle" data-field="tipoOrganizador.descricao"
+																				data-sortable="true">Papel na Organização</th>	
+																			<th data-valign="middle" class="col-xs-1" data-field="removeButton" data-align="center" data-formatter="removeFormatter">Remover</th>																	
+																		</tr>
+																	</thead>
+																</table>
+																<!-- 
+																<div id="toolbarOrganizador" class="form-group" style="float: right;">
+																    <button type="button" class="btn btn-default" ng-click="removeOrganizadorEvento()">
+																        <i class="glyphicon glyphicon-trash"></i>
+																    </button>
+																</div>													
+																 -->
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- row -->
+											</div>
+											<!-- End tab2 -->
+	
+	
+											<!-- Init tab3 -->
+											<div class="tab-pane fade tab-margin" id="tab3">										
+												<!-- /.row -->
+												<div class="row">
+													<div class="col-lg-12">
+														<div class="panel-body">
+															<div class="panel panel-default">
+																<div class="panel-body">
+																	<div id="div_mapa_alert"></div>
+																	<div class="form-group">
+																		<label class="control-label"> Marque a localização no mapa: 
+																		</label>
+																		<div id="mapViewer" class="img-responsive" style="width: 100%; height: 300px; margin-bottom: 1cm;">
+																		</div>																
+																	</div>
+																	<div class="form-group">
+																		<label class="control-label"> Descrição do local: 
+																		</label>
+																		<div class="input-icon right">
+																			<input class="form-control" name="descricaoMapa" type="text" 
+																			ng-model="mapa.descricao"  maxlength="100">
+																			<br>
+																			<label class="control-label"> Latitude: {{mapa.latitude}}</label>
+																			<br>
+																			<label class="control-label"> Longitude: {{mapa.longitude}}</label>
+																		</div>
+																	</div>
+																	<div class="form-group" style="float: right;">																	
+																		<div id="newButton" class="btn btn-success"
+																			ng-click="addMapa()">
+																			<i class="fa fa-plus"></i> Adicionar
+																		</div>
+																	</div>	
+																</div>															
+															</div>																
+															<div class="dataTable_wrapper">
+																<table id="mapaTable"
+																	data-classes="table table-hover table-condensed"
+																	data-striped="true"
+																	data-show-toggle="true"
+																	data-show-columns="true" 
+																	data-show-export="true"
+																	data-pagination="true"
+																	data-toggle="table"
+																	data-page-list="[5, 10, 20, 50, 100, 200]">
+																	<thead>
+																		<tr>												
+																			<th data-valign="middle" data-field="descricao"
+																				data-sortable="true">Descricao</th>
+																			<th data-valign="middle" data-field="latitude"
+																				data-sortable="true">Latitude</th>																		
+																			<th data-valign="middle" data-field="longitude"
+																				data-sortable="true">Longitude</th>
+																			<th data-valign="middle" class="col-xs-1" data-field="removeButton" data-align="center" data-formatter="removeFormatter">Remover</th>
+																		</tr>
+																	</thead>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- row -->
+											</div>
+											<!-- End tab3 -->
+	
+	
+											<!-- Início tab4 -->
+											<div class="tab-pane fade tab-margin" id="tab4">
+												<!-- /.row -->
+												<div class="row">													
+													<div class="col-lg-12">														
+														<div class="panel-body">
+															<div class="panel panel-default">																
+																<div class="panel-body">
+																	<div id="div_programacao_alert"></div>																	
+																	<div class="form-group">
+																		<div ng-class="{'has-error':form.dataProgramacao.$invalid ,'has-success':form.dataProgramacao.$valid}">
+																			<label class="control-label"> Início: </label>
+																			<div class="input-icon right">
+																				<input type="datetime-local" name="dataProgramacao" class="form-control"
+																				ng-model="programacao.data"
+																				placeholder="dd/MM/yyyyTHH:mm" min="2001-01-01T00:00:00" max="2999-12-31T00:00:00"/>
+																				<div class="validation-messages help-block" ng-messages="form.dataProgramacao.$error">
+																			        <div ng-message="datetimelocal"><i class="fa fa-warning"></i> O data e horário informado é inválido.</div>																	        														        
+																			        <div ng-message="min"><i class="fa fa-warning"></i> O data é muito antiga.</div>																	        														        
+																			        <div ng-message="max"><i class="fa fa-warning"></i> O data é muito distante.</div>																	        														        
+																			    </div>	
+																			</div>
+																		</div>											
+																	</div>																	
+																	<div class="form-group">
+																		<label class="control-label"> Tipo da Programação: 
+																		</label>
+																		<div class="input-icon right">
+																			<select class="form-control"
+																				ng-model="programacao.tipoProgramacao"
+																				ng-options="tipoProgramacao as tipoProgramacao.descricao for tipoProgramacao in tiposDeProgramacao"
+																				name="tipoProgramacao" class="form-control">
+																			</select>
+																		</div>				
+																	</div>
+																	
+																	<div class="form-group">
+																		<label class="control-label"> Palestrante: 
+																		</label>
+																		<div class="input-icon right">
+																			<select class="form-control"
+																				ng-model="programacao.palestrante"
+																				ng-options="palestrante as palestrante.nome for palestrante in palestrantes"
+																				name="palestrante" class="form-control">																				
+																			</select>
+																		</div>
+																	</div>
+																																		
+																	<div class="form-group">
+																		<label class="control-label"> Descrição: </label>
+																		<div class="input-icon right">
+																			<input class="form-control" name="descricaoProgramacao" type="text" 
+																			maxlength="150" ng-model="programacao.descricao">
+																		</div>
+																	</div>
+																	<div class="form-group">
+																		<label class="control-label"> Espaço: </label>
+																		<div class="input-icon right">
+																			<input class="form-control" name="localProgramacao" type="text" 
+																			maxlength="150" ng-model="programacao.local">
+																		</div>
+																	</div>
+																	<div class="form-group" style="float: right;">																	
+																		<div id="newButton" class="btn btn-success"
+																			ng-click="addProgramacao()">
+																			<i class="fa fa-plus"></i> Adicionar
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="dataTable_wrapper">
+																<table id="programacaoTable"
+																	data-classes="table table-hover table-condensed"
+																	data-striped="true"
+																	data-show-toggle="true"
+																	data-show-columns="true" 
+																	data-show-export="true"
+																	data-pagination="true"
+																	data-toggle="table"
+																	data-page-list="[5, 10, 20, 50, 100, 200]">
+																	<thead>
+																		<tr>
+																			<th data-valign="middle" class="col-xs-1" data-field="temp" data-align="center" 
+																				data-formatter="dateFormatter">Data</th>
+																			<th data-valign="middle" data-field="tipoProgramacao.descricao"
+																				data-sortable="true">Tipo da Programação</th>
+																			<th data-valign="middle" data-field="palestrante.nome"
+																				data-sortable="true">Palestrante</th>
+																			<th data-valign="middle" data-field="descricao"
+																				data-sortable="true">Descrição</th>
+																			<th data-valign="middle" data-field="local"
+																				data-sortable="true">Espaço</th>	
+																			<th data-valign="middle" class="col-xs-1" data-field="removeButton" data-align="center" 
+																				data-formatter="removeFormatter">Remover</th>																	
+																		</tr>
+																	</thead>
+																</table>
 															</div>
 														</div>
 														<!-- /.col-lg-12 -->
 													</div>
 												</div>
 												<!-- /.row -->
-												<!-- /.row -->
-												<div class="row">
-													<div class="col-lg-12">
-														<div class="panel-body">
-															<div class="table-responsive">
-																<table
-																	class="table table-striped table-bordered table-hover"
-																	id="dataTablesProgramacao"
-																	ng-show="programacoes.length>0">
-																	<thead>
-																		<tr>
-																			<th></th>
-																			<th>Descrição</th>
-																			<th>Data</th>
-																			<th>Hora</th>
-																			<th>Local</th>
-																			<th>Palestrante</th>
-																			<th>Tipo Programação</th>
-																		</tr>
-																	</thead>
-																	<tbody>
-																		<tr
-																			ng-repeat="programacao in programacoes track by $index">
-																			<td><input type="checkbox"
-																				ng-model="programacao.selecionado"></td>
-																			<td>{{programacao.descricao}}</td>
-																			<td>{{programacao.data.value | date: 'dd.MM.y'}}</td>
-																			<td>{{programacao.hora.value | date: 'h:mm'}}</td>
-																			<td>{{programacao.local}}</td>
-																			<td>{{programacao.palestrante.nome}}</td>
-																			<td>{{programacao.tipoProgramacao.descricao}}</td>
-																		</tr>
-																	</tbody>
-																</table>
-															</div>
-															<!-- /.table-responsive -->
-														</div>
-														<!-- /.panel-body -->
-													</div>
-													<!-- /.col-lg-12 -->
-												</div>
-												<!-- /.row -->
-
 											</div>
 											<!-- Exit tab4 -->
-
-
-											<!-- Início tab 5  -->
-											<div class="tab-pane" id="tab5">
-
-												<!-- 	<div class="form-group"
+	
+	
+											<!-- Início tab 5  
+											<div class="tab-pane fade tab-margin" id="tab5">	
+												<div class="form-group"
 													ng-class="{'has-error':form.imagem.$invalid ,'has-success':form.imagem.$valid}">
 													<label class="control-label">Imagem</label> <input
 														type="file" ngf-select ng-model="imagem" name="imagem"
@@ -569,56 +491,43 @@
 														<i class="fa fa-times"></i> Remover
 													</div>
 												</div>
-											 -->
-												<!-- Grup button  -->
-												<div class="form-group" style="float: right;">
-													<div id="newButton" class="btn btn-primary"
-														ng-click="newForm()">
-														<i class="fa fa-file-o"></i> Limpar
-													</div>
-													<div id="saveButton" class="btn btn-success"
-														ng-click="save()">
-														<!-- ng-disabled="form.$invalid" -->
-														<i class="fa fa-check"></i> Salvar
-													</div>
-													<div id="removeButton" class="btn btn-danger"
-														ng-click="remove()">
-														<i class="fa fa-times"></i> Remover
-													</div>
-													<div id="cancelButton" class="btn btn-outline btn-default"
-														ng-click="cancel()">
-														<i class="fa fa-times"></i> Desistir
-													</div>
-												</div>
-												<!-- Fim button -->
 											</div>
+											 -->
 											<!-- Fim tab 5 -->
-
-
-											<!-- Steps wizard -->
-											<ul class="pager wizard">
-												<li class="previous first" style="display: none;"><a
-													href="#">First</a></li>
-												<li class="previous"><a href="#">Previous</a></li>
-												<li class="next last" style="display: none;"><a
-													href="#">Last</a></li>
-												<li class="next"><a href="#">Next</a></li>
-											</ul>
+									</form>	
+									<!-- Grup button  -->
+									<div class="form-group" style="float: right;">
+										<div id="newButton" class="btn btn-primary"
+											ng-click="newForm()">
+											<i class="fa fa-file-o"></i> Limpar
 										</div>
-										<!-- Fim Tab-Content -->
-									</form>
+										<div id="saveButton" class="btn btn-success"
+											ng-click="save()"
+											ng-disabled="form.$invalid"> 
+											<i class="fa fa-check"></i> Salvar
+										</div>
+										<div id="removeButton" class="btn btn-danger" ng-class="{'ng-hide' : dto.id==null}"
+											ng-click="remove()">
+											<i class="fa fa-times"></i> Remover
+										</div>
+										<div id="cancelButton" class="btn btn-outline btn-default" 
+											ng-click="cancel()">
+											<i class="fa fa-reply"></i> Voltar
+										</div>
+									</div>
+									<!-- Fim button -->							
 								</div>
-								<!-- Fim wizard -->
-							</div>
+							</div>	
 						</div>
 					</div>
-					<!-- /.col-lg-12 -->
 				</div>
-				<!-- /.row -->
+				<!-- /.col-lg-12 -->
 			</div>
-			<!-- /.container-fluid -->
+			<!-- /.row -->
 		</div>
-		<!-- /#page-wrapper -->
+		<!-- /.container-fluid -->
+	</div>
+	<!-- /#page-wrapper -->
 
 	</div>
 	<!-- /#wrapper -->
@@ -629,24 +538,21 @@
 
 
 	<!-- Bootstrap Table -->
-	<script type="text/javascript" src="assets/global/jquery/jquery.js"></script>
-	<script src="assets/global/bootstrap-table/bootstrap-table-filter.js"></script>
-	<script src="assets/global/bootstrap-wizard/bootstrap.min.js"> </script>
-	<script src="assets/global/bootstrap-table/bootstrap-table.js"></script>
+	<script type="text/javascript"
+		src="assets/global/angularjs-ui/ui-mask/mask.min.js"></script>
+		
+	<!-- Bootstrap Table -->
+	<script type="text/javascript"
+		src="assets/global/bootstrap-table/bootstrap-table.min.js"></script>
 	<script type="text/javascript"
 		src="assets/global/bootstrap-table/extensions/angular/bootstrap-table-angular.min.js"></script>
-
 	<script type="text/javascript"
 		src="assets/global/bootstrap-table/locale/bootstrap-table-pt-BR.min.js"></script>
- 
-<script type="text/javascript"
-		src="assets/global/bootstrap-table/bootstrap-table.min.js"></script>
 
 	<!--  Google Maps -->
-	<script src="http://maps.googleapis.com/maps/api/js"></script>
-<!-- 
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQ9qJsigEeh1SXJS7IZqB2yRSrgy0jKis"></script>
+
 	<!-- Factories  -->
-	
 	<script type="text/javascript"
 		src="assets/pages/js/factory/evento-factory.js"></script>
 	<script type="text/javascript"
@@ -665,51 +571,14 @@
 		src="assets/pages/js/factory/mapa-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/factory/organizador-evento-factory.js"></script>
- 
 
 	<!-- Page Controller -->
-	
-	<script type="text/javascript"
-		src="assets/pages/js/controller/evento-form-controller.js"></script>
-	<script type="text/javascript"
-		src="assets/pages/js/controller/programacao-form-controller.js"></script>
+	<script type="text/javascript" src="assets/pages/js/controller/evento-form-controller.js"></script>
+	<script type="text/javascript" src="assets/pages/js/factory/id-factory.js"></script>
+		
+	<!-- Filtros -->
+	<script type="text/javascript" src="assets/pages/js/filter/cep-filter.js"></script>		
 
-	<!-- Boostraps Wizard  -->
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script type="text/javascript" src="assets/global/jquery/jquery.js"></script>
-	<script src="assets/global/bootstrap-wizard/bootstrap.min.js"> </script>
-	<script
-		src="assets/global/bootstrap-wizard/jquery.bootstrap.wizard.min.js"> </script>
-	<script src="assets/global/bootstrap-wizard/prettify.js"> </script>
- 
-	<script>
-    
-    var $table = ("#tableOrganizador");
-         /* $button = $('#button');
-					$(function() {
-						$button.click(function(organizadorEvento) {
-							$table.bootstrapTable('append', organizadorEvento);
-							$table.bootstrapTable('scrollTo', 'bottom');
-							console.log(organizadorEvento);
-						});
-					}); */
-
-					
-					$('#btn').click(function(organizadorEvento)
-							{
-						
-						//$table.bootstrapTable('append', organizadorEvento);
-						$table.bootstrapTable('scrollTo', 'bottom');
-						
-							});
-				</script>
-
-	<script>
-	/*$(document).ready(function() {
-	  	$('#rootwizard').bootstrapWizard({'tabClass': 'nav nav-pills'});	
-		window.prettyPrint && prettyPrint()
-	});*/	
-	</script>
 </body>
 
 </html>

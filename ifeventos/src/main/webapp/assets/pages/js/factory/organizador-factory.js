@@ -1,4 +1,4 @@
-app.factory('Organizador', function(TipoOrganizador){    
+app.factory('Organizador', function(){    
     return function(){    	
     	this.id = null;    	
     	this.nome = "";    	

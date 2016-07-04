@@ -1,14 +1,14 @@
 .thumb {
-    width: 240px;
-    float: none;
-    position: relative;
-    top: 7px;
+	width: 240px;
+	float: none;
+	position: relative;
+	top: 7px;
 }
 
 form .progress {
-    line-height: 15px;
+	line-height: 15px;
 }
 
-.tab-margin{
+.tab-margin {
 	margin-top: 10px;
 }

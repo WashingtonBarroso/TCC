@@ -10,6 +10,7 @@
 
 <!--  GLOBAL STYLES  -->
 
+
 <!-- Bootstrap Core CSS -->
 <link href="/ifeventos/assets/global/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -32,6 +33,8 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+<!--  Global Pages CSS -->
+<link href="/ifeventos/assets/pages/css/global.css" rel="stylesheet">
 
 <!--  END GLOBAL STYLES  -->
 
@@ -40,6 +43,6 @@
 <script src="/ifeventos/assets/global/jquery.ui/jquery-ui.min.js"></script>
 <script src="/ifeventos/assets/global/angularjs/angular.min.js" type="text/javascript"></script>
 <script src="/ifeventos/assets/global/angularjs/angular-resource.min.js" type="text/javascript"></script>
+<script src="/ifeventos/assets/global/angularjs/angular-messages.min.js" type="text/javascript"></script>
 <script src="/ifeventos/assets/global/angularjs/angular-highlightjs.min.js" type="text/javascript"></script>
-<script src="/ifeventos/assets/global/angularjs/angular-ui-router.min.js" type="text/javascript"></script>
 <!-- ANGULAR AND JQUERY CORE PLUGINS -->

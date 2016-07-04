@@ -1,8 +1,9 @@
 package br.com.ifg.ifeventos.controller;
 
-import javax.inject.Inject;
+import java.util.List;
 
-import org.hibernate.exception.ConstraintViolationException;
+import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 
 import com.google.gson.Gson;
 
@@ -16,13 +17,17 @@ import br.com.caelum.vraptor.serialization.gson.WithoutRoot;
 import br.com.caelum.vraptor.view.Results;
 import br.com.ifg.ifeventos.dto.BootstrapTableDTO;
 import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
+import br.com.ifg.ifeventos.dto.GenericDTO;
+import br.com.ifg.ifeventos.dto.Id;
 import br.com.ifg.ifeventos.model.dao.impl.TipoProgramacaoDAO;
 import br.com.ifg.ifeventos.model.entity.TipoProgramacao;
+import br.com.ifg.ifeventos.utils.WriteLog;
 
 @Controller
 public class TipoProgramacaoController {
 
 	private final Result result;
+	final String clazz = TipoProgramacaoController.class.getSimpleName();
 
 	@Inject
 	private TipoProgramacaoDAO dao;
@@ -35,12 +40,72 @@ public class TipoProgramacaoController {
 	public TipoProgramacaoController(Result result){
 		this.result = result;
 	}
+	
+	/*
+	 * Métodos Privados
+	 */
+	
+	/*** Controle de exclusão lógica ***/
+	
 
+	private GenericDTO<TipoProgramacao> activate(TipoProgramacao entity) {
+		try{		
+			entity = dao.getByDescricao(entity.getDescricao());
+			if (!entity.getAtivo()){
+				entity.setAtivo(true);
+				dao.save(entity);
+				dao.commit();
+				return new GenericDTO<TipoProgramacao>(entity, "");
+			}
+			else
+				return new GenericDTO<TipoProgramacao>(null, "Registro duplicado!");
+		}catch(Exception e){		
+			dao.rollback();
+			WriteLog.log(clazz, e.getMessage(), e.getCause());
+			e.printStackTrace();
+			return new GenericDTO<TipoProgramacao>(null, "Falha ao tentar salvar o Tipo de Programação! Informe o ocorrido ao suporte técnico.");
+		}		
+	}
+	
+	private GenericDTO<TipoProgramacao> deactivate(Long id) {
+		try{
+			TipoProgramacao entity = dao.getById(id);
+			entity.setAtivo(false);
+			dao.save(entity);
+			dao.commit();
+			return new GenericDTO<TipoProgramacao>(null, "");
+		}catch(Exception e){		
+			dao.rollback();
+			WriteLog.log(clazz, e.getMessage(), e.getCause());
+			e.printStackTrace();
+			return new GenericDTO<TipoProgramacao>(null, "Falha ao tentar remover o Tipo de Programação! Informe o ocorrido ao suporte técnico.");
+		}
+	}
+	
+	private GenericDTO<TipoProgramacao> removeById(Long id){
+		try{
+			dao.removeById(id);
+			dao.commit();
+			return new GenericDTO<TipoProgramacao>(null, "");
+		}catch(PersistenceException pe){
+			dao.rollback();
+			return deactivate(id);
+		}catch(Exception e){
+			dao.rollback();
+			WriteLog.log(clazz, e.getMessage(), e.getCause());
+			e.printStackTrace();
+			return new GenericDTO<TipoProgramacao>(null, "Falha ao tentar remover o Tipo de Programação! Informe o ocorrido ao suporte técnico.");
+		}
+	}
+	
+	/*
+	 * Métodos públicos
+	 */
+	
 
 	@Path("/tipoprogramacao/form")
 	public void form(){
 	}
-	
 	
 	@Get("/tipoprogramacao/form/{id}")
 	public void form(Long id){
@@ -59,45 +124,48 @@ public class TipoProgramacaoController {
 
 	@Consumes(value = "application/json", options = WithoutRoot.class)
 	@Post("/tipoprogramacao/save")
-	public void save(TipoProgramacao dto){
-		
+	public void save(TipoProgramacao entity){		
+		GenericDTO<TipoProgramacao> dto = new GenericDTO<TipoProgramacao>();
 		try{
-			dao.save(dto);
+			dao.save(entity);
+			dto.setDto(entity);
 			dao.commit();
+		}
+		catch(PersistenceException e){
+			dao.rollback();
+			dto = activate(entity);
 		}
 		catch(Exception e){
 			dao.rollback();
+			WriteLog.log(clazz, e.getMessage(), e.getCause());
+			dto.setMessage("Falha ao tentar salvar o Tipo de Programação! Informe o ocorrido ao suporte técnico.");
 			e.printStackTrace();
 		}
-		result.use(Results.json())
-		.withoutRoot()
-		.from(dto)
-		.serialize();
+		result.use(Results.json()).withoutRoot().from(dto).recursive().serialize();
 	}
+	
 	
 	@Consumes(value = "application/json", options = WithoutRoot.class)
 	@Post("/tipoprogramacao/delete")
-	public void delete(TipoProgramacao entity) {
-		try{
-			dao.removeById(entity.getId());
-			dao.commit();
-		}catch(ConstraintViolationException cve){
-			entity.setAtivo(false);
-			dao.save(entity);
-			dao.commit();
-		}finally{
-			result.use(Results.json())
-			.withoutRoot()
-			.from(entity)
-			.serialize();
-		}		
+	public void delete(Id id) {
+		result.use(Results.json()).withoutRoot().from(removeById(id.getId())).serialize();
 	}
+	
+	@Consumes(value = "application/json", options = WithoutRoot.class)
+	@Post("/tipoprogramacao/deleteAllSelected")
+	public void delete(List<Id> ids) {
+		GenericDTO<TipoProgramacao> dto = new GenericDTO<TipoProgramacao>(null,"");
+		for(Id id : ids){
+			removeById(id.getId());
+		}
+		result.use(Results.json()).withoutRoot().from(dto).serialize();
+	}	
 	
 	@Get("/tipoprogramacao/search")
 	public void search(String search, String sort, String order, Integer limit, Integer offset){
 		BootstrapTableParamsDTO params = new BootstrapTableParamsDTO(search, sort, order, limit, offset);
 		BootstrapTableDTO<TipoProgramacao> dto = new BootstrapTableDTO<TipoProgramacao>();
-		dto.setRows(dao.search(params));
+		dto.setRows(dao.searchOnActiveRecords(params));
 		dto.setTotal(dao.count(params));		
 		result.use(Results.json())
 		.withoutRoot()

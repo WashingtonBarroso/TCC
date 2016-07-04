@@ -13,15 +13,15 @@ import lombok.Setter;
 public class Endereco extends AbstractEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
-	@Getter @Setter private String cep; 
-	@Getter @Setter private String logradouro; 
- 	@Getter @Setter private String complemento; 
+	@Getter @Setter private String cep;
+	@Getter @Setter private String logradouro;
+ 	@Getter @Setter private String complemento;
  	@Getter @Setter private String bairro; 
  	@Getter @Setter private String cidade; 
  	@Getter @Setter private String estado;
 	
- 	public Endereco() { 		
+ 	public Endereco() { 	
+ 		super();
  	}
  	
  	public Endereco(String cep, String logradouro, String complemento, String bairro, String cidade, String estado) {
