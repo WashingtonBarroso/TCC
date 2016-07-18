@@ -17,11 +17,11 @@ public class Noticia extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Getter @Setter private String mensagem;
-	
 	@ManyToOne @JoinColumn(name="evento_id")
 	@Getter @Setter private Evento evento;
 	
 	public Noticia() {
+		super();
 	}
 
 	public Noticia(Long id, String mensagem, Evento evento) {

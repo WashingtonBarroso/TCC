@@ -6,7 +6,27 @@ import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
 import br.com.ifg.ifeventos.model.entity.Palestrante;
 
 public class PalestranteDAO extends DAO<Palestrante, Long> {
+	
+	public List<Palestrante> getAllActives() {
+		return (List<Palestrante>) this.getList("from Palestrante p where p.ativo = true");
+	}
+	
+	public Palestrante getByNome(String descricao){
+		return ((List<Palestrante>) this.getList("from Palestrante p where p.nome = :param", "param",descricao)).get(0);		
+	}
 
+	public List<Palestrante> searchOnActiveRecords(BootstrapTableParamsDTO params){
+		pageSize = params.getLimit();		
+		Long id = -1L;
+		try{
+			id = Long.parseLong(params.getSearch());
+		}catch(Exception e){
+		};
+		return (List<Palestrante>) this.getPageableList(params.getOffset(),"from Palestrante p where p.ativo = true and (p.nome like :param or p.id = :id) order by p."+params.getSort()+" "+params.getOrder(),
+				"id",id,
+				"param","%"+params.getSearch()+"%");
+	}
+	
 	public List<Palestrante> search(BootstrapTableParamsDTO params){
 		pageSize = params.getLimit();		
 		Long id = -1L;

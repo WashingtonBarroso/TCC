@@ -63,7 +63,8 @@
                 <!-- /.row -->
                 <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">                 
+                <div class="col-lg-12">            
+                	<div id="div_alert"></div>     
                     <div class="panel panel-default">
                         <div class="panel-heading">
                            	<h4>Lista de Eventos</h4>
@@ -73,7 +74,7 @@
                             <div class="dataTable_wrapper">                                
                                 <table id="table"
 										data-classes="table table-hover table-condensed"
-										data-url="http://localhost:8080/ifeventos/{{url}}/search"
+										data-url="{{url_app}}{{url}}/search"
        									data-side-pagination="server"
 										data-striped="true"
 										data-search="true"										
@@ -87,7 +88,8 @@
        									data-page-list="[5, 10, 20, 50, 100, 200]"   				
 										>
 									    <thead>
-									    <tr>									    	
+									    <tr>		
+									    	<th data-field="state" data-checkbox="true"></th>							    	
 									        <th class="col-xs-1" data-field="imagem" data-align="center" data-formatter="imagemFormatter">Imagem</th>
 									    	<th data-valign="middle" class="col-xs-1" data-field="id" data-sortable="true">Código</th>
 									        <th data-valign="middle" data-field="nome" data-sortable="true">Nome</th>
@@ -95,14 +97,18 @@
 									        <th data-valign="middle" data-field="endereco.logradouro" data-sortable="true">Logradouro</th>
 									        <th data-valign="middle" data-field="endereco.cidade" data-sortable="true">Cidade</th>
 									        <th data-valign="middle" data-field="endereco.estado" data-sortable="true">Estado</th>						        
-									        <th data-valign="middle" class="col-xs-1" data-field="removeButton" data-align="center" data-formatter="removeFormatter">Remover</th>						        
 									    </tr>
 									    </thead>
 									</table>
 									<div id="toolbar" class="btn-group">
-									    <button type="button" class="btn btn-default" ng-click="newForm()">
-									        <i class="glyphicon glyphicon-plus"></i>
-									    </button>
+										<button type="button" class="btn btn-default"
+											ng-click="newForm()">
+											<i class="glyphicon glyphicon-plus"></i>
+										</button>
+										<button type="button" class="btn btn-default"
+											ng-click="remove()">
+											<i class="glyphicon glyphicon-trash"></i>
+										</button>
 									</div>
                                 
                             </div>
@@ -126,19 +132,10 @@
     <script type="text/javascript" src="assets/global/bootstrap-table/bootstrap-table.min.js"></script>
 	<script type="text/javascript" src="assets/global/bootstrap-table/extensions/angular/bootstrap-table-angular.min.js"></script>
 	<script type="text/javascript" src="assets/global/bootstrap-table/locale/bootstrap-table-pt-BR.min.js"></script>
-    
-    <!-- Factories  -->
-	<script type="text/javascript" src="assets/pages/js/factory/evento-factory.js"></script>
-	<script type="text/javascript" src="assets/pages/js/factory/endereco-factory.js"></script>
-	<script type="text/javascript" src="assets/pages/js/factory/organizador-factory.js"></script>
-    <script type="text/javascript" src="assets/pages/js/factory/tipo-organizador-factory.js"></script>
-    <script type="text/javascript" src="assets/pages/js/factory/programacao-factory.js"></script>
-	<script type="text/javascript" src="assets/pages/js/factory/tipo-programacao-factory.js"></script>
-	<script type="text/javascript" src="assets/pages/js/factory/palestrante-factory.js"></script>
-	<script type="text/javascript" src="assets/pages/js/factory/mapa-factory.js"></script>
-	
+    	
     <!-- Page Controller -->
 	<script type="text/javascript" src="assets/pages/js/controller/evento-list-controller.js"></script>
+	<script type="text/javascript" src="assets/pages/js/factory/id-factory.js"></script>
 	
 </body>
 

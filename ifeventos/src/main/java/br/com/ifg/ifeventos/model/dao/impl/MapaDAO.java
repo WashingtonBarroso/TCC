@@ -6,6 +6,10 @@ import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
 import br.com.ifg.ifeventos.model.entity.Mapa;
 
 public class MapaDAO extends DAO<Mapa, Long> {
+	
+	public List<Mapa> getByEventoId(Long id){
+		return (List<Mapa>) this.getList("from Mapa where evento.id = :id", "id",id);
+	}
 
 	public List<Mapa> search(BootstrapTableParamsDTO params){
 		pageSize = params.getLimit();		

@@ -1,14 +1,14 @@
 package br.com.ifg.ifeventos.controller;
 
 import java.io.File;
+import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.exception.ConstraintViolationException;
-import org.junit.internal.runners.model.EachTestNotifier;
-
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import br.com.caelum.vraptor.Consumes;
 import br.com.caelum.vraptor.Controller;
@@ -22,23 +22,27 @@ import br.com.caelum.vraptor.serialization.gson.WithoutRoot;
 import br.com.caelum.vraptor.view.Results;
 import br.com.ifg.ifeventos.dto.BootstrapTableDTO;
 import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
+import br.com.ifg.ifeventos.dto.EventoListDTO;
+import br.com.ifg.ifeventos.dto.GenericDTO;
+import br.com.ifg.ifeventos.dto.Id;
 import br.com.ifg.ifeventos.model.dao.impl.EnderecoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.EventoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.OrganizadorDAO;
-import br.com.ifg.ifeventos.model.dao.impl.OrganizadorEventoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.PalestranteDAO;
-import br.com.ifg.ifeventos.model.dao.impl.ProgramacaoDAO;
 import br.com.ifg.ifeventos.model.dao.impl.TipoOrganizadorDAO;
 import br.com.ifg.ifeventos.model.dao.impl.TipoProgramacaoDAO;
-import br.com.ifg.ifeventos.model.entity.Endereco;
 import br.com.ifg.ifeventos.model.entity.Evento;
 import br.com.ifg.ifeventos.utils.HashUtils;
+import br.com.ifg.ifeventos.utils.WriteLog;
+import br.com.ifg.ifeventos.utils.gson.exclusion.SkipSerializationExclusionStrategy;
 
 @Controller
 public class EventoController {
 
 	private final Result result;
 	final String PATH = "img\\evento";
+	final String clazz = EventoController.class.getSimpleName();
+	
 
 	@Inject
 	private EventoDAO dao;	
@@ -56,17 +60,10 @@ public class EventoController {
 	private TipoOrganizadorDAO tipoOrganizadorDao;
 	
 	@Inject
-	private OrganizadorEventoDAO organizadorEventoDao;
-
-	@Inject
-	private ProgramacaoDAO programacaoDao;
-	
-	@Inject
 	private PalestranteDAO palestranteDao;
 	
 	@Inject
-	private TipoProgramacaoDAO tipoProgramacaoDao;
-	
+	private TipoProgramacaoDAO tipoProgramacaoDao;	
 	
 	
 	protected EventoController(){
@@ -77,14 +74,78 @@ public class EventoController {
 	public EventoController(Result result){
 		this.result = result; 
 	}
+	
+	/*
+	 * Métodos Privados
+	 */
+	
+	/*** Controle de exclusão lógica ***/
+	
+
+	private GenericDTO<Evento> activate(Evento entity) {
+		try{		
+			entity = dao.getByNome(entity.getNome());
+			if (!entity.getAtivo()){
+				entity.setAtivo(true);
+				dao.save(entity);
+				dao.commit();
+				return new GenericDTO<Evento>(entity, "");
+			}
+			else
+				return new GenericDTO<Evento>(null, "Registro duplicado!");
+		}catch(Exception e){		
+			dao.rollback();
+			WriteLog.log(clazz, e.getMessage(), e.getCause());
+			e.printStackTrace();
+			return new GenericDTO<Evento>(null, "Falha ao tentar salvar o Evento! Informe o ocorrido ao suporte técnico.");
+		}		
+	}
+	
+	private GenericDTO<Evento> deactivate(Long id) {
+		try{
+			Evento entity = dao.getById(id);
+			entity.setAtivo(false);
+			dao.save(entity);
+			dao.commit();
+			return new GenericDTO<Evento>(null, "");
+		}catch(Exception e){		
+			dao.rollback();
+			WriteLog.log(clazz, e.getMessage(), e.getCause());
+			e.printStackTrace();
+			return new GenericDTO<Evento>(null, "Falha ao tentar remover o Evento! Informe o ocorrido ao suporte técnico.");
+		}
+	}
+	
+	private GenericDTO<Evento> removeById(Long id){
+		dao.setEntityManager(enderecoDao.getEntityManager());
+		try{
+			Long enderecoId = (enderecoDao.getByEventoId(id)).getId();
+			dao.removeById(id);
+			enderecoDao.removeById(enderecoId);
+			dao.commit();
+			return new GenericDTO<Evento>(null, "");
+		}catch(PersistenceException pe){
+			dao.rollback();
+			return deactivate(id);
+		}catch(Exception e){
+			dao.rollback();
+			WriteLog.log(clazz, e.getMessage(), e.getCause());
+			e.printStackTrace();
+			return new GenericDTO<Evento>(null, "Falha ao tentar remover o Evento! Informe o ocorrido ao suporte técnico.");
+		}
+	}
+	
+	/*
+	 * Métodos públicos
+	 */
 
 	@Path("/evento/form")
 	public void form(){	
-		Gson gson = new Gson();		
-		result.include("listOrganizador", gson.toJson(organizadorDao.getAll()));
-		result.include("listTpProgramacao",gson.toJson(tipoProgramacaoDao.getAll()));
-		result.include("listTpOrganizador", gson.toJson(tipoOrganizadorDao.getAll()));
-		result.include("listPalestrante", gson.toJson(palestranteDao.getAll()));
+		Gson gson = new Gson();
+		result.include("listTpProgramacao",gson.toJson(tipoProgramacaoDao.getAllActives()));
+		result.include("listOrganizador", gson.toJson(organizadorDao.getAllActives()));
+		result.include("listTpOrganizador", gson.toJson(tipoOrganizadorDao.getAllActives()));
+		result.include("listPalestrante", gson.toJson(palestranteDao.getAllActives()));
 	}
 
 	@Get("/evento/form/{id}")
@@ -93,8 +154,13 @@ public class EventoController {
 		if (entity == null)
 			result.redirectTo("/erro/404");
 		else{
-			Gson gson = new Gson();		
-			result.include("dto",gson.toJson(entity));
+			Gson gson = new Gson();
+			result.include("listTpProgramacao",gson.toJson(tipoProgramacaoDao.getAllActives()));
+			result.include("listOrganizador", gson.toJson(organizadorDao.getAllActives()));
+			result.include("listTpOrganizador", gson.toJson(tipoOrganizadorDao.getAllActives()));
+			result.include("listPalestrante", gson.toJson(palestranteDao.getAllActives()));
+			gson = new GsonBuilder().addSerializationExclusionStrategy(new SkipSerializationExclusionStrategy()).create();
+			result.include("dto",gson.toJson(entity));			
 		}	
 	}
 
@@ -117,97 +183,68 @@ public class EventoController {
 		catch(Exception e){
 			dao.rollback();
 			e.printStackTrace();
+			WriteLog.log(clazz, e.getMessage(), e.getCause());
 		}
-		result.use(Results.json())
-		.withoutRoot()
+		result.use(Results.json()).withoutRoot()
 		//		.from(dto)
-		.from("")
-		.recursive()
-		.serialize();
+		.from("").recursive().serialize();
 	}
 	@Consumes(value = "application/json", options = WithoutRoot.class)
 	@Post("/evento/save")
-	public void save(Evento dto){		
-		organizadorEventoDao.setEntityManager(dao.getEntityManager());
-		programacaoDao.setEntityManager(dao.getEntityManager());
-		enderecoDao.setEntityManager(dao.getEntityManager());
-		try{
-			enderecoDao.save(dto.getEndereco());
+	public void save(Evento entity){		
+		GenericDTO<Evento> dto = new GenericDTO<Evento>();		
+		dao.setEntityManager(enderecoDao.getEntityManager());
+		try{			
+			for (int i=0; i < entity.getMapas().size(); i++)
+				entity.getMapas().get(i).setEvento(entity);		
 			
-			for (int i=0; i < dto.getMapa().size(); i++)
-				dto.getMapa().get(i).setEvento(dto);
+			for (int i=0; i < entity.getProgramacao().size(); i++)
+				entity.getProgramacao().get(i).setEvento(entity);
 			
-			for (int i=0; i < dto.getProgramacao().size(); i++)
-				dto.getProgramacao().get(i).setEvento(dto);
-
-			for (int i=0; i < dto.getOrganizadores().size(); i++)
-				dto.getOrganizadores().get(i).setEvento(dto);
+			for (int i=0; i < entity.getOrganizadores().size(); i++)
+				entity.getOrganizadores().get(i).setEvento(entity);				
 			
-			dao.save(dto);		
-			//programacaoDao.removeByEventoId(dto.getId());
-			/*
-			for (int i=0; i < dto.getProgramacao().size(); i++){
-				dto.getProgramacao().get(i).setEvento(dto);
-				programacaoDao.save(dto.getProgramacao().get(i));
-			}
-			//organizadorEventoDao.removeByEventoId(dto.getId());
-			for (int i=0; i < dto.getOrganizadores().size(); i++){
-				dto.getOrganizadores().get(i).setEvento(dto);
-				organizadorEventoDao.save(dto.getOrganizadores().get(i));
-			}
-			*/			
+			enderecoDao.save(entity.getEndereco());			
+			dao.save(entity);		
 			dao.commit();
+			dto.setDto(entity);
+		}
+		catch(PersistenceException e){
+			dao.rollback();
+			dto = activate(entity);
 		}
 		catch(Exception e){
 			dao.rollback();
+			WriteLog.log(clazz, e.getMessage(), e.getCause());
+			dto.setMessage("Falha ao tentar salvar o Evento! Informe o ocorrido ao suporte técnico.");
 			e.printStackTrace();
-			dto = new Evento();
 		}
-		result.use(Results.json())
-		.withoutRoot().from(dto).recursive().serialize();
+		result.use(Results.json()).withoutRoot().from(dto).recursive().serialize();
 	}
-
-	/**
-	 * TODO EXISTE UMA INCONSISTENCIA AO RECEBER 
-	 * UM PARÂMETRO DE TIPO PRIMITIVO ENVIADO PELO ANGULARJS
-	 * 
-	 * @param id
-	 */
-	@Post("/evento/delete")
+	
 	@Consumes(value = "application/json", options = WithoutRoot.class)
-	//	public void delete(Evento entity) {
-	public void delete(Long id) {
-		try{
-			//			Endereco endereco = enderecoDao.getByEventoId(entity.getId());
-			//			dao.removeById(entity.getId());
-			Endereco endereco = enderecoDao.getByEventoId(id);
-			dao.removeById(id);
-			enderecoDao.remove(endereco);
-			dao.commit();
-		}catch(ConstraintViolationException cve){
-			dao.rollback();
-			//			entity.setAtivo(false);
-			//			dao.save(entity);
-			//			dao.commit();
-		}finally{
-			result.use(Results.json())
-			.withoutRoot()
-			.from("ok")
-			.serialize();
-		}		
+	@Post("/evento/delete")
+	public void delete(Id id) {
+		result.use(Results.json()).withoutRoot().from(removeById(id.getId())).serialize();
+	}
+	
+	@Consumes(value = "application/json", options = WithoutRoot.class)
+	@Post("/evento/deleteAllSelected")
+	public void delete(List<Id> ids) {
+		GenericDTO<Evento> dto = new GenericDTO<Evento>(null,"");
+		for(Id id : ids){
+			removeById(id.getId());
+		}
+		result.use(Results.json()).withoutRoot().from(dto).serialize();
 	}
 
 	@Get("/evento/search")
 	public void search(String search, String sort, String order, Integer limit, Integer offset){
 		BootstrapTableParamsDTO params = new BootstrapTableParamsDTO(search, sort, order, limit, offset);
-		BootstrapTableDTO<Evento> dto = new BootstrapTableDTO<Evento>();
-		dto.setRows(dao.search(params));
+		BootstrapTableDTO<EventoListDTO> dto = new BootstrapTableDTO<EventoListDTO>();
+		dto.setRows(dao.searchOnActiveRecords(params));
 		dto.setTotal(dao.count(params));		
-		result.use(Results.json())
-		.withoutRoot()
-		.from(dto)
-		.recursive()
-		.serialize();
+		result.use(Results.json()).withoutRoot().from(dto).recursive().serialize();
 	}
 	
 } 

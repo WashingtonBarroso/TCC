@@ -14,13 +14,12 @@ import lombok.Setter;
 public class Palestrante extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 	@Getter @Setter private String nome;	
 	@Getter @Setter private String resumo;	
-	@Getter @Setter private String titulo;
-	//@Getter @Setter private String url;
+	@Getter @Setter private String titulo;	
 
 	public Palestrante(){
+		super();
 	}
 
 	public Palestrante(Long id, String nome, String resumo, String titulo) {

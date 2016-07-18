@@ -1,13 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="pt" ng-app="app" ng-controller="PalestranteFormController"  ng-init='setDTO(${dto});'>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html lang="pt" ng-app="app" ng-controller="PalestranteFormController"
+	ng-init='setDTO(${dto});'>
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />
-<link href="assets/global/bootstrap-table/bootstrap-table.css" rel="stylesheet" type="text/css" />
-<link href="assets/pages/css/global.css" rel="stylesheet" type="text/css" />
+<link href="assets/global/bootstrap-table/bootstrap-table.css"
+	rel="stylesheet" type="text/css" />
 </head>
+
 <body>
+
 	<div id="wrapper">
 
 		<!-- Navigation -->
@@ -68,86 +71,67 @@
 							<div class="col-lg-12">
 								<div id="div_alert"></div>
 								<form id="form" name="form" role="form" novalidate>
-									<div class="form-group" >
+									<div class="form-group">
 										<div ng-class="{'has-error':form.nome.$invalid ,'has-success':form.nome.$valid}">
-										<label class="control-label">
-											Nome: <span
-											class="required"> * </span>
-										</label>
-										<div class="input-icon right">
-											<input class="form-control" placeholder="Digite o nome"
-												name="nome" type="text" ng-model="dto.nome"
-												required ng-maxlength="50">												
-											<span class="help-block"
-												ng-show="form.nome.$error.required">
-												<i class="fa fa-warning"></i>
-												Favor inserir o dado requerido.</span> 
-											<span class="help-block"												
-												ng-show="form.nome.$error.maxlength">
-												<i class="fa fa-warning"></i>
-												O dado informado � muito grande.</span>
+											<label class="control-label"> Nome: <span
+												class="required"> * </span>
+											</label>
+											<div class="input-icon right">
+												<input class="form-control" placeholder="Digite o nome"
+													name="nome" type="text" ng-model="dto.nome" 
+													required maxlength="100">
+												<div class="validation-messages help-block" ng-messages="form.nome.$error">
+											        <div ng-message="required"><i class="fa fa-warning"></i> Esse campo é obrigatório!</div>														        
+											    </div>
+											</div>
 										</div>
-									 </div>
-	
-	                                 	<div ng-class="{'has-error':form.titulo.$invalid ,'has-success':form.titulo.$valid}">
-										<label class="control-label">
-											T�tulo: <span
-											class="required"> * </span>
-										</label>
-										<div class="input-icon right">
-											<input class="form-control" placeholder="Digite o t�tulo "
-												name="titulo" type="text" ng-model="dto.titulo"
-												required ng-maxlength="20">												
-											<span class="help-block"
-												ng-show="form.titulo.$error.required">
-												<i class="fa fa-warning"></i>
-												Favor inserir o dado requerido.</span> 
-											<span class="help-block"												
-												ng-show="form.titulo.$error.maxlength">
-												<i class="fa fa-warning"></i>
-												O dado informado � muito grande.</span>
+
+										<div ng-class="{'has-error':form.titulo.$invalid ,'has-success':form.titulo.$valid}">
+											<label class="control-label"> Título: <span
+												class="required"> * </span>
+											</label>
+											<div class="input-icon right">
+												<input class="form-control" placeholder="Digite o título "
+													name="titulo" type="text" ng-model="dto.titulo" 
+													required maxlength="20">
+												<div class="validation-messages help-block" ng-messages="form.titulo.$error">
+											        <div ng-message="required"><i class="fa fa-warning"></i> Esse campo é obrigatório!</div>														        
+											    </div>
+											</div>
 										</div>
-									 </div>
-									
+
 										<div ng-class="{'has-error':form.resumo.$invalid ,'has-success':form.resumo.$valid}">
-										<label class="control-label">
-											Resumo: <span
-											class="required"> * </span>
-										</label>
-										<div class="input-icon right">
-											<textarea class="form-control" placeholder="Digite o resumo"
-												name="resumo" ng-model="dto.resumo"
-												required ng-maxlength="120"></textarea>												
-											<span class="help-block"
-												ng-show="form.resumo.$error.required">
-												<i class="fa fa-warning"></i>
-												Favor inserir o dado requerido.</span> 
-											<span class="help-block"												
-												ng-show="form.resumo.$error.maxlength">
-												<i class="fa fa-warning"></i>
-												O dado informado � muito grande.</span>
+											<label class="control-label"> Mini currículo: <span
+												class="required"> * </span>
+											</label>
+											<div class="input-icon right">
+												<textarea class="form-control" placeholder="Digite o míni curriculo do palestrante"
+													name="resumo" ng-model="dto.resumo" 
+													required maxlength="200"></textarea>
+												<div class="validation-messages help-block" ng-messages="form.resumo.$error">
+											        <div ng-message="required"><i class="fa fa-warning"></i> Esse campo é obrigatório!</div>														        
+											    </div>
+											</div>
 										</div>
-									 </div>
-									
-	
+
+
 									</div>
 									<div class="form-group" style="float: right;">
 										<div id="newButton" class="btn btn-primary"
 											ng-click="newForm()">
 											<i class="fa fa-file-o"></i> Limpar
 										</div>
-										<div id="saveButton" class="btn btn-success" 
-											ng-click="save()"
+										<div id="saveButton" class="btn btn-success" ng-click="save()"
 											ng-disabled="form.$invalid">
 											<i class="fa fa-check"></i> Salvar
 										</div>
 										<div id="removeButton" class="btn btn-danger"
-											ng-click="remove()">
+											ng-class="{'ng-hide' : dto.id==null}" ng-click="remove()">
 											<i class="fa fa-times"></i> Remover
 										</div>
-										<div id="cancelButton" class="btn btn-outline btn-default" 
+										<div id="cancelButton" class="btn btn-outline btn-default"
 											ng-click="cancel()">
-											<i class="fa fa-times"></i> Desistir
+											<i class="fa fa-reply"></i> Voltar
 										</div>
 									</div>
 								</form>
@@ -168,7 +152,7 @@
 
 	<!-- /#wrapper -->
 
-<jsp:include page="/WEB-INF/jsp/template/scripts.jsp" />
+	<jsp:include page="/WEB-INF/jsp/template/scripts.jsp" />
 
 	<!-- Bootstrap Table -->
 	<script type="text/javascript"
@@ -178,11 +162,16 @@
 	<script type="text/javascript"
 		src="assets/global/bootstrap-table/locale/bootstrap-table-pt-BR.min.js"></script>
 
+
+
 	<!-- Page Controller -->
+	<script type="text/javascript"
+		src="assets/pages/js/factory/id-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/factory/palestrante-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/controller/palestrante-form-controller.js"></script>
+
 </body>
 
 </html>

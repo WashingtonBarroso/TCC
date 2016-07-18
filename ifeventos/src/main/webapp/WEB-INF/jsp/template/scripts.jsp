@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <!--  GLOBAL SCRIPTS  -->
-
 <!-- AngularJS App Module -->
 <script src="/ifeventos/assets/pages/js/module/app-module.js" type="text/javascript"></script>
 
@@ -23,5 +22,6 @@
 
 <!-- Bootbox Plugin -->
 <script src="/ifeventos/assets/global/bootbox/bootbox.min.js"></script>
+
 
 <!--  END GLOBAL SCRIPTS  -->

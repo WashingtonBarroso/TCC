@@ -57,7 +57,7 @@
 		<div id="page-wrapper">
 			<div class="row">
 				<div class="col-lg-12">
-					<h1 class="page-header">Tipo Palestra</h1>
+					<h1 class="page-header">Tipo de Programação</h1>
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
@@ -78,15 +78,10 @@
 										<div class="input-icon right">
 											<input class="form-control" placeholder="Digite a descrição"
 												name="descricao" type="text" ng-model="dto.descricao"
-												required ng-maxlength="20">												
-											<span class="help-block"
-												ng-show="form.descricao.$error.required">
-												<i class="fa fa-warning"></i>
-												Favor inserir o dado requerido.</span> 
-											<span class="help-block"												
-												ng-show="form.descricao.$error.maxlength">
-												<i class="fa fa-warning"></i>
-												O dado informado é muito grande.</span>
+												required maxlength="50">
+											<div class="validation-messages help-block" ng-messages="form.descricao.$error">
+										        <div ng-message="required"><i class="fa fa-warning"></i> Esse campo é obrigatório!</div>														        
+										    </div>
 										</div>
 									</div>
 									<div class="form-group" style="float: right;">
@@ -99,13 +94,13 @@
 											ng-disabled="form.$invalid">
 											<i class="fa fa-check"></i> Salvar
 										</div>
-										<div id="removeButton" class="btn btn-danger"
+										<div id="removeButton" class="btn btn-danger" ng-class="{'ng-hide' : dto.id==null}"
 											ng-click="remove()">
 											<i class="fa fa-times"></i> Remover
 										</div>
 										<div id="cancelButton" class="btn btn-outline btn-default" 
 											ng-click="cancel()">
-											<i class="fa fa-times"></i> Desistir
+											<i class="fa fa-reply"></i> Voltar
 										</div>
 									</div>
 								</form>
@@ -139,6 +134,8 @@
 
 
 	<!-- Page Controller -->
+	<script type="text/javascript"
+		src="assets/pages/js/factory/id-factory.js"></script>
 	<script type="text/javascript"
 		src="assets/pages/js/factory/tipo-programacao-factory.js"></script>
 	<script type="text/javascript"
