@@ -6,7 +6,7 @@ import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
 import br.com.ifg.ifeventos.dto.EventoAppDTO;
 import br.com.ifg.ifeventos.dto.EventoListDTO;
 import br.com.ifg.ifeventos.model.entity.Evento;
-import br.com.ifg.ifeventos.model.entity.TipoOrganizador;
+
 
 public class EventoDAO extends DAO<Evento, Long>{
 	

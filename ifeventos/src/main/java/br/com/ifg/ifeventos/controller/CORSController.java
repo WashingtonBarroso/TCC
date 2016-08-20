@@ -38,6 +38,7 @@ public class CORSController {
 	        String allowMethods = allowed.toString().replaceAll("\\[|\\]", "");
 	        
 	        result.use(Results.status()).header("Allow", allowMethods);
+	        result.use(Results.status()).header("Access-Control-Allow-Origin", "*");
 	        result.use(Results.status()).header("Access-Control-Allow-Methods", allowMethods);
 	        result.use(Results.status()).header("Access-Control-Allow-Headers", "Content-Type, X-Requested-With, accept, Authorization, origin");
 	    }

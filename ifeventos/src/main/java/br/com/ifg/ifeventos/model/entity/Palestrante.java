@@ -8,7 +8,6 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Entity 
 @Table(name="tbpalestrante")
 public class Palestrante extends AbstractEntity implements Serializable {

@@ -65,7 +65,7 @@ public class DAO<T, PK> implements IDAO<T, PK> {
 	protected List<T> getList(String hql, Object... params) {
 		return fillParams(hql, params).getResultList();
 	}
-	
+		
 	@SuppressWarnings("unchecked")
 	protected List<T> getPageableList(int firstResult, String hql, Object... params) {
 //		return fillParams(hql, params).setFirstResult(pageSize*(page - 1)+1).setMaxResults(pageSize).getResultList();

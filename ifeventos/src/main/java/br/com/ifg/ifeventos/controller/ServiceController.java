@@ -32,12 +32,6 @@ public class ServiceController {
 		this.result = result;
 	}
 
-	@Get("/service/loadPalestrantefull")
-	public void loadPalestrantefull() {
-		result.use(Results.json()).withoutRoot().from(palestranteDao.getAll())
-				.recursive().serialize();
-	}
-
 	@Get("/service/loadEvento")
 	public void loadEvento() {
 		ServiceEventoListDTO<EventoAppDTO> dto = new ServiceEventoListDTO<EventoAppDTO>();
@@ -47,14 +41,15 @@ public class ServiceController {
 	}
 
 	@Get("/service/loadEventoId/{id}")
-	public void loadEventoId(Long id) {
-		Evento entity = eventoDao.getById(id);
-		if (entity == null)
+	public void loadEventoId(Long id) {	
+		Evento dto = eventoDao.getById(id);
+		if (dto == null)
 			result.notFound();
 		else {
-			result.use(Results.json()).withoutRoot().from(entity).recursive()
+			result.use(Results.json()).withoutRoot().from(dto).recursive()
 					.serialize();
 		}
 	}
+	
 
 }

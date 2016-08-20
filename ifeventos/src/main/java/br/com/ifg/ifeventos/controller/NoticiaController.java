@@ -24,7 +24,7 @@ import br.com.ifg.ifeventos.utils.WriteLog;
 
 @Controller
 public class NoticiaController {
-
+	
 	private final Result result;
 	final String clazz = NoticiaController.class.getSimpleName();
 
