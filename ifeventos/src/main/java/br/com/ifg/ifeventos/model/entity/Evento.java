@@ -25,9 +25,13 @@ public class Evento extends AbstractEntity implements Serializable{
 	@NotEmpty
 	@Getter @Setter private String nome;
  	@Getter @Setter private String local;
+<<<<<<< HEAD
  	@Getter @Setter private String dataInicio;
  	@Getter @Setter private String dataFim;
  	@Getter @Setter private String site;
+=======
+	@Getter @Setter private String site;
+>>>>>>> refs/remotes/origin/master
 	@Getter @Setter private String imagem;
 	@ManyToOne @JoinColumn(name="endereco_id")
 	@Getter @Setter private Endereco endereco;	
@@ -42,7 +46,11 @@ public class Evento extends AbstractEntity implements Serializable{
 		super();
 	}
 
+<<<<<<< HEAD
 	public Evento(Long id, String dataInicio, String dataFim, String nome, String local, String site, Endereco endereco, List<Programacao> programacao, List<OrganizadorEvento> organizadores, List<Mapa> mapas, Boolean ativo) {
+=======
+	public Evento(Long id, String nome, String local, String site, Endereco endereco, List<Programacao> programacao, List<OrganizadorEvento> organizadores, List<Mapa> mapas, Boolean ativo) {
+>>>>>>> refs/remotes/origin/master
 		super();
 		this.id = id;
 		this.nome = nome;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .thumb {
 	width: 240px;
 	float: none;
@@ -11,4 +12,19 @@ form .progress {
 
 .tab-margin {
 	margin-top: 10px;
+=======
+.thumb {
+	width: 240px;
+	float: none;
+	position: relative;
+	top: 7px;
+}
+
+form .progress {
+	line-height: 15px;
+}
+
+.tab-margin {
+	margin-top: 10px;
+>>>>>>> refs/remotes/origin/master
 }
