@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <meta charset="UTF-8">
+    <title>IFEventos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 
+'unsafe-inline' *">
+	<link rel="stylesheet" href="ionic/css/style.css">
+    <link href="bower_components/ionicons/css/ionicons.min.css">
+    <link href="bower_components/ionic/release/css/ionic.css" rel="stylesheet">
+	<script src="bower_components/ionic/release/js/ionic.bundle.min.js"></script> 
+	<script src="ionic/js/index.js"></script>	
+	<script src="bower_components/angular-simple-logger/dist/angular-simple-logger.js"></script>
+	<script src="bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
+	<script src="bower_components/lodash/lodash.js"></script>    
+    <script src="bower_components/js/service/eventoService.js"> </script> 
+	<script src="bower_components/js/controllers/eventoController.js"></script>
+    <script src="bower_components/js/controllers/programacaoController.js"></script>
+	<script src="bower_components/js/value/configValue.js"></script>
+	
+  </head>
+
+  <body>
+
+    <ion-nav-view></ion-nav-view>
+   
+   <!-- Menu side -->
+     <script id="templates/event-menu.html" type="text/ng-template">
+        <ion-side-menus enable-menu-with-back-views="false">
+
+          <ion-side-menu-content>
+            <ion-nav-bar class="bar-balanced">
+              <ion-nav-back-button>
+              </ion-nav-back-button>
+
+           <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+                </button>
+                 </ion-nav-buttons> 
+            </ion-nav-bar>
+
+           <ion-nav-view name="menuContent"></ion-nav-view>
+          </ion-side-menu-content> 
+
+          <ion-side-menu side="left">
+            <ion-header-bar class="bar-balanced-dark">
+              <h1 class="title">IFEventos</h1>
+			</ion-header-bar>
+			<ion-content>	
+              <div class="list">
+                <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on 
+one of these links -->
+                <a href="#/event/home" class="item" menu-close><i class="icon-left ion-home"> Home</i></a>
+                <a href="#/event/pgevento" class="item" menu-close><i class="icon-left 
+ion-information-circled"> Info</i></a>
+                <a href="#/event/pgmapa" class="item" menu-close><i class="icon-left 
+                ion-map">  Locais</i></a> 
+                <a href="#/event/pgorganizador" class="item" menu-close><i class="icon-left 
+ion-person-stalker">  Organizadores</i></a>
+                <a href="#/event/palestrantes" class="item" menu-close><i class="icon-left ion-person">  
+Palestrantes</i></a>
+                <a href="#/event/programacao" class="item" menu-close><i class="icon-left ion-calendar">  
+Programação</i></a>
+              </div>
+            </ion-content>
+          </ion-side-menu>
+        </ion-side-menus>
+     </script>
+   <!--  End side -->
+
+   <script id="templates/listevento.html" type="text/ng-template">
+	<ion-view >
+	 <ion-header-bar class="bar-balanced">
+		<h1 style="text-align:center" class="title">Evento</h1>
+	  </ion-header-bar>   
+	 <ion-content>
+	  
+	  <div class="list card">
+
+		  <div class="item item-avatar" ng-repeat="evento in eventos">
+			<img src="http://ionicframework.com/img/docs/delorean.jpg">
+			<h2>{{evento.nome}}</h2>
+			<p>November 05, 1955</p>
+		  </div>
+
+		  <div class="item item-body">
+			<img class="full-image" src="http://ionicframework.com/img/docs/delorean.jpg">
+			<p>
+			  This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
+			  the content is from a card-body consisting of an image and paragraph text. The footer
+			  consists of tabs, icons aligned left, within the card-footer.
+			</p>
+			<p>
+			  <a class="subdued" ui-shref="eventmenu.programacao({id: 1})">1 Like</a>
+			  <a href="#" class="subdued">5 Comments</a>
+			</p>
+		  </div>
+		</div>
+		
+	 </ion-content>
+	 </ion-view>
+	</script>
+   
+   
+  <!-- Página principal onde vai conter às notícias do evento -->
+      <script id="templates/home.html" type="text/ng-template">
+        <ion-view view-title="Notícias do Evento">   
+            <ion-slide-box on-slide-changed="slideChanged(index)">
+              <div ng-repeat = "noticia in noticias">
+              <ion-slide style="position:absolute;">
+                  <h4>{{noticia.Name}}
+                  </h4>
+              </ion-slide>
+              </div>
+          </ion-slide-box> 
+        </ion-view>
+      </script>
+    <!-- End page -->  
+
+    <!-- Página das informações do evento-->
+      <script id="templates/pgevento.html" type="text/ng-template">
+        <ion-view view-title="Informações do Evento">
+          <ion-content class="padding">
+              <div ng-repeat = "evento in eventos">
+                <ul class="list color-list-demo">
+                  <div class="item item-divider">
+                   {{evento.Name}}
+                  </div>
+                  <li class="item dark">
+                    {{evento.City}}
+                    <span class="color-demo dark-bg balanced-dark"></span>
+                  </li>
+                  <li class="item dark">
+                    {{evento.Name}}
+                    <span class="color-demo dark-bg dark-border"></span>
+                  </li>
+                  <li class="item dark">
+                     {{evento.City}}
+                    <span class="color-demo dark-bg dark-border"></span>
+                  </li>
+                  <li class="item dark">
+                     {{evento.Name}}
+                    <span class="color-demo dark-bg dark-border"></span>
+                  </li>
+                </ul>
+              </div>
+          </ion-content>
+        </ion-view>
+      </script>
+    <!-- End page --> 
+     
+     <!-- Página dos palestrantes onde vai conter a lista de organizadores -->
+      <script id="templates/pgorganizador.html" type="text/ng-template">
+          <ion-view view-title="Organizadores">
+            <ion-content>
+              <div class="list" ng-repeat = "organizador in organizadores">
+                <div class="item item-divider">
+                 Nome: {{organizador.Name}}
+                </div>
+                <a class="item">
+                 Cargo: {{organizador.City}}
+                </a>
+                <a class="item">
+                 Área: {{organizador.Name}}
+                </a>
+                <a class="item">
+                 {{organizador.City}}
+                </a>
+              </div>
+            </ion-content>
+          </ion-view>
+       </script>
+     <!-- End page -->
+
+   <!-- Página dos palestrantes onde vai conter a lista de palestrantes -->
+      <script id="templates/palestrantes.html" type="text/ng-template">
+        <ion-view view-title="Palestrantes">
+          <ion-content>
+            <ion-list>
+              <div ng-repeat="group in groups">
+                <ion-item class="item item-avatar"
+                    ng-click="toggleGroup(group)"
+                    ng-class="{active: isGroupShown(group)}">
+                    <img src="bower_components/ionicons/img_programacao/eu.png"> 
+                    &nbsp;
+                    <h2><span style="color:black;font-weight:bold">Washington de Sousa Barroso 
+{{group.name}}</span></h2>
+                </ion-item>
+                <ion-item class="item-accordion"
+                      ng-repeat="item in group.items"
+                      ng-show="isGroupShown(group)">
+                      <p id="pa_titulo">Selenium uma ferramenta para automatizar testes</p> 
+                      <p id="pa_resume">{{item}} First, install Node.js 4 (Node 5 does not work at the 
+moment!). Then, install the latest Cordova and Ionic command-line tools. Follow the 
+Android and iOS platform guides to install required platform dependencies. </p>
+                </ion-item>
+              </div>
+            </ion-list>
+          </ion-content>
+        </ion-view>
+      </script>
+    <!-- End page -->
+
+    <!-- Página dos palestrantes onde vai conter a lista de programação -->
+      <script id="templates/programacao.html" type="text/ng-template">
+        <ion-view view-title="Programação">
+          <ion-content>
+          <div class="list">
+           <div class="item item-divider">
+            <span id="pro_data">03/01/2016 - Domingo</span>
+            </div>
+           <a class="item item-thumbnail-left" href="#">
+            <img id="tp_programacao" src="bower_components/ionicons/img_programacao/music.png">
+            <h2 id="pro_titulo">Live show Coldplay</h2>
+            <p id="pro_hora">Hora</p>
+            <p id="pro_local">Local</p> 
+          </a>
+           <a class="item item-thumbnail-left" href="#">
+            <img id="tp_programacao" src="bower_components/ionicons/img_programacao/theatre-masks.png">
+            <h2 id="pro_titulo">Companhia de teatro Nóis Pode</h2>
+            <p id="pro_hora">Hora</p>
+            <p id="pro_local">Local</p>
+          </a>
+           <a class="item item-thumbnail-left" href="#">
+            <img id="tp_programacao" src="bower_components/ionicons/img_programacao/dance.png">
+            <h2 id="pro_titulo">Show dance house</h2>
+            <p id="pro_hora">Hora</p>
+            <p id="pro_local">Local</p>
+          </a>
+         </div>
+          </ion-content>
+        </ion-view>
+      </script>
+    <!-- End page -->
+	
+	<!-- Página do mapa -->
+
+	<script id="templates/pgmapa.html" type="text/ng-template">
+	 <ion-view view-title="Locais">
+	 <ion-content>
+	  <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+	 </ion-content>
+	 </ion-view>
+	</script>
+	<!-- End mapa -->
+  </script>  
+  <!--NÃO ESQUECER DE OCULTAR ISSO!-->
+  <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCKJxFhDpJDTQtMvxF8mv1RJmC-ihOWU8o"></script>
+  </body>
+</html>
