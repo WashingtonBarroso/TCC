@@ -16,7 +16,7 @@ public class EventoDAO extends DAO<Evento, Long>{
 	}
 	
 	public List<EventoAppDTO> getListEventos(){	
-		return (List<EventoAppDTO>) this.getGenericList("select new br.com.ifg.ifeventos.dto.EventoAppDTO(e.id, e.nome, e.local, e.site, e.endereco, e.imagem) from Evento e left join e.endereco where e.ativo = true");
+		return (List<EventoAppDTO>) this.getGenericList("select new br.com.ifg.ifeventos.dto.EventoAppDTO(e.id, e.nome, e.dataInicio, e.dataFim, e.local, e.site, e.endereco, e.imagem) from Evento e left join e.endereco where e.ativo = true");
 		//return (List<Evento>) this.getList("from Evento e where p.ativo = true");
 
 	}

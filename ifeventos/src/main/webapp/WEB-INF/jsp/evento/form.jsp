@@ -6,7 +6,8 @@
 
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />
-<link href="assets/global/bootstrap-table/bootstrap-table.css" rel="stylesheet" type="text/css" />
+<link href="assets/global/bootstrap-table/bootstrap-table.css"
+	rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -66,18 +67,20 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="panel panel-default">
-					
+
 						<div class="panel-body">
 							<div class="row">
 								<div class="col-lg-12">
-									<div id="div_alert"></div>						
+									<div id="div_alert"></div>
 									<div class="navbar">
 										<div class="navbar-inner">
 											<div class="container-right">
 												<ul class="nav nav-tabs">
-													<li class="active"><a href="#tab1" data-toggle="tab">Dado do Evento</a></li>
+													<li class="active"><a href="#tab1" data-toggle="tab">Dado
+															do Evento</a></li>
 													<li><a href="#tab2" data-toggle="tab">Organização</a></li>
-													<li><a href="#tab3" data-toggle="tab" ng-click="initMapViewerWithDelay();">Mapa</a></li>
+													<li><a href="#tab3" data-toggle="tab"
+														ng-click="initMapViewerWithDelay();">Mapa</a></li>
 													<li><a href="#tab4" data-toggle="tab">Programação</a></li>
 													<!-- 
 													<li><a href="#tab5" data-toggle="tab">Imagem</a></li>
@@ -100,75 +103,120 @@
 														<input class="form-control" type="text" name="nome"
 															placeholder="Digite a nome do evento" ng-model="dto.nome"
 															required ng-maxlength="200">
-														<div class="validation-messages help-block" ng-messages="form.nome.$error">
-													        <div ng-message="maxlength"><i class="fa fa-warning"></i> O dado informado é muito grande.</div>
-													        <div ng-message="required"><i class="fa fa-warning"></i> Favor inserir o dado requerido.</div>														        
-													    </div>
+														<div class="validation-messages help-block"
+															ng-messages="form.nome.$error">
+															<div ng-message="maxlength">
+																<i class="fa fa-warning"></i> O dado informado é muito
+																grande.
+															</div>
+															<div ng-message="required">
+																<i class="fa fa-warning"></i> Favor inserir o dado
+																requerido.
+															</div>
+														</div>
 													</div>
 												</div>
-																<div class="form-inline">												
-																<div class="form-group">
-																		<div ng-class="{'has-error':form.dataInicio.$invalid ,'has-success':form.dataInicio.$valid}">
-																			<label for="dataInicio"> Data Início: </label>
-																			<div class="input-icon right">
-																			    <div class="col-md-4"> 
-																				<input id="dataInicio" type="datetime-local" name="dataInicio" class="form-control"
-																				ng-model="dto.dataInicio" 
-																				placeholder="dd/MM/yyyyTHH:mm" min="2001-01-01T00:00:00" max="2999-12-31T00:00:00"/>
-																				<div class="validation-messages help-block" ng-messages="form.dataInicio.$error">
-																			        <div ng-message="datetimeinicio"><i class="fa fa-warning"></i> O data e horário informado é inválido.</div>																	        														        
-																			        <div ng-message="min"><i class="fa fa-warning"></i> O data é muito antiga.</div>																	        														        
-																			        <div ng-message="max"><i class="fa fa-warning"></i> O data é muito distante.</div>																	        														        
-																			    </div>
-																			    </div>	
-																			</div>
-																		</div>											
-																	</div>			
-												
-																	<div class="form-group">
-																		<div ng-class="{'has-error':form.dataFim.$invalid ,'has-success':form.dataFim.$valid}">
-																			
-																			<div class="input-icon right">
-																				<div class="col-md-4">
-																			   <label for="dataFim"> Data Fim: </label>
-																				<input id="dataFim" type="datetime-local" name="dataFim" class="form-control" 
-																				ng-model="dto.dataFim"
-																				placeholder="dd/MM/yyyyTHH:mm" min="2001-01-01T00:00:00" max="2999-12-31T00:00:00"/>
-																				<div class="validation-messages help-block" ng-messages="form.dataFim.$error">
-																			        <div ng-message="datetimelocal"><i class="fa fa-warning"></i> O data e horário informado é inválido.</div>																	        														        
-																			        <div ng-message="min"><i class="fa fa-warning"></i> O data é muito antiga.</div>																	        														        
-																			        <div ng-message="max"><i class="fa fa-warning"></i> O data é muito distante.</div>																	        														        
-																			    </div>
-																			    </div>	
-																			</div>
-																		</div>											
-																	</div>	
-											                    </div> <!-- inline -->	
-												
+												<div class="form-inline">
+													<div class="form-group">
+														<div
+															ng-class="{'has-error':form.dataInicio.$invalid ,'has-success':form.dataInicio.$valid}">
+															<label for="dataInicio"> Data Início: </label>
+															<div class="input-icon right">
+																<div class="col-md-4">
+																	<input id="dataInicio" type="datetime-local"
+																		name="dataInicio" class="form-control"
+																		ng-model="dto.dataInicio"
+																		placeholder="dd/MM/yyyyTHH:mm"
+																		min="2001-01-01T00:00:00" max="2999-12-31T00:00:00" />
+																	<div class="validation-messages help-block"
+																		ng-messages="form.dataInicio.$error">
+																		<div ng-message="datetimeinicio">
+																			<i class="fa fa-warning"></i> O data e horário
+																			informado é inválido.
+																		</div>
+																		<div ng-message="min">
+																			<i class="fa fa-warning"></i> O data é muito antiga.
+																		</div>
+																		<div ng-message="max">
+																			<i class="fa fa-warning"></i> O data é muito
+																			distante.
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+
+													<div class="form-group">
+														<div
+															ng-class="{'has-error':form.dataFim.$invalid ,'has-success':form.dataFim.$valid}">
+
+															<div class="input-icon right">
+																<div class="col-md-4">
+																	<label for="dataFim"> Data Fim: </label> <input
+																		id="dataFim" type="datetime-local" name="dataFim"
+																		class="form-control" ng-model="dto.dataFim"
+																		placeholder="dd/MM/yyyyTHH:mm"
+																		min="2001-01-01T00:00:00" max="2999-12-31T00:00:00" />
+																	<div class="validation-messages help-block"
+																		ng-messages="form.dataFim.$error">
+																		<div ng-message="datetimelocal">
+																			<i class="fa fa-warning"></i> O data e horário
+																			informado é inválido.
+																		</div>
+																		<div ng-message="min">
+																			<i class="fa fa-warning"></i> O data é muito antiga.
+																		</div>
+																		<div ng-message="max">
+																			<i class="fa fa-warning"></i> O data é muito
+																			distante.
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!-- inline -->
+
 												<div class="form-group"
 													ng-class="{'has-error':form.localEvento.$invalid ,'has-success':form.localEvento.$valid}">
 													<label class="control-label">Local <span
 														class="required">*</span>
-													</label> 
-													<input class="form-control" type="text" name="localEvento"
+													</label> <input class="form-control" type="text" name="localEvento"
 														placeholder="Digite o local do evento"
 														ng-model="dto.local" required ng-maxlength="200">
-													<div class="validation-messages help-block" ng-messages="form.localEvento.$error">
-												        <div ng-message="maxlength"><i class="fa fa-warning"></i> O dado informado é muito grande.</div>
-												        <div ng-message="required"><i class="fa fa-warning"></i> Favor inserir o dado requerido.</div>														        
-												    </div>
-												</div>											
+													<div class="validation-messages help-block"
+														ng-messages="form.localEvento.$error">
+														<div ng-message="maxlength">
+															<i class="fa fa-warning"></i> O dado informado é muito
+															grande.
+														</div>
+														<div ng-message="required">
+															<i class="fa fa-warning"></i> Favor inserir o dado
+															requerido.
+														</div>
+													</div>
+												</div>
 												<div class="form-group"
 													ng-class="{'has-error':form.cep.$invalid ,'has-success':form.cep.$valid}">
 													<label class="control-label">Cep <span
 														class="required">*</span>
-													</label> <input class="form-control" type="text" name="cep" maxlength="10"
-														placeholder="Digite o cep do evento"
-														ng-model="dto.endereco.cep" required ng-maxlength="10" ng-keyup="cepFormatter($event)">
-													<div class="validation-messages help-block" ng-messages="form.cep.$error">
-												        <div ng-message="maxlength"><i class="fa fa-warning"></i> O dado informado é muito grande.</div>
-												        <div ng-message="required"><i class="fa fa-warning"></i> Favor inserir o dado requerido.</div>														        
-												    </div>
+													</label> <input class="form-control" type="text" name="cep"
+														maxlength="10" placeholder="Digite o cep do evento"
+														ng-model="dto.endereco.cep" required ng-maxlength="10"
+														ng-keyup="cepFormatter($event)">
+													<div class="validation-messages help-block"
+														ng-messages="form.cep.$error">
+														<div ng-message="maxlength">
+															<i class="fa fa-warning"></i> O dado informado é muito
+															grande.
+														</div>
+														<div ng-message="required">
+															<i class="fa fa-warning"></i> Favor inserir o dado
+															requerido.
+														</div>
+													</div>
 												</div>
 												<div class="form-group"
 													ng-class="{'has-error':form.logradouro.$invalid ,'has-success':form.logradouro.$valid}">
@@ -263,9 +311,9 @@
 												</div>
 											</div>
 											<!-- End tab1 -->
-	
+
 											<!-- Init tab2 -->
-											<div class="tab-pane fade tab-margin" id="tab2">											
+											<div class="tab-pane fade tab-margin" id="tab2">
 												<!-- /.row -->
 												<div class="row">
 													<div class="col-lg-12">
@@ -274,8 +322,7 @@
 																<div class="panel-body">
 																	<div id="div_organizacao_alert"></div>
 																	<div class="form-group">
-																		<label class="control-label"> Organizador: 
-																		</label>
+																		<label class="control-label"> Organizador: </label>
 																		<div class="input-icon right">
 																			<select class="form-control"
 																				ng-model="organizadorEvento.organizador"
@@ -285,8 +332,8 @@
 																		</div>
 																	</div>
 																	<div class="form-group">
-																		<label class="control-label"> Papel na organização: 
-																		</label>
+																		<label class="control-label"> Papel na
+																			organização: </label>
 																		<div class="input-icon right">
 																			<select class="form-control"
 																				ng-model="organizadorEvento.tipoOrganizador"
@@ -295,31 +342,31 @@
 																			</select>
 																		</div>
 																	</div>
-																	<div class="form-group" style="float: right;">																	
+																	<div class="form-group" style="float: right;">
 																		<div id="newButton" class="btn btn-success"
 																			ng-click="addOrganizador()">
 																			<i class="fa fa-plus"></i> Adicionar
 																		</div>
 																	</div>
 																</div>
-															</div>																
+															</div>
 															<div class="dataTable_wrapper">
 																<table id="organizacaoTable"
 																	data-classes="table table-hover table-condensed"
-																	data-striped="true"
-																	data-show-toggle="true"
-																	data-show-columns="true" 
-																	data-show-export="true"
-																	data-pagination="true"
-																	data-toggle="table"
+																	data-striped="true" data-show-toggle="true"
+																	data-show-columns="true" data-show-export="true"
+																	data-pagination="true" data-toggle="table"
 																	data-page-list="[5, 10, 20, 50, 100, 200]">
 																	<thead>
-																		<tr>													
-																			<th data-valign="middle" data-field="organizador.nome"
-																				data-sortable="true">Nome</th>
-																			<th data-valign="middle" data-field="tipoOrganizador.descricao"
-																				data-sortable="true">Papel na Organização</th>	
-																			<th data-valign="middle" class="col-xs-1" data-field="removeButton" data-align="center" data-formatter="removeFormatter">Remover</th>																	
+																		<tr>
+																			<th data-valign="middle"
+																				data-field="organizador.nome" data-sortable="true">Nome</th>
+																			<th data-valign="middle"
+																				data-field="tipoOrganizador.descricao"
+																				data-sortable="true">Papel na Organização</th>
+																			<th data-valign="middle" class="col-xs-1"
+																				data-field="removeButton" data-align="center"
+																				data-formatter="removeFormatter">Remover</th>
 																		</tr>
 																	</thead>
 																</table>
@@ -337,10 +384,10 @@
 												<!-- row -->
 											</div>
 											<!-- End tab2 -->
-	
-	
+
+
 											<!-- Init tab3 -->
-											<div class="tab-pane fade tab-margin" id="tab3">										
+											<div class="tab-pane fade tab-margin" id="tab3">
 												<!-- /.row -->
 												<div class="row">
 													<div class="col-lg-12">
@@ -349,50 +396,51 @@
 																<div class="panel-body">
 																	<div id="div_mapa_alert"></div>
 																	<div class="form-group">
-																		<label class="control-label"> Marque a localização no mapa: 
-																		</label>
-																		<div id="mapViewer" class="img-responsive" style="width: 100%; height: 300px; margin-bottom: 1cm;">
-																		</div>																
-																	</div>
-																	<div class="form-group">
-																		<label class="control-label"> Descrição do local: 
-																		</label>
-																		<div class="input-icon right">
-																			<input class="form-control" name="descricaoMapa" type="text" 
-																			ng-model="mapa.descricao"  maxlength="100">
-																			<br>
-																			<label class="control-label"> Latitude: {{mapa.latitude}}</label>
-																			<br>
-																			<label class="control-label"> Longitude: {{mapa.longitude}}</label>
+																		<label class="control-label"> Marque a
+																			localização no mapa: </label>
+																		<div id="mapViewer" class="img-responsive"
+																			style="width: 100%; height: 300px; margin-bottom: 1cm;">
 																		</div>
 																	</div>
-																	<div class="form-group" style="float: right;">																	
+																	<div class="form-group">
+																		<label class="control-label"> Descrição do
+																			local: </label>
+																		<div class="input-icon right">
+																			<input class="form-control" name="descricaoMapa"
+																				type="text" ng-model="mapa.descricao"
+																				maxlength="100"> <br> <label
+																				class="control-label"> Latitude:
+																				{{mapa.latitude}}</label> <br> <label
+																				class="control-label"> Longitude:
+																				{{mapa.longitude}}</label>
+																		</div>
+																	</div>
+																	<div class="form-group" style="float: right;">
 																		<div id="newButton" class="btn btn-success"
 																			ng-click="addMapa()">
 																			<i class="fa fa-plus"></i> Adicionar
 																		</div>
-																	</div>	
-																</div>															
-															</div>																
+																	</div>
+																</div>
+															</div>
 															<div class="dataTable_wrapper">
 																<table id="mapaTable"
 																	data-classes="table table-hover table-condensed"
-																	data-striped="true"
-																	data-show-toggle="true"
-																	data-show-columns="true" 
-																	data-show-export="true"
-																	data-pagination="true"
-																	data-toggle="table"
+																	data-striped="true" data-show-toggle="true"
+																	data-show-columns="true" data-show-export="true"
+																	data-pagination="true" data-toggle="table"
 																	data-page-list="[5, 10, 20, 50, 100, 200]">
 																	<thead>
-																		<tr>												
+																		<tr>
 																			<th data-valign="middle" data-field="descricao"
 																				data-sortable="true">Descricao</th>
 																			<th data-valign="middle" data-field="latitude"
-																				data-sortable="true">Latitude</th>																		
+																				data-sortable="true">Latitude</th>
 																			<th data-valign="middle" data-field="longitude"
 																				data-sortable="true">Longitude</th>
-																			<th data-valign="middle" class="col-xs-1" data-field="removeButton" data-align="center" data-formatter="removeFormatter">Remover</th>
+																			<th data-valign="middle" class="col-xs-1"
+																				data-field="removeButton" data-align="center"
+																				data-formatter="removeFormatter">Remover</th>
 																		</tr>
 																	</thead>
 																</table>
@@ -403,71 +451,84 @@
 												<!-- row -->
 											</div>
 											<!-- End tab3 -->
-	
-	
+
+
 											<!-- Início tab4 -->
 											<div class="tab-pane fade tab-margin" id="tab4">
 												<!-- /.row -->
-												<div class="row">													
-													<div class="col-lg-12">														
+												<div class="row">
+													<div class="col-lg-12">
 														<div class="panel-body">
-															<div class="panel panel-default">																
+															<div class="panel panel-default">
 																<div class="panel-body">
-																	<div id="div_programacao_alert"></div>																	
+																	<div id="div_programacao_alert"></div>
 																	<div class="form-group">
-																		<div ng-class="{'has-error':form.dataProgramacao.$invalid ,'has-success':form.dataProgramacao.$valid}">
+																		<div
+																			ng-class="{'has-error':form.dataProgramacao.$invalid ,'has-success':form.dataProgramacao.$valid}">
 																			<label class="control-label"> Início: </label>
 																			<div class="input-icon right">
-																				<input type="datetime-local" name="dataProgramacao" class="form-control"
-																				ng-model="programacao.data"
-																				placeholder="dd/MM/yyyyTHH:mm" min="2001-01-01T00:00:00" max="2999-12-31T00:00:00"/>
-																				<div class="validation-messages help-block" ng-messages="form.dataProgramacao.$error">
-																			        <div ng-message="datetimelocal"><i class="fa fa-warning"></i> O data e horário informado é inválido.</div>																	        														        
-																			        <div ng-message="min"><i class="fa fa-warning"></i> O data é muito antiga.</div>																	        														        
-																			        <div ng-message="max"><i class="fa fa-warning"></i> O data é muito distante.</div>																	        														        
-																			    </div>	
+																				<input type="datetime-local" name="dataProgramacao"
+																					class="form-control" ng-model="programacao.data"
+																					placeholder="dd/MM/yyyyTHH:mm"
+																					min="2001-01-01T00:00:00" max="2999-12-31T00:00:00" />
+																				<div class="validation-messages help-block"
+																					ng-messages="form.dataProgramacao.$error">
+																					<div ng-message="datetimelocal">
+																						<i class="fa fa-warning"></i> O data e horário
+																						informado é inválido.
+																					</div>
+																					<div ng-message="min">
+																						<i class="fa fa-warning"></i> O data é muito
+																						antiga.
+																					</div>
+																					<div ng-message="max">
+																						<i class="fa fa-warning"></i> O data é muito
+																						distante.
+																					</div>
+																				</div>
 																			</div>
-																		</div>											
-																	</div>																	
+																		</div>
+																	</div>
 																	<div class="form-group">
-																		<label class="control-label"> Tipo da Programação: 
-																		</label>
+																		<label class="control-label"> Tipo da
+																			Programação: </label>
 																		<div class="input-icon right">
 																			<select class="form-control"
 																				ng-model="programacao.tipoProgramacao"
 																				ng-options="tipoProgramacao as tipoProgramacao.descricao for tipoProgramacao in tiposDeProgramacao"
 																				name="tipoProgramacao" class="form-control">
 																			</select>
-																		</div>				
+																		</div>
 																	</div>
-																	
+
 																	<div class="form-group">
-																		<label class="control-label"> Palestrante: 
-																		</label>
+																		<label class="control-label"> Palestrante: </label>
 																		<div class="input-icon right">
 																			<select class="form-control"
 																				ng-model="programacao.palestrante"
 																				ng-options="palestrante as palestrante.nome for palestrante in palestrantes"
-																				name="palestrante" class="form-control">																				
+																				name="palestrante" class="form-control">
 																			</select>
 																		</div>
 																	</div>
-																																		
+
 																	<div class="form-group">
 																		<label class="control-label"> Descrição: </label>
 																		<div class="input-icon right">
-																			<input class="form-control" name="descricaoProgramacao" type="text" 
-																			maxlength="150" ng-model="programacao.descricao">
+																			<input class="form-control"
+																				name="descricaoProgramacao" type="text"
+																				maxlength="150" ng-model="programacao.descricao">
 																		</div>
 																	</div>
 																	<div class="form-group">
 																		<label class="control-label"> Espaço: </label>
 																		<div class="input-icon right">
-																			<input class="form-control" name="localProgramacao" type="text" 
-																			maxlength="150" ng-model="programacao.local">
+																			<input class="form-control" name="localProgramacao"
+																				type="text" maxlength="150"
+																				ng-model="programacao.local">
 																		</div>
 																	</div>
-																	<div class="form-group" style="float: right;">																	
+																	<div class="form-group" style="float: right;">
 																		<div id="newButton" class="btn btn-success"
 																			ng-click="addProgramacao()">
 																			<i class="fa fa-plus"></i> Adicionar
@@ -478,27 +539,27 @@
 															<div class="dataTable_wrapper">
 																<table id="programacaoTable"
 																	data-classes="table table-hover table-condensed"
-																	data-striped="true"
-																	data-show-toggle="true"
-																	data-show-columns="true" 
-																	data-show-export="true"
-																	data-pagination="true"
-																	data-toggle="table"
+																	data-striped="true" data-show-toggle="true"
+																	data-show-columns="true" data-show-export="true"
+																	data-pagination="true" data-toggle="table"
 																	data-page-list="[5, 10, 20, 50, 100, 200]">
 																	<thead>
 																		<tr>
-																			<th data-valign="middle" class="col-xs-1" data-field="temp" data-align="center" 
+																			<th data-valign="middle" class="col-xs-1"
+																				data-field="temp" data-align="center"
 																				data-formatter="dateFormatter">Data</th>
-																			<th data-valign="middle" data-field="tipoProgramacao.descricao"
+																			<th data-valign="middle"
+																				data-field="tipoProgramacao.descricao"
 																				data-sortable="true">Tipo da Programação</th>
-																			<th data-valign="middle" data-field="palestrante.nome"
-																				data-sortable="true">Palestrante</th>
+																			<th data-valign="middle"
+																				data-field="palestrante.nome" data-sortable="true">Palestrante</th>
 																			<th data-valign="middle" data-field="descricao"
 																				data-sortable="true">Descrição</th>
 																			<th data-valign="middle" data-field="local"
-																				data-sortable="true">Espaço</th>	
-																			<th data-valign="middle" class="col-xs-1" data-field="removeButton" data-align="center" 
-																				data-formatter="removeFormatter">Remover</th>																	
+																				data-sortable="true">Espaço</th>
+																			<th data-valign="middle" class="col-xs-1"
+																				data-field="removeButton" data-align="center"
+																				data-formatter="removeFormatter">Remover</th>
 																		</tr>
 																	</thead>
 																</table>
@@ -510,8 +571,8 @@
 												<!-- /.row -->
 											</div>
 											<!-- Exit tab4 -->
-	
-	
+
+
 											<!-- Início tab 5  
 											<div class="tab-pane fade tab-margin" id="tab5">	
 												<div class="form-group"
@@ -533,30 +594,29 @@
 											</div>
 											 -->
 											<!-- Fim tab 5 -->
-									</form>	
+									</form>
 									<!-- Grup button  -->
 									<div class="form-group" style="float: right;">
 										<div id="newButton" class="btn btn-primary"
 											ng-click="newForm()">
 											<i class="fa fa-file-o"></i> Limpar
 										</div>
-										<div id="saveButton" class="btn btn-success"
-											ng-click="save()"
-											ng-disabled="form.$invalid"> 
+										<div id="saveButton" class="btn btn-success" ng-click="save()"
+											ng-disabled="form.$invalid">
 											<i class="fa fa-check"></i> Salvar
 										</div>
-										<div id="removeButton" class="btn btn-danger" ng-class="{'ng-hide' : dto.id==null}"
-											ng-click="remove()">
+										<div id="removeButton" class="btn btn-danger"
+											ng-class="{'ng-hide' : dto.id==null}" ng-click="remove()">
 											<i class="fa fa-times"></i> Remover
 										</div>
-										<div id="cancelButton" class="btn btn-outline btn-default" 
+										<div id="cancelButton" class="btn btn-outline btn-default"
 											ng-click="cancel()">
 											<i class="fa fa-reply"></i> Voltar
 										</div>
 									</div>
-									<!-- Fim button -->							
+									<!-- Fim button -->
 								</div>
-							</div>	
+							</div>
 						</div>
 					</div>
 				</div>
@@ -579,7 +639,7 @@
 	<!-- Bootstrap Table -->
 	<script type="text/javascript"
 		src="assets/global/angularjs-ui/ui-mask/mask.min.js"></script>
-		
+
 	<!-- Bootstrap Table -->
 	<script type="text/javascript"
 		src="assets/global/bootstrap-table/bootstrap-table.min.js"></script>
@@ -589,7 +649,8 @@
 		src="assets/global/bootstrap-table/locale/bootstrap-table-pt-BR.min.js"></script>
 
 	<!--  Google Maps -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQ9qJsigEeh1SXJS7IZqB2yRSrgy0jKis"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQ9qJsigEeh1SXJS7IZqB2yRSrgy0jKis"></script>
 
 	<!-- Factories  -->
 	<script type="text/javascript"
@@ -612,11 +673,14 @@
 		src="assets/pages/js/factory/organizador-evento-factory.js"></script>
 
 	<!-- Page Controller -->
-	<script type="text/javascript" src="assets/pages/js/controller/evento-form-controller.js"></script>
-	<script type="text/javascript" src="assets/pages/js/factory/id-factory.js"></script>
-		
+	<script type="text/javascript"
+		src="assets/pages/js/controller/evento-form-controller.js"></script>
+	<script type="text/javascript"
+		src="assets/pages/js/factory/id-factory.js"></script>
+
 	<!-- Filtros -->
-	<script type="text/javascript" src="assets/pages/js/filter/cep-filter.js"></script>		
+	<script type="text/javascript"
+		src="assets/pages/js/filter/cep-filter.js"></script>
 
 </body>
 

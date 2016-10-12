@@ -53,16 +53,11 @@
                 <!-- Note each link has the 'menu-close' attribute so the menu auto closes when clicking on 
 one of these links -->
                 <a href="#/event/home" class="item" menu-close><i class="icon-left ion-home"> Home</i></a>
-                <a href="#/event/pgevento" class="item" menu-close><i class="icon-left 
-ion-information-circled"> Info</i></a>
-                <a href="#/event/pgmapa" class="item" menu-close><i class="icon-left 
-                ion-map">  Locais</i></a> 
-                <a href="#/event/pgorganizador" class="item" menu-close><i class="icon-left 
-ion-person-stalker">  Organizadores</i></a>
-                <a href="#/event/palestrantes" class="item" menu-close><i class="icon-left ion-person">  
-Palestrantes</i></a>
-                <a href="#/event/programacao" class="item" menu-close><i class="icon-left ion-calendar">  
-Programação</i></a>
+                <a href="#/event/pgevento" class="item" menu-close><i class="icon-left ion-information-circled"> Info</i></a>
+                <a href="#/event/pgmapa" class="item" menu-close><i class="icon-left ion-map">  Locais</i></a> 
+                <a href="#/event/pgorganizador" class="item" menu-close><i class="icon-left ion-person-stalker">  Organizadores</i></a>
+                <a href="#/event/palestrantes" class="item" menu-close><i class="icon-left ion-person">  Palestrantes</i></a>
+                <a href="#/event/programacao" class="item" menu-close><i class="icon-left ion-calendar">  Programação</i></a>
               </div>
             </ion-content>
           </ion-side-menu>
@@ -76,25 +71,34 @@ Programação</i></a>
 		<h1 style="text-align:center" class="title">Evento</h1>
 	  </ion-header-bar>   
 	 <ion-content>
+      
+	  <div id="searchEvento">
+		  <label class="item item-input">
+			<i class="icon ion-search placeholder-icon"></i>
+			<input type="search" placeholder="Search">
+		 </label>      
+	  </div>
 	  
-	  <div class="list card">
-
-		  <div class="item item-avatar" ng-repeat="evento in eventos">
+	  <div class="list card" ng-repeat="evento in eventos">
+ 
+		  <div class="item item-avatar" >
 			<img src="http://ionicframework.com/img/docs/delorean.jpg">
 			<h2>{{evento.nome}}</h2>
-			<p>November 05, 1955</p>
+			<p>{{evento.dataInicio | date:'mediumDate'}} a {{evento.dataFim | date:'mediumDate'}}</p>
 		  </div>
-
+            
 		  <div class="item item-body">
 			<img class="full-image" src="http://ionicframework.com/img/docs/delorean.jpg">
 			<p>
-			  This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
-			  the content is from a card-body consisting of an image and paragraph text. The footer
-			  consists of tabs, icons aligned left, within the card-footer.
+				<ul>
+				  <li><i class="icon ion-clock"> {{evento.dataInicio | date:'HH:mm'}} a {{evento.dataFim | date:'HH:mm'}} (Horas)</i></li> <br/>
+				  <li><i class="icon ion-home"> {{evento.local}}</i> </li> <br/>
+				  <li><i class="icon ion-location"> {{evento.endereco.logradouro}}</i></li> <br/>
+				  <li><i class="icon ion-android-globe"> {{evento.site}}</i></li> <br/>
+			    </ul>
 			</p>
 			<p>
-			  <a class="subdued" ui-shref="eventmenu.programacao({id: 1})">1 Like</a>
-			  <a href="#" class="subdued">5 Comments</a>
+			  <a class="subdued" href="#/event/programacao/{{evento.id}}"> <i class="icon ion-plus-circled"></i> Detalhes</a> 
 			</p>
 		  </div>
 		</div>

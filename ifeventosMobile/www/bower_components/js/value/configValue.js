@@ -1,4 +1,4 @@
 angular.module("app").constant("config", {
- baseURL: "http://devpoint.ddns.net:8081/ifeventos/service"
+ baseURL: "http://localhost:8080/ifeventos/service"
 });
 

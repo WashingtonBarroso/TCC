@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="pt" ng-app="app"
-	ng-controller="OrganizadorListController">
+<html lang="pt" ng-app="app" ng-controller="OrganizadorListController">
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />
 <link href="assets/global/bootstrap-table/bootstrap-table.css"

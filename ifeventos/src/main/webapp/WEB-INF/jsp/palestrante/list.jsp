@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="pt" ng-app="app"
-	ng-controller="PalestranteListController">
+<html lang="pt" ng-app="app" ng-controller="PalestranteListController">
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />
 <link href="assets/global/bootstrap-table/bootstrap-table.css"
@@ -85,7 +84,8 @@
 											<th class="col-xs-1" data-field="id" data-sortable="true">Código</th>
 											<th data-field="nome" data-sortable="true">Nome</th>
 											<th data-field="titulo" data-sortable="true">Título</th>
-											<th data-field="resumo" data-sortable="true">Mini Currículo</th>
+											<th data-field="resumo" data-sortable="true">Mini
+												Currículo</th>
 										</tr>
 									</thead>
 								</table>

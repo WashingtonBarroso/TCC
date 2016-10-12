@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="pt" ng-app="app" ng-controller="TipoProgramacaoFormController"  ng-init='setDTO(${dto});'>
+<html lang="pt" ng-app="app"
+	ng-controller="TipoProgramacaoFormController" ng-init='setDTO(${dto});'>
 <head>
 <jsp:include page="/WEB-INF/jsp/template/head.jsp" />
 <link href="assets/global/bootstrap-table/bootstrap-table.css"
@@ -69,19 +71,21 @@
 							<div class="col-lg-12">
 								<div id="div_alert"></div>
 								<form id="form" name="form" role="form" novalidate>
-									<div class="form-group" 
+									<div class="form-group"
 										ng-class="{'has-error':form.descricao.$invalid ,'has-success':form.descricao.$valid}">
-										<label class="control-label">
-											Descrição: <span
+										<label class="control-label"> Descrição: <span
 											class="required"> * </span>
 										</label>
 										<div class="input-icon right">
 											<input class="form-control" placeholder="Digite a descrição"
 												name="descricao" type="text" ng-model="dto.descricao"
 												required maxlength="50">
-											<div class="validation-messages help-block" ng-messages="form.descricao.$error">
-										        <div ng-message="required"><i class="fa fa-warning"></i> Esse campo é obrigatório!</div>														        
-										    </div>
+											<div class="validation-messages help-block"
+												ng-messages="form.descricao.$error">
+												<div ng-message="required">
+													<i class="fa fa-warning"></i> Esse campo é obrigatório!
+												</div>
+											</div>
 										</div>
 									</div>
 									<div class="form-group" style="float: right;">
@@ -89,16 +93,15 @@
 											ng-click="newForm()">
 											<i class="fa fa-file-o"></i> Limpar
 										</div>
-										<div id="saveButton" class="btn btn-success" 
-											ng-click="save()"
+										<div id="saveButton" class="btn btn-success" ng-click="save()"
 											ng-disabled="form.$invalid">
 											<i class="fa fa-check"></i> Salvar
 										</div>
-										<div id="removeButton" class="btn btn-danger" ng-class="{'ng-hide' : dto.id==null}"
-											ng-click="remove()">
+										<div id="removeButton" class="btn btn-danger"
+											ng-class="{'ng-hide' : dto.id==null}" ng-click="remove()">
 											<i class="fa fa-times"></i> Remover
 										</div>
-										<div id="cancelButton" class="btn btn-outline btn-default" 
+										<div id="cancelButton" class="btn btn-outline btn-default"
 											ng-click="cancel()">
 											<i class="fa fa-reply"></i> Voltar
 										</div>
