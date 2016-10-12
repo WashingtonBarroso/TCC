@@ -138,11 +138,7 @@ public class PalestranteController {
 		catch(Exception e){
 			dao.rollback();
 			WriteLog.log(clazz, e.getMessage(), e.getCause());
-<<<<<<< HEAD
 			dto.setMessage("Falha ao tentar salvar o Palestrante! Informe o ocorrido ao suporte técnico.");
-=======
-			dto.setMessage("Falha ao tentar salvar o Tipo de Organizador! Informe o ocorrido ao suporte técnico.");
->>>>>>> refs/remotes/origin/master
 			e.printStackTrace();
 		}
 		result.use(Results.json()).withoutRoot().from(dto).recursive().serialize();

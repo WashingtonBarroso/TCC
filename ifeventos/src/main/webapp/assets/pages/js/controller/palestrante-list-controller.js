@@ -24,20 +24,12 @@ app.controller('PalestranteListController', function($scope, $http, $window, Id,
 	}
     
     $scope.remove = function(){
-<<<<<<< HEAD
         console.log("Remove 2");
     	var rows = $scope.table.bootstrapTable('getAllSelections');
     	if (rows.length > 0){
     		var excluir = [];		
     		for(var i=0; i < rows.length; i++){
     	 		excluir.push(new Id(rows[i].id));
-=======
-    	var rows = $scope.table.bootstrapTable('getAllSelections');
-    	if (rows.length > 0){
-    		var excluir = [];		
-    		for(var i=0; i < rows.length; i++){
-    			excluir.push(new Id(rows[i].id));
->>>>>>> refs/remotes/origin/master
     		}		
     		$http.post($scope.url+"/deleteAllSelected", excluir)
     		.then(function success(response){

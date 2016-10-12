@@ -3,30 +3,22 @@ package br.com.ifg.ifeventos.model.dao.impl;
 import java.util.List;
 
 import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
-<<<<<<< HEAD
 import br.com.ifg.ifeventos.dto.EventoAppDTO;
-=======
->>>>>>> refs/remotes/origin/master
 import br.com.ifg.ifeventos.dto.EventoListDTO;
 import br.com.ifg.ifeventos.model.entity.Evento;
-<<<<<<< HEAD
-
-=======
 import br.com.ifg.ifeventos.model.entity.TipoOrganizador;
->>>>>>> refs/remotes/origin/master
+
 
 public class EventoDAO extends DAO<Evento, Long>{
 	
 	public List<Evento> getAllActives() {
-<<<<<<< HEAD
 		return (List<Evento>) this.getList("from Evento e where e.ativo = true");
 	}
 	
 	public List<EventoAppDTO> getListEventos(){	
 		return (List<EventoAppDTO>) this.getGenericList("select new br.com.ifg.ifeventos.dto.EventoAppDTO(e.id, e.nome, e.local, e.site, e.endereco, e.imagem) from Evento e left join e.endereco where e.ativo = true");
-=======
-		return (List<Evento>) this.getList("from Evento e where p.ativo = true");
->>>>>>> refs/remotes/origin/master
+		//return (List<Evento>) this.getList("from Evento e where p.ativo = true");
+
 	}
 	
 	public Evento getByNome(String nome){

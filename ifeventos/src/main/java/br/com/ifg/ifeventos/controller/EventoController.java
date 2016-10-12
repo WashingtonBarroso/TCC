@@ -197,20 +197,13 @@ public class EventoController {
 		try{			
 			for (int i=0; i < entity.getMapas().size(); i++)
 				entity.getMapas().get(i).setEvento(entity);		
-<<<<<<< HEAD
 			
 			for (int i=0; i < entity.getProgramacao().size(); i++)
-				entity.getProgramacao().get(i).setEvento(entity);
+				entity.getProgramacao().get(i).setEvento(entity);			
 			
 			for (int i=0; i < entity.getOrganizadores().size(); i++)
-				entity.getOrganizadores().get(i).setEvento(entity);				
+				entity.getOrganizadores().get(i).setEvento(entity);		
 			
-=======
-			for (int i=0; i < entity.getProgramacao().size(); i++)
-				entity.getProgramacao().get(i).setEvento(entity);
-			for (int i=0; i < entity.getOrganizadores().size(); i++)
-				entity.getOrganizadores().get(i).setEvento(entity);				
->>>>>>> refs/remotes/origin/master
 			enderecoDao.save(entity.getEndereco());			
 			dao.save(entity);		
 			dao.commit();
@@ -223,11 +216,7 @@ public class EventoController {
 		catch(Exception e){
 			dao.rollback();
 			WriteLog.log(clazz, e.getMessage(), e.getCause());
-<<<<<<< HEAD
 			dto.setMessage("Falha ao tentar salvar o Evento! Informe o ocorrido ao suporte técnico.");
-=======
-			dto.setMessage("Falha ao tentar salvar o Tipo de Programação! Informe o ocorrido ao suporte técnico.");
->>>>>>> refs/remotes/origin/master
 			e.printStackTrace();
 		}
 		result.use(Results.json()).withoutRoot().from(dto).recursive().serialize();
