@@ -1,6 +1,8 @@
 app.factory('Evento', function(Endereco){    
     return function(){
-    	this.id = null;    	
+    	this.id = null;
+    	this.dataInicio = "";
+    	this.dataFim = "";
     	this.nome = "";    	
     	this.local = "";    	
     	this.site = "";    	

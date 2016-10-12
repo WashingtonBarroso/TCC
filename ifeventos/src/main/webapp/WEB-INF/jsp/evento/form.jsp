@@ -106,6 +106,45 @@
 													    </div>
 													</div>
 												</div>
+																<div class="form-inline">												
+																<div class="form-group">
+																		<div ng-class="{'has-error':form.dataInicio.$invalid ,'has-success':form.dataInicio.$valid}">
+																			<label for="dataInicio"> Data Início: </label>
+																			<div class="input-icon right">
+																			    <div class="col-md-4"> 
+																				<input id="dataInicio" type="datetime-local" name="dataInicio" class="form-control"
+																				ng-model="dto.dataInicio" 
+																				placeholder="dd/MM/yyyyTHH:mm" min="2001-01-01T00:00:00" max="2999-12-31T00:00:00"/>
+																				<div class="validation-messages help-block" ng-messages="form.dataInicio.$error">
+																			        <div ng-message="datetimeinicio"><i class="fa fa-warning"></i> O data e horário informado é inválido.</div>																	        														        
+																			        <div ng-message="min"><i class="fa fa-warning"></i> O data é muito antiga.</div>																	        														        
+																			        <div ng-message="max"><i class="fa fa-warning"></i> O data é muito distante.</div>																	        														        
+																			    </div>
+																			    </div>	
+																			</div>
+																		</div>											
+																	</div>			
+												
+																	<div class="form-group">
+																		<div ng-class="{'has-error':form.dataFim.$invalid ,'has-success':form.dataFim.$valid}">
+																			
+																			<div class="input-icon right">
+																				<div class="col-md-4">
+																			   <label for="dataFim"> Data Fim: </label>
+																				<input id="dataFim" type="datetime-local" name="dataFim" class="form-control" 
+																				ng-model="dto.dataFim"
+																				placeholder="dd/MM/yyyyTHH:mm" min="2001-01-01T00:00:00" max="2999-12-31T00:00:00"/>
+																				<div class="validation-messages help-block" ng-messages="form.dataFim.$error">
+																			        <div ng-message="datetimelocal"><i class="fa fa-warning"></i> O data e horário informado é inválido.</div>																	        														        
+																			        <div ng-message="min"><i class="fa fa-warning"></i> O data é muito antiga.</div>																	        														        
+																			        <div ng-message="max"><i class="fa fa-warning"></i> O data é muito distante.</div>																	        														        
+																			    </div>
+																			    </div>	
+																			</div>
+																		</div>											
+																	</div>	
+											                    </div> <!-- inline -->	
+												
 												<div class="form-group"
 													ng-class="{'has-error':form.localEvento.$invalid ,'has-success':form.localEvento.$valid}">
 													<label class="control-label">Local <span
