@@ -3,7 +3,6 @@ angular.module("app").controller('programacaoController', function($scope, $stat
 	$scope.programacoes = [];
 	
 	$scope.loadProgramacao = function(){
-     
 	 eventoService.getEventosById($stateParams.id).success(function(evento){	
 		
 		$scope.programacoes = evento.programacao;

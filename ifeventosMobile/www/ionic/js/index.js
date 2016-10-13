@@ -31,6 +31,7 @@ angular.module('app', ['ionic', 'uiGmapgoogle-maps'])
       views: {
         'menuContent' :{
           templateUrl: "templates/programacao.html",
+		  controller: "programacaoController"
         }
       }
     })

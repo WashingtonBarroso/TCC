@@ -75,11 +75,11 @@ one of these links -->
 	  <div id="searchEvento">
 		  <label class="item item-input">
 			<i class="icon ion-search placeholder-icon"></i>
-			<input type="search" placeholder="Search">
+			<input type="search" ng-model="search" placeholder="Digite um evento">
 		 </label>      
 	  </div>
 	  
-	  <div class="list card" ng-repeat="evento in eventos">
+	  <div class="list card" ng-repeat="evento in eventos | orderBy: '-dataInicio' | filter: search">
  
 		  <div class="item item-avatar" >
 			<img src="http://ionicframework.com/img/docs/delorean.jpg">
@@ -184,13 +184,10 @@ one of these links -->
           <ion-content>
             <ion-list>
               <div ng-repeat="group in groups">
-                <ion-item class="item item-avatar"
-                    ng-click="toggleGroup(group)"
-                    ng-class="{active: isGroupShown(group)}">
+                <ion-item class="item item-avatar" ng-click="toggleGroup(group)"ng-class="{active: isGroupShown(group)}">
                     <img src="bower_components/ionicons/img_programacao/eu.png"> 
                     &nbsp;
-                    <h2><span style="color:black;font-weight:bold">Washington de Sousa Barroso 
-{{group.name}}</span></h2>
+                    <h2><span style="color:black;font-weight:bold">Washington de Sousa Barroso {{group.name}}</span></h2>
                 </ion-item>
                 <ion-item class="item-accordion"
                       ng-repeat="item in group.items"
@@ -207,31 +204,19 @@ Android and iOS platform guides to install required platform dependencies. </p>
       </script>
     <!-- End page -->
 
-    <!-- Página dos palestrantes onde vai conter a lista de programação -->
+    <!-- Página dos programação onde vai conter a lista de programação -->
       <script id="templates/programacao.html" type="text/ng-template">
-        <ion-view view-title="Programação">
-          <ion-content>
+        <ion-view view-title="Programação" ng-init="loadProgramacao();">
+          <ion-content ng-repeat="programacao in programacoes">
           <div class="list">
            <div class="item item-divider">
-            <span id="pro_data">03/01/2016 - Domingo</span>
+            <span id="pro_data">{{programacao.data | date: 'dd/MM/yyyy'}}</span>
             </div>
            <a class="item item-thumbnail-left" href="#">
             <img id="tp_programacao" src="bower_components/ionicons/img_programacao/music.png">
-            <h2 id="pro_titulo">Live show Coldplay</h2>
-            <p id="pro_hora">Hora</p>
-            <p id="pro_local">Local</p> 
-          </a>
-           <a class="item item-thumbnail-left" href="#">
-            <img id="tp_programacao" src="bower_components/ionicons/img_programacao/theatre-masks.png">
-            <h2 id="pro_titulo">Companhia de teatro Nóis Pode</h2>
-            <p id="pro_hora">Hora</p>
-            <p id="pro_local">Local</p>
-          </a>
-           <a class="item item-thumbnail-left" href="#">
-            <img id="tp_programacao" src="bower_components/ionicons/img_programacao/dance.png">
-            <h2 id="pro_titulo">Show dance house</h2>
-            <p id="pro_hora">Hora</p>
-            <p id="pro_local">Local</p>
+            <h2 id="pro_titulo">Título: {{programacao.palestrante.titulo}}</h2>
+            <p id="pro_hora">Hora: {{programacao.data | date: 'hh:mm'}}</p>
+            <p id="pro_local">Local: {{programacao.local}}</p> 
           </a>
          </div>
           </ion-content>
