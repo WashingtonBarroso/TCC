@@ -32,7 +32,7 @@ import br.com.ifg.ifeventos.model.dao.impl.PalestranteDAO;
 import br.com.ifg.ifeventos.model.dao.impl.TipoOrganizadorDAO;
 import br.com.ifg.ifeventos.model.dao.impl.TipoProgramacaoDAO;
 import br.com.ifg.ifeventos.model.entity.Evento;
-import br.com.ifg.ifeventos.utils.HashUtils;
+import br.com.ifg.ifeventos.utils.FileUtils;
 import br.com.ifg.ifeventos.utils.WriteLog;
 import br.com.ifg.ifeventos.utils.gson.exclusion.SkipSerializationExclusionStrategy;
 
@@ -40,7 +40,7 @@ import br.com.ifg.ifeventos.utils.gson.exclusion.SkipSerializationExclusionStrat
 public class EventoController {
 
 	private final Result result;
-	final String PATH = "img\\evento";
+	private final String path = "img\\evento";
 	final String clazz = EventoController.class.getSimpleName();
 	
 
@@ -167,18 +167,18 @@ public class EventoController {
 	@Path("/evento/list")
 	public void list(){	
 	}
-
-	@Post("/evento/save2")
+	
+	@Post("/evento/uploadimage")
 	@UploadSizeLimit(sizeLimit=1 * 1024 * 1024, fileSizeLimit=1 * 1024 * 1024)
-	public void save(UploadedFile imagem){
+	public void save(UploadedFile imagem, Long id, String filename){
+		GenericDTO<Evento> dto = new GenericDTO<Evento>();		
 		try{
-			String ext[] = imagem.getFileName().split("\\.");
-			File imageFile = new File(request.getServletContext().getRealPath("")+ File.separator + PATH, HashUtils.hash(imagem.getFileName())+"."+ext[1]);
-			imagem.writeTo(imageFile);
-			//			dto.setImagem(imageFile.getName());
-			//			enderecoDao.save(dto.getEndereco());
-			//			dao.save(dto);
-			//			dao.commit();
+			FileUtils.save(imagem, request.getServletContext().getRealPath("") + File.separator + path, filename);						
+			Evento entity = dao.getById(id);		
+			entity.setImagem(filename);
+			dao.save(entity);
+			dao.commit();
+			dto.setDto(entity);
 		}
 		catch(Exception e){
 			dao.rollback();
@@ -186,9 +186,10 @@ public class EventoController {
 			WriteLog.log(clazz, e.getMessage(), e.getCause());
 		}
 		result.use(Results.json()).withoutRoot()
-		//		.from(dto)
-		.from("").recursive().serialize();
+		.from(dto).recursive().serialize();
 	}
+
+	
 	@Consumes(value = "application/json", options = WithoutRoot.class)
 	@Post("/evento/save")
 	public void save(Evento entity){		
@@ -206,7 +207,7 @@ public class EventoController {
 			
 			enderecoDao.save(entity.getEndereco());			
 			dao.save(entity);		
-			dao.commit();
+			dao.commit();			
 			dto.setDto(entity);
 		}
 		catch(PersistenceException e){

@@ -81,6 +81,8 @@
 									<thead>
 										<tr>
 											<th data-field="state" data-checkbox="true"></th>
+											<th class="col-xs-1" data-field="imagem" data-align="center"
+													data-formatter="imagemFormatter">Imagem</th>
 											<th class="col-xs-1" data-field="id" data-sortable="true">Código</th>
 											<th data-field="nome" data-sortable="true">Nome</th>
 											<th data-field="carto" data-sortable="true">Cargo</th>

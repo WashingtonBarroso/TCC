@@ -4,6 +4,7 @@ app.factory('Evento', function(Endereco){
     	this.dataInicio = "";
     	this.dataFim = "";
     	this.nome = "";    	
+    	this.imagem = "";    	
     	this.local = "";    	
     	this.site = "";    	
     	this.endereco = new Endereco();

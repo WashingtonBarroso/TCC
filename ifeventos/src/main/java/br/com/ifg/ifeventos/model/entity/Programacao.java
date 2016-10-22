@@ -1,5 +1,6 @@
 package br.com.ifg.ifeventos.model.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,11 +14,10 @@ import lombok.Setter;
 @Table(name="tbprogramacao")
 public class Programacao extends AbstractEntity{
 
-	private static final long serialVersionUID = 1L; 
-	//@Type(type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate")
-	//@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalTime")
+	private static final long serialVersionUID = 1L;
 	
-	@Getter @Setter private String data;	
+	@Getter @Setter private String dataInicio;	
+	@Getter @Setter private String dataFim;	
 	@Getter @Setter private String descricao;	
 	@Getter @Setter private String local;
 	@ManyToOne @JoinColumn(name="tipo_programacao_id")
@@ -27,7 +27,8 @@ public class Programacao extends AbstractEntity{
 	@Getter @Setter private Evento evento;
 	
 	
-	@ManyToOne @JoinColumn(name="palestrante_id")
+	//@ManyToOne @JoinColumn(name="palestrante_id")
+	@ManyToOne(optional = true, cascade = CascadeType.ALL)
 	@Getter @Setter private Palestrante palestrante;
 	
 	
@@ -35,11 +36,12 @@ public class Programacao extends AbstractEntity{
 		super();
 	}
 
-	public Programacao(Long id, String data, String local,
+	public Programacao(Long id, String dataInicio, String dataFim, String local,
 			TipoProgramacao tipoProgramacao, Palestrante palestrante, Evento evento) {
 		super();
 		this.id = id;
-		this.data = data;
+		this.dataInicio = dataInicio;
+		this.dataFim = dataFim;
 		this.local = local;
 		this.tipoProgramacao = tipoProgramacao;
 		this.palestrante = palestrante;

@@ -5,6 +5,7 @@ app.factory('Organizador', function(){
     	this.cargo = "";    	
     	this.area = "";
     	this.url = "";
+    	this.imagem = "";    	
     	this.ativo = true;
     }
 });

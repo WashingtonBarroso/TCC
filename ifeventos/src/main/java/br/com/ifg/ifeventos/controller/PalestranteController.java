@@ -1,9 +1,11 @@
 package br.com.ifg.ifeventos.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
+import javax.servlet.http.HttpServletRequest;
 
 import com.google.gson.Gson;
 
@@ -13,6 +15,8 @@ import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.observer.upload.UploadSizeLimit;
+import br.com.caelum.vraptor.observer.upload.UploadedFile;
 import br.com.caelum.vraptor.serialization.gson.WithoutRoot;
 import br.com.caelum.vraptor.view.Results;
 import br.com.ifg.ifeventos.dto.BootstrapTableDTO;
@@ -21,16 +25,21 @@ import br.com.ifg.ifeventos.dto.GenericDTO;
 import br.com.ifg.ifeventos.dto.Id;
 import br.com.ifg.ifeventos.model.dao.impl.PalestranteDAO;
 import br.com.ifg.ifeventos.model.entity.Palestrante;
+import br.com.ifg.ifeventos.utils.FileUtils;
 import br.com.ifg.ifeventos.utils.WriteLog;
 
 @Controller
 public class PalestranteController {
 
 	private final Result result;
+	private final String path = "img\\palestrante";
 	final String clazz = PalestranteController.class.getSimpleName();
 
 	@Inject
 	private PalestranteDAO dao;
+	
+	@Inject 
+	private HttpServletRequest request;
 	
 	protected PalestranteController(){
 		this(null);
@@ -120,6 +129,27 @@ public class PalestranteController {
 	
 	@Path("/palestrante/list")
 	public void list(){
+	}
+	
+	@Post("/palestrante/uploadimage")
+	@UploadSizeLimit(sizeLimit=1 * 1024 * 1024, fileSizeLimit=1 * 1024 * 1024)
+	public void save(UploadedFile imagem, Long id, String filename){
+		GenericDTO<Palestrante> dto = new GenericDTO<Palestrante>();		
+		try{
+			FileUtils.save(imagem, request.getServletContext().getRealPath("") + File.separator + path, filename);						
+			Palestrante entity = dao.getById(id);		
+			entity.setImagem(filename);
+			dao.save(entity);
+			dao.commit();
+			dto.setDto(entity);
+		}
+		catch(Exception e){
+			dao.rollback();
+			e.printStackTrace();
+			WriteLog.log(clazz, e.getMessage(), e.getCause());
+		}
+		result.use(Results.json()).withoutRoot()
+		.from(dto).recursive().serialize();
 	}
 
 	@Consumes(value = "application/json", options = WithoutRoot.class)

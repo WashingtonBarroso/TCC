@@ -3,7 +3,6 @@ package br.com.ifg.ifeventos.model.dao.impl;
 import java.util.List;
 
 import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
-import br.com.ifg.ifeventos.model.entity.Palestrante;
 import br.com.ifg.ifeventos.model.entity.Programacao;
 
 public class ProgramacaoDAO extends DAO<Programacao, Long> {

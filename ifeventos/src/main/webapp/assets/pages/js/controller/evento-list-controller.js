@@ -62,7 +62,14 @@ app.controller('EventoListController', function($scope, $http, $window, Id, glob
 
 function imagemFormatter(value, row, index) {
 	if (value)
-		return '<img src="img/evento/'+value+'" class="thumb" />';
-	else
-		return '<img src="img/evento/not_found.jpg" class="thumb" />';
+		return '<img src="img/evento/'+value+'" class="thumb"  width="150" />';
+	else 
+		return '<img src="img/not_found_thumb.gif" class="thumb" />';
+}
+
+function dataInicioFormatter(value, row, index) {	
+	return dateFormatter(new Date(row.dataInicio));	 
+}
+function dataFimFormatter(value, row, index) {	
+	return dateFormatter(new Date(row.dataInicio));	 
 }

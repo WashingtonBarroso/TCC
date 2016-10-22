@@ -60,3 +60,10 @@ app.controller('PalestranteListController', function($scope, $http, $window, Id,
     });
       
 });
+
+function imagemFormatter(value, row, index) {
+	if (value)
+		return '<img src="img/palestrante/'+value+'" class="thumb"  width="150" />';
+	else 
+		return '<img src="img/not_found_thumb.gif" class="thumb" />';
+}

@@ -7,16 +7,33 @@
 		<properties>
 			<!-- Dados da conexão -->
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<!-- 
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/tcc" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="067313w" />
+			-->			
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.2.12:3306/ifeventosdev" />
+			<property name="javax.persistence.jdbc.user" value="ifeventos" />
+			<property name="javax.persistence.jdbc.password" value="ifeventos" />
 
-			<!-- Propriedades do hibernate -->
+			<!-- Propriedades do Hibernate -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.archive.autodetection" value="class" />
+			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
+			<property name="hibernate.jdbc.lob.non_contextual_creation" value="true"/>
+			
+			<!-- Pool -->
+			<property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+			<property name="hibernate.c3p0.max_size" value="100" />
+			<property name="hibernate.c3p0.min_size" value="1" />
+			<property name="hibernate.c3p0.acquire_increment" value="1" />
+			<property name="hibernate.c3p0.idle_test_period" value="600" />
+			<property name="hibernate.c3p0.max_statements" value="0" />
+			<property name="hibernate.c3p0.timeout" value="180" />
+			<property name="hibernate.c3p0.unreturnedConnectionTimeout" value="30" />
 
 		</properties>
 	</persistence-unit>

@@ -7,9 +7,6 @@
     "outline": {
       
     },
-    "angular": {
-      
-    },
     "browser-extension": {
       
     },
@@ -23,6 +20,9 @@
       
     },
     "jquery-mobile1.5": {
+      
+    },
+    "angular1": {
       
     }
   },

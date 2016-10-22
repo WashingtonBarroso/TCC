@@ -8,6 +8,8 @@ app.controller('EventoFormController', function($scope, $filter, $http, $window,
 	$scope.organizadorEvento = new OrganizadorEvento();
 	$scope.mapa = new Mapa();
 	$scope.programacao = new Programacao();
+	$scope.imagem = null;
+	$scope.savedImage = 'img/not_found.gif';
 
 	//listas para seletores
 	$scope.organizadores = [];
@@ -27,7 +29,10 @@ app.controller('EventoFormController', function($scope, $filter, $http, $window,
 	$scope.setDTO = function(dto){
 		if (dto != undefined){			
 			$scope.dto = dto;
-			setTimeout(function(){ $scope.loadTables(); }, 1500);
+			$scope.dto.dataInicio = new Date($scope.dto.dataInicio);
+			$scope.dto.dataFim = new Date($scope.dto.dataFim);
+			$scope.savedImage = ($scope.dto.imagem != "") ? 'img/evento/'+$scope.dto.imagem : $scope.savedImage;
+			setTimeout(function(){ $scope.loadTables(); }, 1500);			
 		}
 	}
 	
@@ -42,27 +47,33 @@ app.controller('EventoFormController', function($scope, $filter, $http, $window,
 		$scope.mapaTable.bootstrapTable('removeAll');
 		$scope.organizacaoTable.bootstrapTable('removeAll');
 		$scope.programacaoTable.bootstrapTable('removeAll');
+		$scope.clearImage();
 	}
-	
+		
 	$scope.save = function(){
     	if ($scope.form.$valid){
     		$scope.getOrganizadoresEventoData();
 			$scope.getMapasData();
 			$scope.getProgramacaoData();
+			if ($scope.imagem == null && $scope.dto.imagem == "")
+				$scope.dto.imagem = "";
 			$http.post($scope.url+"/save", $scope.dto)
 	    		.then(function success(response){
 	    			if (response.data.message != "")
 	    				globalService.showMensage('div_alert',response.data.message,'danger');
 	    			else{
 	    				$scope.dto = response.data.dto;
-	    				globalService.showMensage('div_alert','Registro salvo com sucesso!','success');
+	    				if ($scope.imagem == null)
+	    					globalService.showMensage('div_alert','Registro salvo com sucesso!','success');
+	    				else
+	    					$scope.uploadImage();
 	    			}
 	    		}, function error(response){
 	    			globalService.showMensage('div_alert',"Falha ao tentar salvar o registro.",'danger');
 	    		});
     	}
     }
-
+	
 	$scope.remove = function(){
     	var id = new Id($scope.dto.id);
     	$http.post($scope.url+"/delete", id)
@@ -199,14 +210,16 @@ app.controller('EventoFormController', function($scope, $filter, $http, $window,
 				scrollwheel: true,
 				zoom: 15
 			});
+			$scope.markers = [];
 			
 			// Adiciona as marker no map com click
 			$scope.mapViewer.addListener('click', function(event){
+				$scope.setMapOnAll(null);
 				$scope.addMarker({
-					descricao: $scope.mapa.descricao,
+					//descricao: $scope.mapa.descricao,
 					lat: event.latLng.lat(),	
 					lng: event.latLng.lng()
-				});			
+				}, $scope.mapa.descricao);			
 				$scope.mapa.latitude = event.latLng.lat();
 				$scope.mapa.longitude = event.latLng.lng();
 				
@@ -214,8 +227,29 @@ app.controller('EventoFormController', function($scope, $filter, $http, $window,
 			
 			$scope.getGeolocation();			
 			$scope.mapViewerInitialized = true;
+			$scope.loadMarkers();
 		}		
 	}
+	
+	$scope.loadMarkers = function(){
+		for (var i = 0; i < $scope.dto.mapas.length; i++) {
+			$scope.addMarker({
+				lat: $scope.dto.mapas[i].latitude,	
+				lng: $scope.dto.mapas[i].longitude
+			}, $scope.dto.mapas[i].descricao);
+			/*
+			$scope.markers.push(new google.maps.Marker({
+			    map: $scope.mapViewer,
+			    position: {
+					lat: $scope.dto.mapas[i].latitude,
+					lng: $scope.dto.mapas[i].longitude
+			},
+			    title: $scope.dto.mapas[i].descricao
+			})
+			);*/
+		}
+	}
+	
 	
 	$scope.getGeolocation = function(){
 		var infoWindow = new google.maps.InfoWindow({map: $scope.mapViewer});
@@ -243,12 +277,19 @@ app.controller('EventoFormController', function($scope, $filter, $http, $window,
 		}
 	}
 	
-	$scope.addMarker = function(myLocal){		
+	$scope.addMarker = function(latLng, descricao){		
 		var marker = new google.maps.Marker({
 		    map: $scope.mapViewer,
-		    position: myLocal,
-		    title: $scope.mapa.descricao
+		    position: latLng,
+		    title: descricao
 		});
+		$scope.markers.push(marker);
+	}
+	
+	$scope.setMapOnAll = function(map) {
+		for (var i = 0; i < $scope.markers.length; i++) {
+			$scope.markers[i].setMap(map);
+		}
 	}
 	
 	$scope.addMapa = function(){
@@ -287,7 +328,7 @@ app.controller('EventoFormController', function($scope, $filter, $http, $window,
 	 */
 	
 	$scope.addProgramacao = function(){
-		if ($scope.programacao.data != "" > 0 && $scope.programacao.descricao.length > 0 && $scope.programacao.local.length > 0 && $scope.programacao.tipoProgramacao.descricao.length > 0 && $scope.programacao.palestrante.nome.length > 0){
+		if ($scope.programacao.data != "" > 0 && $scope.programacao.descricao.length > 0 && $scope.programacao.local.length > 0 && $scope.programacao.tipoProgramacao.descricao.length > 0 /* && $scope.programacao.palestrante.nome.length > 0*/){
 			$scope.programacaoTable.bootstrapTable('append', $scope.programacao);			
 			$scope.programacao = new Programacao();
 		}
@@ -313,47 +354,33 @@ app.controller('EventoFormController', function($scope, $filter, $http, $window,
 	 * Tab Imagem
 	 */
 
-	$scope.uploadPic = function(file) {
-		file.upload = Upload.upload({
-			url: $scope.url+"/save2",
-			data: file,
-		});
-
-		file.upload.then(function (response) {
-			$timeout(function () {
-				file.result = response.data;
-			});
-		}, function (response) {
-			if (response.status > 0)
-				$scope.errorMsg = response.status + ': ' + response.data;
-		}, function (evt) {
-			//Math.min is to fix IE which reports 200% sometimes
-			file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-		});
+	$scope.clearImage = function(){
+		$scope.imagem = null;
+		$scope.dto.imagem = null;
+		$scope.savedImage = 'img/not_found.gif';
 	}
-
-
-
-//	file.upload = Upload.upload({
-//	url: $scope.url+"/save",
-//	data: {
-//	evento: $scope.dto, 
-//	imagem: file
-//	},
-//	});
-
-//	file.upload.then(function (response) {
-//	$timeout(function () {
-//	file.result = response.data;
-//	});
-//	}, function (response) {
-//	if (response.status > 0)
-//	$scope.errorMsg = response.status + ': ' + response.data;
-//	}, function (evt) {
-//	// Math.min is to fix IE which reports 200% sometimes
-//	file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total));
-//	});
-
+	
+	$scope.uploadImage = function(){
+		var formData = new FormData();		
+		var re = /(?:\.([^.]+))?$/;
+		var ext = re.exec($scope.imagem.$ngfName)[1];		
+		formData.append('imagem', $scope.imagem);
+		formData.append('id', $scope.dto.id);
+		formData.append('filename', $scope.dto.id+"."+ext);
+        $http.post($scope.url+"/uploadimage", formData, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        }).then(function success(response){
+			if (response.data.message != "")
+				globalService.showMensage('div_alert',response.data.message,'danger');
+			else{
+				$scope.dto = response.data.dto;
+				globalService.showMensage('div_alert','Registro salvo com sucesso!','success');
+			}
+		}, function error(response){
+			globalService.showMensage('div_alert',"Falha ao tentar salvar o registro.",'danger');
+		});		
+	}
 });
 
 
@@ -361,7 +388,6 @@ function removeFormatter(value, row, index) {
 	return '<div id="removeButton" class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></div>'
 }
 
-function dateFormatter(value, row, index) {	
-	var data = new Date(row.data);
-	return data.getDate() + "/" + (data.getMonth() + 1) + "/" + data.getFullYear() + " " + data.getHours() + ":" + data.getMinutes();	 
+function dataFormatter(value, row, index) {	
+	return dateFormatter(new Date(row.data));	 
 }

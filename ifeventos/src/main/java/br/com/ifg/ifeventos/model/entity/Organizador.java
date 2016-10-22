@@ -14,22 +14,22 @@ public class Organizador extends AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Getter @Setter private String nome;	
-	@Getter @Setter private String imagem;	
 	@Getter @Setter private String cargo;
 	@Getter @Setter private String area;
 	@Getter @Setter private String url;
+	@Getter @Setter private String imagem;	
 
 	public Organizador() {
 		super();
 	}
 
-	public Organizador(Long id, String nome, String imagem, String cargo, String area, String url) {
+	public Organizador(Long id, String nome, String cargo, String area, String url, String imagem) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.imagem = imagem;
 		this.cargo = cargo;
 		this.area = area;
 		this.url = url;
+		this.imagem = imagem;
 	}
 }

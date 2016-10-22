@@ -83,14 +83,14 @@
 														ng-click="initMapViewerWithDelay();">Mapa</a></li>
 													<li><a href="#tab4" data-toggle="tab">Programação</a></li>
 													<!-- 
-													<li><a href="#tab5" data-toggle="tab">Imagem</a></li>
 													 -->
+													<li><a href="#tab5" data-toggle="tab">Imagem</a></li>
 												</ul>
 											</div>
 										</div>
 									</div>
-									<form id="form" name="form" role="form" novalidate>
 										<!-- enctype="multipart/form-data" -->
+									<form id="form" name="form" role="form" novalidate>
 										<div class="tab-content">
 											<!-- Init tab1 -->
 											<div class="tab-pane fade tab-margin active in" id="tab1">
@@ -117,65 +117,57 @@
 													</div>
 												</div>
 												<div class="form-inline">
-													<div class="form-group">
-														<div
-															ng-class="{'has-error':form.dataInicio.$invalid ,'has-success':form.dataInicio.$valid}">
-															<label for="dataInicio"> Data Início: </label>
-															<div class="input-icon right">
-																<div class="col-md-4">
-																	<input id="dataInicio" type="datetime-local"
-																		name="dataInicio" class="form-control"
-																		ng-model="dto.dataInicio"
-																		placeholder="dd/MM/yyyyTHH:mm"
-																		min="2001-01-01T00:00:00" max="2999-12-31T00:00:00" />
-																	<div class="validation-messages help-block"
-																		ng-messages="form.dataInicio.$error">
-																		<div ng-message="datetimeinicio">
-																			<i class="fa fa-warning"></i> O data e horário
-																			informado é inválido.
-																		</div>
-																		<div ng-message="min">
-																			<i class="fa fa-warning"></i> O data é muito antiga.
-																		</div>
-																		<div ng-message="max">
-																			<i class="fa fa-warning"></i> O data é muito
-																			distante.
-																		</div>
+													<div class="form-group" ng-class="{'has-error':form.dataInicio.$invalid ,'has-success':form.dataInicio.$valid}">
+														<label class="control-label"> Data Início: <span
+														class="required"> * </span></label>
+														<div class="input-icon right">															
+															<input id="dataInicio" type="datetime-local"
+																name="dataInicio" class="form-control"
+																ng-model="dto.dataInicio"
+																placeholder="dd/MM/yyyyTHH:mm"
+																min="2001-01-01T00:00:00" max="2999-12-31T00:00:00" required/>
+															<div class="validation-messages help-block"
+																ng-messages="form.dataInicio.$error">
+																<div ng-message="datetimeinicio">
+																	<i class="fa fa-warning"></i> O data e horário
+																	informado é inválido.
+																</div>
+																<div ng-message="min">
+																	<i class="fa fa-warning"></i> O data é muito antiga.
+																</div>
+																<div ng-message="max">
+																	<i class="fa fa-warning"></i> O data é muito
+																	distante.
+																</div>
+															</div>													
+														</div>
+													</div>									
+													<div class="form-group" ng-class="{'has-error':form.dataFim.$invalid ,'has-success':form.dataFim.$valid}">
+														<div class="input-icon right">
+															<div class="col-md-6">
+																<label class="control-label"> Data Fim: <span
+														class="required"> * </span></label> 
+																<input id="dataFim" type="datetime-local" name="dataFim"
+																	class="form-control" ng-model="dto.dataFim"
+																	placeholder="dd/MM/yyyyTHH:mm"
+																	min="2001-01-01T00:00:00" max="2999-12-31T00:00:00" required/>
+																<div class="validation-messages help-block"
+																	ng-messages="form.dataFim.$error">
+																	<div ng-message="datetimelocal">
+																		<i class="fa fa-warning"></i> O data e horário
+																		informado é inválido.
+																	</div>
+																	<div ng-message="min">
+																		<i class="fa fa-warning"></i> O data é muito antiga.
+																	</div>
+																	<div ng-message="max">
+																		<i class="fa fa-warning"></i> O data é muito
+																		distante.
 																	</div>
 																</div>
 															</div>
 														</div>
-													</div>
-
-													<div class="form-group">
-														<div
-															ng-class="{'has-error':form.dataFim.$invalid ,'has-success':form.dataFim.$valid}">
-
-															<div class="input-icon right">
-																<div class="col-md-4">
-																	<label for="dataFim"> Data Fim: </label> <input
-																		id="dataFim" type="datetime-local" name="dataFim"
-																		class="form-control" ng-model="dto.dataFim"
-																		placeholder="dd/MM/yyyyTHH:mm"
-																		min="2001-01-01T00:00:00" max="2999-12-31T00:00:00" />
-																	<div class="validation-messages help-block"
-																		ng-messages="form.dataFim.$error">
-																		<div ng-message="datetimelocal">
-																			<i class="fa fa-warning"></i> O data e horário
-																			informado é inválido.
-																		</div>
-																		<div ng-message="min">
-																			<i class="fa fa-warning"></i> O data é muito antiga.
-																		</div>
-																		<div ng-message="max">
-																			<i class="fa fa-warning"></i> O data é muito
-																			distante.
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
+													</div>													
 												</div>
 												<!-- inline -->
 
@@ -332,8 +324,7 @@
 																		</div>
 																	</div>
 																	<div class="form-group">
-																		<label class="control-label"> Papel na
-																			organização: </label>
+																		<label class="control-label"> Papel: </label>
 																		<div class="input-icon right">
 																			<select class="form-control"
 																				ng-model="organizadorEvento.tipoOrganizador"
@@ -464,7 +455,7 @@
 																	<div id="div_programacao_alert"></div>
 																	<div class="form-group">
 																		<div
-																			ng-class="{'has-error':form.dataProgramacao.$invalid ,'has-success':form.dataProgramacao.$valid}">
+																			ng-class="{'has-error':form.dataProgramacao.$invalid}">
 																			<label class="control-label"> Início: </label>
 																			<div class="input-icon right">
 																				<input type="datetime-local" name="dataProgramacao"
@@ -547,7 +538,7 @@
 																		<tr>
 																			<th data-valign="middle" class="col-xs-1"
 																				data-field="temp" data-align="center"
-																				data-formatter="dateFormatter">Data</th>
+																				data-formatter="dataFormatter">Data</th>
 																			<th data-valign="middle"
 																				data-field="tipoProgramacao.descricao"
 																				data-sortable="true">Tipo da Programação</th>
@@ -571,50 +562,55 @@
 												<!-- /.row -->
 											</div>
 											<!-- Exit tab4 -->
+										</form>
 
-
-											<!-- Início tab 5  
-											<div class="tab-pane fade tab-margin" id="tab5">	
-												<div class="form-group"
-													ng-class="{'has-error':form.imagem.$invalid ,'has-success':form.imagem.$valid}">
-													<label class="control-label">Imagem</label> <input
-														type="file" ngf-select ng-model="imagem" name="imagem"
-														accept="image/*" ngf-max-size="2MB" required
-														ngf-model-invalid="errorFile"> <span
-														class="help-block" ng-show="form.imagem.$error.required">
-														<i class="fa fa-warning"></i> Favor inserir o dado
-														requerido.
-													</span> <img ng-show="form.file.$valid" ngf-thumbnail="imagem"
-														class="thumb">
-													<div id="removeButton" class="btn btn-danger"
-														ng-click="imagem = null" ng-show="imagem">
-														<i class="fa fa-times"></i> Remover
+										<!-- Início tab 5  -->
+										<div class="tab-pane fade tab-margin" id="tab5">								
+											<form name="imageForm" id="imageForm" method="post" enctype="multipart/form-data">	
+												<div class="form-group" ng-class="{'has-error':imageForm.imagem.$invalid ,'has-success':imageForm.imagem.$valid}">													
+													<div class="panel panel-default">
+														<div class="panel-heading">Imagem</div>
+													 	<div class="panel-body" align="center">
+															<img ng-show="imageForm.file.$valid" ngf-thumbnail="imagem || savedImage" class="thumb">
+															<p>																
+															 	<div id="removeImageButton" class="btn btn-danger" ng-click="clearImage();" ng-show="imagem || dto.imagem">
+																	<i class="fa fa-times"></i> Remover
+																</div>
+															</p>																
+													 	</div>
+													 	<div class="panel-body">
+													 	</div>
 													</div>
+													<input type="file" ngf-select ng-model="imagem" name="imagem" accept="image/*" ngf-max-size="2MB" 
+														ngf-min-height="200"
+														ngf-resize="{width: 600, height: 400}"
+														ngf-model-invalid="errorFile"> 
 												</div>
+											</form>
+
+										</div>											 
+										<!-- Fim tab 5 -->
+																			
+										<!-- Grup button  -->
+										<div class="form-group" style="float: right;">
+											<div id="newButton" class="btn btn-primary"
+												ng-click="newForm()">
+												<i class="fa fa-file-o"></i> Limpar
 											</div>
-											 -->
-											<!-- Fim tab 5 -->
-									</form>
-									<!-- Grup button  -->
-									<div class="form-group" style="float: right;">
-										<div id="newButton" class="btn btn-primary"
-											ng-click="newForm()">
-											<i class="fa fa-file-o"></i> Limpar
+											<div id="saveButton" class="btn btn-success" ng-click="save()"
+												ng-disabled="form.$invalid">
+												<i class="fa fa-check"></i> Salvar
+											</div>
+											<div id="removeButton" class="btn btn-danger"
+												ng-class="{'ng-hide' : dto.id==null}" ng-click="remove()">
+												<i class="fa fa-times"></i> Remover
+											</div>
+											<div id="cancelButton" class="btn btn-outline btn-default"
+												ng-click="cancel()">
+												<i class="fa fa-reply"></i> Voltar
+											</div>
 										</div>
-										<div id="saveButton" class="btn btn-success" ng-click="save()"
-											ng-disabled="form.$invalid">
-											<i class="fa fa-check"></i> Salvar
-										</div>
-										<div id="removeButton" class="btn btn-danger"
-											ng-class="{'ng-hide' : dto.id==null}" ng-click="remove()">
-											<i class="fa fa-times"></i> Remover
-										</div>
-										<div id="cancelButton" class="btn btn-outline btn-default"
-											ng-click="cancel()">
-											<i class="fa fa-reply"></i> Voltar
-										</div>
-									</div>
-									<!-- Fim button -->
+										<!-- Fim button -->
 								</div>
 							</div>
 						</div>

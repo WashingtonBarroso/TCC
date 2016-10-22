@@ -6,9 +6,9 @@ import br.com.ifg.ifeventos.dto.BootstrapTableParamsDTO;
 import br.com.ifg.ifeventos.dto.EventoAppDTO;
 import br.com.ifg.ifeventos.dto.EventoListDTO;
 import br.com.ifg.ifeventos.model.entity.Evento;
-import br.com.ifg.ifeventos.model.entity.TipoOrganizador;
 
 
+@SuppressWarnings("unchecked")
 public class EventoDAO extends DAO<Evento, Long>{
 	
 	public List<Evento> getAllActives() {
@@ -32,7 +32,7 @@ public class EventoDAO extends DAO<Evento, Long>{
 			id = Long.parseLong(params.getSearch());
 		}catch(Exception e){
 		};
-		return (List<EventoListDTO>) this.getPageableGenericList(params.getOffset(),"select new br.com.ifg.ifeventos.dto.EventoListDTO(e.id, e.nome, e.local, e.endereco, e.imagem) from Evento e "
+		return (List<EventoListDTO>) this.getPageableGenericList(params.getOffset(),"select new br.com.ifg.ifeventos.dto.EventoListDTO(e.id, e.nome, e.dataInicio, e.dataFim, e.local, e.endereco, e.imagem) from Evento e "
 				+ "left join e.endereco en "
 				+ "where e.ativo = true and (e.nome like :param "
 				+ "or e.local like :param "

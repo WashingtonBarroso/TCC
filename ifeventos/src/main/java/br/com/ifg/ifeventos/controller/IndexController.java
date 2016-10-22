@@ -66,15 +66,17 @@ public class IndexController {
 			tipoOrganizadorDao.setEntityManager(tipoProgramacaoDao.getEntityManager());
 			palestranteDao.setEntityManager(tipoProgramacaoDao.getEntityManager());
 			organizadorDao.setEntityManager(tipoProgramacaoDao.getEntityManager());		
+			tipoProgramacaoDao.save(new TipoProgramacao("Abertura"));
+			tipoProgramacaoDao.save(new TipoProgramacao("Encerramento"));
 			tipoProgramacaoDao.save(new TipoProgramacao("Mini curso"));
 			tipoProgramacaoDao.save(new TipoProgramacao("Palestra"));		
 			tipoOrganizadorDao.save(new TipoOrganizador("Apoio"));
 			tipoOrganizadorDao.save(new TipoOrganizador("Realização"));		
 			tipoOrganizadorDao.save(new TipoOrganizador("Patrocínio"));
-			palestranteDao.save(new Palestrante(null, "Fulano", "Resumo do Fulano", "Doutor"));
-			palestranteDao.save(new Palestrante(null, "Siclano", "Resumo do Siclano", "Mestre"));
-			organizadorDao.save(new Organizador(null, "Beltrano 1", "", "Professor", "Informática", "www"));
-			organizadorDao.save(new Organizador(null, "Beltrano 2", "", "Professor", "Informática", "www"));		
+			palestranteDao.save(new Palestrante(null, "Fulano", "Resumo do Fulano", "Doutor",""));
+			palestranteDao.save(new Palestrante(null, "Siclano", "Resumo do Siclano", "Mestre",""));
+			organizadorDao.save(new Organizador(null, "Beltrano 1", "Professor", "Informática", "www", ""));
+			organizadorDao.save(new Organizador(null, "Beltrano 2", "Professor", "Informática", "www", ""));		
 			organizadorDao.commit();
 		}
 	}

@@ -91,6 +91,12 @@
 													data-sortable="true">Código</th>
 												<th data-valign="middle" data-field="nome"
 													data-sortable="true">Nome</th>
+												<th data-valign="middle" class="col-xs-1"
+													data-field="dataInicio" data-align="center"
+													data-formatter="dataInicioFormatter">Início</th>
+												<th data-valign="middle" class="col-xs-1"
+													data-field="dataFim" data-align="center"
+													data-formatter="dataFimFormatter">Término</th>
 												<th data-valign="middle" data-field="local"
 													data-sortable="true">Local</th>
 												<th data-valign="middle" data-field="endereco.logradouro"
